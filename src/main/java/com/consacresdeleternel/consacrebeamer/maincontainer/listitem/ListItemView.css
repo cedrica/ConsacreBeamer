@@ -1,0 +1,8 @@
+.list-item-view{
+	
+}
+
+.list-item-view .rounded{
+	-fx-background-radius: 5.0em; 
+	-fx-border-radius: 5.0em;
+}

@@ -1,0 +1,100 @@
+package com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.text
+
+import javafx.scene.layout.AnchorPane
+import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.text.TextView
+import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.text.TextController
+import javafx.geometry.Insets
+import javafx.scene.layout.VBox
+import javafx.scene.layout.HBox
+import javafx.scene.control.Label
+import javafx.scene.control.TextField
+import javafx.scene.web.HTMLEditor
+import javafx.scene.control.Button
+import javafx.scene.control.RadioButton
+import javafx.scene.control.ToggleGroup
+
+dynamic component TextView controlledby TextController styledwith [
+	"/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/text/TextView.css", "/css/svg-icons.css" ]
+resourcefile "/bundle/consacrebeamer_de_DE.properties" {
+	define ToggleGroup id radioGroup TextView id rootNode {
+		stylesheets : [
+			"/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/text/TextView.css",
+			"/css/svg-icons.css"
+		],
+		padding : Insets {
+			top : 10,
+			right : 10,
+			left : 10,
+			bottom : 10
+		},
+		center : VBox {
+			spacing : 5,
+			HBox {
+				spacing : 5,
+				alignment : "CENTER",
+				Label {
+					alignment : "CENTER",
+					text : rstring "csb.createOrEditNewSongView.title"
+				},
+				TextField id tfTitle {
+					maxWidth : const Double#MAX_VALUE,
+					static hgrow : "ALWAYS"
+				}
+			},
+			HTMLEditor id htmlEditor {
+
+			}
+
+		},
+		right : VBox {
+			padding : Insets {
+				left : 10
+			},
+			spacing : 5,
+			Button {
+				text : rstring "csb.createOrEditNewSongView.ok",
+				maxWidth : const Double#MAX_VALUE,
+				graphic : Label {
+					styleClass : [
+						""
+					]
+				},
+				onAction : controllermethod onOk
+			},
+			Button {
+				text : rstring "csb.createOrEditNewSongView.cancel",
+				maxWidth : const Double#MAX_VALUE,
+				graphic : Label {
+					styleClass : [
+						""
+					]
+				},
+				onAction : controllermethod onCancel
+			},
+			Button {
+				text : rstring "csb.createOrEditNewSongView.background",
+				maxWidth : const Double#MAX_VALUE,
+				graphic : Label {
+					styleClass : [
+						""
+					]
+				},
+				onAction : controllermethod onSetBackground
+			},
+			VBox {
+				RadioButton id rbOneLanguage{
+					toggleGroup : idref radioGroup,
+					text : "1"
+				},
+				RadioButton id rbTwoLanguage {
+					toggleGroup : idref radioGroup,
+					text : "2"
+				},
+				RadioButton id rbTreeLanguage{
+					toggleGroup : idref radioGroup,
+					text : "3"
+				}
+			}
+		}
+	}
+}

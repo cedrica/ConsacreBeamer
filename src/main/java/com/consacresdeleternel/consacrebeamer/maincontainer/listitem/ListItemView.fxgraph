@@ -1,0 +1,45 @@
+package com.consacresdeleternel.consacrebeamer.maincontainer.listitem
+
+import javafx.scene.layout.AnchorPane
+import com.consacresdeleternel.consacrebeamer.maincontainer.listitem.ListItemController
+import com.consacresdeleternel.consacrebeamer.maincontainer.listitem.ListItemView
+import javafx.scene.control.Label
+import javafx.scene.control.Button
+import javafx.scene.layout.HBox
+import java.lang.Double
+
+dynamic component ListItemView controlledby ListItemController styledwith [
+	"/com/consacresdeleternel/consacrebeamer/maincontainer/listitem/ListItemView.css", "/css/bootstrap.css" ]
+resourcefile "/bundle/consacrebeamer_de_DE.properties" {
+	ListItemView id rootNode {
+		stylesheets : [
+			"/com/consacresdeleternel/consacrebeamer/maincontainer/listitem/ListItemView.css",
+			"/css/bootstrap.css"
+		],
+		styleClass : [
+			"list-item-view"
+		],
+		prefHeight : 20,
+		spacing : 5,
+		HBox {
+			static hgrow : "ALWAYS",
+			alignment : "CENTER_LEFT",
+			Label id lblItemName{
+
+				text : "text hier",
+				maxWidth : const Double#MAX_VALUE
+			}
+		},
+		HBox {
+			alignment : "CENTER_RIGHT",
+			Button {
+				styleClass : [
+					"rounded"
+				],
+				alignment : "TOP_CENTER",
+				text : "..."
+			}
+		}
+
+	}
+}

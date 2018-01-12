@@ -1,0 +1,32 @@
+.main-container-view{
+	-fx-background-color:#fff;
+}
+.main-container-view .tool-bar{
+	-fx-background-color:lightblue;
+}
+.main-container-view .menu-button{
+	-fx-pref-width:100.0px;
+	-fx-background-color:#fff;
+}
+
+.main-container-view  .new-file-icon{
+	-fx-background-color:green;
+	-fx-pref-height:15.0px;
+	-fx-pref-width:15.0px;
+}
+
+.main-container-view  .save-icon{
+	-fx-background-color:green;
+	-fx-pref-height:15.0px;
+	-fx-pref-width:15.0px;
+}
+
+
+.context-menu{
+	-fx-background-color: #fff;
+	-fx-text-fill: #333;
+	-fx-pref-width:150.0px;
+	/*-fx-border-radius: 5.0;
+	-fx-background-radius: 5.0;*/
+	-fx-padding: 10.0;
+}

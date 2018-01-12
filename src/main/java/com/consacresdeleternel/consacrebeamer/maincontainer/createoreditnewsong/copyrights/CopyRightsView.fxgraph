@@ -1,0 +1,202 @@
+package com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.copyrights
+
+import javafx.scene.layout.AnchorPane
+import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.copyrights.CopyRightsController
+import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.copyrights.CopyRightsView
+import javafx.scene.control.Label
+import javafx.scene.layout.GridPane
+import javafx.scene.layout.VBox
+import javafx.scene.control.TextField
+import javafx.scene.layout.ColumnConstraints
+import javafx.scene.layout.RowConstraints
+import javafx.scene.control.Button
+import javafx.scene.control.RadioButton
+import javafx.geometry.Insets
+
+dynamic component CopyRightsView controlledby CopyRightsController styledwith [
+	"/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/copyrights/CopyRightsView.css",
+	"/css/svg-icons.css" ] resourcefile "/bundle/consacrebeamer_de_DE.properties" {
+	CopyRightsView id rootNode {
+		stylesheets : [
+			"/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/copyrights/CopyRightsView.css",
+			"/css/svg-icons.css"
+		],
+		padding : Insets{
+			top : 10,
+			left : 10,
+			right : 10,
+			bottom : 10
+		},
+		center : GridPane {
+			columnConstraints : [
+				ColumnConstraints {
+
+				},
+				ColumnConstraints {
+					hgrow : "ALWAYS"
+				}
+			],
+			rowConstraints : [
+				RowConstraints {
+
+				}
+			],
+			hgap : 5,
+			vgap : 10,
+			//COLUMN1
+			Label {
+				static columnIndex : 0,
+				static rowIndex : 0,
+				text : rstring "csb.copyRightsView.title"
+			},
+			Label {
+				static columnIndex : 0,
+				static rowIndex : 1,
+				text : rstring "csb.copyRightsView.originalTitle"
+			},
+			Label {
+				static columnIndex : 0,
+				static rowIndex : 2,
+				text : rstring "csb.copyRightsView.textAutor"
+			},
+			Label {
+				static columnIndex : 0,
+				static rowIndex : 3,
+				text : rstring "csb.copyRightsView.musik"
+			},
+			Label {
+				static columnIndex : 0,
+				static rowIndex : 4,
+				text : rstring "csb.copyRightsView.translation"
+			},
+			Label {
+				static columnIndex : 0,
+				static rowIndex : 5,
+				text : rstring "csb.copyRightsView.copyright"
+			},
+			Label {
+				static columnIndex : 0,
+				static rowIndex : 6,
+				text : rstring "csb.copyRightsView.nationalCopyr"
+			},
+			Label {
+				static columnIndex : 0,
+				static rowIndex : 7,
+				text : rstring "csb.copyRightsView.right"
+			},
+			Label {
+				static columnIndex : 0,
+				static rowIndex : 8,
+				text : rstring "csb.copyRightsView.ccliNr"
+			},
+			Label {
+				static columnIndex : 0,
+				static rowIndex : 9,
+				text : rstring "csb.copyRightsView.bibleReferenz"
+			},
+			Label {
+				static columnIndex : 0,
+				static rowIndex : 10,
+				text : rstring "csb.copyRightsView.songBuchNr"
+			},
+			Label {
+				static columnIndex : 0,
+				static rowIndex : 11,
+				text : rstring "csb.copyRightsView.additionalInfo"
+			},
+			Label {
+				static columnIndex : 0,
+				static rowIndex : 12,
+				text : rstring "csb.copyRightsView.key"
+			},
+			Label {
+				static columnIndex : 0,
+				static rowIndex : 13,
+				text : rstring "csb.copyRightsView.tempo"
+			},
+			//COLUMN2
+			TextField id tfTitle{
+				static columnIndex : 1,
+				static rowIndex : 0
+			},
+			TextField id tfOriginalTitle {
+				static columnIndex : 1,
+				static rowIndex : 1
+			},
+			TextField id tfTextAutor{
+				static columnIndex : 1,
+				static rowIndex : 2
+			},
+			TextField id tfMusik{
+				static columnIndex : 1,
+				static rowIndex : 3
+			},
+			TextField id tfTranslation {
+				static columnIndex : 1,
+				static rowIndex : 4
+			},
+			TextField id tfCopyright{
+				static columnIndex : 1,
+				static rowIndex : 5
+			},
+			TextField id tfNationalCopyr{
+				static columnIndex : 1,
+				static rowIndex : 6
+			},
+			TextField id tfRight{
+				static columnIndex : 1,
+				static rowIndex : 7
+			},
+			TextField id tfCCLiNr{
+				static columnIndex : 1,
+				static rowIndex : 8
+			},
+			TextField id tfBibleReferenz {
+				static columnIndex : 1,
+				static rowIndex : 9
+			},
+			TextField id tfSongBuchNr{
+				static columnIndex : 1,
+				static rowIndex : 10
+			},
+			TextField id tfAdditionalInfo{
+				static columnIndex : 1,
+				static rowIndex : 11
+			},
+			TextField id tfKey{
+				static columnIndex : 1,
+				static rowIndex : 12
+			},
+			TextField id tfTempo{
+				static columnIndex : 1,
+				static rowIndex : 13
+			}
+		},
+		right : VBox {
+			padding : Insets {
+				left : 10
+			},
+			spacing : 5,
+			Button {
+				text : rstring "csb.createOrEditNewSongView.ok",
+				maxWidth : const Double#MAX_VALUE,
+				graphic : Label {
+					styleClass : [
+						""
+					]
+				},
+				onAction : controllermethod onOk
+			},
+			Button {
+				text : rstring "csb.createOrEditNewSongView.cancel",
+				maxWidth : const Double#MAX_VALUE,
+				graphic : Label {
+					styleClass : [
+						""
+					]
+				},
+				onAction : controllermethod onCancel
+			}
+		}
+	}
+}

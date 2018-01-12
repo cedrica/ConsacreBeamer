@@ -1,0 +1,16 @@
+com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\copyrights\CopyRightsView.class
+com\consacresdeleternel\consacrebeamer\events\FileMenuEvent.class
+com\consacresdeleternel\consacrebeamer\maincontainer\MainContainerView.class
+com\consacresdeleternel\consacrebeamer\ConsacreBeamerApp.class
+com\consacresdeleternel\consacrebeamer\enums\FileEnum.class
+com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\text\TextController.class
+com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\text\TextView.class
+com\consacresdeleternel\consacrebeamer\manager\MainContainerManger.class
+com\consacresdeleternel\consacrebeamer\common\Helper.class
+com\consacresdeleternel\consacrebeamer\maincontainer\MainContainerController.class
+com\consacresdeleternel\consacrebeamer\common\Localization.class
+com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\CreateOrEditNewSongController.class
+com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\copyrights\CopyRightsController.class
+com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\CreateOrEditNewSongView.class
+com\consacresdeleternel\consacrebeamer\utils\XSLFUtils.class
+com\consacresdeleternel\consacrebeamer\utils\CustomFont.class
