@@ -51,26 +51,7 @@ resourcefile "/bundle/consacrebeamer_de_DE.properties" {
 				left : 10
 			},
 			spacing : 5,
-			Button {
-				text : rstring "csb.createOrEditNewSongView.ok",
-				maxWidth : const Double#MAX_VALUE,
-				graphic : Label {
-					styleClass : [
-						""
-					]
-				},
-				onAction : controllermethod onOk
-			},
-			Button {
-				text : rstring "csb.createOrEditNewSongView.cancel",
-				maxWidth : const Double#MAX_VALUE,
-				graphic : Label {
-					styleClass : [
-						""
-					]
-				},
-				onAction : controllermethod onCancel
-			},
+	
 			Button {
 				text : rstring "csb.createOrEditNewSongView.background",
 				maxWidth : const Double#MAX_VALUE,

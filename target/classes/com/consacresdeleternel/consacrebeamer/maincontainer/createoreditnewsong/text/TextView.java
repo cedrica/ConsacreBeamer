@@ -12,6 +12,8 @@ import javafx.scene.layout.BorderPane;
 public class TextView extends BorderPane{
 	private StringProperty title = new SimpleStringProperty();
 	private StringProperty songText = new SimpleStringProperty();
+	private StringProperty songhtmlText = new SimpleStringProperty();
+	private StringProperty songhtmlBase64 = new SimpleStringProperty();
 	private BooleanProperty  invalid = new SimpleBooleanProperty();
 	
 	public  TextView(){
@@ -56,6 +58,34 @@ public class TextView extends BorderPane{
 
 	public final void setInvalid(final boolean invalid) {
 		this.invalidProperty().set(invalid);
+	}
+
+	public final StringProperty songhtmlTextProperty() {
+		return this.songhtmlText;
+	}
+	
+
+	public final String getSonghtmlText() {
+		return this.songhtmlTextProperty().get();
+	}
+	
+
+	public final void setSonghtmlText(final String songhtmlText) {
+		this.songhtmlTextProperty().set(songhtmlText);
+	}
+
+	public final StringProperty songhtmlBase64Property() {
+		return this.songhtmlBase64;
+	}
+	
+
+	public final String getSonghtmlBase64() {
+		return this.songhtmlBase64Property().get();
+	}
+	
+
+	public final void setSonghtmlBase64(final String songhtmlBase64) {
+		this.songhtmlBase64Property().set(songhtmlBase64);
 	}
 	
 

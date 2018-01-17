@@ -7,39 +7,26 @@ import javafx.scene.control.Label
 import javafx.scene.control.Button
 import javafx.scene.layout.HBox
 import java.lang.Double
+import javafx.geometry.Insets
 
 dynamic component ListItemView controlledby ListItemController styledwith [
-	"/com/consacresdeleternel/consacrebeamer/maincontainer/listitem/ListItemView.css", "/css/bootstrap.css" ]
-resourcefile "/bundle/consacrebeamer_de_DE.properties" {
+	"/com/consacresdeleternel/consacrebeamer/maincontainer/listitem/ListItemView.css" ] resourcefile
+"/bundle/consacrebeamer_de_DE.properties" {
 	ListItemView id rootNode {
 		stylesheets : [
-			"/com/consacresdeleternel/consacrebeamer/maincontainer/listitem/ListItemView.css",
-			"/css/bootstrap.css"
+			"/com/consacresdeleternel/consacrebeamer/maincontainer/listitem/ListItemView.css"
 		],
 		styleClass : [
 			"list-item-view"
 		],
 		prefHeight : 20,
-		spacing : 5,
-		HBox {
+		static hgrow : "ALWAYS",
+		alignment : "CENTER_LEFT",
+		Button id itemName {
+			style : "-fx-border-color:transparent",
 			static hgrow : "ALWAYS",
-			alignment : "CENTER_LEFT",
-			Label id lblItemName{
-
-				text : "text hier",
-				maxWidth : const Double#MAX_VALUE
-			}
-		},
-		HBox {
-			alignment : "CENTER_RIGHT",
-			Button {
-				styleClass : [
-					"rounded"
-				],
-				alignment : "TOP_CENTER",
-				text : "..."
-			}
+			maxWidth : const Double#MAX_VALUE
+			
 		}
-
 	}
 }

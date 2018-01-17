@@ -43,26 +43,6 @@
 	</center>
 	<right>
 		<VBox spacing="5"> 
-			<Button text="%csb.createOrEditNewSongView.ok" onAction="#onOk"> 
-				<maxWidth><Double fx:constant="MAX_VALUE" /></maxWidth>
-				<graphic>
-					<Label> 
-						<styleClass>
-							<String fx:value="" />
-						</styleClass>
-					</Label>
-				</graphic>
-			</Button>
-			<Button text="%csb.createOrEditNewSongView.cancel" onAction="#onCancel"> 
-				<maxWidth><Double fx:constant="MAX_VALUE" /></maxWidth>
-				<graphic>
-					<Label> 
-						<styleClass>
-							<String fx:value="" />
-						</styleClass>
-					</Label>
-				</graphic>
-			</Button>
 			<Button text="%csb.createOrEditNewSongView.background" onAction="#onSetBackground"> 
 				<maxWidth><Double fx:constant="MAX_VALUE" /></maxWidth>
 				<graphic>

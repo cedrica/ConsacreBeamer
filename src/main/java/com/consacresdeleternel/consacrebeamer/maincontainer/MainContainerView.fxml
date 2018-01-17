@@ -10,6 +10,7 @@
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 <?scenebuilder-preview-i18n-resource /bundle/consacrebeamer_de_DE.properties?>
 <?scenebuilder-stylesheet /com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.css?>
@@ -66,8 +67,18 @@
 	</top>
 	<center>
 		<SplitPane> 
-			<VBox fx:id="vblistViewContainer" maxWidth="300"/> 
-			<VBox fx:id="vbPreviewContainer"/> 
+			<VBox fx:id="vblistViewContainer" maxWidth="300" spacing="5"> 
+				<padding>
+					<Insets top="5" left="5" right="5"/> 
+				</padding>
+			</VBox>
+			<VBox fx:id="vbPreviewContainer"> 
+				<FlowPane fx:id="flowPane" hgap="10" vgap="10"> 
+					<padding>
+						<Insets top="10" left="10" right="10" bottom="10"/> 
+					</padding>
+				</FlowPane>
+			</VBox>
 		</SplitPane>
 	</center>
 </fx:root>

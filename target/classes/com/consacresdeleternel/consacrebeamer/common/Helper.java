@@ -1,6 +1,7 @@
 package com.consacresdeleternel.consacrebeamer.common;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -51,4 +52,9 @@ public class Helper {
             font.setFontSize(size[0]);
         return font;
     }
+
+	public static String convertStringToBase64(String text) {
+		return (text != null) ? Base64.getEncoder().encodeToString(text.getBytes()) : null;
+	}
+
 }

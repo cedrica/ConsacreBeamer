@@ -1,10 +1,21 @@
 package com.consacresdeleternel.consacrebeamer.common;
 
+
+import org.controlsfx.glyphfont.FontAwesome.Glyph;
+
+import com.consacresdeleternel.consacrebeamer.utils.GlyphUtilities;
+
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -57,4 +68,54 @@ public class Dialogs {
 		});
 		return customDialog;
 	}
+
+
+	 public static Dialog<ButtonType> error(String message, Window window) {
+	        Label error = new Label();
+	        org.controlsfx.glyphfont.Glyph create = GlyphUtilities.create(Glyph.TIMES_CIRCLE, Color.RED);
+	        create.setContentDisplay(ContentDisplay.LEFT);
+	        create.setFontSize(50);
+	        error.setGraphic(create);
+	        Label lblMessage = new Label();
+	        VBox vbBox = new VBox(lblMessage);
+	        vbBox.setAlignment(Pos.CENTER);
+	        lblMessage.setText(message);
+	        HBox hBox = new HBox(error, vbBox);
+	        hBox.setSpacing(10);
+
+	        return customDialog(hBox, Modality.APPLICATION_MODAL, null, window);
+	    }
+
+	    public static Dialog<ButtonType> success(String message, Window window) {
+	        Label error = new Label();
+	        org.controlsfx.glyphfont.Glyph create = GlyphUtilities.create(Glyph.CHECK_CIRCLE, Color.GREENYELLOW);
+	        create.setContentDisplay(ContentDisplay.LEFT);
+	        create.setFontSize(50);
+	        error.setGraphic(create);
+	        Label lblMessage = new Label();
+	        VBox vbBox = new VBox(lblMessage);
+	        vbBox.setAlignment(Pos.CENTER);
+	        lblMessage.setText(message);
+	        HBox hBox = new HBox(error, vbBox);
+	        hBox.setSpacing(10);
+
+	        return customDialog(hBox, Modality.APPLICATION_MODAL, null, window);
+	    }
+	    
+	    public static Dialog<ButtonType> warning(String message, Window window) {
+	        Label warning = new Label();
+	        org.controlsfx.glyphfont.Glyph create = GlyphUtilities.create(Glyph.WARNING, Color.YELLOW);
+	        create.setContentDisplay(ContentDisplay.LEFT);
+	        create.setFontSize(50);
+	        warning.setGraphic(create);
+	        Label lblMessage = new Label();
+	        VBox vbBox = new VBox(lblMessage);
+	        vbBox.setAlignment(Pos.CENTER);
+	        lblMessage.setText(message);
+	        HBox hBox = new HBox(warning, vbBox);
+	        hBox.setSpacing(10);
+
+	        return customDialog(hBox, Modality.APPLICATION_MODAL, null, window);
+	    }
+
 }

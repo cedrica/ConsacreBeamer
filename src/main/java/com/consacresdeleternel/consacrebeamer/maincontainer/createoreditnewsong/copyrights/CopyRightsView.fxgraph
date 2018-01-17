@@ -171,32 +171,6 @@ dynamic component CopyRightsView controlledby CopyRightsController styledwith [
 				static columnIndex : 1,
 				static rowIndex : 13
 			}
-		},
-		right : VBox {
-			padding : Insets {
-				left : 10
-			},
-			spacing : 5,
-			Button {
-				text : rstring "csb.createOrEditNewSongView.ok",
-				maxWidth : const Double#MAX_VALUE,
-				graphic : Label {
-					styleClass : [
-						""
-					]
-				},
-				onAction : controllermethod onOk
-			},
-			Button {
-				text : rstring "csb.createOrEditNewSongView.cancel",
-				maxWidth : const Double#MAX_VALUE,
-				graphic : Label {
-					styleClass : [
-						""
-					]
-				},
-				onAction : controllermethod onCancel
-			}
 		}
 	}
 }

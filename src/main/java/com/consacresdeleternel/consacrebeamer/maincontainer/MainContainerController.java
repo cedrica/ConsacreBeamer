@@ -22,6 +22,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.PopupWindow.AnchorLocation;
 import javafx.scene.control.SplitPane;
+import javafx.scene.layout.FlowPane;
 
 public class MainContainerController implements Initializable {
 
@@ -36,6 +37,7 @@ public class MainContainerController implements Initializable {
 	@FXML
 	Button btnFile;
 	@FXML SplitPane splitPane;
+	@FXML FlowPane flowPane;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -43,6 +45,8 @@ public class MainContainerController implements Initializable {
 		contextMenuFile.getItems().addAll(menuItems);
 		contextMenuFile.setAnchorLocation(AnchorLocation.CONTENT_TOP_LEFT);
 		btnFile.setContextMenu(contextMenuFile);
+		rootNode.setListViewContainer(vblistViewContainer);
+		rootNode.setFlowPane(flowPane);
 	}
 
 	private List<MenuItem> createMenuItemsFromFileEnum() {

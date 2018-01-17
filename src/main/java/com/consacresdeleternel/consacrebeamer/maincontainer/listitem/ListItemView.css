@@ -1,8 +1,18 @@
 .list-item-view{
-	
+	-fx-background-color: lightgray;
 }
 
-.list-item-view .rounded{
+.list-item-view .button{
+	-fx-background-color: lightgray;
+}
+
+.list-item-view:hover{
+	-fx-border-color: lightblue;
+	-fx-border-width:2px;
+}
+
+/*.list-item-view .rounded{
 	-fx-background-radius: 5.0em; 
 	-fx-border-radius: 5.0em;
-}
+	-fx-border-color: gray;
+} */

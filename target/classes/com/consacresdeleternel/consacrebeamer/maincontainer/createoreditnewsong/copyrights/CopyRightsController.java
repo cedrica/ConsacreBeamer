@@ -49,9 +49,4 @@ public class CopyRightsController implements Initializable{
 	}
 
 	@FXML public void onSetBackground() {}
-
-	@FXML public void onCancel() {}
-
-	@FXML public void onOk() {}
-
 }

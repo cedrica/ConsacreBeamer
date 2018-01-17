@@ -557,3 +557,7 @@
   -fx-background-radius: 5.0;
   -fx-pref-height: 30.0;
 }
+
+.rounded{
+	-fx-background-radius: 5.0em; 
+}

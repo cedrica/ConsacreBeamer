@@ -47,6 +47,8 @@ public class TextController implements Initializable {
 
 	private void registerListener() {
 		webView.addEventHandler(KeyEvent.KEY_RELEASED, evt -> {
+			rootNode.setSonghtmlBase64(Helper.convertStringToBase64(htmlEditor.getHtmlText()));
+			rootNode.setSonghtmlText(htmlEditor.getHtmlText());
 			rootNode.setSongText(Helper.html2text(htmlEditor.getHtmlText()));
 		});
 		radioGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
@@ -62,12 +64,5 @@ public class TextController implements Initializable {
 	public void onSetBackground() {
 	}
 
-	@FXML
-	public void onCancel() {
-	}
-
-	@FXML
-	public void onOk() {
-	}
 
 }
