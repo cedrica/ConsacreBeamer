@@ -1,7 +1,5 @@
 package com.consacresdeleternel.consacrebeamer.repository;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 
 import org.hibernate.HibernateException;
@@ -12,7 +10,6 @@ import org.hibernate.cfg.Configuration;
 
 public class BasicRepository<T> {
 	private static SessionFactory sessionFactory = null;
-	private Session session;
 	private Transaction tx = null;
 	private Class<T> clazz;
 
@@ -23,6 +20,7 @@ public class BasicRepository<T> {
 		init();
 	}
 
+	@SuppressWarnings("deprecation")
 	private void init() {
 		sessionFactory = new Configuration().configure("/hibernate.cfg.xml").buildSessionFactory();
 	}
@@ -60,6 +58,7 @@ public class BasicRepository<T> {
 		Session session = sessionFactory.openSession();
 		try {
 			tx = session.beginTransaction();
+			@SuppressWarnings("unchecked")
 			T entity = (T) session.get(this.clazz, id);
 			tx.commit();
 			return entity;

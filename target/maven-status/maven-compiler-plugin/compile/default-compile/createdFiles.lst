@@ -25,6 +25,7 @@ com\consacresdeleternel\consacrebeamer\maincontainer\MainContainerController.cla
 com\consacresdeleternel\consacrebeamer\common\Dialogs.class
 com\consacresdeleternel\consacrebeamer\common\Localization.class
 com\consacresdeleternel\consacrebeamer\maincontainer\songpart\SongPartController.class
+com\consacresdeleternel\consacrebeamer\service\PPTService.class
 com\consacresdeleternel\consacrebeamer\events\SongPartEvent.class
 com\consacresdeleternel\consacrebeamer\data\Song.class
 com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\CreateOrEditNewSongView.class

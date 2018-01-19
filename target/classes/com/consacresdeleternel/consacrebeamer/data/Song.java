@@ -1,29 +1,26 @@
 package com.consacresdeleternel.consacrebeamer.data;
 
-import javax.persistence.Column;
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
-
-
 @Entity
 @Table
-public class Song {
+public class Song implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	private long id;
 	private String songTitle;
-	@Column(nullable=false,columnDefinition="clob", length=9000)
-	@Type(type="text")
 	private String songBody;
 	private String copyRightTitle;
 	private String originalTitle;
 	private String autor;
 	private String musik;
 	private String traduction;
+	private String copyRight;
 	private String nationalCopy;
 	private String rights;
 	private String ccliNumber;
@@ -32,8 +29,9 @@ public class Song {
 	private String additionalInfo;
 	private String songKey;
 	private String tempo;
-	@ManyToOne(targetEntity=Book.class)
+	@ManyToOne(targetEntity = Book.class)
 	private Book book;
+
 	public String getSongTitle() {
 		return songTitle;
 	}
@@ -42,12 +40,37 @@ public class Song {
 		this.songTitle = songTitle;
 	}
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+	public String getCopyRight() {
+		return copyRight;
+	}
+
+	public void setCopyRight(String copyRight) {
+		this.copyRight = copyRight;
+	}
+
 	public String getSongBody() {
 		return songBody;
 	}
 
 	public void setSongBody(String songBody) {
 		this.songBody = songBody;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
 	}
 
 	public String getCopyRightTitle() {
@@ -161,8 +184,11 @@ public class Song {
 		result = prime * result + ((additionalInfo == null) ? 0 : additionalInfo.hashCode());
 		result = prime * result + ((autor == null) ? 0 : autor.hashCode());
 		result = prime * result + ((bibleVerse == null) ? 0 : bibleVerse.hashCode());
+		result = prime * result + ((book == null) ? 0 : book.hashCode());
 		result = prime * result + ((ccliNumber == null) ? 0 : ccliNumber.hashCode());
+		result = prime * result + ((copyRight == null) ? 0 : copyRight.hashCode());
 		result = prime * result + ((copyRightTitle == null) ? 0 : copyRightTitle.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((musik == null) ? 0 : musik.hashCode());
 		result = prime * result + ((nationalCopy == null) ? 0 : nationalCopy.hashCode());
 		result = prime * result + ((originalTitle == null) ? 0 : originalTitle.hashCode());
@@ -200,15 +226,27 @@ public class Song {
 				return false;
 		} else if (!bibleVerse.equals(other.bibleVerse))
 			return false;
+		if (book == null) {
+			if (other.book != null)
+				return false;
+		} else if (!book.equals(other.book))
+			return false;
 		if (ccliNumber == null) {
 			if (other.ccliNumber != null)
 				return false;
 		} else if (!ccliNumber.equals(other.ccliNumber))
 			return false;
+		if (copyRight == null) {
+			if (other.copyRight != null)
+				return false;
+		} else if (!copyRight.equals(other.copyRight))
+			return false;
 		if (copyRightTitle == null) {
 			if (other.copyRightTitle != null)
 				return false;
 		} else if (!copyRightTitle.equals(other.copyRightTitle))
+			return false;
+		if (id != other.id)
 			return false;
 		if (musik == null) {
 			if (other.musik != null)
@@ -265,11 +303,12 @@ public class Song {
 
 	@Override
 	public String toString() {
-		return "Song [songTitle=" + songTitle + ", songBody=" + songBody + ", copyRightTitle=" + copyRightTitle
-				+ ", originalTitle=" + originalTitle + ", autor=" + autor + ", musik=" + musik + ", traduction="
-				+ traduction + ", nationalCopy=" + nationalCopy + ", rights=" + rights + ", ccliNumber=" + ccliNumber
-				+ ", bibleVerse=" + bibleVerse + ", songBook=" + songBook + ", additionalInfo=" + additionalInfo
-				+ ", songKey=" + songKey + ", tempo=" + tempo + "]";
+		return "Song [id=" + id + ", songTitle=" + songTitle + ", songBody=" + songBody + ", copyRightTitle="
+				+ copyRightTitle + ", originalTitle=" + originalTitle + ", autor=" + autor + ", musik=" + musik
+				+ ", traduction=" + traduction + ", copyRight=" + copyRight + ", nationalCopy=" + nationalCopy
+				+ ", rights=" + rights + ", ccliNumber=" + ccliNumber + ", bibleVerse=" + bibleVerse + ", songBook="
+				+ songBook + ", additionalInfo=" + additionalInfo + ", songKey=" + songKey + ", tempo=" + tempo
+				+ ", book=" + book + "]";
 	}
 
 }

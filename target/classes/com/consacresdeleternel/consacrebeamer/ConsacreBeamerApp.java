@@ -1,5 +1,6 @@
 package com.consacresdeleternel.consacrebeamer;
 
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
@@ -26,52 +27,7 @@ public class ConsacreBeamerApp extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		// try {
-		// XMLSlideShow ppt = new XMLSlideShow();
-		// // getting the slide master object
-		// XSLFSlideMaster slideMaster = ppt.getSlideMasters()[0];
-		//
-		// // select a layout from specified list
-		// XSLFSlideLayout slidelayout =
-		// slideMaster.getLayout(SlideLayout.TITLE_AND_CONTENT);
-		//
-		// // creating a slide with title and content layout
-		// XSLFSlide slide = ppt.createSlide(slidelayout);
-		// // selection of title place holder
-		// XSLFTextShape title = slide.getPlaceholder(0);
-		//
-		// // setting the title in it
-		// title.setText("");
-		//
-		// // selection of body placeholder
-		// XSLFTextShape body = slide.getPlaceholder(1);
-		//
-		// // clear the existing text in the slide
-		// body.clearText();
-		//
-		// // adding new paragraph
-		// body.addNewTextParagraph().addNewTextRun().setText("this is my first
-		// slide body"
-		// + "this is my first slide body"
-		// + "this is my first slide body"
-		// + "this is my first slide body"
-		// + "this is my first slide body"
-		// + "this is my first slide body");
-		// File createTempFile = File.createTempFile("temp", ".pptx");
-		//
-		// try (FileOutputStream out = new
-		// FileOutputStream(createTempFile.getAbsolutePath())) {
-		// ppt.write(out);
-		// }
-		// String cmd = "C:\\Program Files (x86)\\Microsoft
-		// Office\\Office14\\PPTVIEW.EXE "
-		// + createTempFile.getAbsolutePath();
-		// System.out.println(cmd);
-		// Runtime.getRuntime().exec(cmd);
-		//
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// }
+
 		DOMImplementation domImpl = GenericDOMImplementation.getDOMImplementation();
 
 		// Create an instance of org.w3c.dom.Document.
@@ -115,6 +71,11 @@ public class ConsacreBeamerApp extends Application {
 		primaryStage.setWidth(600);
 		primaryStage.setHeight(400);
 		primaryStage.setMaximized(true);
+		try {
+			Runtime.getRuntime().exec("cmd /C start C:/Users/ca.leumaleu/Desktop/db-derby-10.13.1.1-bin/bin/startNetworkServer.bat");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		primaryStage.setOnCloseRequest(evt -> {
 			weld.shutdown();
 		});

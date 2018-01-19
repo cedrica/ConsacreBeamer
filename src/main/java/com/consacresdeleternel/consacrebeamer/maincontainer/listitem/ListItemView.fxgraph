@@ -1,13 +1,8 @@
 package com.consacresdeleternel.consacrebeamer.maincontainer.listitem
 
-import javafx.scene.layout.AnchorPane
 import com.consacresdeleternel.consacrebeamer.maincontainer.listitem.ListItemController
 import com.consacresdeleternel.consacrebeamer.maincontainer.listitem.ListItemView
-import javafx.scene.control.Label
-import javafx.scene.control.Button
-import javafx.scene.layout.HBox
-import java.lang.Double
-import javafx.geometry.Insets
+import javafx.scene.control.ToggleButton
 
 dynamic component ListItemView controlledby ListItemController styledwith [
 	"/com/consacresdeleternel/consacrebeamer/maincontainer/listitem/ListItemView.css" ] resourcefile
@@ -16,17 +11,17 @@ dynamic component ListItemView controlledby ListItemController styledwith [
 		stylesheets : [
 			"/com/consacresdeleternel/consacrebeamer/maincontainer/listitem/ListItemView.css"
 		],
+		
 		styleClass : [
 			"list-item-view"
 		],
 		prefHeight : 20,
-		static hgrow : "ALWAYS",
-		alignment : "CENTER_LEFT",
-		Button id itemName {
+		ToggleButton id tgbItemName {
 			style : "-fx-border-color:transparent",
 			static hgrow : "ALWAYS",
-			maxWidth : const Double#MAX_VALUE
-			
+			maxWidth : const Double#MAX_VALUE,
+			onAction : controllermethod onSelectItem,
+			onMouseClicked : controllermethod onShowContextMenu
 		}
 	}
 }

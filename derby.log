@@ -1,0 +1,14 @@
+Fri Jan 19 16:52:53 CET 2018 : Apache Derby Network Server 10.13.1.1 - (1765088) wurde gestartet und ist bereit, Verbindungen auf Port 1527 zu akzeptieren.
+----------------------------------------------------------------
+Fri Jan 19 16:53:02 CET 2018:
+Booten von Derby-Version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): Instanz a816c00e-0161-0f1f-6de6-00005d13e32f
+für Datenbankverzeichnis F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\ConsacreBeamerDB mit Class Loader sun.misc.Launcher$AppClassLoader@610455d6
+Geladen aus file:/C:/Users/ca.leumaleu/Desktop/db-derby-10.13.1.1-bin/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_91-b15
+user.dir=F:\devspace\CUSTOM-MANAGERS\ConsaBeamer
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=F:\devspace\CUSTOM-MANAGERS\ConsaBeamer
+Datenbank-Class Loader wurde gestartet - derby.database.classpath=''

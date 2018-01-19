@@ -17,12 +17,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.PopupWindow.AnchorLocation;
-import javafx.scene.control.SplitPane;
-import javafx.scene.layout.FlowPane;
 
 public class MainContainerController implements Initializable {
 

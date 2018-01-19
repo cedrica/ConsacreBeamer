@@ -47,9 +47,13 @@ public class TextController implements Initializable {
 
 	private void registerListener() {
 		webView.addEventHandler(KeyEvent.KEY_RELEASED, evt -> {
+			rootNode.setSongHtmlByte(htmlEditor.getHtmlText().getBytes());
 			rootNode.setSonghtmlBase64(Helper.convertStringToBase64(htmlEditor.getHtmlText()));
 			rootNode.setSonghtmlText(htmlEditor.getHtmlText());
 			rootNode.setSongText(Helper.html2text(htmlEditor.getHtmlText()));
+		});
+		rootNode.editModeProperty().addListener((obs, oldVal, newVal) -> {
+				htmlEditor.setHtmlText(rootNode.getSongText());
 		});
 		radioGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
@@ -63,6 +67,5 @@ public class TextController implements Initializable {
 	@FXML
 	public void onSetBackground() {
 	}
-
 
 }

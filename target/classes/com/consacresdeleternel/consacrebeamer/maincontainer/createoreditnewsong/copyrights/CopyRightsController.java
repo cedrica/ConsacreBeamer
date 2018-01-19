@@ -3,8 +3,8 @@ package com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
 public class CopyRightsController implements Initializable{

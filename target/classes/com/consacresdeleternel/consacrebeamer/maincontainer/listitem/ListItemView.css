@@ -1,18 +1,17 @@
 .list-item-view{
-	-fx-background-color: lightgray;
 }
 
-.list-item-view .button{
+.list-item-view .toggle-button{
 	-fx-background-color: lightgray;
 }
-
+.list-item-view .toggle-button:selected{
+	-fx-background-color: blue;
+	-fx-border-color: darkorange;
+	-fx-border-width:2px;
+}
 .list-item-view:hover{
 	-fx-border-color: lightblue;
 	-fx-border-width:2px;
+	
 }
 
-/*.list-item-view .rounded{
-	-fx-background-radius: 5.0em; 
-	-fx-border-radius: 5.0em;
-	-fx-border-color: gray;
-} */

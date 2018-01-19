@@ -7,7 +7,6 @@ import com.consacresdeleternel.consacrebeamer.maincontainer.songpart.SongPartVie
 
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class SongPartViewTest  extends ApplicationTest{
