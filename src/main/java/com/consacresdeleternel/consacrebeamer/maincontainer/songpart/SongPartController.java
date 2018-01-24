@@ -7,6 +7,8 @@ import com.consacresdeleternel.consacrebeamer.events.SongPartEvent;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebView;
 
 public class SongPartController implements Initializable {
@@ -28,8 +30,10 @@ public class SongPartController implements Initializable {
 		});
 	}
 
-	@FXML public void onShowDiaShow() {
-		rootNode.fireEvent(new SongPartEvent(SongPartEvent.SHOW_SONG_PART));
+	@FXML public void onShowDiaShow(MouseEvent evt) {
+		if(evt.getButton() == MouseButton.PRIMARY){
+			rootNode.fireEvent(new SongPartEvent(SongPartEvent.SHOW_SONG_PART));			
+		}
 	}
 
 }

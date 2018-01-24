@@ -1,6 +1,6 @@
 package com.consacresdeleternel.consacrebeamer.utils;
 
-import org.apache.poi.xslf.usermodel.TextAlign;
+import org.apache.poi.sl.usermodel.TextParagraph.TextAlign;
 import org.apache.poi.xslf.usermodel.XSLFTextBox;
 import org.apache.poi.xslf.usermodel.XSLFTextParagraph;
 import org.apache.poi.xslf.usermodel.XSLFTextRun;

@@ -7,7 +7,7 @@ public class CreateOrEditNewSongEvent extends Event {
 	private static final long serialVersionUID = 1L;
 	public static final EventType<CreateOrEditNewSongEvent> SELECT_SONG = new EventType<>(
 			"selectSongCreateOrEditNewSongEvent");
-	public static final EventType<CreateOrEditNewSongEvent> UPDATE_SONG_PART = new EventType<>(
+	public static final EventType<CreateOrEditNewSongEvent> UPDATE_LIST_ITEM_AND_SONG_PART = new EventType<>(
 			"updateSongCreateOrEditNewSongEvent");
 	private Object itemObject;
 

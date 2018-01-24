@@ -14,7 +14,7 @@ public class SongPartView extends StackPane {
 	private ObjectProperty<Image> backgroundImage = new SimpleObjectProperty<>();
 	private StringProperty text = new SimpleStringProperty();
 	private StringProperty html = new SimpleStringProperty();
-	
+	private ObjectProperty<Integer> index = new SimpleObjectProperty<>();
 
 	public SongPartView() {
 		Helper.load(this, Localization.getDefault());
@@ -59,7 +59,19 @@ public class SongPartView extends StackPane {
 	public final void setHtml(final String html) {
 		this.htmlProperty().set(html);
 	}
+
+	public final ObjectProperty<Integer> indexProperty() {
+		return this.index;
+	}
 	
+
+	public final Integer getIndex() {
+		return this.indexProperty().get();
+	}
 	
+
+	public final void setIndex(final Integer index) {
+		this.indexProperty().set(index);
+	}
 
 }

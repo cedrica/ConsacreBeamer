@@ -1,6 +1,9 @@
 package com.consacresdeleternel.consacrebeamer.manager;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
@@ -42,6 +45,7 @@ public class MainContainerManger {
 	@Inject
 	private SongRepository songRepository;
 	private ToggleGroup toggleGroup = new ToggleGroup();
+	private File actualPresentation;
 
 	public void init(MainContainerView mainContainerView) {
 		songRepository = new SongRepository();
@@ -77,7 +81,8 @@ public class MainContainerManger {
 						mainContainerView.getScene().getWindow());
 				return;
 			}
-			mainContainerView.fireEvent(new CreateOrEditNewSongEvent(CreateOrEditNewSongEvent.UPDATE_SONG_PART, song));
+			mainContainerView.fireEvent(
+					new CreateOrEditNewSongEvent(CreateOrEditNewSongEvent.UPDATE_LIST_ITEM_AND_SONG_PART, song));
 		}
 	}
 
@@ -105,10 +110,7 @@ public class MainContainerManger {
 	private void handleSelectSong(MainContainerView mainContainerView, CreateOrEditNewSongEvent evt) {
 		evt.consume();
 		Song song = (Song) evt.getItemObject();
-		SongPartView songPartView = new SongPartView();
-		songPartView.setText(song.getSongBody());
-		mainContainerView.getFlowPane().getChildren().clear();
-		mainContainerView.getFlowPane().getChildren().add(songPartView);
+		createSongPartFromSong(mainContainerView, song);
 	}
 
 	private void handleCreateNewSong(MainContainerView mainContainerView, FileMenuEvent evt) {
@@ -133,11 +135,10 @@ public class MainContainerManger {
 				ListItemView listItemView = createListItemView(mainContainerView, createOrEditNewSongView, song);
 				toggleGroup.getToggles().add(listItemView.getToggle());
 				mainContainerView.getListViewContainer().getChildren().add(listItemView);
-				SongPartView songPartView = createSongPartFromSong(mainContainerView, song);
-				mainContainerView.addEventHandler(CreateOrEditNewSongEvent.UPDATE_SONG_PART,
-						e -> handleUpdateListItemAndSongPart(listItemView, songPartView, e));
-				mainContainerView.getFlowPane().getChildren().clear();
-				mainContainerView.getFlowPane().getChildren().add(songPartView);
+				createSongPartFromSong(mainContainerView, song);
+				mainContainerView.addEventHandler(CreateOrEditNewSongEvent.UPDATE_LIST_ITEM_AND_SONG_PART,
+						e -> handleUpdateListItemAndSongPart(mainContainerView, listItemView, e));
+
 			} else {
 				Dialogs.error(Localization.asKey("csb.alert.songSavingMissed"),
 						mainContainerView.getScene().getWindow());
@@ -146,24 +147,52 @@ public class MainContainerManger {
 		}
 	}
 
-	private void handleUpdateListItemAndSongPart(ListItemView listItemView, SongPartView songPartView,
+	private void handleUpdateListItemAndSongPart(MainContainerView mainContainerView, ListItemView listItemView,
 			CreateOrEditNewSongEvent e) {
 		e.consume();
 		Song itemObject = (Song) e.getItemObject();
-		songPartView.setText(itemObject.getSongBody());
+		createSongPartFromSong(mainContainerView, itemObject);
 		listItemView.setItemName(itemObject.getSongTitle());
 		listItemView.setItemObject(itemObject);
+
 	}
 
-	private SongPartView createSongPartFromSong(MainContainerView mainContainerView, Song song) {
-		SongPartView songPartView = new SongPartView();
-		songPartView.addEventHandler(SongPartEvent.SHOW_SONG_PART, evt ->{
-			LOG.info("Song part anzeigen");
-			XMLSlideShow ppt = PPTService.generatePPT("",songPartView.getText());
-			PPTService.showPPT(ppt);
-		});
-		songPartView.setText(song.getSongBody());
-		return songPartView;
+	private void createSongPartFromSong(MainContainerView mainContainerView, Song song) {
+		List<SongPartView> songPartViews = new ArrayList<>();
+		String[] parts = song.getSongBody().split("---");
+		XMLSlideShow ppt = PPTService.generatePPT("",Arrays.asList(parts));
+		int index = 0;
+		if(parts != null && parts.length > 0){
+			for (String part : parts) {
+				SongPartView songPartView = new SongPartView();
+				songPartView.setIndex(index++);
+				songPartView.addEventHandler(SongPartEvent.SHOW_SONG_PART, evt -> {
+					actualPresentation = PPTService.showPPT(ppt, actualPresentation, songPartView.getIndex());
+					reformIndexes(songPartViews, songPartView);
+				});
+				songPartView.setText(part);
+				songPartViews.add(songPartView);
+			}
+		}else{
+			SongPartView songPartView = new SongPartView();
+			songPartView.setIndex(index++);
+			songPartView.addEventHandler(SongPartEvent.SHOW_SONG_PART, evt -> {
+				actualPresentation= PPTService.showPPT(ppt, actualPresentation,songPartView.getIndex());
+			});
+			songPartView.setText(song.getSongBody());
+			songPartViews.add(songPartView);
+		}
+		mainContainerView.getFlowPane().getChildren().clear();
+		mainContainerView.getFlowPane().getChildren().addAll(songPartViews);
+	}
+
+	private void reformIndexes(List<SongPartView> songPartViews, SongPartView songPartView) {
+		for (SongPartView sp : songPartViews) {
+			if(sp.getIndex() < songPartView.getIndex()){
+				sp.setIndex(sp.getIndex()+1);
+			}
+		}
+		songPartView.setIndex(0);
 	}
 
 	private ListItemView createListItemView(MainContainerView mainContainerView,
@@ -171,7 +200,7 @@ public class MainContainerManger {
 		ListItemView listItemView = new ListItemView();
 		listItemView.setItemObject(song);
 		listItemView.addEventHandler(ListItemViewEvent.SHOW_LIST_ITEM_CONTEXT_MENU,
-				e -> handleShowListItemViewContextMenu(mainContainerView.getListViewContainer(), listItemView, e));
+				e -> handleShowListItemViewContextMenu(mainContainerView, listItemView, e));
 		listItemView.setItemName(createOrEditNewSongView.getTextView().getTitle());
 		listItemView.setPosition(mainContainerView.getListViewContainer().getChildren().size());
 		return listItemView;
@@ -197,7 +226,7 @@ public class MainContainerManger {
 		return song;
 	}
 
-	private void handleShowListItemViewContextMenu(VBox listViewContainer, ListItemView listItemView,
+	private void handleShowListItemViewContextMenu(MainContainerView mainContainerView,ListItemView listItemView,
 			ListItemViewEvent e) {
 		e.consume();
 		ContextMenu contextMenu = new ContextMenu();
@@ -210,24 +239,24 @@ public class MainContainerManger {
 		MenuItem delete = new MenuItem();
 		delete.setGraphic(Helper.setIcon(Color.LIGHTBLUE, FontAwesome.Glyph.TRASH));
 		delete.setText(Localization.asKey("csb.listItemViewContextMenu.delete"));
-		delete.setOnAction(evt -> removeFromList(listViewContainer, listItemView));
+		delete.setOnAction(evt -> removeFromList(mainContainerView,mainContainerView.getListViewContainer(), listItemView));
 
 		MenuItem pushUp = new MenuItem();
 		pushUp.setGraphic(Helper.setIcon(Color.LIGHTBLUE, FontAwesome.Glyph.ARROW_UP));
 		pushUp.setText(Localization.asKey("csb.listItemViewContextMenu.arrowUp"));
-		pushUp.setOnAction(evt -> pushUp(listViewContainer, listItemView, pushUp));
+		pushUp.setOnAction(evt -> pushUp(mainContainerView.getListViewContainer(), listItemView, pushUp));
 
 		MenuItem pushDown = new MenuItem();
 		pushDown.setGraphic(Helper.setIcon(Color.LIGHTBLUE, FontAwesome.Glyph.ARROW_DOWN));
 		pushDown.setText(Localization.asKey("csb.listItemViewContextMenu.arrowDown"));
-		pushDown.setOnAction(evt -> pushDown(listViewContainer, listItemView, pushDown));
+		pushDown.setOnAction(evt -> pushDown(mainContainerView.getListViewContainer(), listItemView, pushDown));
 
 		contextMenu.getItems().addAll(edit, delete, pushUp, pushDown);
 
 		if (listItemView.getPosition() == 0) {
 			pushUp.setDisable(true);
 		}
-		if (listItemView.getPosition() == listViewContainer.getChildren().size() - 1) {
+		if (listItemView.getPosition() == mainContainerView.getListViewContainer().getChildren().size() - 1) {
 			pushDown.setDisable(true);
 		}
 
@@ -260,8 +289,11 @@ public class MainContainerManger {
 		}
 	}
 
-	private void removeFromList(VBox listViewContainer, ListItemView listItemView) {
+	private void removeFromList(MainContainerView mainContainerView, VBox listViewContainer, ListItemView listItemView) {
 		listViewContainer.getChildren().remove(listItemView);
+		if(listItemView.getToggle().isSelected()){
+			mainContainerView.getFlowPane().getChildren().clear();
+		}
 	}
 
 }
