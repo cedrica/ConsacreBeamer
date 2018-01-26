@@ -14,9 +14,7 @@ import javafx.scene.layout.BorderPane;
 public class TextView extends BorderPane{
 	private StringProperty title = new SimpleStringProperty();
 	private StringProperty songText = new SimpleStringProperty();
-	private StringProperty songhtmlText = new SimpleStringProperty();
-	private ObjectProperty<byte[]> songHtmlByte = new SimpleObjectProperty<>();
-	private StringProperty songhtmlBase64 = new SimpleStringProperty();
+	private StringProperty songHtml = new SimpleStringProperty();
 	private BooleanProperty  invalid = new SimpleBooleanProperty();
 	private ObjectProperty<Boolean> editMode = new SimpleObjectProperty<>(false);
 	public  TextView(){
@@ -63,48 +61,6 @@ public class TextView extends BorderPane{
 		this.invalidProperty().set(invalid);
 	}
 
-	public final StringProperty songhtmlTextProperty() {
-		return this.songhtmlText;
-	}
-	
-
-	public final String getSonghtmlText() {
-		return this.songhtmlTextProperty().get();
-	}
-	
-
-	public final void setSonghtmlText(final String songhtmlText) {
-		this.songhtmlTextProperty().set(songhtmlText);
-	}
-
-	public final StringProperty songhtmlBase64Property() {
-		return this.songhtmlBase64;
-	}
-	
-
-	public final String getSonghtmlBase64() {
-		return this.songhtmlBase64Property().get();
-	}
-	
-
-	public final void setSonghtmlBase64(final String songhtmlBase64) {
-		this.songhtmlBase64Property().set(songhtmlBase64);
-	}
-
-	public final ObjectProperty<byte[]> songHtmlByteProperty() {
-		return this.songHtmlByte;
-	}
-	
-
-	public final byte[] getSongHtmlByte() {
-		return this.songHtmlByteProperty().get();
-	}
-	
-
-	public final void setSongHtmlByte(final byte[] songhtmlByte) {
-		this.songHtmlByteProperty().set(songhtmlByte);
-	}
-
 	public final ObjectProperty<Boolean> editModeProperty() {
 		return this.editMode;
 	}
@@ -118,6 +74,22 @@ public class TextView extends BorderPane{
 	public final void setEditMode(final Boolean editMode) {
 		this.editModeProperty().set(editMode);
 	}
+
+	public final StringProperty songHtmlProperty() {
+		return this.songHtml;
+	}
+	
+
+	public final String getSongHtml() {
+		return this.songHtmlProperty().get();
+	}
+	
+
+	public final void setSongHtml(final String songHtml) {
+		this.songHtmlProperty().set(songHtml);
+	}
+	
+
 	
 
 }

@@ -11,12 +11,13 @@ F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\co
 F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\maincontainer\songpart\SongPartView.java
 F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\text\TextView.java
 F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\maincontainer\MainContainerView.java
-F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\utils\XSLFUtils.java
 F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\CreateOrEditNewSongView.java
 F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\copyrights\CopyRightsController.java
 F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\common\Localization.java
 F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\data\Book.java
+F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\utils\DateUtil.java
 F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\manager\MainContainerManger.java
+F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\utils\FileUtil.java
 F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\maincontainer\book\BookController.java
 F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\repository\BasicRepository.java
 F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\common\Dialogs.java
@@ -25,7 +26,6 @@ F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\co
 F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\CreateOrEditNewSongController.java
 F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\data\Song.java
 F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\repository\SongRepository.java
-F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\utils\CustomFont.java
 F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\events\FileMenuEvent.java
 F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\copyrights\CopyRightsView.java
 F:\devspace\CUSTOM-MANAGERS\ConsaBeamer\src\main\java\com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\text\TextController.java

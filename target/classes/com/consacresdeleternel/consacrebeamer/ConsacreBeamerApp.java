@@ -27,6 +27,7 @@ public class ConsacreBeamerApp extends Application {
 		MainContainerManger mainContainerManger = container.instance().select(MainContainerManger.class).get();
 		MainContainerView mainContainerView = container.instance().select(MainContainerView.class).get();
 		mainContainerView.addEventHandler(FileMenuEvent.EXIT_APPLICATION, evt -> {
+			startDerby.destroy();
 			Platform.exit();
 		});
 		mainContainerManger.init(mainContainerView);
@@ -37,6 +38,7 @@ public class ConsacreBeamerApp extends Application {
 		primaryStage.setWidth(600);
 		primaryStage.setHeight(400);
 		primaryStage.setMaximized(true);
+		
 		try {
 			startDerby = Runtime.getRuntime().exec("cmd /C start C:/Users/ca.leumaleu/Desktop/db-derby-10.13.1.1-bin/bin/startNetworkServer.bat");
 		} catch (IOException e) {

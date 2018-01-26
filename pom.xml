@@ -82,6 +82,22 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.17</version>
 		</dependency>
+		<dependency>
+			<groupId>com.sun.webkit</groupId>
+			<artifactId>webview-deps</artifactId>
+			<version>1.3.2</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>batik</groupId>
+			<artifactId>batik-util</artifactId>
+			<version>1.6-1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlgraphics</groupId>
+			<artifactId>batik-transcoder</artifactId>
+			<version>1.8</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -117,6 +133,7 @@
 					<jfxMainAppJarName>ConsacreBeamer.jar</jfxMainAppJarName>
 					<vendor>Les Consacres de l Eternel</vendor>
 					<bundler>EXE</bundler>
+					<additionalAppResources>songs/</additionalAppResources>
 					<nativeReleaseVersion>${project.version}</nativeReleaseVersion>
 					<needShortcut>true</needShortcut>
 					<needMenu>true</needMenu>

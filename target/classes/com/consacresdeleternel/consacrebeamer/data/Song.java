@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table
@@ -29,6 +30,10 @@ public class Song implements Serializable {
 	private String additionalInfo;
 	private String songKey;
 	private String tempo;
+	@Transient
+	private String songHtml;
+	private String textFileReference;
+	
 	@ManyToOne(targetEntity = Book.class)
 	private Book book;
 
@@ -48,6 +53,14 @@ public class Song implements Serializable {
 		this.id = id;
 	}
 
+
+	public String getSongHtml() {
+		return songHtml;
+	}
+
+	public void setSongHtml(String songHtml) {
+		this.songHtml = songHtml;
+	}
 
 	public String getCopyRight() {
 		return copyRight;
@@ -177,6 +190,14 @@ public class Song implements Serializable {
 		this.tempo = tempo;
 	}
 
+	public String getTextFileReference() {
+		return textFileReference;
+	}
+
+	public void setTextFileReference(String textFileReference) {
+		this.textFileReference = textFileReference;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -198,6 +219,7 @@ public class Song implements Serializable {
 		result = prime * result + ((songKey == null) ? 0 : songKey.hashCode());
 		result = prime * result + ((songTitle == null) ? 0 : songTitle.hashCode());
 		result = prime * result + ((tempo == null) ? 0 : tempo.hashCode());
+		result = prime * result + ((textFileReference == null) ? 0 : textFileReference.hashCode());
 		result = prime * result + ((traduction == null) ? 0 : traduction.hashCode());
 		return result;
 	}
@@ -293,6 +315,11 @@ public class Song implements Serializable {
 				return false;
 		} else if (!tempo.equals(other.tempo))
 			return false;
+		if (textFileReference == null) {
+			if (other.textFileReference != null)
+				return false;
+		} else if (!textFileReference.equals(other.textFileReference))
+			return false;
 		if (traduction == null) {
 			if (other.traduction != null)
 				return false;
@@ -308,7 +335,7 @@ public class Song implements Serializable {
 				+ ", traduction=" + traduction + ", copyRight=" + copyRight + ", nationalCopy=" + nationalCopy
 				+ ", rights=" + rights + ", ccliNumber=" + ccliNumber + ", bibleVerse=" + bibleVerse + ", songBook="
 				+ songBook + ", additionalInfo=" + additionalInfo + ", songKey=" + songKey + ", tempo=" + tempo
-				+ ", book=" + book + "]";
+				+ ", textFileReference=" + textFileReference + ", book=" + book + "]";
 	}
 
 }

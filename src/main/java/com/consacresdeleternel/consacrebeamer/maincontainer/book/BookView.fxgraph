@@ -7,8 +7,9 @@ import javafx.scene.image.Image
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.BookController
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.BookView
 import javafx.scene.control.Label
+import javafx.scene.shape.SVGPath
 
-component SongPartView controlledby BookController styledwith [
+component BookView controlledby BookController styledwith [
 	"/com/consacresdeleternel/consacrebeamer/maincontainer/book/BookView.css" ] resourcefile
 "/bundle/consacrebeamer_de_DE.properties" {
 	BookView id rootNode {
@@ -18,23 +19,12 @@ component SongPartView controlledby BookController styledwith [
 		styleClass : [
 			"song-part-view"
 		],
-		Button {
-			prefHeight : 400,
-			prefWidth : 400,
-			graphic : ImageView {
-				fitHeight : 400,
-				fitWidth : 400,
-				preserveRatio : true,
-				smooth : true,
-				cache : true,
-				scaleX : 6,
-				scaleY : 6,
-				image : Image {
-					url : location "/icons/Unbenannt.PNG"
-				}
-			}
+		Button id btnBook{
+			prefHeight : 300,
+			prefWidth : 300
 		},
 		Label id lblBookTitle{
+			text : "Chant congolais"
 		}
 
 	}

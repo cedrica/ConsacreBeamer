@@ -1,0 +1,9 @@
+package com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook
+
+import javafx.scene.layout.AnchorPane
+
+component CreateBookView {
+	AnchorPane {
+		//TODO Add Nodes
+	}
+}

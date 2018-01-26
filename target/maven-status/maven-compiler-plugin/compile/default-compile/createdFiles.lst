@@ -9,17 +9,16 @@ com\consacresdeleternel\consacrebeamer\manager\MainContainerManger.class
 com\consacresdeleternel\consacrebeamer\maincontainer\songpart\SongPartView.class
 com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\copyrights\CopyRightsController.class
 com\consacresdeleternel\consacrebeamer\maincontainer\listitem\ListItemController.class
-com\consacresdeleternel\consacrebeamer\utils\CustomFont.class
 com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\text\TextController.class
 com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\text\TextView.class
 com\consacresdeleternel\consacrebeamer\repository\BasicRepository.class
 com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\CreateOrEditNewSongController.class
 com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\text\TextController$1.class
-com\consacresdeleternel\consacrebeamer\utils\XSLFUtils.class
 com\consacresdeleternel\consacrebeamer\events\FileMenuEvent.class
 com\consacresdeleternel\consacrebeamer\maincontainer\book\BookController.class
 com\consacresdeleternel\consacrebeamer\enums\FileEnum.class
 com\consacresdeleternel\consacrebeamer\repository\SongRepository.class
+com\consacresdeleternel\consacrebeamer\utils\DateUtil.class
 com\consacresdeleternel\consacrebeamer\common\Helper.class
 com\consacresdeleternel\consacrebeamer\maincontainer\MainContainerController.class
 com\consacresdeleternel\consacrebeamer\common\Dialogs.class
@@ -27,6 +26,7 @@ com\consacresdeleternel\consacrebeamer\common\Localization.class
 com\consacresdeleternel\consacrebeamer\maincontainer\songpart\SongPartController.class
 com\consacresdeleternel\consacrebeamer\service\PPTService.class
 com\consacresdeleternel\consacrebeamer\events\SongPartEvent.class
+com\consacresdeleternel\consacrebeamer\utils\FileUtil.class
 com\consacresdeleternel\consacrebeamer\data\Song.class
 com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\CreateOrEditNewSongView.class
 com\consacresdeleternel\consacrebeamer\maincontainer\listitem\ListItemView.class

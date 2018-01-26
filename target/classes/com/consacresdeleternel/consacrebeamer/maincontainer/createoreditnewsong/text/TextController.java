@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import org.apache.log4j.Logger;
 
 import com.consacresdeleternel.consacrebeamer.common.Helper;
+import com.sun.javafx.webkit.Accessor;
+import com.sun.webkit.WebPage;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,6 +17,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
@@ -45,12 +48,21 @@ public class TextController implements Initializable {
 		rootNode.invalidProperty().bind(tfTitle.textProperty().isEmpty().or(rootNode.songTextProperty().isEmpty()));
 	}
 
+	private void insertTextIntpHtmlEditor(){
+		WebPage webPage = Accessor.getPageFor(webView.getEngine());  
+        webPage.executeCommand("insertText", "$KeyCode.ENTER");  
+	}
+    
 	private void registerListener() {
 		webView.addEventHandler(KeyEvent.KEY_RELEASED, evt -> {
-			rootNode.setSongHtmlByte(htmlEditor.getHtmlText().getBytes());
-			rootNode.setSonghtmlBase64(Helper.convertStringToBase64(htmlEditor.getHtmlText()));
-			rootNode.setSonghtmlText(htmlEditor.getHtmlText());
-			rootNode.setSongText(Helper.html2text(htmlEditor.getHtmlText()));
+			if (evt.getCode() == KeyCode.ENTER){
+				rootNode.setSongHtml(htmlEditor.getHtmlText());
+				rootNode.setSongText(Helper.html2text(htmlEditor.getHtmlText()));
+			}else{
+				rootNode.setSongHtml(htmlEditor.getHtmlText());
+				rootNode.setSongText(Helper.html2text(htmlEditor.getHtmlText()));
+			}
+			
 		});
 		rootNode.editModeProperty().addListener((obs, oldVal, newVal) -> {
 				htmlEditor.setHtmlText(rootNode.getSongText());

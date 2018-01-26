@@ -9,8 +9,8 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 public class BasicRepository<T> {
-	private static SessionFactory sessionFactory = null;
-	private Transaction tx = null;
+	protected static SessionFactory sessionFactory = null;
+	protected Transaction tx = null;
 	private Class<T> clazz;
 
 	protected EntityManager entitymanager;

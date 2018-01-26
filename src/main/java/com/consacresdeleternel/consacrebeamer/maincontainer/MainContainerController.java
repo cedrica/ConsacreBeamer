@@ -6,8 +6,18 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.consacresdeleternel.consacrebeamer.common.Localization;
-import com.consacresdeleternel.consacrebeamer.enums.FileEnum;
+import com.consacresdeleternel.consacrebeamer.enums.EditMenuEnum;
+import com.consacresdeleternel.consacrebeamer.enums.ExtrasMenuEnum;
+import com.consacresdeleternel.consacrebeamer.enums.FileMenuEnum;
+import com.consacresdeleternel.consacrebeamer.enums.HelpMenuEnum;
+import com.consacresdeleternel.consacrebeamer.enums.InsertMenuEnum;
+import com.consacresdeleternel.consacrebeamer.enums.PresentationMenuEnum;
+import com.consacresdeleternel.consacrebeamer.events.EditMenuEvent;
+import com.consacresdeleternel.consacrebeamer.events.ExtrasMenuEvent;
 import com.consacresdeleternel.consacrebeamer.events.FileMenuEvent;
+import com.consacresdeleternel.consacrebeamer.events.HelpMenuEvent;
+import com.consacresdeleternel.consacrebeamer.events.InsertMenuEvent;
+import com.consacresdeleternel.consacrebeamer.events.PresentationMenuEvent;
 
 import javafx.event.EventType;
 import javafx.fxml.FXML;
@@ -33,43 +43,218 @@ public class MainContainerController implements Initializable {
 	@FXML
 	VBox vbPreviewContainer;
 	@FXML
+	Button btnFile;
+	@FXML
+	SplitPane splitPane;
+	@FXML
+	FlowPane flowPane;
+	@FXML
 	ContextMenu contextMenuFile;
 	@FXML
-	Button btnFile;
-	@FXML SplitPane splitPane;
-	@FXML FlowPane flowPane;
+	ContextMenu contextMenuEdit;
+	@FXML
+	ContextMenu contextMenuInsert;
+	@FXML
+	ContextMenu contextMenuPresentation;
+	@FXML
+	ContextMenu contextMenuExtras;
+	@FXML
+	ContextMenu contextMenuHelp;
+	@FXML Button btnEdit;
+	@FXML Button btnInsert;
+	@FXML Button btnPresentation;
+	@FXML Button btnExtras;
+	@FXML Button btnHelp;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		List<MenuItem> menuItems = createMenuItemsFromFileEnum();
-		contextMenuFile.getItems().addAll(menuItems);
+		List<MenuItem> fileMenuItems = createMenuItemsFromFileEnum();
+		contextMenuFile.getItems().addAll(fileMenuItems);
 		contextMenuFile.setAnchorLocation(AnchorLocation.CONTENT_TOP_LEFT);
 		btnFile.setContextMenu(contextMenuFile);
+
+		/*--------------------*/
+		List<MenuItem> editMenuItems = createMenuItemsFromEditMenuEnum();
+		contextMenuEdit.getItems().addAll(editMenuItems);
+		contextMenuEdit.setAnchorLocation(AnchorLocation.CONTENT_TOP_LEFT);
+		btnEdit.setContextMenu(contextMenuEdit);
+
+		/*--------------------*/
+		List<MenuItem> insertMenuItems = createMenuItemsFromInsertMenuEnum();
+		contextMenuInsert.getItems().addAll(insertMenuItems);
+		contextMenuInsert.setAnchorLocation(AnchorLocation.CONTENT_TOP_LEFT);
+		btnInsert.setContextMenu(contextMenuInsert);
+
+		/*--------------------*/
+		List<MenuItem> presentationMenuItems = createMenuItemsFromPresentationMenuEnum();
+		contextMenuPresentation.getItems().addAll(presentationMenuItems);
+		contextMenuPresentation.setAnchorLocation(AnchorLocation.CONTENT_TOP_LEFT);
+		btnPresentation.setContextMenu(contextMenuPresentation);
+
+		/*--------------------*/
+		List<MenuItem> extrasMenuItems = createMenuItemsFromExtrasMenuEnum();
+		contextMenuExtras.getItems().addAll(extrasMenuItems);
+		contextMenuExtras.setAnchorLocation(AnchorLocation.CONTENT_TOP_LEFT);
+		btnExtras.setContextMenu(contextMenuExtras);
+
+		/*--------------------*/
+		List<MenuItem> helpMenuItems = createMenuItemsFromHelpMenuEnum();
+		contextMenuHelp.getItems().addAll(helpMenuItems);
+		contextMenuHelp.setAnchorLocation(AnchorLocation.CONTENT_TOP_LEFT);
+		btnHelp.setContextMenu(contextMenuHelp);
+
 		rootNode.setListViewContainer(vblistViewContainer);
 		rootNode.setFlowPane(flowPane);
 	}
 
-	private List<MenuItem> createMenuItemsFromFileEnum() {
+	private List<MenuItem> createMenuItemsFromHelpMenuEnum() {
 		List<MenuItem> menuItems = new ArrayList<>();
-		for (FileEnum fe : FileEnum.values()) {
+		for (HelpMenuEnum fe : HelpMenuEnum.values()) {
 			MenuItem menu = new MenuItem(Localization.asKey(fe.getName()));
 			if (fe.getName().endsWith("separator")) {
-				SeparatorMenuItem separatorMenuItem = new  SeparatorMenuItem();
+				SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
 				menuItems.add(separatorMenuItem);
 				continue;
 			}
-			ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream(fe.getIconName())));
-			imageView.setFitHeight(15);
-			imageView.setFitWidth(15);
-			menu.setGraphic(imageView);
-			menu.setOnAction(evt -> constructFunction(fe.getEventType()));
+			if(!fe.getIconName().trim().isEmpty()){
+				ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream(fe.getIconName())));
+				imageView.setFitHeight(15);
+				imageView.setFitWidth(15);
+				menu.setGraphic(imageView);
+			}
+			menu.setOnAction(evt -> fireHelpMenuEvent(fe.getEventType()));
 			menuItems.add(menu);
 		}
 		return menuItems;
 	}
 
-	private void constructFunction(EventType<FileMenuEvent> fme) {
+	private List<MenuItem> createMenuItemsFromExtrasMenuEnum() {
+		List<MenuItem> menuItems = new ArrayList<>();
+		for (ExtrasMenuEnum fe : ExtrasMenuEnum.values()) {
+			MenuItem menu = new MenuItem(Localization.asKey(fe.getName()));
+			if (fe.getName().endsWith("separator")) {
+				SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
+				menuItems.add(separatorMenuItem);
+				continue;
+			}
+			if(!fe.getIconName().trim().isEmpty()){
+				ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream(fe.getIconName())));
+				imageView.setFitHeight(15);
+				imageView.setFitWidth(15);
+				menu.setGraphic(imageView);
+			}
+			menu.setOnAction(evt -> fireExtrasMenuEvent(fe.getEventType()));
+			menuItems.add(menu);
+		}
+		return menuItems;
+	}
+
+	private List<MenuItem> createMenuItemsFromPresentationMenuEnum() {
+		List<MenuItem> menuItems = new ArrayList<>();
+		for (PresentationMenuEnum fe : PresentationMenuEnum.values()) {
+			MenuItem menu = new MenuItem(Localization.asKey(fe.getName()));
+			if (fe.getName().endsWith("separator")) {
+				SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
+				menuItems.add(separatorMenuItem);
+				continue;
+			}
+			if(!fe.getIconName().trim().isEmpty()){
+				ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream(fe.getIconName())));
+				imageView.setFitHeight(15);
+				imageView.setFitWidth(15);
+				menu.setGraphic(imageView);
+			}
+			menu.setOnAction(evt -> firePresentationMenuEvent(fe.getEventType()));
+			menuItems.add(menu);
+		}
+		return menuItems;
+	}
+
+	private List<MenuItem> createMenuItemsFromInsertMenuEnum() {
+		List<MenuItem> menuItems = new ArrayList<>();
+		for (InsertMenuEnum fe : InsertMenuEnum.values()) {
+			MenuItem menu = new MenuItem(Localization.asKey(fe.getName()));
+			if (fe.getName().endsWith("separator")) {
+				SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
+				menuItems.add(separatorMenuItem);
+				continue;
+			}
+			if(!fe.getIconName().trim().isEmpty()){
+				ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream(fe.getIconName())));
+				imageView.setFitHeight(15);
+				imageView.setFitWidth(15);
+				menu.setGraphic(imageView);
+			}
+			menu.setOnAction(evt -> fireInsertMenuEvent(fe.getEventType()));
+			menuItems.add(menu);
+		}
+		return menuItems;
+	}
+
+	private List<MenuItem> createMenuItemsFromEditMenuEnum() {
+		List<MenuItem> menuItems = new ArrayList<>();
+		for (EditMenuEnum fe : EditMenuEnum.values()) {
+			MenuItem menu = new MenuItem(Localization.asKey(fe.getName()));
+			if (fe.getName().endsWith("separator")) {
+				SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
+				menuItems.add(separatorMenuItem);
+				continue;
+			}
+			if(!fe.getIconName().trim().isEmpty()){
+				ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream(fe.getIconName())));
+				imageView.setFitHeight(15);
+				imageView.setFitWidth(15);
+				menu.setGraphic(imageView);
+			}
+			menu.setOnAction(evt -> fireEditMenuEvent(fe.getEventType()));
+			menuItems.add(menu);
+		}
+		return menuItems;
+	}
+
+	private List<MenuItem> createMenuItemsFromFileEnum() {
+		List<MenuItem> menuItems = new ArrayList<>();
+		for (FileMenuEnum fe : FileMenuEnum.values()) {
+			MenuItem menu = new MenuItem(Localization.asKey(fe.getName()));
+			if (fe.getName().endsWith("separator")) {
+				SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
+				menuItems.add(separatorMenuItem);
+				continue;
+			}
+			if(!fe.getIconName().trim().isEmpty()){
+				ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream(fe.getIconName())));
+				imageView.setFitHeight(15);
+				imageView.setFitWidth(15);
+				menu.setGraphic(imageView);
+			}
+			menu.setOnAction(evt -> fireFileMenuEvent(fe.getEventType()));
+			menuItems.add(menu);
+		}
+		return menuItems;
+	}
+
+	private void fireFileMenuEvent(EventType<FileMenuEvent> fme) {
 		rootNode.fireEvent(new FileMenuEvent(fme));
+	}
+
+	private void fireEditMenuEvent(EventType<EditMenuEvent> fme) {
+		rootNode.fireEvent(new EditMenuEvent(fme));
+	}
+
+	private void fireInsertMenuEvent(EventType<InsertMenuEvent> fme) {
+		rootNode.fireEvent(new InsertMenuEvent(fme));
+	}
+
+	private void firePresentationMenuEvent(EventType<PresentationMenuEvent> fme) {
+		rootNode.fireEvent(new PresentationMenuEvent(fme));
+	}
+
+	private void fireExtrasMenuEvent(EventType<ExtrasMenuEvent> fme) {
+		rootNode.fireEvent(new ExtrasMenuEvent(fme));
+	}
+
+	private void fireHelpMenuEvent(EventType<HelpMenuEvent> fme) {
+		rootNode.fireEvent(new HelpMenuEvent(fme));
 	}
 
 	@FXML
@@ -79,6 +264,31 @@ public class MainContainerController implements Initializable {
 	@FXML
 	public void onShowContextMenuFile() {
 		contextMenuFile.show(btnFile, Side.BOTTOM, 0, 0);
+	}
+
+	@FXML
+	public void onShowContextMenuEdit() {
+		contextMenuEdit.show(btnEdit, Side.BOTTOM, 0, 0);
+	}
+
+	@FXML
+	public void onShowContextMenuInsert() {
+		contextMenuInsert.show(btnInsert, Side.BOTTOM, 0, 0);
+	}
+
+	@FXML
+	public void onShowContextMenuPresentation() {
+		contextMenuPresentation.show(btnPresentation, Side.BOTTOM, 0, 0);
+	}
+
+	@FXML
+	public void onShowContextMenuExtras() {
+		contextMenuExtras.show(btnExtras, Side.BOTTOM, 0, 0);
+	}
+
+	@FXML
+	public void onShowContextMenuHelp() {
+		contextMenuHelp.show(btnHelp, Side.BOTTOM, 0, 0);
 	}
 
 }
