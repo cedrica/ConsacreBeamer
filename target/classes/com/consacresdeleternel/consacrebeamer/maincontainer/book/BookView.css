@@ -1,3 +1,28 @@
-.song-part-view{
+.book-view {
 	
 }
+
+.book-view .book-read {
+	-fx-shape: "M72 468 c-17 -17 -17 -419 0 -436 15 -15 368 -17 368 -2 0 6 -59 10
+-156 10 -155 0 -194 7 -194 35 0 28 39 35 194 35 l156 0 0 185 0 185 -178 0
+c-125 0 -182 -4 -190 -12z";
+	-fx-pref-height: 200px;
+	-fx-pref-width: 200px;
+	-fx-background-color: #333;
+}
+
+.book-view .book-title{
+	-fx-text-fill:#fff; 
+	-fx-font-weight:bold;
+	-fx-font-size:15px;
+}
+.book-view .book-image{
+	
+}
+
+.book-view .book-image:hover{
+	-fx-border-radius: 5.0 5.0 5.0 5.0;
+	-fx-border-color: lightblue;
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+

@@ -132,7 +132,7 @@ public class FileMenuManager {
 		createOrEditNewSongView.getCopyRightsView().setRight(song.getRights());
 		createOrEditNewSongView.getCopyRightsView().setCCLiNr(song.getCcliNumber());
 		createOrEditNewSongView.getCopyRightsView().setBibleReferenz(song.getBibleVerse());
-		createOrEditNewSongView.getCopyRightsView().setSongBuchNr(song.getSongBook());
+		createOrEditNewSongView.getCopyRightsView().setSongBuch(song.getSongBook());
 		createOrEditNewSongView.getCopyRightsView().setAdditionalInfo(song.getAdditionalInfo());
 		createOrEditNewSongView.getCopyRightsView().setKey(song.getSongKey());
 		createOrEditNewSongView.getCopyRightsView().setTempo(song.getTempo());
@@ -202,7 +202,7 @@ public class FileMenuManager {
 		song.setRights(createOrEditNewSongView.getCopyRightsView().getRights());
 		song.setCcliNumber(createOrEditNewSongView.getCopyRightsView().getCCLiNr());
 		song.setBibleVerse(createOrEditNewSongView.getCopyRightsView().getBibleReferenz());
-		song.setSongBook(createOrEditNewSongView.getCopyRightsView().getSongBuchNr());
+		song.setSongBook(createOrEditNewSongView.getCopyRightsView().getSongBuch());
 		song.setAdditionalInfo(createOrEditNewSongView.getCopyRightsView().getAdditionalInfo());
 		song.setSongKey(createOrEditNewSongView.getCopyRightsView().getKey());
 		song.setTempo(createOrEditNewSongView.getCopyRightsView().getTempo());

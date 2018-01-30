@@ -1,9 +1,73 @@
 package com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook
 
 import javafx.scene.layout.AnchorPane
+import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookView
+import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookController
+import javafx.scene.control.TextField
+import javafx.scene.control.Button
+import javafx.geometry.Insets
+import javafx.scene.layout.VBox
+import javafx.scene.layout.HBox
+import org.controlsfx.control.CheckComboBox
+import javafx.scene.control.Label
+import org.controlsfx.glyphfont.Glyph
+import javafx.scene.control.CheckBox
+import org.controlsfx.control.CheckListView
+import java.lang.Double
+import javafx.scene.image.ImageView
+import javafx.scene.image.Image
 
-component CreateBookView {
-	AnchorPane {
-		//TODO Add Nodes
+dynamic component CreateBookView controlledby CreateBookController
+styledwith ["/com/consacresdeleternel/consacrebeamer/maincontainer/book/createbook/CreateBookView.css"] 
+resourcefile "/bundle/consacrebeamer_de_DE.properties"{
+	CreateBookView id rootNode {
+		stylesheets : ["/com/consacresdeleternel/consacrebeamer/maincontainer/book/createbook/CreateBookView.css"],
+		padding : Insets {
+			top : 5,
+			left : 5,
+			right : 5,
+			bottom : 5
+		},
+		prefHeight : 50,
+		top : TextField id tfBookName {
+			maxWidth : const Double#MAX_VALUE,
+			promptText : rstring "csb.CreateBookView.bookName"
+		},
+		center : VBox id vbSongsContainer {
+			visible : false,
+			HBox {
+				alignment : "CENTER",
+				HBox {
+					CheckBox id cbSelectAll{
+						text : "Select all"
+					}
+				},
+				HBox {
+					static hgrow : "ALWAYS",
+					alignment : "CENTER_RIGHT",
+					spacing : 5,
+					Button {
+						graphic : Glyph {
+							icon : "EDIT",
+							fontFamily : "FontAwesome"
+						},
+						onAction : controllermethod onEditSong
+					},
+					Button {
+						graphic : Glyph {
+							icon : "TRASH",
+							fontFamily : "FontAwesome"
+						},
+						onAction : controllermethod onRemoveSongs
+					}
+				}
+			},
+			CheckListView<?> id clvSongs {
+				static vgrow : "ALWAYS",
+				placeholder : Label{
+					text : rstring "csb.CreateBookView.noSongsAvailable"
+				}
+			}
+		}
 	}
 }

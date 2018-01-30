@@ -13,7 +13,7 @@ public class CopyRightsView extends BorderPane {
 	private StringProperty tempo = new SimpleStringProperty();
 	private StringProperty key = new SimpleStringProperty();
 	private StringProperty additionalInfo = new SimpleStringProperty();
-	private StringProperty songBuchNr = new SimpleStringProperty();
+	private StringProperty songBuch = new SimpleStringProperty();
 	private StringProperty bibleReferenz = new SimpleStringProperty();
 	private StringProperty cCLiNr = new SimpleStringProperty();
 	private StringProperty rights = new SimpleStringProperty();
@@ -74,18 +74,18 @@ public class CopyRightsView extends BorderPane {
 	}
 	
 
-	public final StringProperty songBuchNrProperty() {
-		return this.songBuchNr;
+	public final StringProperty songBuchProperty() {
+		return this.songBuch;
 	}
 	
 
-	public final String getSongBuchNr() {
-		return this.songBuchNrProperty().get();
+	public final String getSongBuch() {
+		return this.songBuchProperty().get();
 	}
 	
 
-	public final void setSongBuchNr(final String songBuchNr) {
-		this.songBuchNrProperty().set(songBuchNr);
+	public final void setSongBuch(final String songBuch) {
+		this.songBuchProperty().set(songBuch);
 	}
 	
 

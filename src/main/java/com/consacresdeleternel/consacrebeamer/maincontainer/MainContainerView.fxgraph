@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView
 import javafx.scene.image.Image
 import javafx.scene.control.Tooltip
 import javafx.scene.Cursor
+import javafx.scene.control.ScrollPane
 
 dynamic component MainContainerView controlledby MainContainerController resourcefile
 "/bundle/consacrebeamer_de_DE.properties" styledwith [
@@ -163,17 +164,23 @@ dynamic component MainContainerView controlledby MainContainerController resourc
 				spacing : 5
 			},
 			VBox id vbPreviewContainer {
-				FlowPane id flowPane {
-					padding : Insets {
-						top : 10,
-						left : 10,
-						right : 10,
-						bottom : 10
-					},
-					hgap : 10,
-					vgap : 10
+				ScrollPane {
+					static vgrow : "ALWAYS",
+					fitToHeight : true,
+					fitToWidth : true,
+					FlowPane id flowPane {
+						padding : Insets {
+							top : 10,
+							left : 10,
+							right : 10,
+							bottom : 10
+						},
+						hgap : 10,
+						vgap : 10
 
+					}
 				}
+
 			}
 		}
 	}

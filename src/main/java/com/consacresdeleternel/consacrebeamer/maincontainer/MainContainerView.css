@@ -21,12 +21,7 @@
 	-fx-pref-width:15.0px;
 }
 
-
-.context-menu{
-	-fx-background-color: #fff;
-	-fx-text-fill: #333;
-	-fx-pref-width:150.0px;
-	/*-fx-border-radius: 5.0;
-	-fx-background-radius: 5.0;*/
-	-fx-padding: 10.0;
+.book-view .context-menu{
+	-fx-pref-width:350.0px;
+	-fx-min-width:250.0px;
 }

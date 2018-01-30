@@ -2,14 +2,15 @@ package com.consacresdeleternel.consacrebeamer.maincontainer.book
 
 import javafx.scene.layout.AnchorPane
 import javafx.scene.control.Button
-import javafx.scene.image.ImageView
-import javafx.scene.image.Image
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.BookController
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.BookView
+import javafx.scene.text.TextFlow
+import javafx.scene.text.Text
 import javafx.scene.control.Label
-import javafx.scene.shape.SVGPath
+import javafx.scene.layout.HBox
+import javafx.scene.layout.VBox
 
-component BookView controlledby BookController styledwith [
+dynamic component BookView controlledby BookController styledwith [
 	"/com/consacresdeleternel/consacrebeamer/maincontainer/book/BookView.css" ] resourcefile
 "/bundle/consacrebeamer_de_DE.properties" {
 	BookView id rootNode {
@@ -17,15 +18,32 @@ component BookView controlledby BookController styledwith [
 			"/com/consacresdeleternel/consacrebeamer/maincontainer/book/BookView.css"
 		],
 		styleClass : [
-			"song-part-view"
+			"book-view"
 		],
-		Button id btnBook{
-			prefHeight : 300,
-			prefWidth : 300
+		Button id btnBook {
+			prefHeight : 200,
+			prefWidth : 200,
+			style : "-fx-text-fill:#fff",
+			contentDisplay : "CENTER"
 		},
-		Label id lblBookTitle{
-			text : "Chant congolais"
+		HBox {
+			styleClass : ["book-image"],
+			focusTraversable : true,
+			alignment : "CENTER",
+			VBox {
+				alignment : "CENTER",
+				style : "-fx-background-color:transparent;",
+				TextFlow {
+					maxWidth : 100,
+					Text id txtBookTitle {
+//						styleClass : [
+//							"book-title"
+//						],
+						style : "-fx-text-fill:#fff;-fx-background-color:transparent;"
+					}
+				}
+			},
+			onMouseClicked : controllermethod onOpenBook
 		}
-
 	}
 }

@@ -1,6 +1,5 @@
 package com.consacresdeleternel.consacrebeamer.common;
 
-
 import org.controlsfx.glyphfont.FontAwesome.Glyph;
 
 import com.consacresdeleternel.consacrebeamer.utils.GlyphUtilities;
@@ -69,53 +68,58 @@ public class Dialogs {
 		return customDialog;
 	}
 
+	public static Dialog<ButtonType> error(String message, Window window) {
+		Label error = new Label();
+		org.controlsfx.glyphfont.Glyph create = GlyphUtilities.create(Glyph.TIMES_CIRCLE, Color.RED);
+		create.setContentDisplay(ContentDisplay.LEFT);
+		create.setFontSize(50);
+		error.setGraphic(create);
+		Label lblMessage = new Label();
+		VBox vbBox = new VBox(lblMessage);
+		vbBox.setAlignment(Pos.CENTER);
+		lblMessage.setText(message);
+		HBox hBox = new HBox(error, vbBox);
+		hBox.setSpacing(10);
+		Dialog<ButtonType> customDialog = customDialog(hBox, Modality.APPLICATION_MODAL, null, window);
+		customDialog.getDialogPane().getButtonTypes().add(ButtonType.APPLY);
+		customDialog.showAndWait();
+		return customDialog;
+	}
 
-	 public static Dialog<ButtonType> error(String message, Window window) {
-	        Label error = new Label();
-	        org.controlsfx.glyphfont.Glyph create = GlyphUtilities.create(Glyph.TIMES_CIRCLE, Color.RED);
-	        create.setContentDisplay(ContentDisplay.LEFT);
-	        create.setFontSize(50);
-	        error.setGraphic(create);
-	        Label lblMessage = new Label();
-	        VBox vbBox = new VBox(lblMessage);
-	        vbBox.setAlignment(Pos.CENTER);
-	        lblMessage.setText(message);
-	        HBox hBox = new HBox(error, vbBox);
-	        hBox.setSpacing(10);
+	public static Dialog<ButtonType> success(String message, Window window) {
+		Label error = new Label();
+		org.controlsfx.glyphfont.Glyph create = GlyphUtilities.create(Glyph.CHECK_CIRCLE, Color.GREENYELLOW);
+		create.setContentDisplay(ContentDisplay.LEFT);
+		create.setFontSize(50);
+		error.setGraphic(create);
+		Label lblMessage = new Label();
+		VBox vbBox = new VBox(lblMessage);
+		vbBox.setAlignment(Pos.CENTER);
+		lblMessage.setText(message);
+		HBox hBox = new HBox(error, vbBox);
+		hBox.setSpacing(10);
+		Dialog<ButtonType> customDialog = customDialog(hBox, Modality.APPLICATION_MODAL, null, window);
+		customDialog.getDialogPane().getButtonTypes().add(ButtonType.APPLY);
+		customDialog.showAndWait();
+		return customDialog;
+	}
 
-	        return customDialog(hBox, Modality.APPLICATION_MODAL, null, window);
-	    }
-
-	    public static Dialog<ButtonType> success(String message, Window window) {
-	        Label error = new Label();
-	        org.controlsfx.glyphfont.Glyph create = GlyphUtilities.create(Glyph.CHECK_CIRCLE, Color.GREENYELLOW);
-	        create.setContentDisplay(ContentDisplay.LEFT);
-	        create.setFontSize(50);
-	        error.setGraphic(create);
-	        Label lblMessage = new Label();
-	        VBox vbBox = new VBox(lblMessage);
-	        vbBox.setAlignment(Pos.CENTER);
-	        lblMessage.setText(message);
-	        HBox hBox = new HBox(error, vbBox);
-	        hBox.setSpacing(10);
-
-	        return customDialog(hBox, Modality.APPLICATION_MODAL, null, window);
-	    }
-	    
-	    public static Dialog<ButtonType> warning(String message, Window window) {
-	        Label warning = new Label();
-	        org.controlsfx.glyphfont.Glyph create = GlyphUtilities.create(Glyph.WARNING, Color.YELLOW);
-	        create.setContentDisplay(ContentDisplay.LEFT);
-	        create.setFontSize(50);
-	        warning.setGraphic(create);
-	        Label lblMessage = new Label();
-	        VBox vbBox = new VBox(lblMessage);
-	        vbBox.setAlignment(Pos.CENTER);
-	        lblMessage.setText(message);
-	        HBox hBox = new HBox(warning, vbBox);
-	        hBox.setSpacing(10);
-
-	        return customDialog(hBox, Modality.APPLICATION_MODAL, null, window);
-	    }
+	public static Dialog<ButtonType> warning(String message, Window window) {
+		Label warning = new Label();
+		org.controlsfx.glyphfont.Glyph create = GlyphUtilities.create(Glyph.WARNING, Color.YELLOW);
+		create.setContentDisplay(ContentDisplay.LEFT);
+		create.setFontSize(50);
+		warning.setGraphic(create);
+		Label lblMessage = new Label();
+		VBox vbBox = new VBox(lblMessage);
+		vbBox.setAlignment(Pos.CENTER);
+		lblMessage.setText(message);
+		HBox hBox = new HBox(warning, vbBox);
+		hBox.setSpacing(10);
+		Dialog<ButtonType> customDialog = customDialog(hBox, Modality.APPLICATION_MODAL, null, window);
+		customDialog.getDialogPane().getButtonTypes().add(ButtonType.APPLY);
+		customDialog.showAndWait();
+		return customDialog;
+	}
 
 }

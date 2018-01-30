@@ -4,8 +4,56 @@
 -->
 
 <?import java.lang.*?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.CheckListView?>
+<?import org.controlsfx.glyphfont.Glyph?>
+<?scenebuilder-preview-i18n-resource /bundle/consacrebeamer_de_DE.properties?>
+<?scenebuilder-stylesheet /com/consacresdeleternel/consacrebeamer/maincontainer/book/createbook/CreateBookView.css?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml">
+<fx:root xmlns:fx="http://javafx.com/fxml" type="CreateBookView" fx:id="rootNode" fx:controller="com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookController" prefHeight="50">
 
-</AnchorPane>
+	<stylesheets>
+		<String fx:value="/com/consacresdeleternel/consacrebeamer/maincontainer/book/createbook/CreateBookView.css" />
+	</stylesheets>
+	<padding>
+		<Insets top="5" left="5" right="5" bottom="5"/> 
+	</padding>
+	<top>
+		<TextField fx:id="tfBookName" promptText="%csb.CreateBookView.bookName"> 
+			<maxWidth><Double fx:constant="MAX_VALUE" /></maxWidth>
+		</TextField>
+	</top>
+	<center>
+		<VBox fx:id="vbSongsContainer" visible="false"> 
+			<HBox alignment="CENTER"> 
+				<HBox> 
+					<CheckBox fx:id="cbSelectAll" text="Select all"/> 
+				</HBox>
+				<HBox alignment="CENTER_RIGHT" spacing="5" HBox.hgrow="ALWAYS"> 
+					<Button onAction="#onEditSong"> 
+						<graphic>
+							<Glyph icon="EDIT" fontFamily="FontAwesome"/> 
+						</graphic>
+					</Button>
+					<Button onAction="#onRemoveSongs"> 
+						<graphic>
+							<Glyph icon="TRASH" fontFamily="FontAwesome"/> 
+						</graphic>
+					</Button>
+				</HBox>
+			</HBox>
+			<CheckListView fx:id="clvSongs" VBox.vgrow="ALWAYS"> 
+				<placeholder>
+					<Label text="%csb.CreateBookView.noSongsAvailable"/> 
+				</placeholder>
+			</CheckListView>
+		</VBox>
+	</center>
+</fx:root>

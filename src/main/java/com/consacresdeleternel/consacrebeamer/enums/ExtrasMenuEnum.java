@@ -7,7 +7,7 @@ import javafx.event.EventType;
 public enum ExtrasMenuEnum {
 
 	SEARCH_SONG("csb.extrasMenu.searchSong", "/icons/icons8-search-40.png",ExtrasMenuEvent.SEARCH_SONG),
-	CREATE_NEW_BOOK("csb.extrasMenu.createNewBook", "icons8-book2-40.png",ExtrasMenuEvent.CREATE_NEW_BOOK),
+	CREATE_NEW_BOOK("csb.extrasMenu.createNewBook", "/icons/icons8-book2-40.png",ExtrasMenuEvent.CREATE_NEW_BOOK),
 	BACKGROUND_MANAGER("csb.extrasMenu.backgroundManager", "", null), 
 	OPTIONS("csb.extrasMenu.options", "", ExtrasMenuEvent.OPTIONS);
 

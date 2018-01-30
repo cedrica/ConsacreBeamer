@@ -1,10 +1,13 @@
 package com.consacresdeleternel.consacrebeamer.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -13,12 +16,12 @@ import javax.persistence.Table;
 @Table
 public class Book {
 	@Id
-	private long id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	private String title;
-	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="book")
-	private List<Song> songs;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "book")
+	private List<Song> songs = new ArrayList<>();
 
-	
 	public String getTitle() {
 		return title;
 	}
@@ -35,46 +38,12 @@ public class Book {
 		this.songs = songs;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((songs == null) ? 0 : songs.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Book other = (Book) obj;
-		if (id != other.id)
-			return false;
-		if (songs == null) {
-			if (other.songs != null)
-				return false;
-		} else if (!songs.equals(other.songs))
-			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		return true;
 	}
 
 	@Override

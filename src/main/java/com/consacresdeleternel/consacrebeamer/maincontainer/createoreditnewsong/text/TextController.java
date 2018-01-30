@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 import org.apache.log4j.Logger;
 
 import com.consacresdeleternel.consacrebeamer.common.Helper;
-import com.sun.javafx.webkit.Accessor;
-import com.sun.webkit.WebPage;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -48,10 +46,10 @@ public class TextController implements Initializable {
 		rootNode.invalidProperty().bind(tfTitle.textProperty().isEmpty().or(rootNode.songTextProperty().isEmpty()));
 	}
 
-	private void insertTextIntpHtmlEditor(){
-		WebPage webPage = Accessor.getPageFor(webView.getEngine());  
-        webPage.executeCommand("insertText", "$KeyCode.ENTER");  
-	}
+//	private void insertTextIntpHtmlEditor(){
+//		WebPage webPage = Accessor.getPageFor(webView.getEngine());  
+//        webPage.executeCommand("insertText", "$KeyCode.ENTER");  
+//	}
     
 	private void registerListener() {
 		webView.addEventHandler(KeyEvent.KEY_RELEASED, evt -> {
