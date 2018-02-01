@@ -1,5 +1,6 @@
 package com.consacresdeleternel.consacrebeamer.manager;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
@@ -7,11 +8,16 @@ import javax.inject.Singleton;
 
 import org.apache.log4j.Logger;
 
+import com.consacresdeleternel.consacrebeamer.common.Dialogs;
+import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.data.Book;
 import com.consacresdeleternel.consacrebeamer.events.BookEvent;
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
+import com.consacresdeleternel.consacrebeamer.maincontainer.book.BookView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookView;
+import com.consacresdeleternel.consacrebeamer.repository.BookRepository;
 
+import javafx.collections.FXCollections;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 
@@ -20,7 +26,8 @@ public class BookManager {
 	private static final Logger LOG = Logger.getLogger(ExtrasMenuManager.class);
 	@Inject
 	private DialogManager dialogManager;
-
+	@Inject
+	BookRepository bookRepository;
 	public void init(MainContainerView mainContainerView) {
 		mainContainerView.addEventHandler(BookEvent.REMOVE_BOOK, evt -> {
 			evt.consume();
@@ -43,6 +50,26 @@ public class BookManager {
 		Optional<ButtonType> showAndWait = customDialog.showAndWait();
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
 			LOG.info("Edit mode");
+			book.setTitle(createBookView.getBookName());
+			book.setSongs(createBookView.getSongItems());
+			book = bookRepository.save(book);
+			if (book == null) {
+				Dialogs.error(Localization.asKey("csb.ExtrasMenu.bookcouldNotBeCreated"),
+						mainContainerView.getScene().getWindow());
+				return;
+			}
+			mainContainerView.fireEvent(new BookEvent(BookEvent.RELOAD_BOOKS));
+			List<Book> books = bookRepository.findAll();
+			mainContainerView.getFlowPane().getChildren().clear();
+			books.stream().forEach(b -> {
+				BookView bookView = new BookView();
+				bookView.setBook(b);
+				bookView.setBookName(b.getTitle());
+				mainContainerView.getFlowPane().getChildren().add(bookView);
+			});
+			Dialogs.success(Localization.asKey("csb.ExtrasMenu.bookSuccessfullyCreated"),
+					mainContainerView.getScene().getWindow());
+			
 		}
 	}
 
@@ -50,6 +77,7 @@ public class BookManager {
 		CreateBookView createBookView = new CreateBookView();
 		createBookView.setBook(book);
 		createBookView.setBookName(book.getTitle());
+		createBookView.setSongItems(FXCollections.observableList(book.getSongs()));
 		createBookView.setEditMode(true);
 		return createBookView;
 	}

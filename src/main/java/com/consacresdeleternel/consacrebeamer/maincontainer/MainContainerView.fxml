@@ -15,9 +15,11 @@
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.MaskerPane?>
 <?import org.controlsfx.control.textfield.CustomTextField?>
 <?import org.controlsfx.glyphfont.Glyph?>
 <?scenebuilder-preview-i18n-resource /bundle/consacrebeamer_de_DE.properties?>
@@ -26,6 +28,136 @@
 
 <fx:root xmlns:fx="http://javafx.com/fxml" type="MainContainerView" fx:id="rootNode" fx:controller="com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerController">
 
+	<BorderPane> 
+		<top>
+			<VBox> 
+				<ToolBar> 
+					<Button fx:id="btnFile" text="%csb.mainContainerView.file" onAction="#onShowContextMenuFile"> 
+						<styleClass>
+							<String fx:value="menu-button" />
+						</styleClass>
+						<contextMenu>
+							<ContextMenu fx:id="contextMenuFile"/> 
+						</contextMenu>
+					</Button>
+					<Button fx:id="btnEdit" onAction="#onShowContextMenuEdit" text="%csb.mainContainerView.edit"> 
+						<styleClass>
+							<String fx:value="menu-button" />
+						</styleClass>
+						<contextMenu>
+							<ContextMenu fx:id="contextMenuEdit"/> 
+						</contextMenu>
+					</Button>
+					<Button fx:id="btnInsert" onAction="#onShowContextMenuInsert" text="%csb.mainContainerView.insert"> 
+						<styleClass>
+							<String fx:value="menu-button" />
+						</styleClass>
+						<contextMenu>
+							<ContextMenu fx:id="contextMenuInsert"/> 
+						</contextMenu>
+					</Button>
+					<Button fx:id="btnPresentation" onAction="#onShowContextMenuPresentation" text="%csb.mainContainerView.presentation"> 
+						<styleClass>
+							<String fx:value="menu-button" />
+						</styleClass>
+						<contextMenu>
+							<ContextMenu fx:id="contextMenuPresentation"/> 
+						</contextMenu>
+					</Button>
+					<Button fx:id="btnExtras" onAction="#onShowContextMenuExtras" text="%csb.mainContainerView.extras"> 
+						<styleClass>
+							<String fx:value="menu-button" />
+						</styleClass>
+						<contextMenu>
+							<ContextMenu fx:id="contextMenuExtras"/> 
+						</contextMenu>
+					</Button>
+					<Button fx:id="btnHelp" onAction="#onShowContextMenuHelp" text="%csb.mainContainerView.help"> 
+						<styleClass>
+							<String fx:value="menu-button" />
+						</styleClass>
+						<contextMenu>
+							<ContextMenu fx:id="contextMenuHelp"/> 
+						</contextMenu>
+					</Button>
+					<padding>
+						<Insets top="5" left="5" bottom="5"/> 
+					</padding>
+				</ToolBar>
+				<HBox spacing="10"> 
+					<HBox alignment="CENTER"> 
+						<Button> 
+							<graphic>
+								<ImageView fitHeight="20" fitWidth="20"> 
+									<image>
+										<Image url="@/icons/icons8-book-40.png"/> 
+									</image>
+								</ImageView>
+							</graphic>
+							<tooltip>
+								<Tooltip text="%csb.mainContainerView.songCatalog"/> 
+							</tooltip>
+						</Button>
+					</HBox>
+					<HBox alignment="CENTER"> 
+						<CustomTextField promptText="%csb.mainContainerView.searchSong"> 
+							<right>
+								<Button> 
+									<cursor><Cursor fx:constant="DEFAULT" /></cursor>
+									<graphic>
+										<Glyph icon="SEARCH" fontFamily="FontAwesome"/> 
+									</graphic>
+								</Button>
+							</right>
+						</CustomTextField>
+					</HBox>
+					<HBox alignment="CENTER"> 
+						<CustomTextField promptText="%csb.mainContainerView.searchBibleVerse"> 
+							<right>
+								<Button> 
+									<graphic>
+										<Glyph icon="SEARCH" fontFamily="FontAwesome"/> 
+									</graphic>
+								</Button>
+							</right>
+						</CustomTextField>
+					</HBox>
+					<HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS"> 
+						<Button> 
+							<graphic>
+								<Glyph icon="CLOSE" fontFamily="FontAwesome"/> 
+							</graphic>
+							<tooltip>
+								<Tooltip text="%csb.mainContainerView.closeToolbar"/> 
+							</tooltip>
+						</Button>
+					</HBox>
+					<padding>
+						<Insets left="5" top="5" bottom="5" right="5"/> 
+					</padding>
+				</HBox>
+			</VBox>
+		</top>
+		<center>
+			<SplitPane> 
+				<VBox fx:id="vblistViewContainer" maxWidth="300" spacing="5"> 
+					<padding>
+						<Insets top="5" left="5" right="5"/> 
+					</padding>
+				</VBox>
+				<VBox fx:id="vbPreviewContainer"> 
+					<ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS"> 
+						<FlowPane fx:id="flowPane" hgap="10" vgap="10"> 
+							<padding>
+								<Insets top="10" left="10" right="10" bottom="10"/> 
+							</padding>
+						</FlowPane>
+					</ScrollPane>
+				</VBox>
+			</SplitPane>
+		</center>
+	</BorderPane>
+	<MaskerPane fx:id="maskerPane"/> 
 	<stylesheets>
 		<String fx:value="/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.css" />
 		<String fx:value="/css/svg-icons.css" />
@@ -33,131 +165,4 @@
 	<styleClass>
 		<String fx:value="main-container-view" />
 	</styleClass>
-	<top>
-		<VBox> 
-			<ToolBar> 
-				<Button fx:id="btnFile" text="%csb.mainContainerView.file" onAction="#onShowContextMenuFile"> 
-					<styleClass>
-						<String fx:value="menu-button" />
-					</styleClass>
-					<contextMenu>
-						<ContextMenu fx:id="contextMenuFile"/> 
-					</contextMenu>
-				</Button>
-				<Button fx:id="btnEdit" onAction="#onShowContextMenuEdit" text="%csb.mainContainerView.edit"> 
-					<styleClass>
-						<String fx:value="menu-button" />
-					</styleClass>
-					<contextMenu>
-						<ContextMenu fx:id="contextMenuEdit"/> 
-					</contextMenu>
-				</Button>
-				<Button fx:id="btnInsert" onAction="#onShowContextMenuInsert" text="%csb.mainContainerView.insert"> 
-					<styleClass>
-						<String fx:value="menu-button" />
-					</styleClass>
-					<contextMenu>
-						<ContextMenu fx:id="contextMenuInsert"/> 
-					</contextMenu>
-				</Button>
-				<Button fx:id="btnPresentation" onAction="#onShowContextMenuPresentation" text="%csb.mainContainerView.presentation"> 
-					<styleClass>
-						<String fx:value="menu-button" />
-					</styleClass>
-					<contextMenu>
-						<ContextMenu fx:id="contextMenuPresentation"/> 
-					</contextMenu>
-				</Button>
-				<Button fx:id="btnExtras" onAction="#onShowContextMenuExtras" text="%csb.mainContainerView.extras"> 
-					<styleClass>
-						<String fx:value="menu-button" />
-					</styleClass>
-					<contextMenu>
-						<ContextMenu fx:id="contextMenuExtras"/> 
-					</contextMenu>
-				</Button>
-				<Button fx:id="btnHelp" onAction="#onShowContextMenuHelp" text="%csb.mainContainerView.help"> 
-					<styleClass>
-						<String fx:value="menu-button" />
-					</styleClass>
-					<contextMenu>
-						<ContextMenu fx:id="contextMenuHelp"/> 
-					</contextMenu>
-				</Button>
-				<padding>
-					<Insets top="5" left="5" bottom="5"/> 
-				</padding>
-			</ToolBar>
-			<HBox spacing="10"> 
-				<HBox alignment="CENTER"> 
-					<Button> 
-						<graphic>
-							<ImageView fitHeight="20" fitWidth="20"> 
-								<image>
-									<Image url="@/icons/icons8-book-40.png"/> 
-								</image>
-							</ImageView>
-						</graphic>
-						<tooltip>
-							<Tooltip text="%csb.mainContainerView.songCatalog"/> 
-						</tooltip>
-					</Button>
-				</HBox>
-				<HBox alignment="CENTER"> 
-					<CustomTextField promptText="%csb.mainContainerView.searchSong"> 
-						<right>
-							<Button> 
-								<cursor><Cursor fx:constant="DEFAULT" /></cursor>
-								<graphic>
-									<Glyph icon="SEARCH" fontFamily="FontAwesome"/> 
-								</graphic>
-							</Button>
-						</right>
-					</CustomTextField>
-				</HBox>
-				<HBox alignment="CENTER"> 
-					<CustomTextField promptText="%csb.mainContainerView.searchBibleVerse"> 
-						<right>
-							<Button> 
-								<graphic>
-									<Glyph icon="SEARCH" fontFamily="FontAwesome"/> 
-								</graphic>
-							</Button>
-						</right>
-					</CustomTextField>
-				</HBox>
-				<HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS"> 
-					<Button> 
-						<graphic>
-							<Glyph icon="CLOSE" fontFamily="FontAwesome"/> 
-						</graphic>
-						<tooltip>
-							<Tooltip text="%csb.mainContainerView.closeToolbar"/> 
-						</tooltip>
-					</Button>
-				</HBox>
-				<padding>
-					<Insets left="5" top="5" bottom="5" right="5"/> 
-				</padding>
-			</HBox>
-		</VBox>
-	</top>
-	<center>
-		<SplitPane> 
-			<VBox fx:id="vblistViewContainer" maxWidth="300" spacing="5"> 
-				<padding>
-					<Insets top="5" left="5" right="5"/> 
-				</padding>
-			</VBox>
-			<VBox fx:id="vbPreviewContainer"> 
-				<ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS"> 
-					<FlowPane fx:id="flowPane" hgap="10" vgap="10"> 
-						<padding>
-							<Insets top="10" left="10" right="10" bottom="10"/> 
-						</padding>
-					</FlowPane>
-				</ScrollPane>
-			</VBox>
-		</SplitPane>
-	</center>
 </fx:root>

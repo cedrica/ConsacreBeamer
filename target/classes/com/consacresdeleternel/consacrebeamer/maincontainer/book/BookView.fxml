@@ -19,7 +19,7 @@
 	<HBox focusTraversable="true" alignment="CENTER" onMouseClicked="#onOpenBook"> 
 		<VBox alignment="CENTER" style="-fx-background-color:transparent;"> 
 			<TextFlow maxWidth="100"> 
-				<Text fx:id="txtBookTitle" style="-fx-text-fill:#fff;-fx-background-color:transparent;"/> 
+				<Text fx:id="txtBookTitle" style="-fx-fill:#fff;font-weight:bold;"/> 
 			</TextFlow>
 		</VBox>
 		<styleClass>

@@ -31,7 +31,6 @@ import com.consacresdeleternel.consacrebeamer.service.PPTService;
 import com.consacresdeleternel.consacrebeamer.utils.FileUtil;
 
 import javafx.geometry.Side;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Dialog;
@@ -39,7 +38,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
 @Singleton
 public class FileMenuManager {
 	private static final Logger LOG = Logger.getLogger(FileMenuManager.class);
@@ -47,7 +45,10 @@ public class FileMenuManager {
 	private File actualPresentation;
 	@Inject
 	private SongRepository songRepository;
-	
+	@Inject
+	private ValueObjectManager valueObjectManager;
+	@Inject
+	private DialogManager dialogManager;
 	public void init(MainContainerView mainContainerView) {
 		mainContainerView.addEventHandler(FileMenuEvent.NEW_SONG, evt -> handleCreateNewSong(mainContainerView, evt));
 		mainContainerView.addEventHandler(FileMenuEvent.EDIT_SONG, evt -> handleEditSong(mainContainerView, evt));
@@ -59,12 +60,7 @@ public class FileMenuManager {
 		Song song = evt.getSong();
 		CreateOrEditNewSongView createOrEditNewSongView = createCreateOrEditNewSongViewFromSong(song);
 		createOrEditNewSongView.getTextView().setEditMode(true);
-		Dialog<ButtonType> dialogStage = Dialogs.customDialog(createOrEditNewSongView, Modality.APPLICATION_MODAL,
-				Localization.asKey("csb.createNewSongView.title"), mainContainerView.getScene().getWindow());
-		dialogStage.getDialogPane().getButtonTypes().addAll(ButtonType.APPLY, ButtonType.CANCEL);
-		Button lookupButton = (Button) dialogStage.getDialogPane().lookupButton(ButtonType.APPLY);
-		lookupButton.disableProperty().bind(createOrEditNewSongView.getTextView().invalidProperty()
-				.or(createOrEditNewSongView.getCopyRightsView().invalidProperty()));
+		Dialog<ButtonType> dialogStage = dialogManager.showCreateOrEditNewSong(createOrEditNewSongView, mainContainerView.getScene().getWindow());
 		Optional<ButtonType> showAndWait = dialogStage.showAndWait();
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
 			song = songRepository.findById(song.getId());
@@ -73,10 +69,8 @@ public class FileMenuManager {
 			if (song != null) {
 				FileUtil.saveSongAsTxtFileToSongsFolder(createOrEditNewSongView.getTextView().getSongHtml(),
 						song.getTextFileReference());
-				Dialog<ButtonType> success = Dialogs.success(Localization.asKey("csb.alert.songSavingSuccessfulled"),
+				Dialogs.success(Localization.asKey("csb.alert.songSavingSuccessfulled"),
 						mainContainerView.getScene().getWindow());
-				success.getDialogPane().getButtonTypes().add(ButtonType.OK);
-				success.showAndWait();
 			} else {
 				Dialogs.error(Localization.asKey("csb.alert.songSavingMissed"),
 						mainContainerView.getScene().getWindow());
@@ -132,7 +126,7 @@ public class FileMenuManager {
 		createOrEditNewSongView.getCopyRightsView().setRight(song.getRights());
 		createOrEditNewSongView.getCopyRightsView().setCCLiNr(song.getCcliNumber());
 		createOrEditNewSongView.getCopyRightsView().setBibleReferenz(song.getBibleVerse());
-		createOrEditNewSongView.getCopyRightsView().setSongBuch(song.getSongBook());
+		createOrEditNewSongView.getCopyRightsView().setSongBuch(song.getBook());
 		createOrEditNewSongView.getCopyRightsView().setAdditionalInfo(song.getAdditionalInfo());
 		createOrEditNewSongView.getCopyRightsView().setKey(song.getSongKey());
 		createOrEditNewSongView.getCopyRightsView().setTempo(song.getTempo());
@@ -149,14 +143,9 @@ public class FileMenuManager {
 
 	private void handleCreateNewSong(MainContainerView mainContainerView, FileMenuEvent evt) {
 		evt.consume();
-		LOG.info("New song was added");
 		CreateOrEditNewSongView createOrEditNewSongView = new CreateOrEditNewSongView();
-		Dialog<ButtonType> dialogStage = Dialogs.customDialog(createOrEditNewSongView, Modality.APPLICATION_MODAL,
-				Localization.asKey("csb.createNewSongView.title"), mainContainerView.getScene().getWindow());
-		dialogStage.getDialogPane().getButtonTypes().addAll(ButtonType.APPLY, ButtonType.CANCEL);
-		Button lookupButton = (Button) dialogStage.getDialogPane().lookupButton(ButtonType.APPLY);
-		lookupButton.disableProperty().bind(createOrEditNewSongView.getTextView().invalidProperty()
-				.or(createOrEditNewSongView.getCopyRightsView().invalidProperty()));
+		Dialog<ButtonType> dialogStage = dialogManager.showCreateOrEditNewSong(createOrEditNewSongView,mainContainerView.getScene().getWindow());
+		createOrEditNewSongView.getCopyRightsView().setBookItems(valueObjectManager.getBookItems());
 		Optional<ButtonType> showAndWait = dialogStage.showAndWait();
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
 			Song song = createSongFromCreateOrEditNewSongView(createOrEditNewSongView, new Song());
@@ -170,10 +159,8 @@ public class FileMenuManager {
 			}
 			song = songRepository.save(song);
 			if (song != null) {
-				Dialog<ButtonType> success = Dialogs.success(Localization.asKey("csb.alert.songSavingSuccessfulled"),
+				Dialogs.success(Localization.asKey("csb.alert.songSavingSuccessfulled"),
 						mainContainerView.getScene().getWindow());
-				success.getDialogPane().getButtonTypes().add(ButtonType.OK);
-				success.showAndWait();
 				ListItemView listItemView = createListItemView(mainContainerView, createOrEditNewSongView, song);
 				toggleGroup.getToggles().add(listItemView.getToggle());
 				mainContainerView.getListViewContainer().getChildren().add(listItemView);
@@ -187,6 +174,7 @@ public class FileMenuManager {
 			}
 		}
 	}
+
 	
 	private Song createSongFromCreateOrEditNewSongView(CreateOrEditNewSongView createOrEditNewSongView, Song song) {
 		song.setSongTitle(createOrEditNewSongView.getTextView().getTitle());
@@ -202,7 +190,7 @@ public class FileMenuManager {
 		song.setRights(createOrEditNewSongView.getCopyRightsView().getRights());
 		song.setCcliNumber(createOrEditNewSongView.getCopyRightsView().getCCLiNr());
 		song.setBibleVerse(createOrEditNewSongView.getCopyRightsView().getBibleReferenz());
-		song.setSongBook(createOrEditNewSongView.getCopyRightsView().getSongBuch());
+		song.setBook(createOrEditNewSongView.getCopyRightsView().getSongBuch());
 		song.setAdditionalInfo(createOrEditNewSongView.getCopyRightsView().getAdditionalInfo());
 		song.setSongKey(createOrEditNewSongView.getCopyRightsView().getKey());
 		song.setTempo(createOrEditNewSongView.getCopyRightsView().getTempo());

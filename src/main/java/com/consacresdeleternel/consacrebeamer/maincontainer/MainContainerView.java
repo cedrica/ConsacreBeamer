@@ -2,19 +2,22 @@ package com.consacresdeleternel.consacrebeamer.maincontainer;
 
 import javax.inject.Singleton;
 
+import org.controlsfx.control.MaskerPane;
+
 import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 @Singleton
-public class MainContainerView extends BorderPane {
+public class MainContainerView extends StackPane {
 	private ObjectProperty<VBox> listViewContainer = new SimpleObjectProperty<>();
 	private ObjectProperty<FlowPane> flowPane = new SimpleObjectProperty<>();
+	private ObjectProperty<MaskerPane> maskerPane = new SimpleObjectProperty<>();
 
 	public MainContainerView() {
 		Helper.load(this, Localization.getDefault());
@@ -43,4 +46,21 @@ public class MainContainerView extends BorderPane {
 	public final void setFlowPane(final FlowPane flowPane) {
 		this.flowPaneProperty().set(flowPane);
 	}
+
+	public final ObjectProperty<MaskerPane> maskerPaneProperty() {
+		return this.maskerPane;
+	}
+	
+
+	public final MaskerPane getMaskerPane() {
+		return this.maskerPaneProperty().get();
+	}
+	
+
+	public final void setMaskerPane(final MaskerPane maskerPane) {
+		this.maskerPaneProperty().set(maskerPane);
+	}
+	
+	
+	
 }

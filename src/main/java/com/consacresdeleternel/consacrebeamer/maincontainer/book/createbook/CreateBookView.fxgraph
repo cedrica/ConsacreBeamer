@@ -39,21 +39,22 @@ resourcefile "/bundle/consacrebeamer_de_DE.properties"{
 				alignment : "CENTER",
 				HBox {
 					CheckBox id cbSelectAll{
-						text : "Select all"
+						text : rstring "csb.CreateBookView.selectAll",
+						onAction : controllermethod onSelectAll
 					}
 				},
 				HBox {
 					static hgrow : "ALWAYS",
 					alignment : "CENTER_RIGHT",
 					spacing : 5,
-					Button {
+					Button id btnEdit{
 						graphic : Glyph {
 							icon : "EDIT",
 							fontFamily : "FontAwesome"
 						},
 						onAction : controllermethod onEditSong
 					},
-					Button {
+					Button id btnDelete {
 						graphic : Glyph {
 							icon : "TRASH",
 							fontFamily : "FontAwesome"

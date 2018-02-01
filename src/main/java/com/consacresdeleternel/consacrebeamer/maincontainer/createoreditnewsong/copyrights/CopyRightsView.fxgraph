@@ -12,6 +12,8 @@ import javafx.scene.layout.RowConstraints
 import javafx.scene.control.Button
 import javafx.scene.control.RadioButton
 import javafx.geometry.Insets
+import javafx.scene.control.ComboBox
+import java.lang.Double
 
 dynamic component CopyRightsView controlledby CopyRightsController styledwith [
 	"/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/copyrights/CopyRightsView.css",
@@ -155,10 +157,10 @@ dynamic component CopyRightsView controlledby CopyRightsController styledwith [
 				static columnIndex : 1,
 				static rowIndex : 9
 			},
-			TextField id tfSongBuch{
+			ComboBox<?> id cbSongBuch{
 				static columnIndex : 1,
 				static rowIndex : 10,
-				promptText : rstring "csb.CopyRightsView.SongBuch"
+				maxWidth : const Double#MAX_VALUE
 			},
 			TextField id tfAdditionalInfo{
 				static columnIndex : 1,

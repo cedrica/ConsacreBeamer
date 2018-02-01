@@ -16,6 +16,7 @@ public class FileMenuEvent extends Event{
 	public static final EventType<FileMenuEvent> NEW_SCHEDULE   = new EventType<>("newScheduleFileMenuEvent");
 	public static final EventType<FileMenuEvent> EXIT_APPLICATION   = new EventType<>("exitApplicationFileMenuEvent");
 	public static final EventType<FileMenuEvent> EDIT_SONG = new EventType<>("editSongFileMenuEvent");
+	public static final EventType<FileMenuEvent> PRINT = new EventType<>("printFileMenuEvent");
 	
 	private Song song;
 	public FileMenuEvent(EventType<FileMenuEvent> eventType) {

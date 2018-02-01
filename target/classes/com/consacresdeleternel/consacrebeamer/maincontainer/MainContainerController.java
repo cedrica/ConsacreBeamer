@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.MaskerPane;
+
 import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.enums.EditMenuEnum;
 import com.consacresdeleternel.consacrebeamer.enums.ExtrasMenuEnum;
@@ -65,6 +67,7 @@ public class MainContainerController implements Initializable {
 	@FXML Button btnPresentation;
 	@FXML Button btnExtras;
 	@FXML Button btnHelp;
+	@FXML MaskerPane maskerPane;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -105,6 +108,7 @@ public class MainContainerController implements Initializable {
 
 		rootNode.setListViewContainer(vblistViewContainer);
 		rootNode.setFlowPane(flowPane);
+		rootNode.setMaskerPane(maskerPane);
 	}
 
 	private List<MenuItem> createMenuItemsFromHelpMenuEnum() {

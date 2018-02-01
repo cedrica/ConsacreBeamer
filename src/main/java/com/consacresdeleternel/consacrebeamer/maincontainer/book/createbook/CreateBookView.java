@@ -3,18 +3,24 @@ package com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook;
 import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.data.Book;
+import com.consacresdeleternel.consacrebeamer.data.Song;
 
+import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.layout.BorderPane;
 
 public class CreateBookView extends BorderPane {
 	private StringProperty bookName = new SimpleStringProperty();
 	private ObjectProperty<Boolean> invalid = new SimpleObjectProperty<>();
-	private ObjectProperty<Boolean> editMode = new SimpleObjectProperty<>(false);
+	private ObjectProperty<Boolean> editMode = new SimpleObjectProperty<>();
 	private ObjectProperty<Book> book = new SimpleObjectProperty<>();
+	private ListProperty<Song> songItems = new SimpleListProperty<>(FXCollections.observableArrayList());
 
 	public CreateBookView() {
 		Helper.load(this, Localization.getDefault());
@@ -59,15 +65,25 @@ public class CreateBookView extends BorderPane {
 	public final ObjectProperty<Book> bookProperty() {
 		return this.book;
 	}
-	
 
 	public final Book getBook() {
 		return this.bookProperty().get();
 	}
-	
 
 	public final void setBook(final Book book) {
 		this.bookProperty().set(book);
+	}
+
+	public final ListProperty<Song> songItemsProperty() {
+		return this.songItems;
+	}
+
+	public final ObservableList<Song> getSongItems() {
+		return this.songItemsProperty().get();
+	}
+
+	public final void setSongItems(final ObservableList<Song> songItems) {
+		this.songItemsProperty().set(songItems);
 	}
 
 }

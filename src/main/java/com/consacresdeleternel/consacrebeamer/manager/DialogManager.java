@@ -3,6 +3,7 @@ package com.consacresdeleternel.consacrebeamer.manager;
 import com.consacresdeleternel.consacrebeamer.common.Dialogs;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookView;
+import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.CreateOrEditNewSongView;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -29,4 +30,13 @@ public class DialogManager {
 		return customDialog;
 	}
 
+	public Dialog<ButtonType> showCreateOrEditNewSong(CreateOrEditNewSongView createOrEditNewSongView, Window window) {
+		Dialog<ButtonType> dialogStage = Dialogs.customDialog(createOrEditNewSongView, Modality.APPLICATION_MODAL,
+				Localization.asKey("csb.createNewSongView.title"), window);
+		dialogStage.getDialogPane().getButtonTypes().addAll(ButtonType.APPLY, ButtonType.CANCEL);
+		Button lookupButton = (Button) dialogStage.getDialogPane().lookupButton(ButtonType.APPLY);
+		lookupButton.disableProperty().bind(createOrEditNewSongView.getTextView().invalidProperty()
+				.or(createOrEditNewSongView.getCopyRightsView().invalidProperty()));
+		return dialogStage;
+	}
 }

@@ -34,15 +34,15 @@
 		<VBox fx:id="vbSongsContainer" visible="false"> 
 			<HBox alignment="CENTER"> 
 				<HBox> 
-					<CheckBox fx:id="cbSelectAll" text="Select all"/> 
+					<CheckBox fx:id="cbSelectAll" text="%csb.CreateBookView.selectAll" onAction="#onSelectAll"/> 
 				</HBox>
 				<HBox alignment="CENTER_RIGHT" spacing="5" HBox.hgrow="ALWAYS"> 
-					<Button onAction="#onEditSong"> 
+					<Button fx:id="btnEdit" onAction="#onEditSong"> 
 						<graphic>
 							<Glyph icon="EDIT" fontFamily="FontAwesome"/> 
 						</graphic>
 					</Button>
-					<Button onAction="#onRemoveSongs"> 
+					<Button fx:id="btnDelete" onAction="#onRemoveSongs"> 
 						<graphic>
 							<Glyph icon="TRASH" fontFamily="FontAwesome"/> 
 						</graphic>

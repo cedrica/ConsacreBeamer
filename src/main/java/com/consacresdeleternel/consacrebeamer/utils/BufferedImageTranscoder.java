@@ -1,6 +1,7 @@
 package com.consacresdeleternel.consacrebeamer.utils;
 
 import java.awt.image.BufferedImage;
+
 import org.apache.batik.transcoder.TranscoderException;
 import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.batik.transcoder.image.ImageTranscoder;

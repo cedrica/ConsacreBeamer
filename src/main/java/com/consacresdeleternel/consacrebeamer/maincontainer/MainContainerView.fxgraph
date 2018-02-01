@@ -20,6 +20,8 @@ import javafx.scene.image.Image
 import javafx.scene.control.Tooltip
 import javafx.scene.Cursor
 import javafx.scene.control.ScrollPane
+import javafx.scene.layout.BorderPane
+import org.controlsfx.control.MaskerPane
 
 dynamic component MainContainerView controlledby MainContainerController resourcefile
 "/bundle/consacrebeamer_de_DE.properties" styledwith [
@@ -32,156 +34,160 @@ dynamic component MainContainerView controlledby MainContainerController resourc
 		styleClass : [
 			"main-container-view"
 		],
-		top : VBox {
-			ToolBar {
-				padding : Insets {
-					top : 5,
-					left : 5,
-					bottom : 5
+		BorderPane {
+			top : VBox {
+				ToolBar {
+					padding : Insets {
+						top : 5,
+						left : 5,
+						bottom : 5
+					},
+					Button id btnFile {
+						styleClass : [
+							"menu-button"
+						],
+						text : rstring "csb.mainContainerView.file",
+						contextMenu : ContextMenu id contextMenuFile,
+						onAction : controllermethod onShowContextMenuFile
+					},
+					Button id btnEdit {
+						styleClass : [
+							"menu-button"
+						],
+						contextMenu : ContextMenu id contextMenuEdit,
+						onAction : controllermethod onShowContextMenuEdit,
+						text : rstring "csb.mainContainerView.edit"
+					},
+					Button id btnInsert {
+						styleClass : [
+							"menu-button"
+						],
+						contextMenu : ContextMenu id contextMenuInsert,
+						onAction : controllermethod onShowContextMenuInsert,
+						text : rstring "csb.mainContainerView.insert"
+					},
+					Button id btnPresentation {
+						styleClass : [
+							"menu-button"
+						],
+						contextMenu : ContextMenu id contextMenuPresentation,
+						onAction : controllermethod onShowContextMenuPresentation,
+						text : rstring "csb.mainContainerView.presentation"
+					},
+					Button id btnExtras {
+						styleClass : [
+							"menu-button"
+						],
+						contextMenu : ContextMenu id contextMenuExtras,
+						onAction : controllermethod onShowContextMenuExtras,
+						text : rstring "csb.mainContainerView.extras"
+					},
+					Button id btnHelp {
+						styleClass : [
+							"menu-button"
+						],
+						contextMenu : ContextMenu id contextMenuHelp,
+						onAction : controllermethod onShowContextMenuHelp,
+						text : rstring "csb.mainContainerView.help"
+					}
 				},
-				Button id btnFile {
-					styleClass : [
-						"menu-button"
-					],
-					text : rstring "csb.mainContainerView.file",
-					contextMenu : ContextMenu id contextMenuFile,
-					onAction : controllermethod onShowContextMenuFile
-				},
-				Button id btnEdit {
-					styleClass : [
-						"menu-button"
-					],
-					contextMenu : ContextMenu id contextMenuEdit,
-					onAction : controllermethod onShowContextMenuEdit,
-					text : rstring "csb.mainContainerView.edit"
-				},
-				Button id btnInsert {
-					styleClass : [
-						"menu-button"
-					],
-					contextMenu : ContextMenu id contextMenuInsert,
-					onAction : controllermethod onShowContextMenuInsert,
-					text : rstring "csb.mainContainerView.insert"
-				},
-				Button id btnPresentation {
-					styleClass : [
-						"menu-button"
-					],
-					contextMenu : ContextMenu id contextMenuPresentation,
-					onAction : controllermethod onShowContextMenuPresentation,
-					text : rstring "csb.mainContainerView.presentation"
-				},
-				Button id btnExtras {
-					styleClass : [
-						"menu-button"
-					],
-					contextMenu : ContextMenu id contextMenuExtras,
-					onAction : controllermethod onShowContextMenuExtras,
-					text : rstring "csb.mainContainerView.extras"
-				},
-				Button id btnHelp {
-					styleClass : [
-						"menu-button"
-					],
-					contextMenu : ContextMenu id contextMenuHelp,
-					onAction : controllermethod onShowContextMenuHelp,
-					text : rstring "csb.mainContainerView.help"
+				HBox {
+					padding : Insets {
+						left : 5,
+						top : 5,
+						bottom : 5,
+						right : 5
+					},
+					spacing : 10,
+					HBox {
+						alignment : "CENTER",
+						Button {
+							graphic : ImageView {
+								fitHeight : 20,
+								fitWidth : 20,
+								image : Image {
+									url : location "/icons/icons8-book-40.png"
+								}
+							},
+							tooltip : Tooltip {
+								text : rstring "csb.mainContainerView.songCatalog"
+							}
+						}
+					},
+					HBox {
+						alignment : "CENTER",
+						CustomTextField {
+							promptText : rstring "csb.mainContainerView.searchSong",
+							right : Button {
+								cursor : const Cursor#DEFAULT,
+								graphic : Glyph {
+									icon : "SEARCH",
+									fontFamily : "FontAwesome"
+								}
+							}
+						}
+					},
+					HBox {
+						alignment : "CENTER",
+						CustomTextField {
+							promptText : rstring "csb.mainContainerView.searchBibleVerse",
+							right : Button {
+								graphic : Glyph {
+									icon : "SEARCH",
+									fontFamily : "FontAwesome"
+								}
+							}
+						}
+
+					},
+					HBox {
+						alignment : "CENTER_RIGHT",
+						static hgrow : "ALWAYS",
+						Button {
+							graphic : Glyph {
+								icon : "CLOSE",
+								fontFamily : "FontAwesome"
+							},
+							tooltip : Tooltip {
+								text : rstring "csb.mainContainerView.closeToolbar"
+							}
+						}
+					}
 				}
+
 			},
-			HBox {
-				padding : Insets {
-					left : 5,
-					top : 5,
-					bottom : 5,
-					right : 5
+			center : SplitPane {
+				VBox id vblistViewContainer {
+					maxWidth : 300,
+					padding : Insets {
+						top : 5,
+						left : 5,
+						right : 5
+					},
+					spacing : 5
 				},
-				spacing : 10,
-				HBox {
-					alignment : "CENTER",
-					Button {
-						graphic : ImageView {
-							fitHeight : 20,
-							fitWidth : 20,
-							image : Image {
-								url : location "/icons/icons8-book-40.png"
-							}
-						},
-						tooltip : Tooltip {
-							text : rstring "csb.mainContainerView.songCatalog"
-						}
-					}
-				},
-				HBox {
-					alignment : "CENTER",
-					CustomTextField {
-						promptText : rstring "csb.mainContainerView.searchSong",
-						right : Button {
-							cursor : const Cursor#DEFAULT,
-							graphic : Glyph {
-								icon : "SEARCH",
-								fontFamily : "FontAwesome"
-							}
-						}
-					}
-				},
-				HBox {
-					alignment : "CENTER",
-					CustomTextField {
-						promptText : rstring "csb.mainContainerView.searchBibleVerse",
-						right : Button {
-							graphic : Glyph {
-								icon : "SEARCH",
-								fontFamily : "FontAwesome"
-							}
+				VBox id vbPreviewContainer {
+					ScrollPane {
+						static vgrow : "ALWAYS",
+						fitToHeight : true,
+						fitToWidth : true,
+						FlowPane id flowPane {
+							padding : Insets {
+								top : 10,
+								left : 10,
+								right : 10,
+								bottom : 10
+							},
+							hgap : 10,
+							vgap : 10
+
 						}
 					}
 
-				},
-				HBox {
-					alignment : "CENTER_RIGHT",
-					static hgrow : "ALWAYS",
-					Button {
-						graphic : Glyph {
-							icon : "CLOSE",
-							fontFamily : "FontAwesome"
-						},
-						tooltip : Tooltip {
-							text : rstring "csb.mainContainerView.closeToolbar"
-						}
-					}
 				}
 			}
-
 		},
-		center : SplitPane {
-			VBox id vblistViewContainer {
-				maxWidth : 300,
-				padding : Insets {
-					top : 5,
-					left : 5,
-					right : 5
-				},
-				spacing : 5
-			},
-			VBox id vbPreviewContainer {
-				ScrollPane {
-					static vgrow : "ALWAYS",
-					fitToHeight : true,
-					fitToWidth : true,
-					FlowPane id flowPane {
-						padding : Insets {
-							top : 10,
-							left : 10,
-							right : 10,
-							bottom : 10
-						},
-						hgap : 10,
-						vgap : 10
-
-					}
-				}
-
-			}
-		}
+		MaskerPane id maskerPane
 	}
+
 }

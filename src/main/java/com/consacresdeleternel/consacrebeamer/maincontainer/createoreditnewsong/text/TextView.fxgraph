@@ -59,8 +59,7 @@ resourcefile "/bundle/consacrebeamer_de_DE.properties" {
 					styleClass : [
 						""
 					]
-				},
-				onAction : controllermethod onSetBackground
+				}
 			},
 			VBox {
 				RadioButton id rbOneLanguage{

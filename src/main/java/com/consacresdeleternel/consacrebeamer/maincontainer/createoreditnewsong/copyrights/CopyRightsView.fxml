@@ -6,6 +6,7 @@
 <?import java.lang.*?>
 <?import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.copyrights.CopyRightsView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -50,7 +51,9 @@
 			<TextField fx:id="tfRight" GridPane.columnIndex="1" GridPane.rowIndex="7"/> 
 			<TextField fx:id="tfCCLiNr" GridPane.columnIndex="1" GridPane.rowIndex="8"/> 
 			<TextField fx:id="tfBibleReferenz" GridPane.columnIndex="1" GridPane.rowIndex="9"/> 
-			<TextField fx:id="tfSongBuch" promptText="%csb.CopyRightsView.SongBuch" GridPane.columnIndex="1" GridPane.rowIndex="10"/> 
+			<ComboBox fx:id="cbSongBuch" GridPane.columnIndex="1" GridPane.rowIndex="10"> 
+				<maxWidth><Double fx:constant="MAX_VALUE" /></maxWidth>
+			</ComboBox>
 			<TextField fx:id="tfAdditionalInfo" GridPane.columnIndex="1" GridPane.rowIndex="11"/> 
 			<TextField fx:id="tfKey" GridPane.columnIndex="1" GridPane.rowIndex="12"/> 
 			<TextField fx:id="tfTempo" GridPane.columnIndex="1" GridPane.rowIndex="13"/> 

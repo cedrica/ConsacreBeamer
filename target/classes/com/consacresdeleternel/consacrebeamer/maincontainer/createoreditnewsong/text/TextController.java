@@ -4,9 +4,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.apache.log4j.Logger;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
 
 import com.consacresdeleternel.consacrebeamer.common.Helper;
+import com.consacresdeleternel.consacrebeamer.common.Localization;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -37,13 +41,18 @@ public class TextController implements Initializable {
 	@FXML
 	RadioButton rbTreeLanguage;
 	private WebView webView;
+	private ValidationSupport validationSupport;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		webView = (WebView) htmlEditor.lookup(".web-view");
 		rootNode.titleProperty().bindBidirectional(tfTitle.textProperty());
 		registerListener();
-		rootNode.invalidProperty().bind(tfTitle.textProperty().isEmpty().or(rootNode.songTextProperty().isEmpty()));
+		validationSupport = new ValidationSupport();
+		Platform.runLater(()->{
+			validationSupport.registerValidator(tfTitle, Validator.createEmptyValidator(Localization.asKey("csb.CopyRightsView.titleIsRequired")));
+			rootNode.invalidProperty().bind(validationSupport.invalidProperty().or(rootNode.songTextProperty().isEmpty()));
+		});
 	}
 
 //	private void insertTextIntpHtmlEditor(){
@@ -72,10 +81,6 @@ public class TextController implements Initializable {
 				}
 			}
 		});
-	}
-
-	@FXML
-	public void onSetBackground() {
 	}
 
 }

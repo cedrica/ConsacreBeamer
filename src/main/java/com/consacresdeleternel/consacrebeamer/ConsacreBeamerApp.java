@@ -1,7 +1,5 @@
 package com.consacresdeleternel.consacrebeamer;
 
-import java.io.IOException;
-
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 

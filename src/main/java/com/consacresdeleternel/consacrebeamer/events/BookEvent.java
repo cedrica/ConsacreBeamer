@@ -14,6 +14,8 @@ public class BookEvent extends Event {
 			"editBookBookEvent");
 	public static final EventType<BookEvent> REMOVE_BOOK = new EventType<>(
 			"removeBookBookEvent");
+	public static final EventType<BookEvent> RELOAD_BOOKS = new EventType<>(
+			"loadBooksBookBookEvent");
 	private Book book;
 	
 	public BookEvent(EventType<BookEvent> eventType) {

@@ -43,7 +43,7 @@
 	</center>
 	<right>
 		<VBox spacing="5"> 
-			<Button text="%csb.createOrEditNewSongView.background" onAction="#onSetBackground"> 
+			<Button text="%csb.createOrEditNewSongView.background"> 
 				<maxWidth><Double fx:constant="MAX_VALUE" /></maxWidth>
 				<graphic>
 					<Label> 

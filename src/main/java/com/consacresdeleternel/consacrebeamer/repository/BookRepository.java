@@ -1,5 +1,7 @@
 package com.consacresdeleternel.consacrebeamer.repository;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -32,4 +34,5 @@ public class BookRepository extends BasicRepository<Book> {
 		}
 		return null;
 	}
+
 }

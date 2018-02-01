@@ -36,10 +36,7 @@ dynamic component BookView controlledby BookController styledwith [
 				TextFlow {
 					maxWidth : 100,
 					Text id txtBookTitle {
-//						styleClass : [
-//							"book-title"
-//						],
-						style : "-fx-text-fill:#fff;-fx-background-color:transparent;"
+						style : "-fx-fill:#fff;font-weight:bold;"
 					}
 				}
 			},

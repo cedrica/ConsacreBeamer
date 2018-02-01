@@ -27,7 +27,6 @@ public class Song {
 	private String rights;
 	private String ccliNumber;
 	private String bibleVerse;
-	private String songBook;
 	private String additionalInfo;
 	private String songKey;
 	private String tempo;
@@ -159,14 +158,6 @@ public class Song {
 		this.bibleVerse = bibleVerse;
 	}
 
-	public String getSongBook() {
-		return songBook;
-	}
-
-	public void setSongBook(String songBook) {
-		this.songBook = songBook;
-	}
-
 	public String getAdditionalInfo() {
 		return additionalInfo;
 	}
@@ -204,9 +195,9 @@ public class Song {
 		return "Song [id=" + id + ", songTitle=" + songTitle + ", songBody=" + songBody + ", copyRightTitle="
 				+ copyRightTitle + ", originalTitle=" + originalTitle + ", autor=" + autor + ", musik=" + musik
 				+ ", traduction=" + traduction + ", copyRight=" + copyRight + ", nationalCopy=" + nationalCopy
-				+ ", rights=" + rights + ", ccliNumber=" + ccliNumber + ", bibleVerse=" + bibleVerse + ", songBook="
-				+ songBook + ", additionalInfo=" + additionalInfo + ", songKey=" + songKey + ", tempo=" + tempo
-				+ ", textFileReference=" + textFileReference + ", book=" + book + "]";
+				+ ", rights=" + rights + ", ccliNumber=" + ccliNumber + ", bibleVerse=" + bibleVerse
+				+ ", additionalInfo=" + additionalInfo + ", songKey=" + songKey + ", tempo=" + tempo + ", songHtml="
+				+ songHtml + ", textFileReference=" + textFileReference + ", book=" + book + "]";
 	}
 
 }
