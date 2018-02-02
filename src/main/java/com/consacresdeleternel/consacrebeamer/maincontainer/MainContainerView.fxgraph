@@ -191,6 +191,7 @@ dynamic component MainContainerView controlledby MainContainerController resourc
 		},
 		MaskerPane id maskerPane,
 		HiddenSidesPane id hiddenSidesPane {
+			styleClass : ["hidden-sides-pane"],
 			pinnedSide : "TOP",
 			visible : false
 		}

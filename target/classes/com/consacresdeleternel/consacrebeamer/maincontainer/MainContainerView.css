@@ -25,3 +25,8 @@
 	-fx-pref-width:350.0px;
 	-fx-min-width:250.0px;
 }
+
+.main-container-view .hidden-sides-pane{
+	-fx-background-color:#000;
+	-fx-opacity: 0.9;
+}

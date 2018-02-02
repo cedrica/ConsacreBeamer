@@ -17,7 +17,7 @@
 <?scenebuilder-preview-i18n-resource /bundle/consacrebeamer_de_DE.properties?>
 <?scenebuilder-stylesheet /com/consacresdeleternel/consacrebeamer/maincontainer/book/songlist/SongListView.css?>
 
-<fx:root xmlns:fx="http://javafx.com/fxml" type="SongListView" fx:id="rootNode" fx:controller="com.consacresdeleternel.consacrebeamer.maincontainer.book.songlist.SongListController" prefHeight="600" prefWidth="600">
+<fx:root xmlns:fx="http://javafx.com/fxml" type="SongListView" fx:id="rootNode" fx:controller="com.consacresdeleternel.consacrebeamer.maincontainer.book.songlist.SongListController" maxHeight="600" maxWidth="600">
 
 	<stylesheets>
 		<String fx:value="/com/consacresdeleternel/consacrebeamer/maincontainer/book/songlist/SongListView.css" />
@@ -25,8 +25,11 @@
 	<styleClass>
 		<String fx:value="song-list-view" />
 	</styleClass>
+	<padding>
+		<Insets top="10" bottom="10" left="10" right="10"/> 
+	</padding>
 	<top>
-		<HBox> 
+		<HBox alignment="CENTER_RIGHT"> 
 			<Button> 
 				<graphic>
 					<Glyph icon="DOWNLOAD" fontFamily="FontAwesome"/> 

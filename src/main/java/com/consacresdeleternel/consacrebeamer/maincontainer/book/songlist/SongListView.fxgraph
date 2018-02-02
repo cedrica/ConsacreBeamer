@@ -25,9 +25,16 @@ dynamic component SongListView controlledby SongListController styledwith [
 		styleClass : [
 			"song-list-view"
 		],
-		prefHeight : 600,
-		prefWidth : 600,
+		maxHeight : 600,
+		maxWidth : 600,
+		padding : Insets {
+			top : 10,
+			bottom : 10,
+			left : 10,
+			right : 10
+		},
 		top : HBox {
+			alignment : "CENTER_RIGHT",
 			Button {
 				graphic : Glyph {
 					icon : "DOWNLOAD",
@@ -80,7 +87,7 @@ dynamic component SongListView controlledby SongListController styledwith [
 			content : VBox id vbSonglistViewer
 		},
 		bottom : HBox {
-			padding : Insets{
+			padding : Insets {
 				top : 10,
 				bottom : 10,
 				right : 10

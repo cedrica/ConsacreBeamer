@@ -159,7 +159,11 @@
 		</center>
 	</BorderPane>
 	<MaskerPane fx:id="maskerPane"/> 
-	<HiddenSidesPane fx:id="hiddenSidesPane" pinnedSide="TOP" visible="false"/> 
+	<HiddenSidesPane fx:id="hiddenSidesPane" pinnedSide="TOP" visible="false"> 
+		<styleClass>
+			<String fx:value="hidden-sides-pane" />
+		</styleClass>
+	</HiddenSidesPane>
 	<stylesheets>
 		<String fx:value="/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.css" />
 		<String fx:value="/css/svg-icons.css" />
