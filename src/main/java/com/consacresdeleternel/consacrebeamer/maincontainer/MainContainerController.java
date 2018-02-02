@@ -35,6 +35,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.PopupWindow.AnchorLocation;
+import org.controlsfx.control.HiddenSidesPane;
 
 public class MainContainerController implements Initializable {
 
@@ -68,6 +69,7 @@ public class MainContainerController implements Initializable {
 	@FXML Button btnExtras;
 	@FXML Button btnHelp;
 	@FXML MaskerPane maskerPane;
+	@FXML HiddenSidesPane hiddenSidesPane;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -109,6 +111,9 @@ public class MainContainerController implements Initializable {
 		rootNode.setListViewContainer(vblistViewContainer);
 		rootNode.setFlowPane(flowPane);
 		rootNode.setMaskerPane(maskerPane);
+		rootNode.setHiddenSidesPane(hiddenSidesPane);
+		hiddenSidesPane.minHeightProperty().bind(rootNode.prefHeightProperty());
+		hiddenSidesPane.minWidthProperty().bind(rootNode.prefWidthProperty());
 	}
 
 	private List<MenuItem> createMenuItemsFromHelpMenuEnum() {

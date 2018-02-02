@@ -19,6 +19,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.HiddenSidesPane?>
 <?import org.controlsfx.control.MaskerPane?>
 <?import org.controlsfx.control.textfield.CustomTextField?>
 <?import org.controlsfx.glyphfont.Glyph?>
@@ -158,6 +159,7 @@
 		</center>
 	</BorderPane>
 	<MaskerPane fx:id="maskerPane"/> 
+	<HiddenSidesPane fx:id="hiddenSidesPane" pinnedSide="TOP" visible="false"/> 
 	<stylesheets>
 		<String fx:value="/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.css" />
 		<String fx:value="/css/svg-icons.css" />

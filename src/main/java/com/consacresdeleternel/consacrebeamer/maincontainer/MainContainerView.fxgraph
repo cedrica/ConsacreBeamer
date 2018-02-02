@@ -22,6 +22,7 @@ import javafx.scene.Cursor
 import javafx.scene.control.ScrollPane
 import javafx.scene.layout.BorderPane
 import org.controlsfx.control.MaskerPane
+import org.controlsfx.control.HiddenSidesPane
 
 dynamic component MainContainerView controlledby MainContainerController resourcefile
 "/bundle/consacrebeamer_de_DE.properties" styledwith [
@@ -34,6 +35,7 @@ dynamic component MainContainerView controlledby MainContainerController resourc
 		styleClass : [
 			"main-container-view"
 		],
+
 		BorderPane {
 			top : VBox {
 				ToolBar {
@@ -187,7 +189,11 @@ dynamic component MainContainerView controlledby MainContainerController resourc
 				}
 			}
 		},
-		MaskerPane id maskerPane
+		MaskerPane id maskerPane,
+		HiddenSidesPane id hiddenSidesPane {
+			pinnedSide : "TOP",
+			visible : false
+		}
 	}
 
 }

@@ -1,0 +1,26 @@
+package com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.extras
+
+import javafx.scene.layout.AnchorPane
+import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.extras.ExtrasController
+import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.extras.ExtrasView
+import javafx.scene.layout.VBox
+import javafx.scene.control.Button
+import javafx.scene.layout.FlowPane
+
+dynamic component ExtrasView controlledby ExtrasController
+styledwith ["/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/extras/ExtrasView.css"]
+resourcefile "/bundle/consacrebeamer_de_DE.properties"{
+	ExtrasView id rootNode {
+		center : VBox{
+			FlowPane id fpAttachments{
+				static vgrow : "ALWAYS",
+				vgap : 10,
+				hgap : 10
+			},
+			Button{
+				text : rstring "csb.ExtrasView.downloadPDFAttachments",
+				onAction : controllermethod onUploadFile
+			}
+		}
+	}
+}

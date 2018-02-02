@@ -15,9 +15,11 @@ import com.consacresdeleternel.consacrebeamer.events.BookEvent;
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.BookView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookView;
+import com.consacresdeleternel.consacrebeamer.maincontainer.book.songlist.SongListView;
 import com.consacresdeleternel.consacrebeamer.repository.BookRepository;
 
 import javafx.collections.FXCollections;
+import javafx.geometry.Side;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 
@@ -28,19 +30,34 @@ public class BookManager {
 	private DialogManager dialogManager;
 	@Inject
 	BookRepository bookRepository;
+
 	public void init(MainContainerView mainContainerView) {
 		mainContainerView.addEventHandler(BookEvent.REMOVE_BOOK, evt -> {
 			evt.consume();
 		});
 		mainContainerView.addEventHandler(BookEvent.EDIT_BOOK, evt -> handleEditBook(mainContainerView, evt));
+		mainContainerView.addEventHandler(BookEvent.SHOW_SONG_LIST, evt -> handleShowSongList(mainContainerView, evt));
 	}
 
-	
-	
-	
+	private void handleShowSongList(MainContainerView mainContainerView, BookEvent evt) {
+		evt.consume();
+		if (mainContainerView.getHiddenSidesPane().getPinnedSide() != null) {
+			mainContainerView.getHiddenSidesPane().setPinnedSide(null);
+			mainContainerView.getHiddenSidesPane().setVisible(false);
+		} else {
+			mainContainerView.getHiddenSidesPane().setPinnedSide(Side.TOP);
+			SongListView songListView = new SongListView();
+			mainContainerView.getHiddenSidesPane().setContent(songListView);
+			mainContainerView.getHiddenSidesPane().setVisible(true);
+		}
+
+	}
+
 	/*
-	 * 								EDIT BOOK
-	 *-------------------------------------------------------------------------------*/
+	 * EDIT BOOK
+	 * -------------------------------------------------------------------------
+	 * ------
+	 */
 	private void handleEditBook(MainContainerView mainContainerView, BookEvent evt) {
 		evt.consume();
 		Book book = evt.getBook();
@@ -69,7 +86,7 @@ public class BookManager {
 			});
 			Dialogs.success(Localization.asKey("csb.ExtrasMenu.bookSuccessfullyCreated"),
 					mainContainerView.getScene().getWindow());
-			
+
 		}
 	}
 
@@ -82,7 +99,9 @@ public class BookManager {
 		return createBookView;
 	}
 	/*
-	 * 								EDIT BOOK (END)
-	 *-------------------------------------------------------------------------------*/
+	 * EDIT BOOK (END)
+	 * -------------------------------------------------------------------------
+	 * ------
+	 */
 
 }

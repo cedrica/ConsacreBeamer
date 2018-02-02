@@ -6,6 +6,7 @@
 <?import java.lang.*?>
 <?import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.CreateOrEditNewSongView?>
 <?import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.copyrights.CopyRightsView?>
+<?import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.extras.ExtrasView?>
 <?import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.text.TextView?>
 <?import javafx.scene.control.Tab?>
 <?scenebuilder-preview-i18n-resource /bundle/consacrebeamer_de_DE.properties?>
@@ -27,6 +28,11 @@
 		<Tab closable="false" text="%csb.createOrEditNewSongView.copyrights"> 
 			<content>
 				<CopyRightsView fx:id="copyRightsView"/> 
+			</content>
+		</Tab>
+		<Tab closable="false" text="%csb.createOrEditNewSongView.extras"> 
+			<content>
+				<ExtrasView fx:id="extrasView"/> 
 			</content>
 		</Tab>
 	</tabs>

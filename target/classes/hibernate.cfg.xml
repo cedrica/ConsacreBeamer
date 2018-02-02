@@ -36,6 +36,7 @@
 
 		<mapping class="com.consacresdeleternel.consacrebeamer.data.Song"></mapping>
 		<mapping class="com.consacresdeleternel.consacrebeamer.data.Book"></mapping>
+		<mapping class="com.consacresdeleternel.consacrebeamer.data.Attachment"></mapping>
 
 	</session-factory>
 

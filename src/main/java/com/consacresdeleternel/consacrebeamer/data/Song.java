@@ -1,11 +1,17 @@
 package com.consacresdeleternel.consacrebeamer.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -13,7 +19,7 @@ import javax.persistence.Transient;
 @Table
 public class Song {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String songTitle;
 	private String songBody;
@@ -33,10 +39,14 @@ public class Song {
 	@Transient
 	private String songHtml;
 	private String textFileReference;
-
 	@ManyToOne
 	@JoinColumn(name = "book_id", nullable = false)
 	private Book book;
+	@OneToMany(orphanRemoval=true, cascade=CascadeType.ALL)
+	@JoinTable(name="Song_Attachment", 
+    joinColumns=@JoinColumn(name="songId"),
+    inverseJoinColumns=@JoinColumn(name="attachmentId"))
+	private List<Attachment> attachements = new ArrayList<>();
 
 	public String getSongTitle() {
 		return songTitle;
@@ -62,9 +72,18 @@ public class Song {
 		this.songHtml = songHtml;
 	}
 
+	public List<Attachment> getAttachements() {
+		return attachements;
+	}
+
+	public void setAttachements(List<Attachment> attachements) {
+		this.attachements = attachements;
+	}
+
 	public String getCopyRight() {
 		return copyRight;
 	}
+
 
 	public void setCopyRight(String copyRight) {
 		this.copyRight = copyRight;
@@ -197,7 +216,8 @@ public class Song {
 				+ ", traduction=" + traduction + ", copyRight=" + copyRight + ", nationalCopy=" + nationalCopy
 				+ ", rights=" + rights + ", ccliNumber=" + ccliNumber + ", bibleVerse=" + bibleVerse
 				+ ", additionalInfo=" + additionalInfo + ", songKey=" + songKey + ", tempo=" + tempo + ", songHtml="
-				+ songHtml + ", textFileReference=" + textFileReference + ", book=" + book + "]";
+				+ songHtml + ", textFileReference=" + textFileReference + ", book=" + book + ", attachements="
+				+ attachements + "]";
 	}
 
 }

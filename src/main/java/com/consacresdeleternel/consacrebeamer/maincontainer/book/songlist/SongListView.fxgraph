@@ -1,0 +1,101 @@
+package com.consacresdeleternel.consacrebeamer.maincontainer.book.songlist
+
+import javafx.scene.layout.AnchorPane
+import com.consacresdeleternel.consacrebeamer.maincontainer.book.songlist.SongListController
+import com.consacresdeleternel.consacrebeamer.maincontainer.book.songlist.SongListView
+import javafx.scene.layout.VBox
+import org.controlsfx.control.textfield.CustomTextField
+import javafx.scene.control.Label
+import javafx.scene.control.Button
+import org.controlsfx.glyphfont.Glyph
+import impl.org.controlsfx.spreadsheet.TableViewSpanSelectionModel
+import javafx.scene.control.ScrollPane
+import javafx.scene.layout.HBox
+import org.controlsfx.control.CheckListView
+import javafx.scene.control.CheckBox
+import javafx.geometry.Insets
+
+dynamic component SongListView controlledby SongListController styledwith [
+	"/com/consacresdeleternel/consacrebeamer/maincontainer/book/songlist/SongListView.css" ] resourcefile
+"/bundle/consacrebeamer_de_DE.properties" {
+	SongListView id rootNode {
+		stylesheets : [
+			"/com/consacresdeleternel/consacrebeamer/maincontainer/book/songlist/SongListView.css"
+		],
+		styleClass : [
+			"song-list-view"
+		],
+		prefHeight : 600,
+		prefWidth : 600,
+		top : HBox {
+			Button {
+				graphic : Glyph {
+					icon : "DOWNLOAD",
+					fontFamily : "FontAwesome"
+				}
+			},
+			Button {
+				graphic : Glyph {
+					icon : "UPLOAD",
+					fontFamily : "FontAwesome"
+				}
+			},
+			Button {
+				graphic : Glyph {
+					icon : "EDIT",
+					fontFamily : "FontAwesome"
+				}
+			},
+			Button {
+				graphic : Glyph {
+					icon : "TRASH",
+					fontFamily : "FontAwesome"
+				}
+			}
+		},
+		left : VBox {
+			HBox {
+				spacing : 2,
+				CheckBox id checkBoxSelect {
+					onAction : controllermethod onSelectAll
+				},
+				CustomTextField id ctfSongName {
+					right : Button {
+						graphic : Glyph {
+							icon : "SEARCH",
+							fontFamily : "FontAwesome"
+						}
+					},
+					promptText : rstring "csb.SongListView.enterSearchedSongName"
+				}
+
+			},
+			CheckListView < ? > id clvSongList {
+				static vgrow : "ALWAYS"
+			}
+		},
+		center : ScrollPane {
+			fitToHeight : true,
+			fitToWidth : true,
+			content : VBox id vbSonglistViewer
+		},
+		bottom : HBox {
+			padding : Insets{
+				top : 10,
+				bottom : 10,
+				right : 10
+			},
+			alignment : "CENTER_RIGHT",
+			Button {
+				text : rstring "csb.SongListView.closeModal",
+				contentDisplay : "RIGHT",
+				graphic : Glyph {
+					icon : "CLOSE",
+					fontFamily : "FontAwesome"
+				},
+				onAction : controllermethod onCloseHiddenSidePane
+			}
+		}
+
+	}
+}

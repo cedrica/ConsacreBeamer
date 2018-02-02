@@ -18,6 +18,7 @@ import javafx.geometry.Insets
 import impl.org.controlsfx.spreadsheet.CellView
 import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.text.TextView
 import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.copyrights.CopyRightsView
+import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.extras.ExtrasView
 
 dynamic component CreateOrEditNewSongView controlledby CreateOrEditNewSongController styledwith [
 	"/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/CreateOrEditNewSongView.css",
@@ -38,6 +39,11 @@ dynamic component CreateOrEditNewSongView controlledby CreateOrEditNewSongContro
 				closable : false,
 				text : rstring "csb.createOrEditNewSongView.copyrights",
 				content : CopyRightsView id  copyRightsView
+			},
+			Tab {
+				closable : false,
+				text : rstring "csb.createOrEditNewSongView.extras",
+				content : ExtrasView id  extrasView
 			}
 		]
 	}

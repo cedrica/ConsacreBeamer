@@ -8,14 +8,12 @@ import org.controlsfx.control.CheckListView;
 import com.consacresdeleternel.consacrebeamer.data.Song;
 import com.consacresdeleternel.consacrebeamer.events.CreateOrEditNewSongEvent;
 
-import javafx.beans.binding.Bindings;
-import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.Button;
 
 public class CreateBookController implements Initializable {
 
@@ -50,17 +48,9 @@ public class CreateBookController implements Initializable {
 		clvSongs.setCellFactory(new SongListCellFactory(clvSongs));
 		clvSongs.itemsProperty().bind(rootNode.songItemsProperty());
 
-		clvSongs.getCheckModel().getCheckedItems().addListener(new  ListChangeListener<Song>(){
-			@Override
-			public void onChanged(javafx.collections.ListChangeListener.Change<? extends Song> c) {
-				btnEdit.setDisable(isOneChecked());				
-			}
+		clvSongs.getSelectionModel().selectedItemProperty().addListener((obs,oldVal,newVal)->{
 		});
 
-	}
-
-	private boolean isOneChecked() {
-		return clvSongs.getCheckModel().getCheckedItems().size() == 0;
 	}
 
 	@FXML

@@ -2,6 +2,7 @@ package com.consacresdeleternel.consacrebeamer.maincontainer;
 
 import javax.inject.Singleton;
 
+import org.controlsfx.control.HiddenSidesPane;
 import org.controlsfx.control.MaskerPane;
 
 import com.consacresdeleternel.consacrebeamer.common.Helper;
@@ -18,7 +19,8 @@ public class MainContainerView extends StackPane {
 	private ObjectProperty<VBox> listViewContainer = new SimpleObjectProperty<>();
 	private ObjectProperty<FlowPane> flowPane = new SimpleObjectProperty<>();
 	private ObjectProperty<MaskerPane> maskerPane = new SimpleObjectProperty<>();
-
+	private ObjectProperty<HiddenSidesPane> hiddenSidesPane = new SimpleObjectProperty<>();
+	
 	public MainContainerView() {
 		Helper.load(this, Localization.getDefault());
 	}
@@ -60,6 +62,21 @@ public class MainContainerView extends StackPane {
 	public final void setMaskerPane(final MaskerPane maskerPane) {
 		this.maskerPaneProperty().set(maskerPane);
 	}
+
+	public final ObjectProperty<HiddenSidesPane> hiddenSidesPaneProperty() {
+		return this.hiddenSidesPane;
+	}
+	
+
+	public final HiddenSidesPane getHiddenSidesPane() {
+		return this.hiddenSidesPaneProperty().get();
+	}
+	
+
+	public final void setHiddenSidesPane(final HiddenSidesPane hiddenSidesPane) {
+		this.hiddenSidesPaneProperty().set(hiddenSidesPane);
+	}
+	
 	
 	
 	

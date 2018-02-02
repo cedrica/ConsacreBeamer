@@ -1,5 +1,7 @@
 package com.consacresdeleternel.consacrebeamer;
 
+import java.lang.Thread.UncaughtExceptionHandler;
+
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 
@@ -51,6 +53,12 @@ public class ConsacreBeamerApp extends Application {
 //			} catch (IOException e) {
 //				e.printStackTrace();
 //			} 
+		});
+		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
+			@Override
+			public void uncaughtException(Thread t, Throwable e) {
+				System.err.println("Fehler ist aufgetreten");
+			}
 		});
 		primaryStage.show();
 	}

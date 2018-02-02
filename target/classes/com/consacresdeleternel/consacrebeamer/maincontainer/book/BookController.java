@@ -47,8 +47,8 @@ public class BookController implements Initializable{
 			
 			contextMenu.getItems().addAll(edit,delete);
 			contextMenu.show(btnBook, Side.BOTTOM, 0, 0);
-		}else{
-			
+		}else if(evt.getButton() == MouseButton.PRIMARY && evt.getClickCount() == 2){
+			rootNode.fireEvent(new BookEvent(BookEvent.SHOW_SONG_LIST, rootNode.getBook()));
 		}
 	}
 

@@ -179,6 +179,7 @@ public class FileMenuManager {
 	private Song createSongFromCreateOrEditNewSongView(CreateOrEditNewSongView createOrEditNewSongView, Song song) {
 		song.setSongTitle(createOrEditNewSongView.getTextView().getTitle());
 		song.setSongBody(createOrEditNewSongView.getTextView().getSongText());
+		//COPYRIGHT
 		song.setSongHtml(createOrEditNewSongView.getTextView().getSongHtml());
 		song.setCopyRightTitle(createOrEditNewSongView.getCopyRightsView().getTitle());
 		song.setCopyRight(createOrEditNewSongView.getCopyRightsView().getCopyright());
@@ -195,6 +196,8 @@ public class FileMenuManager {
 		song.setSongKey(createOrEditNewSongView.getCopyRightsView().getKey());
 		song.setTempo(createOrEditNewSongView.getCopyRightsView().getTempo());
 		song.setTextFileReference(createOrEditNewSongView.getTextView().getTitle().replaceAll(" ", "").concat(".txt"));
+		//EXTRAS
+		song.setAttachements(createOrEditNewSongView.getExtrasView().getAttachments());
 		return song;
 	}
 
