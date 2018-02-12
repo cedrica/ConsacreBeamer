@@ -39,12 +39,7 @@ public class ConsacreBeamerApp extends Application {
 		primaryStage.setHeight(400);
 		primaryStage.setMaximized(true);
 		
-//		try {
-//			startDerby = Runtime.getRuntime().exec("cmd /C start "+System.getProperty("user.dir")+"/db-derby-10.13.1.1-bin/bin/startNetworkServer.bat"); //+"C:/Users/ca.leumaleu/Desktop/db-derby-10.13.1.1-bin/bin/startNetworkServer.bat");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			startDerby.destroy();
-//		}
+
 		primaryStage.setOnCloseRequest(evt -> {
 			weld.shutdown();
 //			startDerby.destroy();

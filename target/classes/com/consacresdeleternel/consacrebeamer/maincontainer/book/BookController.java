@@ -30,7 +30,7 @@ public class BookController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		txtBookTitle.textProperty().bind(rootNode.bookNameProperty());
-		SVGUtil.setSVGGraphicInJFXButton(btnBook, "/icons/icons8-read-filled-50.svg");
+//		SVGUtil.setSVGGraphicInJFXButton(btnBook, "/icons/icons8-read-filled-50.svg");
 	}
 
 	@FXML public void onOpenBook(MouseEvent evt) {
