@@ -1,0 +1,31 @@
+package com.consacresdeleternel.consacrebeamer.maincontainer.launcher
+
+import javafx.scene.layout.AnchorPane
+import com.consacresdeleternel.consacrebeamer.maincontainer.launcher.LauncherController
+import com.consacresdeleternel.consacrebeamer.maincontainer.launcher.LauncherView
+import javafx.scene.control.ProgressBar
+import javafx.scene.layout.HBox
+import java.lang.Double
+import javafx.scene.layout.StackPane
+import javafx.scene.image.ImageView
+import javafx.scene.image.Image
+
+dynamic component LauncherView controlledby LauncherController styledwith [
+	"/com/consacresdeleternel/consacrebeamer/maincontainer/launcher/LauncherView.css" ] resourcefile
+"/bundle/consacrebeamer_de_DE.properties" {
+	LauncherView id rootNode {
+		stylesheets : [
+			"/com/consacresdeleternel/consacrebeamer/maincontainer/launcher/LauncherView.css"
+		],
+		styleClass : [
+			"launcher-view"
+		],
+		center : 
+			ImageView {
+				fitHeight : 150,
+				fitWidth : 400,
+				image : Image { 
+					 url : location "/icons/consacre-beamer-icon.PNG"
+				}
+		} , bottom : HBox { ProgressBar id progressBar { static hgrow : "ALWAYS" , maxWidth : const Double # MAX_VALUE } } }
+		}

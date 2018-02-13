@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 @Singleton
 public class MainContainerView extends StackPane {
 	private ObjectProperty<VBox> listViewContainer = new SimpleObjectProperty<>();
+	private ObjectProperty<Boolean> saveAs = new SimpleObjectProperty<>(true);
 	private ObjectProperty<FlowPane> flowPane = new SimpleObjectProperty<>();
 	private ObjectProperty<MaskerPane> maskerPane = new SimpleObjectProperty<>();
 	private ObjectProperty<HiddenSidesPane> hiddenSidesPane = new SimpleObjectProperty<>();
@@ -76,6 +77,21 @@ public class MainContainerView extends StackPane {
 	public final void setHiddenSidesPane(final HiddenSidesPane hiddenSidesPane) {
 		this.hiddenSidesPaneProperty().set(hiddenSidesPane);
 	}
+
+	public final ObjectProperty<Boolean> saveAsProperty() {
+		return this.saveAs;
+	}
+	
+
+	public final Boolean getSaveAs() {
+		return this.saveAsProperty().get();
+	}
+	
+
+	public final void setSaveAs(final Boolean saveAs) {
+		this.saveAsProperty().set(saveAs);
+	}
+	
 	
 	
 	
