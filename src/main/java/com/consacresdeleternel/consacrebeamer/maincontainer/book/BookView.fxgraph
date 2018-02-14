@@ -9,6 +9,8 @@ import javafx.scene.text.Text
 import javafx.scene.control.Label
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
+import javafx.scene.image.ImageView
+import javafx.scene.image.Image
 
 dynamic component BookView controlledby BookController styledwith [
 	"/com/consacresdeleternel/consacrebeamer/maincontainer/book/BookView.css" ] resourcefile
@@ -24,7 +26,14 @@ dynamic component BookView controlledby BookController styledwith [
 			prefHeight : 200,
 			prefWidth : 200,
 			style : "-fx-text-fill:#fff",
-			contentDisplay : "CENTER"
+			contentDisplay : "CENTER",
+			graphic : ImageView{
+				fitHeight : 250,
+				fitWidth : 250,
+				image : Image{
+					url :location "/icons/icons8-read-filled-250.png"
+				}
+			}
 		},
 		HBox {
 			styleClass : ["book-image"],

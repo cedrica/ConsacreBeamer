@@ -236,6 +236,9 @@ public class MainContainerController implements Initializable {
 				imageView.setFitWidth(15);
 				menu.setGraphic(imageView);
 			}
+			if(fe == FileMenuEnum.SAVE_AS){
+				menu.disableProperty().bindBidirectional(rootNode.saveAsProperty());	
+			}
 			menu.setOnAction(evt -> fireFileMenuEvent(fe.getEventType()));
 			menuItems.add(menu);
 		}

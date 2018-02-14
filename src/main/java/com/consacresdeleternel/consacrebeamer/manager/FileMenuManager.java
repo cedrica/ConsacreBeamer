@@ -163,6 +163,9 @@ public class FileMenuManager {
 						mainContainerView.getScene().getWindow());
 				ListItemView listItemView = createListItemView(mainContainerView, createOrEditNewSongView, song);
 				toggleGroup.getToggles().add(listItemView.getToggle());
+				valueObjectManager.getSaveAsBinder().put(listItemView, listItemView.getToggle().selectedProperty());
+				mainContainerView.saveAsProperty().unbind();
+				mainContainerView.saveAsProperty().bind(Helper.concatProperties(valueObjectManager.getSaveAsBinder()));
 				mainContainerView.getListViewContainer().getChildren().add(listItemView);
 				createSongPartFromSong(mainContainerView, song);
 				mainContainerView.addEventHandler(CreateOrEditNewSongEvent.UPDATE_LIST_ITEM_AND_SONG_PART,

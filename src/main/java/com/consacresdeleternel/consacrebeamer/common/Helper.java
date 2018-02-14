@@ -2,6 +2,8 @@ package com.consacresdeleternel.consacrebeamer.common;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,6 +12,8 @@ import org.controlsfx.glyphfont.FontAwesome;
 import org.controlsfx.glyphfont.Glyph;
 import org.controlsfx.glyphfont.GlyphFontRegistry;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -96,5 +100,13 @@ public class Helper {
 	            }
 	        }
 	    });
+	}
+	
+	public static BooleanProperty concatProperties(Map<Node, BooleanProperty> map){
+		BooleanProperty result = new SimpleBooleanProperty(true);
+		for (Entry<Node, BooleanProperty> entry : map.entrySet()) {
+			result.and(entry.getValue());
+		}
+		return result;
 	}
 }
