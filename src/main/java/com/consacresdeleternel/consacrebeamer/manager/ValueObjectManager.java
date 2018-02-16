@@ -50,17 +50,13 @@ public class ValueObjectManager {
 	public final ObjectProperty<SongPartViewerView> songPartViewerViewProperty() {
 		return this.songPartViewerView;
 	}
-	
 
 	public final SongPartViewerView getSongPartViewerView() {
 		return this.songPartViewerViewProperty().get();
 	}
-	
 
 	public final void setSongPartViewerView(final SongPartViewerView songPartViewerView) {
 		this.songPartViewerViewProperty().set(songPartViewerView);
 	}
-	
-
 
 }

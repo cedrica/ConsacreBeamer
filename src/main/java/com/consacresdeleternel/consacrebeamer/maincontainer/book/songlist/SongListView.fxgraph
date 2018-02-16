@@ -37,31 +37,46 @@ dynamic component SongListView controlledby SongListController styledwith [
 		top : HBox {
 			alignment : "CENTER_RIGHT",
 			spacing : 5,
-			padding : Insets{
+			padding : Insets {
 				bottom : 5
 			},
-			Button id btnImportSong{
+			HBox {
+				Label id lblBookName{
+					style : "-fx-font-weight:bold"
+				},
+				static hgrow : "ALWAYS",
+				alignment : "CENTER_LEFT"
+
+			},
+			Button id btnAddToListView {
+				graphic : Glyph {
+					icon : "BARS",
+					fontFamily : "FontAwesome"
+				},
+				onAction : controllermethod onAddToListView
+			},
+			Button id btnImportSong {
 				graphic : Glyph {
 					icon : "DOWNLOAD",
 					fontFamily : "FontAwesome"
 				},
 				onAction : controllermethod onImportSong
 			},
-			Button  id btnExportSong{
+			Button id btnExportSong {
 				graphic : Glyph {
 					icon : "UPLOAD",
 					fontFamily : "FontAwesome"
 				},
 				onAction : controllermethod onExportSong
 			},
-			Button  id btnEditSong{
+			Button id btnEditSong {
 				graphic : Glyph {
 					icon : "EDIT",
 					fontFamily : "FontAwesome"
 				},
 				onAction : controllermethod onEditSong
 			},
-			Button  id btnDeleteSong{
+			Button id btnDeleteSong {
 				graphic : Glyph {
 					icon : "TRASH",
 					fontFamily : "FontAwesome"
@@ -84,11 +99,11 @@ dynamic component SongListView controlledby SongListController styledwith [
 						}
 					},
 					promptText : rstring "csb.SongListView.enterSearchedSongName",
-					onKeyReleased  : controllermethod onSearchSong
+					onKeyReleased : controllermethod onSearchSong
 				}
 
 			},
-			ListView<?> id clvSongList {
+			ListView < ? > id clvSongList {
 				static vgrow : "ALWAYS"
 			}
 		},

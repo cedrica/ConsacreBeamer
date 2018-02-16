@@ -25,7 +25,7 @@ dynamic component BookView controlledby BookController styledwith [
 		Button id btnBook {
 			prefHeight : 200,
 			prefWidth : 200,
-			style : "-fx-text-fill:#fff",
+			style : "-fx-text-fill:#fff;-fx-font-weight:bold",
 			contentDisplay : "CENTER",
 			graphic : ImageView{
 				fitHeight : 250,

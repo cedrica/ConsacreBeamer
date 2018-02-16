@@ -17,7 +17,7 @@
 
 <fx:root xmlns:fx="http://javafx.com/fxml" type="BookView" fx:id="rootNode" fx:controller="com.consacresdeleternel.consacrebeamer.maincontainer.book.BookController">
 
-	<Button fx:id="btnBook" prefHeight="200" prefWidth="200" style="-fx-text-fill:#fff" contentDisplay="CENTER"> 
+	<Button fx:id="btnBook" prefHeight="200" prefWidth="200" style="-fx-text-fill:#fff;-fx-font-weight:bold" contentDisplay="CENTER"> 
 		<graphic>
 			<ImageView fitHeight="250" fitWidth="250"> 
 				<image>

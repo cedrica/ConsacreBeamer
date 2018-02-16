@@ -18,13 +18,13 @@ public class ListItemViewTest extends ApplicationTest {
 		stage.setScene(new Scene(listItemView, 800, 600));
 		stage.show();
 	}
-	
+
 	@Test
-	public void testLookAndFill(){
-		Platform.runLater(()->{
+	public void testLookAndFill() {
+		Platform.runLater(() -> {
 			listItemView.setItemName("Jesus ich liebe dich");
 		});
-		
+
 		try {
 			Thread.sleep(20000);
 		} catch (InterruptedException e) {

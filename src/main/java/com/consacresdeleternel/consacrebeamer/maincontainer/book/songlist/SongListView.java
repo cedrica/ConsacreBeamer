@@ -20,7 +20,8 @@ public class SongListView extends BorderPane {
 			new FilteredList<>(FXCollections.observableArrayList()));
 	private ListProperty<Song> selectedSongItems = new SimpleListProperty<>(FXCollections.observableArrayList());
 	private ObjectProperty<Boolean> selectAll = new SimpleObjectProperty<>(false);
-	private StringProperty songTitle = new SimpleStringProperty();
+	private StringProperty searchedSongName = new SimpleStringProperty();
+	private StringProperty bookName = new SimpleStringProperty();
 
 	public SongListView() {
 		Helper.load(this, Localization.getDefault());
@@ -62,19 +63,28 @@ public class SongListView extends BorderPane {
 		this.songItemsProperty().set(songItems);
 	}
 
-	public final StringProperty songTitleProperty() {
-		return this.songTitle;
+	public final StringProperty searchedSongNameProperty() {
+		return this.searchedSongName;
 	}
-	
 
-	public final String getSongTitle() {
-		return this.songTitleProperty().get();
+	public final String getSearchedSongName() {
+		return this.searchedSongNameProperty().get();
 	}
-	
 
-	public final void setSongTitle(final String songTitle) {
-		this.songTitleProperty().set(songTitle);
+	public final void setSearchedSongName(final String searchedSongName) {
+		this.searchedSongNameProperty().set(searchedSongName);
 	}
-	
+
+	public final StringProperty bookNameProperty() {
+		return this.bookName;
+	}
+
+	public final String getBookName() {
+		return this.bookNameProperty().get();
+	}
+
+	public final void setBookName(final String bookName) {
+		this.bookNameProperty().set(bookName);
+	}
 
 }

@@ -9,8 +9,9 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class SongPartViewTest  extends ApplicationTest{
+public class SongPartViewTest extends ApplicationTest {
 	SongPartView songPartView;
+
 	@Override
 	public void start(Stage stage) throws Exception {
 		songPartView = new SongPartView();
@@ -21,12 +22,14 @@ public class SongPartViewTest  extends ApplicationTest{
 
 	@Test
 	public void testLookAnfill() {
-		Platform.runLater(()->{
-//			Image image = new Image(SongPartViewTest.class.getResourceAsStream("/icons8-add-file-40.png"));
-//			songPartView.setBackgroundImage(image);
-			songPartView.setText("Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore"
-					+ "Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore"
-					+ "Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore");
+		Platform.runLater(() -> {
+			// Image image = new
+			// Image(SongPartViewTest.class.getResourceAsStream("/icons8-add-file-40.png"));
+			// songPartView.setBackgroundImage(image);
+			songPartView.setText(
+					"Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore"
+							+ "Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore"
+							+ "Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore");
 		});
 
 		try {

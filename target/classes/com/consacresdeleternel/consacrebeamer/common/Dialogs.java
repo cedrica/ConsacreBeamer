@@ -118,7 +118,7 @@ public class Dialogs {
 		customDialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
 		customDialog.showAndWait();
 	}
-	
+
 	public static void info(String message, Window window) {
 		Label warning = new Label();
 		org.controlsfx.glyphfont.Glyph create = GlyphUtilities.create(Glyph.INFO, Color.LIGHTBLUE);

@@ -42,6 +42,6 @@ public class Localization {
 	 *             if the object found for the given key is not a string
 	 */
 	public static String asKey(String key) {
-		return (key != null)? getDefault().getString(key):null;
+		return (key != null) ? getDefault().getString(key) : null;
 	}
 }

@@ -7,6 +7,9 @@ import javafx.scene.layout.StackPane
 import com.consacresdeleternel.consacrebeamer.maincontainer.songpartviewer.SongPartViewerController
 import javafx.scene.web.WebView
 import javafx.scene.layout.HBox
+import javafx.scene.control.Label
+import javafx.scene.image.ImageView
+import javafx.scene.image.Image
 
 dynamic component SongPartViewerView controlledby SongPartViewerController styledwith [
 	"/com/consacresdeleternel/consacrebeamer/maincontainer/songpartviewer/SonPartViewerView.css" ] resourcefile
@@ -26,15 +29,21 @@ dynamic component SongPartViewerView controlledby SongPartViewerController style
 
 		},
 		center : HBox {
-			StackPane {
-				maxHeight : 400,
-				AnchorPane {
-					style : "-fx-background-color:red",
-					children : [
-						WebView id webView {
-						}
-					]
-
+			VBox id vbRows{
+				static hgrow : "ALWAYS",
+				alignment : "CENTER",
+				style : "-fx-background-color:#fff",
+				Label
+				{
+					style : "-fx-font-size:40px",
+					text : "jhjkbh"
+//					graphic : ImageView{
+//						fitHeight : 300,
+//						fitWidth : 300,
+//						image : Image{
+//							 url : location "/icons/consacre-beamer-icon.PNG"
+//						}
+//					}
 				}
 			}
 

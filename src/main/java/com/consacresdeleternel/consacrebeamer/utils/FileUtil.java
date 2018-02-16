@@ -14,7 +14,8 @@ public class FileUtil {
 
 	public static String readTxtFileToString(String fileName) {
 		try {
-			return new String(Files.readAllBytes(Paths.get(System.getProperty("user.dir").replace("\\", "/") + "/songs/" +fileName)));
+			return new String(Files
+					.readAllBytes(Paths.get(System.getProperty("user.dir").replace("\\", "/") + "/songs/" + fileName)));
 		} catch (IOException e) {
 			LOG.error("Datei " + fileName + " konnte nicht gelesen werden");
 			e.printStackTrace();

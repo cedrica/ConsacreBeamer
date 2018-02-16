@@ -15,7 +15,7 @@ public class ListItemView extends HBox {
 	private ObjectProperty<Integer> position = new SimpleObjectProperty<>();
 	private ObjectProperty<Object> itemObject = new SimpleObjectProperty<>();
 	private ObjectProperty<ToggleButton> toggle = new SimpleObjectProperty<>();
-	
+
 	public ListItemView() {
 		Helper.load(this, Localization.getDefault());
 	}
@@ -47,12 +47,10 @@ public class ListItemView extends HBox {
 	public final ObjectProperty<Object> itemObjectProperty() {
 		return this.itemObject;
 	}
-	
 
 	public final Object getItemObject() {
 		return this.itemObjectProperty().get();
 	}
-	
 
 	public final void setItemObject(final Object itemObject) {
 		this.itemObjectProperty().set(itemObject);
@@ -61,12 +59,10 @@ public class ListItemView extends HBox {
 	public final ObjectProperty<ToggleButton> toggleProperty() {
 		return this.toggle;
 	}
-	
 
 	public final ToggleButton getToggle() {
 		return this.toggleProperty().get();
 	}
-	
 
 	public final void setToggle(final ToggleButton toggle) {
 		this.toggleProperty().set(toggle);

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.HiddenSidesPane;
 import org.controlsfx.control.MaskerPane;
 
 import com.consacresdeleternel.consacrebeamer.common.Localization;
@@ -35,7 +36,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.PopupWindow.AnchorLocation;
-import org.controlsfx.control.HiddenSidesPane;
 
 public class MainContainerController implements Initializable {
 
@@ -63,13 +63,20 @@ public class MainContainerController implements Initializable {
 	ContextMenu contextMenuExtras;
 	@FXML
 	ContextMenu contextMenuHelp;
-	@FXML Button btnEdit;
-	@FXML Button btnInsert;
-	@FXML Button btnPresentation;
-	@FXML Button btnExtras;
-	@FXML Button btnHelp;
-	@FXML MaskerPane maskerPane;
-	@FXML HiddenSidesPane hiddenSidesPane;
+	@FXML
+	Button btnEdit;
+	@FXML
+	Button btnInsert;
+	@FXML
+	Button btnPresentation;
+	@FXML
+	Button btnExtras;
+	@FXML
+	Button btnHelp;
+	@FXML
+	MaskerPane maskerPane;
+	@FXML
+	HiddenSidesPane hiddenSidesPane;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -125,7 +132,7 @@ public class MainContainerController implements Initializable {
 				menuItems.add(separatorMenuItem);
 				continue;
 			}
-			if(!fe.getIconName().trim().isEmpty()){
+			if (!fe.getIconName().trim().isEmpty()) {
 				ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream(fe.getIconName())));
 				imageView.setFitHeight(15);
 				imageView.setFitWidth(15);
@@ -146,7 +153,7 @@ public class MainContainerController implements Initializable {
 				menuItems.add(separatorMenuItem);
 				continue;
 			}
-			if(!fe.getIconName().trim().isEmpty()){
+			if (!fe.getIconName().trim().isEmpty()) {
 				ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream(fe.getIconName())));
 				imageView.setFitHeight(15);
 				imageView.setFitWidth(15);
@@ -167,7 +174,7 @@ public class MainContainerController implements Initializable {
 				menuItems.add(separatorMenuItem);
 				continue;
 			}
-			if(!fe.getIconName().trim().isEmpty()){
+			if (!fe.getIconName().trim().isEmpty()) {
 				ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream(fe.getIconName())));
 				imageView.setFitHeight(15);
 				imageView.setFitWidth(15);
@@ -188,7 +195,7 @@ public class MainContainerController implements Initializable {
 				menuItems.add(separatorMenuItem);
 				continue;
 			}
-			if(!fe.getIconName().trim().isEmpty()){
+			if (!fe.getIconName().trim().isEmpty()) {
 				ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream(fe.getIconName())));
 				imageView.setFitHeight(15);
 				imageView.setFitWidth(15);
@@ -209,7 +216,7 @@ public class MainContainerController implements Initializable {
 				menuItems.add(separatorMenuItem);
 				continue;
 			}
-			if(!fe.getIconName().trim().isEmpty()){
+			if (!fe.getIconName().trim().isEmpty()) {
 				ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream(fe.getIconName())));
 				imageView.setFitHeight(15);
 				imageView.setFitWidth(15);
@@ -230,14 +237,14 @@ public class MainContainerController implements Initializable {
 				menuItems.add(separatorMenuItem);
 				continue;
 			}
-			if(!fe.getIconName().trim().isEmpty()){
+			if (!fe.getIconName().trim().isEmpty()) {
 				ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream(fe.getIconName())));
 				imageView.setFitHeight(15);
 				imageView.setFitWidth(15);
 				menu.setGraphic(imageView);
 			}
-			if(fe == FileMenuEnum.SAVE_AS){
-				menu.disableProperty().bindBidirectional(rootNode.saveAsProperty());	
+			if (fe == FileMenuEnum.SAVE_AS) {
+				menu.disableProperty().bindBidirectional(rootNode.saveAsProperty());
 			}
 			menu.setOnAction(evt -> fireFileMenuEvent(fe.getEventType()));
 			menuItems.add(menu);

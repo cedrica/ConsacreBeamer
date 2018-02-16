@@ -35,12 +35,10 @@ public class SongPartView extends StackPane {
 	public final StringProperty textProperty() {
 		return this.text;
 	}
-	
 
 	public final String getText() {
 		return this.textProperty().get();
 	}
-	
 
 	public final void setText(final String text) {
 		this.textProperty().set(text);
@@ -49,12 +47,10 @@ public class SongPartView extends StackPane {
 	public final StringProperty htmlProperty() {
 		return this.html;
 	}
-	
 
 	public final String getHtml() {
 		return this.htmlProperty().get();
 	}
-	
 
 	public final void setHtml(final String html) {
 		this.htmlProperty().set(html);
@@ -63,12 +59,10 @@ public class SongPartView extends StackPane {
 	public final ObjectProperty<Integer> indexProperty() {
 		return this.index;
 	}
-	
 
 	public final Integer getIndex() {
 		return this.indexProperty().get();
 	}
-	
 
 	public final void setIndex(final Integer index) {
 		this.indexProperty().set(index);

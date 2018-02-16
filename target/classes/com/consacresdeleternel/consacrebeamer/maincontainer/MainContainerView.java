@@ -21,7 +21,7 @@ public class MainContainerView extends StackPane {
 	private ObjectProperty<FlowPane> flowPane = new SimpleObjectProperty<>();
 	private ObjectProperty<MaskerPane> maskerPane = new SimpleObjectProperty<>();
 	private ObjectProperty<HiddenSidesPane> hiddenSidesPane = new SimpleObjectProperty<>();
-	
+
 	public MainContainerView() {
 		Helper.load(this, Localization.getDefault());
 	}
@@ -53,12 +53,10 @@ public class MainContainerView extends StackPane {
 	public final ObjectProperty<MaskerPane> maskerPaneProperty() {
 		return this.maskerPane;
 	}
-	
 
 	public final MaskerPane getMaskerPane() {
 		return this.maskerPaneProperty().get();
 	}
-	
 
 	public final void setMaskerPane(final MaskerPane maskerPane) {
 		this.maskerPaneProperty().set(maskerPane);
@@ -67,12 +65,10 @@ public class MainContainerView extends StackPane {
 	public final ObjectProperty<HiddenSidesPane> hiddenSidesPaneProperty() {
 		return this.hiddenSidesPane;
 	}
-	
 
 	public final HiddenSidesPane getHiddenSidesPane() {
 		return this.hiddenSidesPaneProperty().get();
 	}
-	
 
 	public final void setHiddenSidesPane(final HiddenSidesPane hiddenSidesPane) {
 		this.hiddenSidesPaneProperty().set(hiddenSidesPane);
@@ -81,19 +77,13 @@ public class MainContainerView extends StackPane {
 	public final ObjectProperty<Boolean> saveAsProperty() {
 		return this.saveAs;
 	}
-	
 
 	public final Boolean getSaveAs() {
 		return this.saveAsProperty().get();
 	}
-	
 
 	public final void setSaveAs(final Boolean saveAs) {
 		this.saveAsProperty().set(saveAs);
 	}
-	
-	
-	
-	
-	
+
 }

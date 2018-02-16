@@ -14,8 +14,8 @@ import com.consacresdeleternel.consacrebeamer.events.ExtrasMenuEvent;
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.BookView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookView;
-import com.consacresdeleternel.consacrebeamer.maincontainer.songpartviewer.SongPartViewerView;
 import com.consacresdeleternel.consacrebeamer.repository.BookRepository;
+import com.consacresdeleternel.consacrebeamer.utils.FileUtil;
 
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -26,8 +26,6 @@ public class ExtrasMenuManager {
 	private BookRepository bookRepository;
 	@Inject
 	private DialogManager dialogManager;
-	@Inject
-	private ValueObjectManager valueObjectManager;
 
 	public void init(MainContainerView mainContainerView) {
 		mainContainerView.addEventHandler(ExtrasMenuEvent.CREATE_NEW_BOOK,
@@ -36,19 +34,20 @@ public class ExtrasMenuManager {
 				evt -> handleShowLibrary(mainContainerView, evt));
 	}
 
-
 	private void handleShowLibrary(MainContainerView mainContainerView, ExtrasMenuEvent evt) {
 		evt.consume();
 		List<Book> books = bookRepository.findAll();
-		if(books == null || books.isEmpty()){
-			Dialogs.info(Localization.asKey("csb.ExtrasMenu.libraryIsEmpty"),
-					mainContainerView.getScene().getWindow());
+		if (books == null || books.isEmpty()) {
+			Dialogs.info(Localization.asKey("csb.ExtrasMenu.libraryIsEmpty"), mainContainerView.getScene().getWindow());
 			return;
 		}
-			
+
 		mainContainerView.getFlowPane().getChildren().clear();
 		books.stream().forEach(b -> {
 			BookView bookView = new BookView();
+			b.getSongs().stream().forEach(s -> {
+				s.setSongHtml(FileUtil.readTxtFileToString(s.getTextFileReference()));
+			});
 			bookView.setBook(b);
 			bookView.setBookName(b.getTitle());
 			mainContainerView.getFlowPane().getChildren().add(bookView);
@@ -66,7 +65,7 @@ public class ExtrasMenuManager {
 			Book book = new Book();
 			book.setTitle(createBookView.getBookName());
 			Book duplicat = bookRepository.findByTitle(createBookView.getBookName().trim());
-			if(duplicat != null){
+			if (duplicat != null) {
 				Dialogs.error(Localization.asKey("csb.ExtrasMenu.duplicatedBook"),
 						mainContainerView.getScene().getWindow());
 				return;

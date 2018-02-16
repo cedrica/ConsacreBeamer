@@ -9,7 +9,7 @@ public class CreateOrEditNewSongEvent extends Event {
 			"selectSongCreateOrEditNewSongEvent");
 	public static final EventType<CreateOrEditNewSongEvent> UPDATE_LIST_ITEM_AND_SONG_PART = new EventType<>(
 			"updateSongCreateOrEditNewSongEvent");
-	public static final EventType<CreateOrEditNewSongEvent> EDIT_SONG =  new EventType<>(
+	public static final EventType<CreateOrEditNewSongEvent> EDIT_SONG = new EventType<>(
 			"editSongCreateOrEditNewSongEvent");
 	public static final EventType<CreateOrEditNewSongEvent> REMOVE_SONG = new EventType<>(
 			"removeSongCreateOrEditNewSongEvent");

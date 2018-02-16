@@ -9,9 +9,11 @@ import javafx.concurrent.Task;
 
 public class LoadBookTask extends Task<List<Book>> {
 	private BookRepository bookRepository;
-	public  LoadBookTask(BookRepository bookRepository){
+
+	public LoadBookTask(BookRepository bookRepository) {
 		this.bookRepository = bookRepository;
 	}
+
 	@Override
 	protected List<Book> call() throws Exception {
 		return bookRepository.findAll();

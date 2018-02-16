@@ -1,7 +1,5 @@
 package com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.extras;
 
-import java.io.File;
-
 import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.data.Attachment;

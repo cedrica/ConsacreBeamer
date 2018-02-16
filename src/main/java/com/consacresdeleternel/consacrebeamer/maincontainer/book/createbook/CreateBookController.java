@@ -49,7 +49,7 @@ public class CreateBookController implements Initializable {
 		clvSongs.setCellFactory(new SongListCellFactory(rootNode));
 		clvSongs.itemsProperty().bind(rootNode.songItemsProperty());
 
-		clvSongs.getSelectionModel().selectedItemProperty().addListener((obs,oldVal,newVal)->{
+		clvSongs.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
 		});
 
 	}

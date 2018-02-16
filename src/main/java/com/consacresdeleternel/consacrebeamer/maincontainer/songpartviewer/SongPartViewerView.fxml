@@ -5,11 +5,9 @@
 
 <?import java.lang.*?>
 <?import com.consacresdeleternel.consacrebeamer.maincontainer.songpartviewer.SongPartViewerView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.web.WebView?>
 <?scenebuilder-preview-i18n-resource /bundle/consacrebeamer_de_DE.properties?>
 <?scenebuilder-stylesheet /com/consacresdeleternel/consacrebeamer/maincontainer/songpartviewer/SonPartViewerView.css?>
 
@@ -30,13 +28,9 @@
 	</left>
 	<center>
 		<HBox> 
-			<StackPane maxHeight="400"> 
-				<AnchorPane style="-fx-background-color:red"> 
-					<children>
-						<WebView fx:id="webView"/> 
-					</children>
-				</AnchorPane>
-			</StackPane>
+			<VBox fx:id="vbRows" alignment="CENTER" style="-fx-background-color:#fff" HBox.hgrow="ALWAYS"> 
+				<Label style="-fx-font-size:40px" text="jhjkbh"/> 
+			</VBox>
 		</HBox>
 	</center>
 	<right>

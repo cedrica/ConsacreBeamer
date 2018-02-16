@@ -17,7 +17,6 @@ public class BasicRepository<T> {
 	protected static SessionFactory sessionFactory = null;
 	protected Transaction tx = null;
 	private Class<T> clazz;
-
 	protected EntityManager entitymanager;
 
 	public BasicRepository(Class<T> clazz) {
@@ -28,42 +27,51 @@ public class BasicRepository<T> {
 	@SuppressWarnings("deprecation")
 	private void init() {
 		sessionFactory = new Configuration().configure("/hibernate.cfg.xml").buildSessionFactory();
+//		final EntityManagerFactory emf = Persistence.createEntityManagerFactory("ConsacreBeamerPU");
+//		entitymanager = emf.createEntityManager();
+
 	}
 
 	public T save(T o) {
-		Session session = sessionFactory.openSession();
+		Session session = null;
+		session = sessionFactory.openSession();
 		try {
 			tx = session.beginTransaction();
 			session.saveOrUpdate(o);
 			tx.commit();
 			
+
 			return o;
-		} catch (HibernateException | IllegalArgumentException |SecurityException e) {
+		} catch (HibernateException | IllegalArgumentException | SecurityException e) {
 			if (tx != null)
 				tx.rollback();
-			
-			LOG.error("Object konnte nicht gespeichert werden: "+e.getMessage());
+
+			LOG.error("Object konnte nicht gespeichert werden: " + e.getMessage());
 			return null;
 		}
+		
 	}
 
 	public void delete(T o) {
-		Session session = sessionFactory.openSession();
+		Session session = null;
+		session = sessionFactory.openSession();
 		try {
 			tx = session.beginTransaction();
 			session.delete(o);
 			tx.commit();
+			
 
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
-			
+
 			e.printStackTrace();
 		}
 	}
 
 	public T findById(long id) {
-		Session session = sessionFactory.openSession();
+		Session session = null;
+		session = sessionFactory.openSession();
 		try {
 			tx = session.beginTransaction();
 			@SuppressWarnings("unchecked")
@@ -75,18 +83,19 @@ public class BasicRepository<T> {
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
-			
+
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<T> findAll() {
-		Session session = sessionFactory.openSession();
+		Session session = null;
+		session = sessionFactory.openSession();
 		try {
 			tx = session.beginTransaction();
-			String sql = "select b from "+this.clazz.getSimpleName()+" b";
+			String sql = "select b from " + this.clazz.getSimpleName() + " b";
 			Query query = session.createQuery(sql);
 			tx.commit();
 			
@@ -95,9 +104,10 @@ public class BasicRepository<T> {
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
-			
+
 			e.printStackTrace();
 		}
+		
 		return null;
 	}
 

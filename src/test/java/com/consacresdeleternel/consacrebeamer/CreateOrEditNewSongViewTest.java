@@ -17,6 +17,7 @@ public class CreateOrEditNewSongViewTest extends ApplicationTest {
 		stage.setScene(new Scene(creteOrEditNewSongView, 800, 600));
 		stage.show();
 	}
+
 	@Test
 	public void testLookAnfill() {
 	}

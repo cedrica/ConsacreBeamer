@@ -10,8 +10,9 @@ import javafx.concurrent.Task;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
-public class LauncherTask extends Task<Pair<MainContainerView, MainContainerManger>>{
+public class LauncherTask extends Task<Pair<MainContainerView, MainContainerManger>> {
 	Stage primaryStage;
+
 	public LauncherTask(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 	}
@@ -25,7 +26,7 @@ public class LauncherTask extends Task<Pair<MainContainerView, MainContainerMang
 		primaryStage.setOnCloseRequest(evt -> {
 			weld.shutdown();
 		});
-		return new Pair<MainContainerView, MainContainerManger>(mainContainerView,mainContainerManger);
+		return new Pair<MainContainerView, MainContainerManger>(mainContainerView, mainContainerManger);
 	}
 
 }

@@ -39,6 +39,22 @@ public class BookManager {
 	public void init(MainContainerView mainContainerView) {
 		mainContainerView.addEventHandler(BookEvent.REMOVE_BOOK, evt -> {
 			evt.consume();
+			Dialog<ButtonType> confirm = Dialogs.confirm(Localization.asKey("csb.dialogs.confirmRemoveBook"), mainContainerView.getScene().getWindow());
+			Optional<ButtonType> showAndWait = confirm.showAndWait();
+			if(showAndWait.isPresent() && showAndWait.get() == ButtonType.YES){
+				Book book = evt.getBook();
+				List<Song> songs = book.getSongs();
+				bookRepository.delete(book);
+				mainContainerView.getFlowPane().getChildren().clear();
+				List<Book> books = bookRepository.findAll();
+				books.stream().forEach(b -> {
+					BookView bookView = new BookView();
+					bookView.setBook(b);
+					bookView.setBookName(b.getTitle());
+					mainContainerView.getFlowPane().getChildren().add(bookView);
+				});
+			}
+			
 		});
 		mainContainerView.addEventHandler(BookEvent.EDIT_BOOK, evt -> handleEditBook(mainContainerView, evt));
 		mainContainerView.addEventHandler(BookEvent.SHOW_SONG_LIST, evt -> handleShowSongList(mainContainerView, evt));
@@ -47,24 +63,26 @@ public class BookManager {
 
 	private void handleDeleteSong(MainContainerView mainContainerView, BookEvent evt) {
 		evt.consume();
-		SongListView songListView = (SongListView)evt.getTarget();
-		Dialog<ButtonType> confirm = Dialogs.confirm(Localization.asKey("csb.dialogs.ComfirmDeleteSong"), mainContainerView.getScene().getWindow());
+		SongListView songListView = (SongListView) evt.getTarget();
+		Dialog<ButtonType> confirm = Dialogs.confirm(Localization.asKey("csb.dialogs.ComfirmDeleteSong"),
+				mainContainerView.getScene().getWindow());
 		Optional<ButtonType> showAndWait = confirm.showAndWait();
-		if(showAndWait.isPresent() && showAndWait.get() == ButtonType.YES){
+		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.YES) {
 			List<Song> songs = evt.getSongs();
-			Long bookId;
-			if(songs != null && !songs.isEmpty()){
-				bookId = songs.get(0).getBook().getId();
-				for (Song song : songs) {
-					Song findById = songRepository.findById(song.getId());
-					songRepository.delete(findById);
-				}
-				Book book = bookRepository.findById(bookId);
-				songListView.setSongItems(new FilteredList<>(FXCollections.observableList(book.getSongs())));
+			if (songs != null && !songs.isEmpty()) {
+				Book book = songs.get(0).getBook();
+				songs.stream().forEach(s -> {
+					songRepository.delete(s);
+				});
+				Book newBook = bookRepository.findById(book.getId());
+				Dialogs.success(Localization.asKey("csb.dialogs.songsDeletingSuccessfull"),
+						mainContainerView.getScene().getWindow());
+				songListView.setSongItems(new FilteredList<>(FXCollections.observableList(newBook.getSongs())));
+
 			}
-			
+
 		}
-		
+
 	}
 
 	private void handleShowSongList(MainContainerView mainContainerView, BookEvent evt) {
@@ -76,6 +94,7 @@ public class BookManager {
 			mainContainerView.getHiddenSidesPane().setPinnedSide(Side.TOP);
 			SongListView songListView = new SongListView();
 			Book book = evt.getBook();
+			songListView.setBookName(book.getTitle());
 			songListView.setSongItems(new FilteredList<>(FXCollections.observableList(book.getSongs())));
 			mainContainerView.getHiddenSidesPane().setContent(songListView);
 			mainContainerView.getHiddenSidesPane().setVisible(true);
@@ -98,7 +117,7 @@ public class BookManager {
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
 			LOG.info("Edit mode");
 			book.setTitle(createBookView.getBookName());
-			book.setSongs(createBookView.getSongItems());
+//			book.setSongs(createBookView.getSongItems());
 			book = bookRepository.save(book);
 			if (book == null) {
 				Dialogs.error(Localization.asKey("csb.ExtrasMenu.bookcouldNotBeCreated"),

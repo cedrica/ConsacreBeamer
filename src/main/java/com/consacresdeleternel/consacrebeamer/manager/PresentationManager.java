@@ -17,14 +17,17 @@ public class PresentationManager {
 	private ValueObjectManager valueObjectManager;
 
 	public void init(MainContainerView mainContainerView) {
-		mainContainerView.addEventHandler(PresentationMenuEvent.START_PRESENTATION, evt -> handleStartPresentation(mainContainerView,evt));
+		mainContainerView.addEventHandler(PresentationMenuEvent.START_PRESENTATION,
+				evt -> handleStartPresentation(mainContainerView, evt));
 	}
 
 	private void handleStartPresentation(MainContainerView mainContainerView, PresentationMenuEvent evt) {
 		evt.consume();
 		SongPartViewerView songPartViewerView = new SongPartViewerView();
 		valueObjectManager.setSongPartViewerView(songPartViewerView);
-		Stage dialogStage = dialogManager.showStartPresentationView(songPartViewerView, mainContainerView.getScene().getWindow());
-		dialogStage.setFullScreen(true); dialogStage.show();
+		Stage dialogStage = dialogManager.showStartPresentationView(songPartViewerView,
+				mainContainerView.getScene().getWindow());
+		dialogStage.setFullScreen(true);
+		dialogStage.show();
 	}
 }

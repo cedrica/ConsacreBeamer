@@ -3,7 +3,7 @@ package com.consacresdeleternel.consacrebeamer.events;
 import javafx.event.Event;
 import javafx.event.EventType;
 
-public class EditMenuEvent extends Event{
+public class EditMenuEvent extends Event {
 
 	/**
 	 * 

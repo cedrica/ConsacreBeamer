@@ -17,16 +17,13 @@ public class SongPartViewerView extends BorderPane {
 	public final StringProperty textProperty() {
 		return this.text;
 	}
-	
 
 	public final String getText() {
 		return this.textProperty().get();
 	}
-	
 
 	public final void setText(final String text) {
 		this.textProperty().set(text);
 	}
-	
-	
+
 }

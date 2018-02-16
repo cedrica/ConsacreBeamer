@@ -5,11 +5,12 @@ import com.consacresdeleternel.consacrebeamer.events.PresentationMenuEvent;
 import javafx.event.EventType;
 
 public enum PresentationMenuEnum {
-	START_PRESENTATION("csb.presentationMenuEnum.startPresentation", "/icons/icons8-presentation-40.png",PresentationMenuEvent.START_PRESENTATION), 
-	DELAY("csb.presentationMenuEnum.delay", "/icons/icons8-next-40.png", null), 
-	SEPARATOR("csb.mainContainerView.separator","",null),
-	SEND_MESSAGE_TO_ASSEMBLY("csb.presentationMenuEnum.sendMessageToAssembly", "/icons/icons8-chat-room-40.png", null), 
-	OPTIONS("csb.presentationMenuEnum.options", "", PresentationMenuEvent.OPTIONS);
+	START_PRESENTATION("csb.presentationMenuEnum.startPresentation", "/icons/icons8-presentation-40.png",
+			PresentationMenuEvent.START_PRESENTATION), DELAY("csb.presentationMenuEnum.delay",
+					"/icons/icons8-next-40.png",
+					null), SEPARATOR("csb.mainContainerView.separator", "", null), SEND_MESSAGE_TO_ASSEMBLY(
+							"csb.presentationMenuEnum.sendMessageToAssembly", "/icons/icons8-chat-room-40.png",
+							null), OPTIONS("csb.presentationMenuEnum.options", "", PresentationMenuEvent.OPTIONS);
 
 	private String name;
 	private String iconName;

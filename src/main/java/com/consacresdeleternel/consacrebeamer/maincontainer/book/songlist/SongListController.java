@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,10 +33,18 @@ public class SongListController implements Initializable {
 	CustomTextField ctfSongName;
 	@FXML
 	CheckBox checkBoxSelect;
-	@FXML Button btnImportSong;
-	@FXML Button btnExportSong;
-	@FXML Button btnEditSong;
-	@FXML Button btnDeleteSong;
+	@FXML
+	Button btnImportSong;
+	@FXML
+	Button btnExportSong;
+	@FXML
+	Button btnEditSong;
+	@FXML
+	Button btnDeleteSong;
+	@FXML
+	Button btnAddToListView;
+	@FXML
+	Label lblBookName;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -50,10 +59,18 @@ public class SongListController implements Initializable {
 				vbSonglistViewer.getChildren().add(imageView);
 			}
 		});
-		btnDeleteSong.disableProperty().bind(Bindings.createBooleanBinding(()->{
+		btnDeleteSong.disableProperty().bind(Bindings.createBooleanBinding(() -> {
 			return rootNode.getSelectedSongItems().isEmpty();
-		},  rootNode.selectedSongItemsProperty()));
-		 rootNode.songTitleProperty().bind(ctfSongName.textProperty());
+		}, rootNode.selectedSongItemsProperty()));
+		btnAddToListView.disableProperty().bind(Bindings.createBooleanBinding(() -> {
+			return rootNode.getSelectedSongItems().isEmpty();
+		}, rootNode.selectedSongItemsProperty()));
+		btnEditSong.disableProperty().bind(Bindings.createBooleanBinding(() -> {
+			return rootNode.getSelectedSongItems().size() != 1;
+		}, rootNode.selectedSongItemsProperty()));
+		rootNode.searchedSongNameProperty().bind(ctfSongName.textProperty());
+		lblBookName.textProperty().bind(rootNode.bookNameProperty());
+
 	}
 
 	@FXML
@@ -61,22 +78,37 @@ public class SongListController implements Initializable {
 		rootNode.setSelectAll(checkBoxSelect.isSelected());
 	}
 
-	@FXML public void onCloseHiddenSidePane() {
+	@FXML
+	public void onCloseHiddenSidePane() {
 		rootNode.fireEvent(new BookEvent(BookEvent.SHOW_SONG_LIST));
 	}
 
-	@FXML public void onDeleteSong() {
-		rootNode.fireEvent(new BookEvent(BookEvent.DELETE_SONGS,rootNode.getSelectedSongItems()));
+	@FXML
+	public void onDeleteSong() {
+		rootNode.fireEvent(new BookEvent(BookEvent.DELETE_SONGS, rootNode.getSelectedSongItems()));
 	}
 
-	@FXML public void onExportSong() {}
+	@FXML
+	public void onExportSong() {
+	}
 
-	@FXML public void onImportSong() {}
+	@FXML
+	public void onImportSong() {
+	}
 
-	@FXML public void onEditSong() {}
+	@FXML
+	public void onEditSong() {
+	}
 
-	@FXML public void onSearchSong() {
-		rootNode.getSongItems().setPredicate(p -> p.getSongTitle().startsWith(rootNode.getSongTitle()));
+	@FXML
+	public void onSearchSong() {
+		rootNode.getSongItems().setPredicate(p -> p.getSongTitle().startsWith(rootNode.getSearchedSongName()));
+	}
+
+	@FXML
+	public void onAddToListView() {
+		rootNode.fireEvent(new BookEvent(BookEvent.SHOW_SELECTED_SONGS, rootNode.getSelectedSongItems()));
+		rootNode.fireEvent(new BookEvent(BookEvent.SHOW_SONG_LIST));
 	}
 
 }

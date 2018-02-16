@@ -9,8 +9,6 @@ import org.controlsfx.validation.Validator;
 
 import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
-import com.sun.javafx.webkit.Accessor;
-import com.sun.webkit.WebPage;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -51,31 +49,33 @@ public class TextController implements Initializable {
 		rootNode.titleProperty().bindBidirectional(tfTitle.textProperty());
 		registerListener();
 		validationSupport = new ValidationSupport();
-		Platform.runLater(()->{
-			validationSupport.registerValidator(tfTitle, Validator.createEmptyValidator(Localization.asKey("csb.CopyRightsView.titleIsRequired")));
-			rootNode.invalidProperty().bind(validationSupport.invalidProperty().or(rootNode.songTextProperty().isEmpty()));
+		Platform.runLater(() -> {
+			validationSupport.registerValidator(tfTitle,
+					Validator.createEmptyValidator(Localization.asKey("csb.CopyRightsView.titleIsRequired")));
+			rootNode.invalidProperty()
+					.bind(validationSupport.invalidProperty().or(rootNode.songTextProperty().isEmpty()));
 		});
 	}
 
-//	private void insertTextIntpHtmlEditor(){
-//		WebPage webPage = Accessor.getPageFor(webView.getEngine());  
-//        webPage.executeCommand("insertText", " $NEWLINE");  
-//	}
-    
+	// private void insertTextIntpHtmlEditor(){
+	// WebPage webPage = Accessor.getPageFor(webView.getEngine());
+	// webPage.executeCommand("insertText", " $NEWLINE");
+	// }
+
 	private void registerListener() {
 		webView.addEventHandler(KeyEvent.KEY_RELEASED, evt -> {
-			if (evt.getCode() == KeyCode.ENTER){
+			if (evt.getCode() == KeyCode.ENTER) {
 				rootNode.setSongHtml(htmlEditor.getHtmlText());
 				rootNode.setSongText(Helper.html2text(htmlEditor.getHtmlText()).replace("<br>", "$newLIne"));
-				
-			}else{
+
+			} else {
 				rootNode.setSongHtml(htmlEditor.getHtmlText());
 				rootNode.setSongText(Helper.html2text(htmlEditor.getHtmlText()));
 			}
-			
+
 		});
 		rootNode.editModeProperty().addListener((obs, oldVal, newVal) -> {
-				htmlEditor.setHtmlText(rootNode.getSongText());
+			htmlEditor.setHtmlText(rootNode.getSongText());
 		});
 		radioGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {

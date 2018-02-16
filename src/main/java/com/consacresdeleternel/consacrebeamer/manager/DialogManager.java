@@ -1,7 +1,5 @@
 package com.consacresdeleternel.consacrebeamer.manager;
 
-import org.apache.poi.hssf.record.ScenarioProtectRecord;
-
 import com.consacresdeleternel.consacrebeamer.common.Dialogs;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookView;
@@ -46,8 +44,9 @@ public class DialogManager {
 	}
 
 	public Stage showStartPresentationView(SongPartViewerView songPartViewerView, Window window) {
-//		Dialog<ButtonType> dialogStage = Dialogs.customDialog(songPartViewerView, Modality.NONE,
-//				Localization.asKey("csb.startPresentation.title"), window);
+		// Dialog<ButtonType> dialogStage =
+		// Dialogs.customDialog(songPartViewerView, Modality.NONE,
+		// Localization.asKey("csb.startPresentation.title"), window);
 		Stage stage = new Stage();
 		Scene scene = new Scene(songPartViewerView);
 		stage.setScene(scene);

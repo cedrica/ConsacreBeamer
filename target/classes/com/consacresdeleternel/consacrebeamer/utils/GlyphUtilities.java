@@ -8,18 +8,18 @@ import org.controlsfx.glyphfont.GlyphFontRegistry;
 import javafx.scene.paint.Color;
 
 /**
- * Helper Class to provide basic access to FontAwesome glyphs. To find what kind of glyphs are usable go to
- * http://www.fontawesome.io
+ * Helper Class to provide basic access to FontAwesome glyphs. To find what kind
+ * of glyphs are usable go to http://www.fontawesome.io
  *
  * @author c.watzl
  */
 public class GlyphUtilities {
 
-	private static final String	FONT		= "FontAwesome";
-	static final GlyphFont		GLYPH_FONT	= GlyphFontRegistry.font(FONT);
+	private static final String FONT = "FontAwesome";
+	static final GlyphFont GLYPH_FONT = GlyphFontRegistry.font(FONT);
 
 	private static org.controlsfx.glyphfont.Glyph create(final Glyph icon, final Color foreGround, final Double size,
-					String style) {
+			String style) {
 
 		org.controlsfx.glyphfont.Glyph glyphIcon = GLYPH_FONT.create(icon);
 
@@ -38,7 +38,6 @@ public class GlyphUtilities {
 		return glyphIcon;
 	}
 
-
 	/**
 	 * Creates a Icon with default size for the given Glyph
 	 *
@@ -51,14 +50,13 @@ public class GlyphUtilities {
 
 	}
 
-
 	/**
 	 * Creates a Icon with default size for the given Glyph with a custom Style
 	 *
 	 * @param glyph
-	 *        the Glyph Icon
+	 *            the Glyph Icon
 	 * @param style
-	 *        css defining style
+	 *            css defining style
 	 * @return Glyph icon
 	 */
 	public static org.controlsfx.glyphfont.Glyph create(Glyph glyph, String style) {
@@ -71,9 +69,9 @@ public class GlyphUtilities {
 	 * Creates an Glyph Icon with default size and a custom Color.
 	 *
 	 * @param glyph
-	 *        Glyph Enum for icon
+	 *            Glyph Enum for icon
 	 * @param color
-	 *        The color to set
+	 *            The color to set
 	 * @return the created Glyph Icon
 	 */
 
@@ -84,12 +82,12 @@ public class GlyphUtilities {
 
 		return iconGlyph;
 	}
-	
-	
-	  public static org.controlsfx.glyphfont.Glyph generateGlyph(final Color color, final FontAwesome.Glyph iconTyp, final double size) {
+
+	public static org.controlsfx.glyphfont.Glyph generateGlyph(final Color color, final FontAwesome.Glyph iconTyp,
+			final double size) {
 		final org.controlsfx.glyphfont.Glyph font = GlyphFontRegistry.font("FontAwesome").create(iconTyp);
 		font.setFontSize(size);
 		font.setColor(color);
 		return font;
-	    }
+	}
 }

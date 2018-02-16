@@ -14,22 +14,27 @@ import javafx.scene.input.MouseEvent;
 
 public class ListItemController implements Initializable {
 
-	@FXML ListItemView rootNode;
-	@FXML ToggleButton tgbItemName;
-	
+	@FXML
+	ListItemView rootNode;
+	@FXML
+	ToggleButton tgbItemName;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		tgbItemName.textProperty().bind(rootNode.itemNameProperty());
 		rootNode.setToggle(tgbItemName);
 	}
 
-	@FXML public void onSelectItem() {
-		rootNode.fireEvent(new CreateOrEditNewSongEvent(CreateOrEditNewSongEvent.SELECT_SONG, rootNode.getItemObject()));
+	@FXML
+	public void onSelectItem() {
+		rootNode.fireEvent(
+				new CreateOrEditNewSongEvent(CreateOrEditNewSongEvent.SELECT_SONG, rootNode.getItemObject()));
 	}
 
-	@FXML public void onShowContextMenu(MouseEvent evt) {
-		if(evt.getButton() == MouseButton.SECONDARY){
-			rootNode.fireEvent(new ListItemViewEvent(ListItemViewEvent.SHOW_LIST_ITEM_CONTEXT_MENU));				
+	@FXML
+	public void onShowContextMenu(MouseEvent evt) {
+		if (evt.getButton() == MouseButton.SECONDARY) {
+			rootNode.fireEvent(new ListItemViewEvent(ListItemViewEvent.SHOW_LIST_ITEM_CONTEXT_MENU));
 		}
 	}
 }

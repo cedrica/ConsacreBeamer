@@ -11,25 +11,24 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.layout.BorderPane;
 
-public class TextView extends BorderPane{
+public class TextView extends BorderPane {
 	private StringProperty title = new SimpleStringProperty();
 	private StringProperty songText = new SimpleStringProperty();
 	private StringProperty songHtml = new SimpleStringProperty();
-	private BooleanProperty  invalid = new SimpleBooleanProperty();
+	private BooleanProperty invalid = new SimpleBooleanProperty();
 	private ObjectProperty<Boolean> editMode = new SimpleObjectProperty<>(false);
-	public  TextView(){
-		Helper.load(this, Localization.getDefault());		
+
+	public TextView() {
+		Helper.load(this, Localization.getDefault());
 	}
 
 	public final StringProperty titleProperty() {
 		return this.title;
 	}
-	
 
 	public final String getTitle() {
 		return this.titleProperty().get();
 	}
-	
 
 	public final void setTitle(final String title) {
 		this.titleProperty().set(title);
@@ -50,12 +49,10 @@ public class TextView extends BorderPane{
 	public final BooleanProperty invalidProperty() {
 		return this.invalid;
 	}
-	
 
 	public final boolean isInvalid() {
 		return this.invalidProperty().get();
 	}
-	
 
 	public final void setInvalid(final boolean invalid) {
 		this.invalidProperty().set(invalid);
@@ -64,12 +61,10 @@ public class TextView extends BorderPane{
 	public final ObjectProperty<Boolean> editModeProperty() {
 		return this.editMode;
 	}
-	
 
 	public final Boolean isEditMode() {
 		return this.editModeProperty().get();
 	}
-	
 
 	public final void setEditMode(final Boolean editMode) {
 		this.editModeProperty().set(editMode);
@@ -78,18 +73,13 @@ public class TextView extends BorderPane{
 	public final StringProperty songHtmlProperty() {
 		return this.songHtml;
 	}
-	
 
 	public final String getSongHtml() {
 		return this.songHtmlProperty().get();
 	}
-	
 
 	public final void setSongHtml(final String songHtml) {
 		this.songHtmlProperty().set(songHtml);
 	}
-	
-
-	
 
 }

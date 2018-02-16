@@ -1,5 +1,9 @@
 package com.consacresdeleternel.consacrebeamer.repository;
 
+import java.util.List;
+
+import javax.inject.Singleton;
+
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -7,6 +11,7 @@ import org.hibernate.Session;
 
 import com.consacresdeleternel.consacrebeamer.data.Song;
 
+@Singleton
 public class SongRepository extends BasicRepository<Song> {
 
 	private static final Logger LOG = Logger.getLogger(SongRepository.class);
@@ -16,8 +21,8 @@ public class SongRepository extends BasicRepository<Song> {
 	}
 
 	public Song findByTitle(String songTitle) {
-
-		Session session = sessionFactory.openSession();
+		Session session = null;
+		session = sessionFactory.openSession();
 		try {
 			tx = session.beginTransaction();
 			Query createQuery = session.createQuery("from Song s where s.songTitle = :songTitle");
@@ -30,6 +35,26 @@ public class SongRepository extends BasicRepository<Song> {
 			if (tx != null)
 				tx.rollback();
 			LOG.error("Die suche des Lied via title konnte nicht durchgeführt werden");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public List<Song> findByBookId(Long bookId) {
+		Session session = null;
+		session = sessionFactory.openSession();
+		try {
+			tx = session.beginTransaction();
+			Query createQuery = session.createQuery("from Song s where s.bookId = :bookId");
+			createQuery.setParameter("bookId", bookId);
+			List<Song> list = createQuery.list();
+			tx.commit();
+			
+			return list;
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
 			e.printStackTrace();
 		}
 		return null;

@@ -8,8 +8,9 @@ import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class CopyRightsViewTest extends ApplicationTest{
+public class CopyRightsViewTest extends ApplicationTest {
 	CopyRightsView copyRightsView;
+
 	@Override
 	public void start(Stage stage) throws Exception {
 		copyRightsView = new CopyRightsView();

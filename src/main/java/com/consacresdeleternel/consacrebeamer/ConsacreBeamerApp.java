@@ -16,14 +16,12 @@ import javafx.stage.Stage;
 
 public class ConsacreBeamerApp extends Application {
 
-
 	@Override
 	public void start(Stage primaryStage) {
 
-
 		LauncherTask launcherTask = new LauncherTask(primaryStage);
 		new Thread(launcherTask).start();
-		launcherTask.valueProperty().addListener((obs,oldVal,newVal)->{
+		launcherTask.valueProperty().addListener((obs, oldVal, newVal) -> {
 			MainContainerView mainContainerView = newVal.getKey();
 			MainContainerManger mainContainerManger = newVal.getValue();
 			mainContainerView.addEventHandler(FileMenuEvent.EXIT_APPLICATION, evt -> {
@@ -34,7 +32,7 @@ public class ConsacreBeamerApp extends Application {
 			scene.getStylesheets().add("/css/Material.css");
 			primaryStage.setScene(scene);
 			primaryStage.setMaximized(true);
-			
+
 			Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
 				@Override
 				public void uncaughtException(Thread t, Throwable e) {
@@ -53,7 +51,7 @@ public class ConsacreBeamerApp extends Application {
 		primaryStage.setHeight(200);
 		primaryStage.setMaximized(false);
 		primaryStage.show();
-		
+
 	}
 
 	public static void main(String[] args) {

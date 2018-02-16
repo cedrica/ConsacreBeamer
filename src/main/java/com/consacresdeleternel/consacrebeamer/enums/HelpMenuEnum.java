@@ -5,10 +5,9 @@ import com.consacresdeleternel.consacrebeamer.events.HelpMenuEvent;
 import javafx.event.EventType;
 
 public enum HelpMenuEnum {
-	DOCUMENTATION("csb.helpMenu.documentation", "",HelpMenuEvent.DOCUMENTATION), 
-	NEW_FEATURES("csb.helpMenu.newFeatures", "",HelpMenuEvent.NEW_FEATURES), 
-	VISIT_HOMEPAGE("csb.helpMenu.visitHomePage", "",HelpMenuEvent.VISIT_HOMEPAGE), 
-	INFO("csb.helpMenu.info", "", HelpMenuEvent.INFO);
+	DOCUMENTATION("csb.helpMenu.documentation", "", HelpMenuEvent.DOCUMENTATION), NEW_FEATURES(
+			"csb.helpMenu.newFeatures", "", HelpMenuEvent.NEW_FEATURES), VISIT_HOMEPAGE("csb.helpMenu.visitHomePage",
+					"", HelpMenuEvent.VISIT_HOMEPAGE), INFO("csb.helpMenu.info", "", HelpMenuEvent.INFO);
 
 	private String name;
 	private String iconName;

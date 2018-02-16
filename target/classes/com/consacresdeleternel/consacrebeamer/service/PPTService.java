@@ -81,7 +81,8 @@ public class PPTService {
 			String cmd = "C:\\Program Files (x86)\\Microsoft Office\\Office14\\PPTVIEW.EXE /f "
 					+ createTempFile.getAbsolutePath();
 			process = Runtime.getRuntime().exec(cmd);
-//			LOG.info("Presentation wird gestartet. Process = "+process.exitValue());
+			// LOG.info("Presentation wird gestartet. Process =
+			// "+process.exitValue());
 			return createTempFile;
 		} catch (IOException e) {
 			LOG.error("Folgender Fehler ist aufgetretten während der Anzeige");
