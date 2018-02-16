@@ -2,9 +2,6 @@ package com.consacresdeleternel.consacrebeamer;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 
-import org.jboss.weld.environment.se.Weld;
-import org.jboss.weld.environment.se.WeldContainer;
-
 import com.consacresdeleternel.consacrebeamer.events.FileMenuEvent;
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.launcher.LauncherView;

@@ -29,14 +29,17 @@ public class MainContainerManger {
 	private ValueObjectManager valueObjectManager;
 	@Inject
 	private TaskManager taskManager;
+	@Inject
+	private PresentationManager presentationManager;
 
 	public void init(MainContainerView mainContainerView) {
 		JFXUtilities.bindMaskerPane(mainContainerView.getMaskerPane(), taskManager);
 		loadBooks();
-		mainContainerView.addEventHandler(BookEvent.RELOAD_BOOKS, evt ->loadBooks());
+		mainContainerView.addEventHandler(BookEvent.RELOAD_BOOKS, evt -> loadBooks());
 		fileMenuManager.init(mainContainerView);
 		extrasMenuManager.init(mainContainerView);
 		bookManager.init(mainContainerView);
+		presentationManager.init(mainContainerView);
 	}
 
 	private void loadBooks() {

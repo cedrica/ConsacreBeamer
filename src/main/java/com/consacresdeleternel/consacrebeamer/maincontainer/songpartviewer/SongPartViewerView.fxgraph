@@ -1,0 +1,50 @@
+package com.consacresdeleternel.consacrebeamer.maincontainer.songpartviewer
+
+import javafx.scene.layout.AnchorPane
+import com.consacresdeleternel.consacrebeamer.maincontainer.songpartviewer.SongPartViewerView
+import javafx.scene.layout.VBox
+import javafx.scene.layout.StackPane
+import com.consacresdeleternel.consacrebeamer.maincontainer.songpartviewer.SongPartViewerController
+import javafx.scene.web.WebView
+import javafx.scene.layout.HBox
+
+dynamic component SongPartViewerView controlledby SongPartViewerController styledwith [
+	"/com/consacresdeleternel/consacrebeamer/maincontainer/songpartviewer/SonPartViewerView.css" ] resourcefile
+"/bundle/consacrebeamer_de_DE.properties" {
+	SongPartViewerView id rootNode {
+		stylesheets : [
+			"/com/consacresdeleternel/consacrebeamer/maincontainer/songpartviewer/SonPartViewerView.css"
+		],
+		styleClass : [
+			"song-part-viewer-view"
+		],
+		left : VBox {
+			styleClass : [
+				"left-right"
+			],
+			prefWidth : 200
+
+		},
+		center : HBox {
+			StackPane {
+				maxHeight : 400,
+				AnchorPane {
+					style : "-fx-background-color:red",
+					children : [
+						WebView id webView {
+						}
+					]
+
+				}
+			}
+
+		},
+		right : VBox {
+			styleClass : [
+				"left-right"
+			],
+			prefWidth : 200
+		}
+
+	}
+}

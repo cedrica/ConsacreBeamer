@@ -1,7 +1,5 @@
 package com.consacresdeleternel.consacrebeamer.repository;
 
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -25,10 +23,12 @@ public class BookRepository extends BasicRepository<Book> {
 			createQuery.setString("bookTitle", bookTitle);
 			Book book = (Book) createQuery.uniqueResult();
 			tx.commit();
+			
 			return book;
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
+			
 			LOG.error("Die suche des Lied via title konnte nicht durchgeführt werden");
 			e.printStackTrace();
 		}

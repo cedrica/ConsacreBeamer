@@ -1,18 +1,18 @@
 package com.consacresdeleternel.consacrebeamer.manager;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.apache.log4j.Logger;
-import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.controlsfx.glyphfont.FontAwesome;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import com.consacresdeleternel.consacrebeamer.common.Dialogs;
 import com.consacresdeleternel.consacrebeamer.common.Helper;
@@ -27,7 +27,6 @@ import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.
 import com.consacresdeleternel.consacrebeamer.maincontainer.listitem.ListItemView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.songpart.SongPartView;
 import com.consacresdeleternel.consacrebeamer.repository.SongRepository;
-import com.consacresdeleternel.consacrebeamer.service.PPTService;
 import com.consacresdeleternel.consacrebeamer.utils.FileUtil;
 
 import javafx.geometry.Side;
@@ -38,29 +37,32 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+
 @Singleton
 public class FileMenuManager {
 	private static final Logger LOG = Logger.getLogger(FileMenuManager.class);
 	private ToggleGroup toggleGroup = new ToggleGroup();
-	private File actualPresentation;
 	@Inject
 	private SongRepository songRepository;
 	@Inject
 	private ValueObjectManager valueObjectManager;
 	@Inject
 	private DialogManager dialogManager;
+
 	public void init(MainContainerView mainContainerView) {
 		mainContainerView.addEventHandler(FileMenuEvent.NEW_SONG, evt -> handleCreateNewSong(mainContainerView, evt));
 		mainContainerView.addEventHandler(FileMenuEvent.EDIT_SONG, evt -> handleEditSong(mainContainerView, evt));
 		mainContainerView.addEventHandler(CreateOrEditNewSongEvent.SELECT_SONG,
 				evt -> handleSelectSong(mainContainerView, evt));
 	}
+
 	private void handleEditSong(MainContainerView mainContainerView, FileMenuEvent evt) {
 		evt.consume();
 		Song song = evt.getSong();
 		CreateOrEditNewSongView createOrEditNewSongView = createCreateOrEditNewSongViewFromSong(song);
 		createOrEditNewSongView.getTextView().setEditMode(true);
-		Dialog<ButtonType> dialogStage = dialogManager.showCreateOrEditNewSong(createOrEditNewSongView, mainContainerView.getScene().getWindow());
+		Dialog<ButtonType> dialogStage = dialogManager.showCreateOrEditNewSong(createOrEditNewSongView,
+				mainContainerView.getScene().getWindow());
 		Optional<ButtonType> showAndWait = dialogStage.showAndWait();
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
 			song = songRepository.findById(song.getId());
@@ -80,22 +82,37 @@ public class FileMenuManager {
 					new CreateOrEditNewSongEvent(CreateOrEditNewSongEvent.UPDATE_LIST_ITEM_AND_SONG_PART, song));
 		}
 	}
+
 	private void createSongPartFromSong(MainContainerView mainContainerView, Song song) {
 		List<SongPartView> songPartViews = new ArrayList<>();
-		List<String> foramtedStrings = Arrays.asList(song.getSongBody().split("---")).stream()
-				.filter(s -> !s.trim().isEmpty()).collect(Collectors.toList());// text
-																				// without
-																				// formating
-		XMLSlideShow ppt = PPTService.generatePPT("", foramtedStrings);
 		String[] parts = song.getSongHtml().split("---");// text with formating
 		int index = 0;
 		if (parts != null && parts.length > 0) {
 			for (String part : parts) {
+				final String regex = "<p>(.+?)</p>";
+
+				final Pattern pattern = Pattern.compile(regex);
+				final Matcher matcher = pattern.matcher(part);
+
+				while (matcher.find()) {
+					String parragraph = matcher.group(0);
+					Document doc = Jsoup.parse(parragraph);
+					String text = doc.body().text(); 
+					System.out.println("Full text : " + text);
+					for (int i = 1; i <= matcher.groupCount(); i++) {
+						System.out.println("Group " + i + ": " + matcher.group(i));
+					}
+
+				}
+
 				SongPartView songPartView = new SongPartView();
 				songPartView.setIndex(index++);
 				songPartView.addEventHandler(SongPartEvent.SHOW_SONG_PART, evt -> {
-					actualPresentation = PPTService.showPPT(ppt, actualPresentation, songPartView.getIndex());
+					if(valueObjectManager.getSongPartViewerView() != null){
+						valueObjectManager.getSongPartViewerView().setText(songPartView.getText());
+					}
 					reformIndexes(songPartViews, songPartView);
+
 				});
 				songPartView.setText(part);
 				songPartViews.add(songPartView);
@@ -104,7 +121,7 @@ public class FileMenuManager {
 			SongPartView songPartView = new SongPartView();
 			songPartView.setIndex(index++);
 			songPartView.addEventHandler(SongPartEvent.SHOW_SONG_PART, evt -> {
-				actualPresentation = PPTService.showPPT(ppt, actualPresentation, songPartView.getIndex());
+				valueObjectManager.getSongPartViewerView().setText(songPartView.getText());
 			});
 			songPartView.setText(song.getSongBody());
 			songPartViews.add(songPartView);
@@ -112,6 +129,7 @@ public class FileMenuManager {
 		mainContainerView.getFlowPane().getChildren().clear();
 		mainContainerView.getFlowPane().getChildren().addAll(songPartViews);
 	}
+
 	private CreateOrEditNewSongView createCreateOrEditNewSongViewFromSong(Song song) {
 		CreateOrEditNewSongView createOrEditNewSongView = new CreateOrEditNewSongView();
 		createOrEditNewSongView.getTextView().setTitle(song.getSongTitle());
@@ -139,12 +157,11 @@ public class FileMenuManager {
 		createSongPartFromSong(mainContainerView, song);
 	}
 
-
-
 	private void handleCreateNewSong(MainContainerView mainContainerView, FileMenuEvent evt) {
 		evt.consume();
 		CreateOrEditNewSongView createOrEditNewSongView = new CreateOrEditNewSongView();
-		Dialog<ButtonType> dialogStage = dialogManager.showCreateOrEditNewSong(createOrEditNewSongView,mainContainerView.getScene().getWindow());
+		Dialog<ButtonType> dialogStage = dialogManager.showCreateOrEditNewSong(createOrEditNewSongView,
+				mainContainerView.getScene().getWindow());
 		createOrEditNewSongView.getCopyRightsView().setBookItems(valueObjectManager.getBookItems());
 		Optional<ButtonType> showAndWait = dialogStage.showAndWait();
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
@@ -178,11 +195,11 @@ public class FileMenuManager {
 		}
 	}
 
-	
 	private Song createSongFromCreateOrEditNewSongView(CreateOrEditNewSongView createOrEditNewSongView, Song song) {
 		song.setSongTitle(createOrEditNewSongView.getTextView().getTitle());
 		song.setSongBody(createOrEditNewSongView.getTextView().getSongText());
-		//COPYRIGHT
+		song.setSongBodyAsByteArr(createOrEditNewSongView.getTextView().getSongText().getBytes());
+		// COPYRIGHT
 		song.setSongHtml(createOrEditNewSongView.getTextView().getSongHtml());
 		song.setCopyRightTitle(createOrEditNewSongView.getCopyRightsView().getTitle());
 		song.setCopyRight(createOrEditNewSongView.getCopyRightsView().getCopyright());
@@ -199,13 +216,11 @@ public class FileMenuManager {
 		song.setSongKey(createOrEditNewSongView.getCopyRightsView().getKey());
 		song.setTempo(createOrEditNewSongView.getCopyRightsView().getTempo());
 		song.setTextFileReference(createOrEditNewSongView.getTextView().getTitle().replaceAll(" ", "").concat(".txt"));
-		//EXTRAS
+		// EXTRAS
 		song.setAttachements(createOrEditNewSongView.getExtrasView().getAttachments());
 		return song;
 	}
 
-	
-	
 	private ListItemView createListItemView(MainContainerView mainContainerView,
 			CreateOrEditNewSongView createOrEditNewSongView, Song song) {
 		ListItemView listItemView = new ListItemView();
@@ -216,6 +231,7 @@ public class FileMenuManager {
 		listItemView.setPosition(mainContainerView.getListViewContainer().getChildren().size());
 		return listItemView;
 	}
+
 	private void handleShowListItemViewContextMenu(MainContainerView mainContainerView, ListItemView listItemView,
 			ListItemViewEvent e) {
 		e.consume();
@@ -253,6 +269,7 @@ public class FileMenuManager {
 
 		contextMenu.show(listItemView, Side.BOTTOM, 0.0, 0.0);
 	}
+
 	private void editSong(ListItemView listItemView) {
 		listItemView.fireEvent(new FileMenuEvent(FileMenuEvent.EDIT_SONG, (Song) listItemView.getItemObject()));
 	}
@@ -286,6 +303,7 @@ public class FileMenuManager {
 			mainContainerView.getFlowPane().getChildren().clear();
 		}
 	}
+
 	private void reformIndexes(List<SongPartView> songPartViews, SongPartView songPartView) {
 		for (SongPartView sp : songPartViews) {
 			if (sp.getIndex() < songPartView.getIndex()) {
@@ -294,6 +312,7 @@ public class FileMenuManager {
 		}
 		songPartView.setIndex(0);
 	}
+
 	private void handleUpdateListItemAndSongPart(MainContainerView mainContainerView, ListItemView listItemView,
 			CreateOrEditNewSongEvent e) {
 		e.consume();

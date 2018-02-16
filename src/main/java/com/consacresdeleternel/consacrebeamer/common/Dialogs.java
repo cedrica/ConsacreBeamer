@@ -136,4 +136,21 @@ public class Dialogs {
 		customDialog.showAndWait();
 	}
 
+	public static Dialog<ButtonType> confirm(String message, Window window) {
+		Label warning = new Label();
+		org.controlsfx.glyphfont.Glyph create = GlyphUtilities.create(Glyph.INFO, Color.LIGHTBLUE);
+		create.setContentDisplay(ContentDisplay.LEFT);
+		create.setFontSize(50);
+		warning.setGraphic(create);
+		Label lblMessage = new Label();
+		VBox vbBox = new VBox(lblMessage);
+		vbBox.setAlignment(Pos.CENTER);
+		lblMessage.setText(message);
+		HBox hBox = new HBox(warning, vbBox);
+		hBox.setSpacing(10);
+		Dialog<ButtonType> customDialog = customDialog(hBox, Modality.APPLICATION_MODAL, null, window);
+		customDialog.getDialogPane().getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
+		return customDialog;
+	}
+
 }

@@ -24,6 +24,7 @@ public class SongRepository extends BasicRepository<Song> {
 			createQuery.setString("songTitle", songTitle);
 			Song song = (Song) createQuery.uniqueResult();
 			tx.commit();
+			
 			return song;
 		} catch (HibernateException e) {
 			if (tx != null)

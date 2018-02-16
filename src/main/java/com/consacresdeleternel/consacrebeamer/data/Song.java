@@ -1,6 +1,7 @@
 package com.consacresdeleternel.consacrebeamer.data;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -22,7 +23,9 @@ public class Song {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String songTitle;
+	@Transient
 	private String songBody;
+	private byte[] songBodyAsByteArr;
 	private String copyRightTitle;
 	private String originalTitle;
 	private String autor;
@@ -47,6 +50,14 @@ public class Song {
     joinColumns=@JoinColumn(name="songId"),
     inverseJoinColumns=@JoinColumn(name="attachmentId"))
 	private List<Attachment> attachements = new ArrayList<>();
+
+	public byte[] getSongBodyAsByteArr() {
+		return songBodyAsByteArr;
+	}
+
+	public void setSongBodyAsByteArr(byte[] songBodyAsByteArr) {
+		this.songBodyAsByteArr = songBodyAsByteArr;
+	}
 
 	public String getSongTitle() {
 		return songTitle;
@@ -211,13 +222,13 @@ public class Song {
 
 	@Override
 	public String toString() {
-		return "Song [id=" + id + ", songTitle=" + songTitle + ", songBody=" + songBody + ", copyRightTitle="
-				+ copyRightTitle + ", originalTitle=" + originalTitle + ", autor=" + autor + ", musik=" + musik
-				+ ", traduction=" + traduction + ", copyRight=" + copyRight + ", nationalCopy=" + nationalCopy
-				+ ", rights=" + rights + ", ccliNumber=" + ccliNumber + ", bibleVerse=" + bibleVerse
-				+ ", additionalInfo=" + additionalInfo + ", songKey=" + songKey + ", tempo=" + tempo + ", songHtml="
-				+ songHtml + ", textFileReference=" + textFileReference + ", book=" + book + ", attachements="
-				+ attachements + "]";
+		return "Song [id=" + id + ", songTitle=" + songTitle + ", songBody=" + songBody + ", songBodyAsByteArr="
+				+ Arrays.toString(songBodyAsByteArr) + ", copyRightTitle=" + copyRightTitle + ", originalTitle="
+				+ originalTitle + ", autor=" + autor + ", musik=" + musik + ", traduction=" + traduction
+				+ ", copyRight=" + copyRight + ", nationalCopy=" + nationalCopy + ", rights=" + rights + ", ccliNumber="
+				+ ccliNumber + ", bibleVerse=" + bibleVerse + ", additionalInfo=" + additionalInfo + ", songKey="
+				+ songKey + ", tempo=" + tempo + ", songHtml=" + songHtml + ", textFileReference=" + textFileReference
+				+ ", book=" + book + ", attachements=" + attachements + "]";
 	}
 
 }

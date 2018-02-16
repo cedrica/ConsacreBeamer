@@ -7,6 +7,7 @@ import org.controlsfx.control.CheckListView;
 
 import com.consacresdeleternel.consacrebeamer.data.Song;
 import com.consacresdeleternel.consacrebeamer.events.CreateOrEditNewSongEvent;
+import com.consacresdeleternel.consacrebeamer.factory.SongListCellFactory;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -45,7 +46,7 @@ public class CreateBookController implements Initializable {
 				rootNode.setCenter(null);
 			}
 		});
-		clvSongs.setCellFactory(new SongListCellFactory(clvSongs));
+		clvSongs.setCellFactory(new SongListCellFactory(rootNode));
 		clvSongs.itemsProperty().bind(rootNode.songItemsProperty());
 
 		clvSongs.getSelectionModel().selectedItemProperty().addListener((obs,oldVal,newVal)->{

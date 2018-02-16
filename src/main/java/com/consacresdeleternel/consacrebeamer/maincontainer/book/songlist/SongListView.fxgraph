@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox
 import org.controlsfx.control.CheckListView
 import javafx.scene.control.CheckBox
 import javafx.geometry.Insets
+import javafx.scene.control.ListView
 
 dynamic component SongListView controlledby SongListController styledwith [
 	"/com/consacresdeleternel/consacrebeamer/maincontainer/book/songlist/SongListView.css" ] resourcefile
@@ -35,29 +36,37 @@ dynamic component SongListView controlledby SongListController styledwith [
 		},
 		top : HBox {
 			alignment : "CENTER_RIGHT",
-			Button {
+			spacing : 5,
+			padding : Insets{
+				bottom : 5
+			},
+			Button id btnImportSong{
 				graphic : Glyph {
 					icon : "DOWNLOAD",
 					fontFamily : "FontAwesome"
-				}
+				},
+				onAction : controllermethod onImportSong
 			},
-			Button {
+			Button  id btnExportSong{
 				graphic : Glyph {
 					icon : "UPLOAD",
 					fontFamily : "FontAwesome"
-				}
+				},
+				onAction : controllermethod onExportSong
 			},
-			Button {
+			Button  id btnEditSong{
 				graphic : Glyph {
 					icon : "EDIT",
 					fontFamily : "FontAwesome"
-				}
+				},
+				onAction : controllermethod onEditSong
 			},
-			Button {
+			Button  id btnDeleteSong{
 				graphic : Glyph {
 					icon : "TRASH",
 					fontFamily : "FontAwesome"
-				}
+				},
+				onAction : controllermethod onDeleteSong
 			}
 		},
 		left : VBox {
@@ -67,17 +76,19 @@ dynamic component SongListView controlledby SongListController styledwith [
 					onAction : controllermethod onSelectAll
 				},
 				CustomTextField id ctfSongName {
+					static hgrow : "ALWAYS",
 					right : Button {
 						graphic : Glyph {
 							icon : "SEARCH",
 							fontFamily : "FontAwesome"
 						}
 					},
-					promptText : rstring "csb.SongListView.enterSearchedSongName"
+					promptText : rstring "csb.SongListView.enterSearchedSongName",
+					onKeyReleased  : controllermethod onSearchSong
 				}
 
 			},
-			CheckListView < ? > id clvSongList {
+			ListView<?> id clvSongList {
 				static vgrow : "ALWAYS"
 			}
 		},

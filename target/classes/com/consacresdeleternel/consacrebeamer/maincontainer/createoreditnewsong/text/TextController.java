@@ -9,6 +9,8 @@ import org.controlsfx.validation.Validator;
 
 import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
+import com.sun.javafx.webkit.Accessor;
+import com.sun.webkit.WebPage;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -57,14 +59,15 @@ public class TextController implements Initializable {
 
 //	private void insertTextIntpHtmlEditor(){
 //		WebPage webPage = Accessor.getPageFor(webView.getEngine());  
-//        webPage.executeCommand("insertText", "$KeyCode.ENTER");  
+//        webPage.executeCommand("insertText", " $NEWLINE");  
 //	}
     
 	private void registerListener() {
 		webView.addEventHandler(KeyEvent.KEY_RELEASED, evt -> {
 			if (evt.getCode() == KeyCode.ENTER){
 				rootNode.setSongHtml(htmlEditor.getHtmlText());
-				rootNode.setSongText(Helper.html2text(htmlEditor.getHtmlText()));
+				rootNode.setSongText(Helper.html2text(htmlEditor.getHtmlText()).replace("<br>", "$newLIne"));
+				
 			}else{
 				rootNode.setSongHtml(htmlEditor.getHtmlText());
 				rootNode.setSongText(Helper.html2text(htmlEditor.getHtmlText()));

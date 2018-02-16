@@ -14,6 +14,7 @@ import com.consacresdeleternel.consacrebeamer.events.ExtrasMenuEvent;
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.BookView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookView;
+import com.consacresdeleternel.consacrebeamer.maincontainer.songpartviewer.SongPartViewerView;
 import com.consacresdeleternel.consacrebeamer.repository.BookRepository;
 
 import javafx.scene.control.ButtonType;
@@ -25,6 +26,8 @@ public class ExtrasMenuManager {
 	private BookRepository bookRepository;
 	@Inject
 	private DialogManager dialogManager;
+	@Inject
+	private ValueObjectManager valueObjectManager;
 
 	public void init(MainContainerView mainContainerView) {
 		mainContainerView.addEventHandler(ExtrasMenuEvent.CREATE_NEW_BOOK,
@@ -32,6 +35,7 @@ public class ExtrasMenuManager {
 		mainContainerView.addEventHandler(ExtrasMenuEvent.SHOW_LIBRARY,
 				evt -> handleShowLibrary(mainContainerView, evt));
 	}
+
 
 	private void handleShowLibrary(MainContainerView mainContainerView, ExtrasMenuEvent evt) {
 		evt.consume();

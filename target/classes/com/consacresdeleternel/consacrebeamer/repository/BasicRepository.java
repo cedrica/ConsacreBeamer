@@ -36,10 +36,12 @@ public class BasicRepository<T> {
 			tx = session.beginTransaction();
 			session.saveOrUpdate(o);
 			tx.commit();
+			
 			return o;
 		} catch (HibernateException | IllegalArgumentException |SecurityException e) {
 			if (tx != null)
 				tx.rollback();
+			
 			LOG.error("Object konnte nicht gespeichert werden: "+e.getMessage());
 			return null;
 		}
@@ -55,6 +57,7 @@ public class BasicRepository<T> {
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
+			
 			e.printStackTrace();
 		}
 	}
@@ -66,11 +69,13 @@ public class BasicRepository<T> {
 			@SuppressWarnings("unchecked")
 			T entity = (T) session.get(this.clazz, id);
 			tx.commit();
+			
 			return entity;
 
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
+			
 			e.printStackTrace();
 		}
 		return null;
@@ -84,11 +89,13 @@ public class BasicRepository<T> {
 			String sql = "select b from "+this.clazz.getSimpleName()+" b";
 			Query query = session.createQuery(sql);
 			tx.commit();
+			
 			return query.list();
 
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
+			
 			e.printStackTrace();
 		}
 		return null;

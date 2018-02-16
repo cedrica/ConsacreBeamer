@@ -11,14 +11,17 @@ import org.apache.log4j.Logger;
 import com.consacresdeleternel.consacrebeamer.common.Dialogs;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.data.Book;
+import com.consacresdeleternel.consacrebeamer.data.Song;
 import com.consacresdeleternel.consacrebeamer.events.BookEvent;
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.BookView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.songlist.SongListView;
 import com.consacresdeleternel.consacrebeamer.repository.BookRepository;
+import com.consacresdeleternel.consacrebeamer.repository.SongRepository;
 
 import javafx.collections.FXCollections;
+import javafx.collections.transformation.FilteredList;
 import javafx.geometry.Side;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -29,7 +32,9 @@ public class BookManager {
 	@Inject
 	private DialogManager dialogManager;
 	@Inject
-	BookRepository bookRepository;
+	private BookRepository bookRepository;
+	@Inject
+	private SongRepository songRepository;
 
 	public void init(MainContainerView mainContainerView) {
 		mainContainerView.addEventHandler(BookEvent.REMOVE_BOOK, evt -> {
@@ -37,6 +42,29 @@ public class BookManager {
 		});
 		mainContainerView.addEventHandler(BookEvent.EDIT_BOOK, evt -> handleEditBook(mainContainerView, evt));
 		mainContainerView.addEventHandler(BookEvent.SHOW_SONG_LIST, evt -> handleShowSongList(mainContainerView, evt));
+		mainContainerView.addEventHandler(BookEvent.DELETE_SONGS, evt -> handleDeleteSong(mainContainerView, evt));
+	}
+
+	private void handleDeleteSong(MainContainerView mainContainerView, BookEvent evt) {
+		evt.consume();
+		SongListView songListView = (SongListView)evt.getTarget();
+		Dialog<ButtonType> confirm = Dialogs.confirm(Localization.asKey("csb.dialogs.ComfirmDeleteSong"), mainContainerView.getScene().getWindow());
+		Optional<ButtonType> showAndWait = confirm.showAndWait();
+		if(showAndWait.isPresent() && showAndWait.get() == ButtonType.YES){
+			List<Song> songs = evt.getSongs();
+			Long bookId;
+			if(songs != null && !songs.isEmpty()){
+				bookId = songs.get(0).getBook().getId();
+				for (Song song : songs) {
+					Song findById = songRepository.findById(song.getId());
+					songRepository.delete(findById);
+				}
+				Book book = bookRepository.findById(bookId);
+				songListView.setSongItems(new FilteredList<>(FXCollections.observableList(book.getSongs())));
+			}
+			
+		}
+		
 	}
 
 	private void handleShowSongList(MainContainerView mainContainerView, BookEvent evt) {
@@ -47,6 +75,8 @@ public class BookManager {
 		} else {
 			mainContainerView.getHiddenSidesPane().setPinnedSide(Side.TOP);
 			SongListView songListView = new SongListView();
+			Book book = evt.getBook();
+			songListView.setSongItems(new FilteredList<>(FXCollections.observableList(book.getSongs())));
 			mainContainerView.getHiddenSidesPane().setContent(songListView);
 			mainContainerView.getHiddenSidesPane().setVisible(true);
 		}

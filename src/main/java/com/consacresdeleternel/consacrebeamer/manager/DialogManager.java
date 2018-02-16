@@ -1,14 +1,19 @@
 package com.consacresdeleternel.consacrebeamer.manager;
 
+import org.apache.poi.hssf.record.ScenarioProtectRecord;
+
 import com.consacresdeleternel.consacrebeamer.common.Dialogs;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.CreateOrEditNewSongView;
+import com.consacresdeleternel.consacrebeamer.maincontainer.songpartviewer.SongPartViewerView;
 
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class DialogManager {
@@ -38,5 +43,14 @@ public class DialogManager {
 		lookupButton.disableProperty().bind(createOrEditNewSongView.getTextView().invalidProperty()
 				.or(createOrEditNewSongView.getCopyRightsView().invalidProperty()));
 		return dialogStage;
+	}
+
+	public Stage showStartPresentationView(SongPartViewerView songPartViewerView, Window window) {
+//		Dialog<ButtonType> dialogStage = Dialogs.customDialog(songPartViewerView, Modality.NONE,
+//				Localization.asKey("csb.startPresentation.title"), window);
+		Stage stage = new Stage();
+		Scene scene = new Scene(songPartViewerView);
+		stage.setScene(scene);
+		return stage;
 	}
 }
