@@ -6,7 +6,7 @@ import com.consacresdeleternel.consacrebeamer.events.FileMenuEvent;
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.launcher.LauncherView;
 import com.consacresdeleternel.consacrebeamer.manager.MainContainerManger;
-import com.consacresdeleternel.consacrebeamer.task.LauncherTask;
+import com.consacresdeleternel.consacrebeamer.tasks.LauncherTask;
 
 import javafx.application.Application;
 import javafx.application.Platform;

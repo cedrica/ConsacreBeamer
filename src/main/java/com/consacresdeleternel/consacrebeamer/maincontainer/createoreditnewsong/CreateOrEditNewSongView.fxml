@@ -13,7 +13,7 @@
 <?scenebuilder-stylesheet /com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/CreateOrEditNewSongView.css?>
 <?scenebuilder-stylesheet /css/svg-icons.css?>
 
-<fx:root xmlns:fx="http://javafx.com/fxml" type="CreateOrEditNewSongView" fx:id="rootNode" fx:controller="com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.CreateOrEditNewSongController" prefHeight="500">
+<fx:root xmlns:fx="http://javafx.com/fxml" type="CreateOrEditNewSongView" fx:id="rootNode" fx:controller="com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.CreateOrEditNewSongController">
 
 	<stylesheets>
 		<String fx:value="/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/CreateOrEditNewSongView.css" />

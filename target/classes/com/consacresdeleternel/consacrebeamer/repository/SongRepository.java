@@ -41,13 +41,13 @@ public class SongRepository extends BasicRepository<Song> {
 		return null;
 	}
 
-	public List<Song> findByBookId(Long bookId) {
+	public List<Song> findByBookId(Long songId) {
 		Session session = null;
 		session = sessionFactory.openSession();
 		try {
 			tx = session.beginTransaction();
-			Query createQuery = session.createQuery("from Song s where s.bookId = :bookId");
-			createQuery.setParameter("bookId", bookId);
+			Query createQuery = session.createQuery("from Song s where s.songId = :songId");
+			createQuery.setParameter("songId", songId);
 			List<Song> list = createQuery.list();
 			tx.commit();
 			
@@ -59,4 +59,21 @@ public class SongRepository extends BasicRepository<Song> {
 		}
 		return null;
 	}
+	
+	public void removeById(Long songId) {
+		Session session = null;
+		session = sessionFactory.openSession();
+		try {
+			tx = session.beginTransaction();
+			Query createQuery = session.createQuery("delete from Song s where s.id = :songId");
+			createQuery.setParameter("songId", songId);
+			createQuery.executeUpdate();
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		}
+	}
+	
 }

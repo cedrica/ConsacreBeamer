@@ -34,6 +34,10 @@ public class SongPartViewerController implements Initializable {
 				String parragraph = matcher.group(0);
 				Document doc = Jsoup.parse(parragraph);
 				String text = doc.body().text();
+				if(text == null || text.trim().isEmpty()){
+					treffer = false;
+					break;
+				}
 				Label row = new Label(text);
 				row.setStyle("-fx-font-size:40px;");
 				vbRows.getChildren().add(row);

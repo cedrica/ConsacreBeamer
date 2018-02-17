@@ -1,4 +1,4 @@
-package com.consacresdeleternel.consacrebeamer.task;
+package com.consacresdeleternel.consacrebeamer.tasks;
 
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;

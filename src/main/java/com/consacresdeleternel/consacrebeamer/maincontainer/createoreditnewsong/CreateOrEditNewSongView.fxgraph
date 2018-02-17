@@ -28,7 +28,6 @@ dynamic component CreateOrEditNewSongView controlledby CreateOrEditNewSongContro
 			"/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/CreateOrEditNewSongView.css",
 			"/css/svg-icons.css"
 		],
-		prefHeight : 500,
 		tabs : [
 			
 			Tab {

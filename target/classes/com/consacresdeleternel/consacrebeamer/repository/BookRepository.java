@@ -39,4 +39,23 @@ public class BookRepository extends BasicRepository<Book> {
 		return null;
 	}
 
+	public void removeById(Long bookId) {
+		Session session = null;
+		session = sessionFactory.openSession();
+		try {
+			tx = session.beginTransaction();
+			Query createQuery = session.createQuery("delete from Song s where bookId = :bookId");
+			createQuery.setParameter("bookId", bookId);
+			createQuery.executeUpdate();
+			
+			Query createQuery2 = session.createQuery("delete from Book b where b.id = :bookId");
+			createQuery2.setParameter("bookId", bookId);
+			createQuery2.executeUpdate();
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		}
+	}
 }

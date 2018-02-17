@@ -21,13 +21,6 @@ dynamic component SongPartViewerView controlledby SongPartViewerController style
 		styleClass : [
 			"song-part-viewer-view"
 		],
-		left : VBox {
-			styleClass : [
-				"left-right"
-			],
-			prefWidth : 200
-
-		},
 		center : HBox {
 			VBox id vbRows{
 				static hgrow : "ALWAYS",
@@ -35,25 +28,17 @@ dynamic component SongPartViewerView controlledby SongPartViewerController style
 				style : "-fx-background-color:#fff",
 				Label
 				{
-					style : "-fx-font-size:40px",
-					text : "jhjkbh"
-//					graphic : ImageView{
-//						fitHeight : 300,
-//						fitWidth : 300,
-//						image : Image{
-//							 url : location "/icons/consacre-beamer-icon.PNG"
-//						}
-//					}
+					style : "-fx-font-size:30px",
+					graphic : ImageView{
+						fitHeight : 300,
+						fitWidth : 300,
+						image : Image{
+							 url : location "/icons/consacre-beamer-icon.PNG"
+						}
+					}
 				}
 			}
 
-		},
-		right : VBox {
-			styleClass : [
-				"left-right"
-			],
-			prefWidth : 200
 		}
-
 	}
 }

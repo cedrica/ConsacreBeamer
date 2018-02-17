@@ -2,6 +2,7 @@ package com.consacresdeleternel.consacrebeamer.maincontainer.book.songlist;
 
 import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
+import com.consacresdeleternel.consacrebeamer.data.Book;
 import com.consacresdeleternel.consacrebeamer.data.Song;
 
 import javafx.beans.property.ListProperty;
@@ -20,6 +21,7 @@ public class SongListView extends BorderPane {
 			new FilteredList<>(FXCollections.observableArrayList()));
 	private ListProperty<Song> selectedSongItems = new SimpleListProperty<>(FXCollections.observableArrayList());
 	private ObjectProperty<Boolean> selectAll = new SimpleObjectProperty<>(false);
+	private ObjectProperty<Book> book = new SimpleObjectProperty<>();
 	private StringProperty searchedSongName = new SimpleStringProperty();
 	private StringProperty bookName = new SimpleStringProperty();
 
@@ -86,5 +88,20 @@ public class SongListView extends BorderPane {
 	public final void setBookName(final String bookName) {
 		this.bookNameProperty().set(bookName);
 	}
+
+	public final ObjectProperty<Book> bookProperty() {
+		return this.book;
+	}
+	
+
+	public final Book getBook() {
+		return this.bookProperty().get();
+	}
+	
+
+	public final void setBook(final Book book) {
+		this.bookProperty().set(book);
+	}
+	
 
 }

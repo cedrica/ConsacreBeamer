@@ -31,6 +31,22 @@ public class FileUtil {
 		return false;
 	}
 
+	public static void removeFile(String fileName) {
+		try {
+			File file = new File(System.getProperty("user.dir").replace("\\", "/") + "/songs/" + fileName);
+			if (file.delete()) {
+				LOG.info(file.getName() + " is deleted!");
+			} else {
+				LOG.error("Delete operation is failed.");
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+	}
+
 	private static boolean isFileNameCorrect(String fileName) {
 		return fileName.trim().endsWith(".txt");
 	}

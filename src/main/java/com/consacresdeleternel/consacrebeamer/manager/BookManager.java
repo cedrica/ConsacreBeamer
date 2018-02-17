@@ -19,6 +19,8 @@ import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.Crea
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.songlist.SongListView;
 import com.consacresdeleternel.consacrebeamer.repository.BookRepository;
 import com.consacresdeleternel.consacrebeamer.repository.SongRepository;
+import com.consacresdeleternel.consacrebeamer.tasks.LoadBookTask;
+import com.consacresdeleternel.consacrebeamer.utils.FileUtil;
 
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
@@ -35,30 +37,41 @@ public class BookManager {
 	private BookRepository bookRepository;
 	@Inject
 	private SongRepository songRepository;
+	@Inject
+	private ValueObjectManager valueObjectManager;
+	@Inject
+	private TaskManager taskManager;
 
 	public void init(MainContainerView mainContainerView) {
-		mainContainerView.addEventHandler(BookEvent.REMOVE_BOOK, evt -> {
-			evt.consume();
-			Dialog<ButtonType> confirm = Dialogs.confirm(Localization.asKey("csb.dialogs.confirmRemoveBook"), mainContainerView.getScene().getWindow());
-			Optional<ButtonType> showAndWait = confirm.showAndWait();
-			if(showAndWait.isPresent() && showAndWait.get() == ButtonType.YES){
-				Book book = evt.getBook();
-				List<Song> songs = book.getSongs();
-				bookRepository.delete(book);
+		mainContainerView.addEventHandler(BookEvent.REMOVE_BOOK, evt -> handleRemoveBook(mainContainerView, evt));
+		mainContainerView.addEventHandler(BookEvent.EDIT_BOOK, evt -> handleEditBook(mainContainerView, evt));
+		mainContainerView.addEventHandler(BookEvent.SHOW_SONG_LIST, evt -> handleShowSongList(mainContainerView, evt));
+		mainContainerView.addEventHandler(BookEvent.DELETE_SONGS, evt -> handleDeleteSong(mainContainerView, evt));
+	}
+
+	private void handleRemoveBook(MainContainerView mainContainerView, BookEvent evt) {
+		evt.consume();
+		Dialog<ButtonType> confirm = Dialogs.confirm(Localization.asKey("csb.dialogs.confirmRemoveBook"),
+				mainContainerView.getScene().getWindow());
+		Optional<ButtonType> showAndWait = confirm.showAndWait();
+		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.YES) {
+			Book book = evt.getBook();
+			bookRepository.removeById(book.getId());
+			LoadBookTask loadBookTask = new LoadBookTask(bookRepository);
+			new Thread(loadBookTask).start();
+			taskManager.addTask(loadBookTask);
+			loadBookTask.valueProperty().addListener((obs, oldVal, newVal) -> {
+				valueObjectManager.setBookItems(FXCollections.observableList(newVal));
 				mainContainerView.getFlowPane().getChildren().clear();
-				List<Book> books = bookRepository.findAll();
-				books.stream().forEach(b -> {
+				newVal.stream().forEach(b -> {
 					BookView bookView = new BookView();
 					bookView.setBook(b);
 					bookView.setBookName(b.getTitle());
 					mainContainerView.getFlowPane().getChildren().add(bookView);
 				});
-			}
+			});
 			
-		});
-		mainContainerView.addEventHandler(BookEvent.EDIT_BOOK, evt -> handleEditBook(mainContainerView, evt));
-		mainContainerView.addEventHandler(BookEvent.SHOW_SONG_LIST, evt -> handleShowSongList(mainContainerView, evt));
-		mainContainerView.addEventHandler(BookEvent.DELETE_SONGS, evt -> handleDeleteSong(mainContainerView, evt));
+		}
 	}
 
 	private void handleDeleteSong(MainContainerView mainContainerView, BookEvent evt) {
@@ -70,11 +83,12 @@ public class BookManager {
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.YES) {
 			List<Song> songs = evt.getSongs();
 			if (songs != null && !songs.isEmpty()) {
-				Book book = songs.get(0).getBook();
+				Long bookId = songs.get(0).getBook().getId();
 				songs.stream().forEach(s -> {
-					songRepository.delete(s);
+					songRepository.removeById(s.getId());
+					FileUtil.removeFile(s.getTextFileReference());
 				});
-				Book newBook = bookRepository.findById(book.getId());
+				Book newBook = bookRepository.findById(bookId);
 				Dialogs.success(Localization.asKey("csb.dialogs.songsDeletingSuccessfull"),
 						mainContainerView.getScene().getWindow());
 				songListView.setSongItems(new FilteredList<>(FXCollections.observableList(newBook.getSongs())));
@@ -95,6 +109,7 @@ public class BookManager {
 			SongListView songListView = new SongListView();
 			Book book = evt.getBook();
 			songListView.setBookName(book.getTitle());
+			songListView.setBook(book);
 			songListView.setSongItems(new FilteredList<>(FXCollections.observableList(book.getSongs())));
 			mainContainerView.getHiddenSidesPane().setContent(songListView);
 			mainContainerView.getHiddenSidesPane().setVisible(true);
@@ -117,7 +132,6 @@ public class BookManager {
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
 			LOG.info("Edit mode");
 			book.setTitle(createBookView.getBookName());
-//			book.setSongs(createBookView.getSongItems());
 			book = bookRepository.save(book);
 			if (book == null) {
 				Dialogs.error(Localization.asKey("csb.ExtrasMenu.bookcouldNotBeCreated"),
@@ -125,16 +139,22 @@ public class BookManager {
 				return;
 			}
 			mainContainerView.fireEvent(new BookEvent(BookEvent.RELOAD_BOOKS));
-			List<Book> books = bookRepository.findAll();
-			mainContainerView.getFlowPane().getChildren().clear();
-			books.stream().forEach(b -> {
-				BookView bookView = new BookView();
-				bookView.setBook(b);
-				bookView.setBookName(b.getTitle());
-				mainContainerView.getFlowPane().getChildren().add(bookView);
+
+			LoadBookTask loadBookTask = new LoadBookTask(bookRepository);
+			new Thread(loadBookTask).start();
+			taskManager.addTask(loadBookTask);
+			loadBookTask.valueProperty().addListener((obs, oldVal, newVal) -> {
+				valueObjectManager.setBookItems(FXCollections.observableList(newVal));
+				newVal.stream().forEach(b -> {
+					BookView bookView = new BookView();
+					bookView.setBook(b);
+					bookView.setBookName(b.getTitle());
+					mainContainerView.getFlowPane().getChildren().add(bookView);
+				});
+				Dialogs.success(Localization.asKey("csb.ExtrasMenu.bookSuccessfullyCreated"),
+						mainContainerView.getScene().getWindow());
 			});
-			Dialogs.success(Localization.asKey("csb.ExtrasMenu.bookSuccessfullyCreated"),
-					mainContainerView.getScene().getWindow());
+			mainContainerView.getFlowPane().getChildren().clear();
 
 		}
 	}

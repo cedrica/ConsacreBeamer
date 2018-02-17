@@ -3,15 +3,11 @@ package com.consacresdeleternel.consacrebeamer.manager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.controlsfx.glyphfont.FontAwesome;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 import com.consacresdeleternel.consacrebeamer.common.Dialogs;
 import com.consacresdeleternel.consacrebeamer.common.Helper;
