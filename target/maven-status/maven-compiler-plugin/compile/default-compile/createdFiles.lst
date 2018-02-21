@@ -37,7 +37,7 @@ com\consacresdeleternel\consacrebeamer\utils\FileUtil.class
 com\consacresdeleternel\consacrebeamer\manager\FileMenuManager.class
 com\consacresdeleternel\consacrebeamer\common\Helper$3.class
 com\consacresdeleternel\consacrebeamer\maincontainer\listitem\ListItemView.class
-com\consacresdeleternel\consacrebeamer\task\LauncherTask.class
+com\consacresdeleternel\consacrebeamer\tasks\LauncherTask.class
 com\consacresdeleternel\consacrebeamer\manager\ValueObjectManager.class
 com\consacresdeleternel\consacrebeamer\ConsacreBeamerApp.class
 com\consacresdeleternel\consacrebeamer\maincontainer\songpartviewer\SongPartViewerController.class

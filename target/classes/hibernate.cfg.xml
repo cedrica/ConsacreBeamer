@@ -14,11 +14,15 @@
 
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/consacrebeamerdb</property>
 		<property name="connection.username">root</property>
-		<property name="connection.password">root</property>
+		<property name="connection.password"></property>
 
 		<!-- JDBC Connection pool -->
-		<property name="connection.pool_size">10</property>
 
+		<property name="hibernate.c3p0.min_size">5</property>
+		<property name="hibernate.c3p0.max_size">20</property>
+		<property name="hibernate.c3p0.timeout">300</property>
+		<property name="hibernate.c3p0.max_statements">50</property>
+		<property name="hibernate.c3p0.idle_test_period">3000</property>
 		<!-- SQL Dialect -->
 		<property name="dialect"> org.hibernate.dialect.MySQLDialect</property>
 
@@ -41,31 +45,31 @@
 	</session-factory>
 
 
-<!-- 	<session-factory> -->
+	<!-- <session-factory> -->
 
-<!-- 		<property name="connection.driver_class">org.apache.derby.jdbc.ClientDriver</property> -->
-<!-- 		<property name="connection.url">jdbc:derby://localhost:1527/ConsacreBeamerDB;create=true</property> -->
-<!-- 		<property name="connection.username">root</property> -->
-<!-- 		<property name="connection.password">root</property> -->
+	<!-- <property name="connection.driver_class">org.apache.derby.jdbc.ClientDriver</property> -->
+	<!-- <property name="connection.url">jdbc:derby://localhost:1527/ConsacreBeamerDB;create=true</property> -->
+	<!-- <property name="connection.username">root</property> -->
+	<!-- <property name="connection.password">root</property> -->
 
-	<!-- JDBC Connection pool --> 
-<!-- 		<property name="connection.pool_size">10</property> -->
+	<!-- JDBC Connection pool -->
+	<!-- <property name="connection.pool_size">10</property> -->
 
-	<!-- SQL Dialect --> 
-<!-- 		<property name="dialect">org.hibernate.dialect.DerbyDialect</property> -->
+	<!-- SQL Dialect -->
+	<!-- <property name="dialect">org.hibernate.dialect.DerbyDialect</property> -->
 
-<!-- 		<property name="current_session_context_class"></property> -->
+	<!-- <property name="current_session_context_class"></property> -->
 
-<!-- 		<property name="hbm2ddl.auto">update</property> -->
+	<!-- <property name="hbm2ddl.auto">update</property> -->
 
-<!-- 		<property name="current_session_context_class">thread</property> -->
+	<!-- <property name="current_session_context_class">thread</property> -->
 
-<!-- 		<property name="show_sql">true</property> -->
+	<!-- <property name="show_sql">true</property> -->
 
-<!-- 		<mapping class="com.consacresdeleternel.consacrebeamer.data.Song"></mapping> -->
-<!-- 		<mapping class="com.consacresdeleternel.consacrebeamer.data.Book"></mapping> -->
+	<!-- <mapping class="com.consacresdeleternel.consacrebeamer.data.Song"></mapping> -->
+	<!-- <mapping class="com.consacresdeleternel.consacrebeamer.data.Book"></mapping> -->
 
-<!-- 	</session-factory> -->
+	<!-- </session-factory> -->
 
 
 
