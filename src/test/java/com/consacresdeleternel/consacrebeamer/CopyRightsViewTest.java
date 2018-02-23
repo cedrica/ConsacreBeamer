@@ -20,11 +20,5 @@ public class CopyRightsViewTest extends ApplicationTest {
 
 	@Test
 	public void testLookAnfill() {
-		try {
-			Thread.sleep(20000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }

@@ -24,13 +24,6 @@ public class ListItemViewTest extends ApplicationTest {
 		Platform.runLater(() -> {
 			listItemView.setItemName("Jesus ich liebe dich");
 		});
-
-		try {
-			Thread.sleep(20000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 }

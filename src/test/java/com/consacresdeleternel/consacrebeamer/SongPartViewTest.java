@@ -31,12 +31,5 @@ public class SongPartViewTest extends ApplicationTest {
 							+ "Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore"
 							+ "Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore Lorem ipsum dolore");
 		});
-
-		try {
-			Thread.sleep(20000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }
