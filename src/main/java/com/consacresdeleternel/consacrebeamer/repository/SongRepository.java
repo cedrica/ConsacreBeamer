@@ -31,7 +31,7 @@ public class SongRepository extends BasicRepository<Song> {
 			tx.commit();
 			
 			return song;
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			if (tx != null)
 				tx.rollback();
 			LOG.error("Die suche des Lied via title konnte nicht durchgeführt werden");
@@ -52,7 +52,7 @@ public class SongRepository extends BasicRepository<Song> {
 			tx.commit();
 			
 			return list;
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
@@ -69,7 +69,7 @@ public class SongRepository extends BasicRepository<Song> {
 			createQuery.setParameter("songId", songId);
 			createQuery.executeUpdate();
 			tx.commit();
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();

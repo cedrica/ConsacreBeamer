@@ -28,7 +28,7 @@ public class BookRepository extends BasicRepository<Book> {
 			tx.commit();
 			
 			return book;
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			if (tx != null)
 				tx.rollback();
 
@@ -52,7 +52,7 @@ public class BookRepository extends BasicRepository<Book> {
 			createQuery2.setParameter("bookId", bookId);
 			createQuery2.executeUpdate();
 			tx.commit();
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
