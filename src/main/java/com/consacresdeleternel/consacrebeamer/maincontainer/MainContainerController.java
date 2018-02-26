@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import org.controlsfx.control.HiddenSidesPane;
 import org.controlsfx.control.MaskerPane;
+import org.controlsfx.control.textfield.CustomTextField;
 
 import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.enums.EditMenuEnum;
@@ -23,7 +24,6 @@ import com.consacresdeleternel.consacrebeamer.events.FileMenuEvent;
 import com.consacresdeleternel.consacrebeamer.events.HelpMenuEvent;
 import com.consacresdeleternel.consacrebeamer.events.InsertMenuEvent;
 import com.consacresdeleternel.consacrebeamer.events.PresentationMenuEvent;
-import com.consacresdeleternel.consacrebeamer.manager.CustomAutoCompleteTextFields;
 import com.consacresdeleternel.consacrebeamer.manager.ValueObjectManager;
 
 import javafx.event.EventType;
@@ -40,7 +40,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.PopupWindow.AnchorLocation;
-import org.controlsfx.control.textfield.CustomTextField;
 
 public class MainContainerController implements Initializable {
 

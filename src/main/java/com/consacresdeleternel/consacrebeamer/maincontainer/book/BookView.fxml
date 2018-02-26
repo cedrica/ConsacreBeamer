@@ -26,7 +26,7 @@
 			</ImageView>
 		</graphic>
 	</Button>
-	<HBox focusTraversable="true" alignment="CENTER" onMouseClicked="#onOpenBook"> 
+	<HBox focusTraversable="true" alignment="CENTER" prefHeight="200" prefWidth="200" onMouseClicked="#onOpenBook"> 
 		<VBox alignment="CENTER" style="-fx-background-color:transparent;"> 
 			<TextFlow maxWidth="100"> 
 				<Text fx:id="txtBookTitle" style="-fx-fill:#fff;font-weight:bold;"/> 

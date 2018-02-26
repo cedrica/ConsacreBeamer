@@ -7,8 +7,6 @@ import java.util.Optional;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import org.controlsfx.glyphfont.FontAwesome;
-
 import com.consacresdeleternel.consacrebeamer.common.Dialogs;
 import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
@@ -36,7 +34,6 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 
 @Singleton
 public class FileMenuManager {
@@ -284,23 +281,23 @@ public class FileMenuManager {
 		ContextMenu contextMenu = new ContextMenu();
 
 		MenuItem edit = new MenuItem();
-		edit.setGraphic(Helper.setIcon(Color.LIGHTBLUE, FontAwesome.Glyph.EDIT));
+		edit.setGraphic(Helper.setImageView("/icons/icons8-edit-file-24.png"));
 		edit.setText(Localization.asKey("csb.listItemViewContextMenu.edit"));
 		edit.setOnAction(evt -> editSong(listItemView));
 
 		MenuItem delete = new MenuItem();
-		delete.setGraphic(Helper.setIcon(Color.LIGHTBLUE, FontAwesome.Glyph.TRASH));
+		delete.setGraphic(Helper.setImageView("/icons/icons8-trash-50.png"));
 		delete.setText(Localization.asKey("csb.listItemViewContextMenu.delete"));
 		delete.setOnAction(
 				evt -> removeFromList(mainContainerView, mainContainerView.getListViewContainer(), listItemView));
 
 		MenuItem pushUp = new MenuItem();
-		pushUp.setGraphic(Helper.setIcon(Color.LIGHTBLUE, FontAwesome.Glyph.ARROW_UP));
+		pushUp.setGraphic(Helper.setImageView("/icons/icons8-arrow-up-50.png"));
 		pushUp.setText(Localization.asKey("csb.listItemViewContextMenu.arrowUp"));
 		pushUp.setOnAction(evt -> pushUp(mainContainerView.getListViewContainer(), listItemView, pushUp));
 
 		MenuItem pushDown = new MenuItem();
-		pushDown.setGraphic(Helper.setIcon(Color.LIGHTBLUE, FontAwesome.Glyph.ARROW_DOWN));
+		pushDown.setGraphic(Helper.setImageView("/icons/icons8-arrow-down-50.png"));
 		pushDown.setText(Localization.asKey("csb.listItemViewContextMenu.arrowDown"));
 		pushDown.setOnAction(evt -> pushDown(mainContainerView.getListViewContainer(), listItemView, pushDown));
 

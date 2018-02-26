@@ -1,5 +1,6 @@
 package com.consacresdeleternel.consacrebeamer.maincontainer.book.songlist
 
+
 import javafx.scene.layout.AnchorPane
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.songlist.SongListController
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.songlist.SongListView
@@ -15,6 +16,8 @@ import org.controlsfx.control.CheckListView
 import javafx.scene.control.CheckBox
 import javafx.geometry.Insets
 import javafx.scene.control.ListView
+import javafx.scene.image.ImageView
+import javafx.scene.image.Image
 
 dynamic component SongListView controlledby SongListController styledwith [
 	"/com/consacresdeleternel/consacrebeamer/maincontainer/book/songlist/SongListView.css" ] resourcefile
@@ -41,7 +44,7 @@ dynamic component SongListView controlledby SongListController styledwith [
 				bottom : 5
 			},
 			HBox {
-				Label id lblBookName{
+				Label id lblBookName {
 					style : "-fx-font-weight:bold"
 				},
 				static hgrow : "ALWAYS",
@@ -49,37 +52,52 @@ dynamic component SongListView controlledby SongListController styledwith [
 
 			},
 			Button id btnAddToListView {
-				graphic : Glyph {
-					icon : "BARS",
-					fontFamily : "FontAwesome"
+				graphic : ImageView {
+					fitHeight : 20,
+					fitWidth : 20,
+					image : Image {
+						url : location "/icons/icons8-bars-filled-50.png"
+					}
 				},
 				onAction : controllermethod onAddToListView
 			},
 			Button id btnImportSong {
-				graphic : Glyph {
-					icon : "DOWNLOAD",
-					fontFamily : "FontAwesome"
+				graphic : ImageView {
+					fitHeight : 20,
+					fitWidth : 20,
+					image : Image {
+						url : location "/icons/icons8-download-40.png"
+					}
 				},
 				onAction : controllermethod onImportSong
 			},
 			Button id btnExportSong {
-				graphic : Glyph {
-					icon : "UPLOAD",
-					fontFamily : "FontAwesome"
+				graphic : ImageView {
+					fitHeight : 20,
+					fitWidth : 20,
+					image : Image {
+						url : location "/icons/icons8-upload-24.png"
+					}
 				},
 				onAction : controllermethod onExportSong
 			},
 			Button id btnEditSong {
-				graphic : Glyph {
-					icon : "EDIT",
-					fontFamily : "FontAwesome"
+				graphic : ImageView {
+					fitHeight : 20,
+					fitWidth : 20,
+					image : Image {
+						url : location "/icons/icons8-edit-file-24.png"
+					}
 				},
 				onAction : controllermethod onEditSong
 			},
 			Button id btnDeleteSong {
-				graphic : Glyph {
-					icon : "TRASH",
-					fontFamily : "FontAwesome"
+				graphic : ImageView {
+					fitHeight : 20,
+					fitWidth : 20,
+					image : Image {
+						url : location "/icons/icons8-trash-50.png"
+					}
 				},
 				onAction : controllermethod onDeleteSong
 			}
@@ -93,9 +111,13 @@ dynamic component SongListView controlledby SongListController styledwith [
 				CustomTextField id ctfSongName {
 					static hgrow : "ALWAYS",
 					right : Button {
-						graphic : Glyph {
-							icon : "SEARCH",
-							fontFamily : "FontAwesome"
+					style : "-fx-background-color:transparent",
+						graphic : ImageView {
+							fitHeight : 20,
+							fitWidth : 20,
+							image : Image {
+								url : location "/icons/icons8-search-26.png"
+							}
 						}
 					},
 					promptText : rstring "csb.SongListView.enterSearchedSongName",

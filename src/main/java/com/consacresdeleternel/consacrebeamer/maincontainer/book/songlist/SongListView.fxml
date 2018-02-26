@@ -11,6 +11,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import org.controlsfx.control.textfield.CustomTextField?>
@@ -36,27 +38,47 @@
 			</HBox>
 			<Button fx:id="btnAddToListView" onAction="#onAddToListView"> 
 				<graphic>
-					<Glyph icon="BARS" fontFamily="FontAwesome"/> 
+					<ImageView fitHeight="20" fitWidth="20"> 
+						<image>
+							<Image url="@/icons/icons8-bars-filled-50.png"/> 
+						</image>
+					</ImageView>
 				</graphic>
 			</Button>
 			<Button fx:id="btnImportSong" onAction="#onImportSong"> 
 				<graphic>
-					<Glyph icon="DOWNLOAD" fontFamily="FontAwesome"/> 
+					<ImageView fitHeight="20" fitWidth="20"> 
+						<image>
+							<Image url="@/icons/icons8-download-40.png"/> 
+						</image>
+					</ImageView>
 				</graphic>
 			</Button>
 			<Button fx:id="btnExportSong" onAction="#onExportSong"> 
 				<graphic>
-					<Glyph icon="UPLOAD" fontFamily="FontAwesome"/> 
+					<ImageView fitHeight="20" fitWidth="20"> 
+						<image>
+							<Image url="@/icons/icons8-upload-24.png"/> 
+						</image>
+					</ImageView>
 				</graphic>
 			</Button>
 			<Button fx:id="btnEditSong" onAction="#onEditSong"> 
 				<graphic>
-					<Glyph icon="EDIT" fontFamily="FontAwesome"/> 
+					<ImageView fitHeight="20" fitWidth="20"> 
+						<image>
+							<Image url="@/icons/icons8-edit-file-24.png"/> 
+						</image>
+					</ImageView>
 				</graphic>
 			</Button>
 			<Button fx:id="btnDeleteSong" onAction="#onDeleteSong"> 
 				<graphic>
-					<Glyph icon="TRASH" fontFamily="FontAwesome"/> 
+					<ImageView fitHeight="20" fitWidth="20"> 
+						<image>
+							<Image url="@/icons/icons8-trash-50.png"/> 
+						</image>
+					</ImageView>
 				</graphic>
 			</Button>
 			<padding>
@@ -70,9 +92,13 @@
 				<CheckBox fx:id="checkBoxSelect" onAction="#onSelectAll"/> 
 				<CustomTextField fx:id="ctfSongName" promptText="%csb.SongListView.enterSearchedSongName" onKeyReleased="#onSearchSong" HBox.hgrow="ALWAYS"> 
 					<right>
-						<Button> 
+						<Button style="-fx-background-color:transparent"> 
 							<graphic>
-								<Glyph icon="SEARCH" fontFamily="FontAwesome"/> 
+								<ImageView fitHeight="20" fitWidth="20"> 
+									<image>
+										<Image url="@/icons/icons8-search-26.png"/> 
+									</image>
+								</ImageView>
 							</graphic>
 						</Button>
 					</right>

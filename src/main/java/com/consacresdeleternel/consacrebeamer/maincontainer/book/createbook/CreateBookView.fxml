@@ -6,14 +6,10 @@
 <?import java.lang.*?>
 <?import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookView?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import org.controlsfx.control.CheckListView?>
-<?import org.controlsfx.glyphfont.Glyph?>
 <?scenebuilder-preview-i18n-resource /bundle/consacrebeamer_de_DE.properties?>
 <?scenebuilder-stylesheet /com/consacresdeleternel/consacrebeamer/maincontainer/book/createbook/CreateBookView.css?>
 
@@ -32,23 +28,6 @@
 	</top>
 	<center>
 		<VBox fx:id="vbSongsContainer" visible="false"> 
-			<HBox alignment="CENTER"> 
-				<HBox> 
-					<CheckBox fx:id="cbSelectAll" text="%csb.CreateBookView.selectAll" onAction="#onSelectAll"/> 
-				</HBox>
-				<HBox alignment="CENTER_RIGHT" spacing="5" HBox.hgrow="ALWAYS"> 
-					<Button fx:id="btnEdit" onAction="#onEditSong"> 
-						<graphic>
-							<Glyph icon="EDIT" fontFamily="FontAwesome"/> 
-						</graphic>
-					</Button>
-					<Button fx:id="btnDelete" onAction="#onRemoveSongs"> 
-						<graphic>
-							<Glyph icon="TRASH" fontFamily="FontAwesome"/> 
-						</graphic>
-					</Button>
-				</HBox>
-			</HBox>
 			<CheckListView fx:id="clvSongs" VBox.vgrow="ALWAYS"> 
 				<placeholder>
 					<Label text="%csb.CreateBookView.noSongsAvailable"/> 

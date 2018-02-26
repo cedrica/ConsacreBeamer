@@ -18,6 +18,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -115,5 +117,12 @@ public class Helper {
 			result.and(entry.getValue());
 		}
 		return result;
+	}
+
+	public static ImageView setImageView(String path) {
+		ImageView imageView = new ImageView(new Image(Helper.class.getResourceAsStream(path)));
+		imageView.setFitHeight(20);
+		imageView.setFitWidth(20);
+		return imageView;
 	}
 }

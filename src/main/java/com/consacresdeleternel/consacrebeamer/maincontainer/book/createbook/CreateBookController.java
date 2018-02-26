@@ -6,13 +6,10 @@ import java.util.ResourceBundle;
 import org.controlsfx.control.CheckListView;
 
 import com.consacresdeleternel.consacrebeamer.data.Song;
-import com.consacresdeleternel.consacrebeamer.events.CreateOrEditNewSongEvent;
 import com.consacresdeleternel.consacrebeamer.factory.SongListCellFactory;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
@@ -23,15 +20,9 @@ public class CreateBookController implements Initializable {
 	@FXML
 	TextField tfBookName;
 	@FXML
-	CheckBox cbSelectAll;
-	@FXML
 	CheckListView<Song> clvSongs;
 	@FXML
 	VBox vbSongsContainer;
-	@FXML
-	Button btnEdit;
-	@FXML
-	Button btnDelete;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -54,23 +45,5 @@ public class CreateBookController implements Initializable {
 
 	}
 
-	@FXML
-	public void onEditSong() {
-		rootNode.fireEvent(new CreateOrEditNewSongEvent(CreateOrEditNewSongEvent.EDIT_SONG));
-	}
-
-	@FXML
-	public void onRemoveSongs() {
-		rootNode.fireEvent(new CreateOrEditNewSongEvent(CreateOrEditNewSongEvent.REMOVE_SONG));
-	}
-
-	@FXML
-	public void onSelectAll() {
-		if (cbSelectAll.isSelected()) {
-			clvSongs.getCheckModel().checkAll();
-		} else {
-			clvSongs.getCheckModel().clearChecks();
-		}
-	}
 
 }

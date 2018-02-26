@@ -8,8 +8,8 @@ import com.consacresdeleternel.consacrebeamer.events.SongPartEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.web.WebView;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.web.WebView;
 
 public class SongPartController implements Initializable {
 
@@ -23,10 +23,12 @@ public class SongPartController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		tbSelectText.selectedProperty().addListener((obs, oldVal, newVal)->{
 			if(newVal){
-				rootNode.setStyle("-fx-border-color:lightblue;-fx-border-width:5px");
+//				rootNode.setStyle("-fx-border-color:lightblue;-fx-border-width:5px");
+				rootNode.getStyleClass().add("card-blue");
 				rootNode.fireEvent(new SongPartEvent(SongPartEvent.SHOW_SONG_PART));
 			}else{
-				rootNode.setStyle(null);
+//				rootNode.setStyle(null);
+				rootNode.getStyleClass().remove("card-blue");
 			}
 		});
 		rootNode.setTbSelectedText(tbSelectText);

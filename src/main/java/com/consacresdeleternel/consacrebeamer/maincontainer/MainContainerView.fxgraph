@@ -118,13 +118,17 @@ dynamic component MainContainerView controlledby MainContainerController resourc
 					},
 					HBox {
 						alignment : "CENTER",
-						CustomTextField id ctfSearchSong{
+						CustomTextField id ctfSearchSong {
 							promptText : rstring "csb.mainContainerView.searchSong",
 							right : Button {
+								style : "-fx-background-color:transparent",
 								cursor : const Cursor#DEFAULT,
-								graphic : Glyph {
-									icon : "SEARCH",
-									fontFamily : "FontAwesome"
+								graphic : ImageView {
+									fitHeight : 20,
+									fitWidth : 20,
+									image : Image {
+										url : location "/icons/icons8-search-26.png"
+									}
 								}
 							}
 						}
@@ -134,9 +138,13 @@ dynamic component MainContainerView controlledby MainContainerController resourc
 						CustomTextField {
 							promptText : rstring "csb.mainContainerView.searchBibleVerse",
 							right : Button {
-								graphic : Glyph {
-									icon : "SEARCH",
-									fontFamily : "FontAwesome"
+								style : "-fx-background-color:transparent",
+								graphic : ImageView {
+									fitHeight : 20,
+									fitWidth : 20,
+									image : Image {
+										url : location "/icons/icons8-search-26.png"
+									}
 								}
 							}
 						}
@@ -191,7 +199,9 @@ dynamic component MainContainerView controlledby MainContainerController resourc
 		},
 		MaskerPane id maskerPane,
 		HiddenSidesPane id hiddenSidesPane {
-			styleClass : ["hidden-sides-pane"],
+			styleClass : [
+				"hidden-sides-pane"
+			],
 			pinnedSide : "TOP",
 			visible : false
 		}

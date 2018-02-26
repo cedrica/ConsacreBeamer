@@ -74,6 +74,13 @@
     -fx-padding: 16.0 16.0 16.0 16.0;
 }
 
+.card-blue{
+		-fx-border-color: lightblue;
+	-fx-effect: dropshadow(three-pass-box, rgba(176,224,230), 10, 0, 0, 0);
+    -fx-background-radius:  4.0;
+    -fx-padding: 16.0 16.0 16.0 16.0;
+}
+
 .card-title {
     -fx-font-size: 20.0px;
     -fx-padding: 5.0 0.0 5.0 0.0;

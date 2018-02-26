@@ -35,34 +35,7 @@ resourcefile "/bundle/consacrebeamer_de_DE.properties"{
 		},
 		center : VBox id vbSongsContainer {
 			visible : false,
-			HBox {
-				alignment : "CENTER",
-				HBox {
-					CheckBox id cbSelectAll{
-						text : rstring "csb.CreateBookView.selectAll",
-						onAction : controllermethod onSelectAll
-					}
-				},
-				HBox {
-					static hgrow : "ALWAYS",
-					alignment : "CENTER_RIGHT",
-					spacing : 5,
-					Button id btnEdit{
-						graphic : Glyph {
-							icon : "EDIT",
-							fontFamily : "FontAwesome"
-						},
-						onAction : controllermethod onEditSong
-					},
-					Button id btnDelete {
-						graphic : Glyph {
-							icon : "TRASH",
-							fontFamily : "FontAwesome"
-						},
-						onAction : controllermethod onRemoveSongs
-					}
-				}
-			},
+			
 			CheckListView<?> id clvSongs {
 				static vgrow : "ALWAYS",
 				placeholder : Label{
