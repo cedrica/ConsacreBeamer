@@ -14,7 +14,7 @@
 
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/consacrebeamerdb</property>
 		<property name="connection.username">root</property>
-		<property name="connection.password"></property>
+		<property name="connection.password">root</property>
 
 		<!-- JDBC Connection pool -->
 

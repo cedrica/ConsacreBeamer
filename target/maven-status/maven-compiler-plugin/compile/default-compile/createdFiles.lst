@@ -28,6 +28,7 @@ com\consacresdeleternel\consacrebeamer\maincontainer\book\BookController.class
 com\consacresdeleternel\consacrebeamer\repository\SongRepository.class
 com\consacresdeleternel\consacrebeamer\common\Helper$4.class
 com\consacresdeleternel\consacrebeamer\common\Helper.class
+com\consacresdeleternel\consacrebeamer\events\SongEvent.class
 com\consacresdeleternel\consacrebeamer\maincontainer\MainContainerController.class
 com\consacresdeleternel\consacrebeamer\maincontainer\songpart\SongPartController.class
 com\consacresdeleternel\consacrebeamer\manager\TaskManager$1.class
@@ -48,6 +49,7 @@ com\consacresdeleternel\consacrebeamer\common\Helper$2.class
 com\consacresdeleternel\consacrebeamer\converter\BookConverter.class
 com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\copyrights\CopyRightsView.class
 com\consacresdeleternel\consacrebeamer\repository\BookRepository.class
+com\consacresdeleternel\consacrebeamer\tasks\LoadSongTask.class
 com\consacresdeleternel\consacrebeamer\common\Delta.class
 com\consacresdeleternel\consacrebeamer\data\Book.class
 com\consacresdeleternel\consacrebeamer\maincontainer\book\createbook\CreateBookView.class
@@ -55,6 +57,7 @@ com\consacresdeleternel\consacrebeamer\maincontainer\book\BookView.class
 com\consacresdeleternel\consacrebeamer\maincontainer\book\songlist\SongListView.class
 com\consacresdeleternel\consacrebeamer\manager\MainContainerManger.class
 com\consacresdeleternel\consacrebeamer\maincontainer\songpart\SongPartView.class
+com\consacresdeleternel\consacrebeamer\manager\SongManager.class
 com\consacresdeleternel\consacrebeamer\manager\DialogManager.class
 com\consacresdeleternel\consacrebeamer\events\InsertMenuEvent.class
 com\consacresdeleternel\consacrebeamer\utils\SVGUtil.class
@@ -74,6 +77,7 @@ com\consacresdeleternel\consacrebeamer\tasks\LoadBookTask.class
 com\consacresdeleternel\consacrebeamer\enums\EditMenuEnum.class
 com\consacresdeleternel\consacrebeamer\common\Dialogs.class
 com\consacresdeleternel\consacrebeamer\common\Localization.class
+com\consacresdeleternel\consacrebeamer\manager\CustomAutoCompleteTextFields.class
 com\consacresdeleternel\consacrebeamer\data\Song.class
 com\consacresdeleternel\consacrebeamer\maincontainer\createoreditnewsong\CreateOrEditNewSongView.class
 com\consacresdeleternel\consacrebeamer\factory\BookCellFactory$1.class

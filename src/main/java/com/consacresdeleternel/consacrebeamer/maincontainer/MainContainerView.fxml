@@ -101,7 +101,7 @@
 						</Button>
 					</HBox>
 					<HBox alignment="CENTER"> 
-						<CustomTextField promptText="%csb.mainContainerView.searchSong"> 
+						<CustomTextField fx:id="ctfSearchSong" promptText="%csb.mainContainerView.searchSong"> 
 							<right>
 								<Button> 
 									<cursor><Cursor fx:constant="DEFAULT" /></cursor>

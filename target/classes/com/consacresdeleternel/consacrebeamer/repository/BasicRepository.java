@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
-import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,8 +26,6 @@ public class BasicRepository<T> {
 	@SuppressWarnings("deprecation")
 	private void init() {
 		sessionFactory = new Configuration().configure("/hibernate.cfg.xml").buildSessionFactory();
-//		final EntityManagerFactory emf = Persistence.createEntityManagerFactory("ConsacreBeamerPU");
-//		entitymanager = emf.createEntityManager();
 
 	}
 
@@ -42,7 +39,7 @@ public class BasicRepository<T> {
 			
 
 			return o;
-		} catch (HibernateException | IllegalArgumentException | SecurityException e) {
+		} catch (Exception e) {
 			if (tx != null)
 				tx.rollback();
 
@@ -61,7 +58,7 @@ public class BasicRepository<T> {
 			tx.commit();
 			
 
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			if (tx != null)
 				tx.rollback();
 
@@ -80,7 +77,7 @@ public class BasicRepository<T> {
 			
 			return entity;
 
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			if (tx != null)
 				tx.rollback();
 
@@ -101,10 +98,9 @@ public class BasicRepository<T> {
 			
 			return query.list();
 
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			if (tx != null)
 				tx.rollback();
-
 			e.printStackTrace();
 		}
 		

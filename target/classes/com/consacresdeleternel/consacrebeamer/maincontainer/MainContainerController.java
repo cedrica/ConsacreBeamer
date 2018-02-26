@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javax.inject.Inject;
+
 import org.controlsfx.control.HiddenSidesPane;
 import org.controlsfx.control.MaskerPane;
 
@@ -21,6 +23,8 @@ import com.consacresdeleternel.consacrebeamer.events.FileMenuEvent;
 import com.consacresdeleternel.consacrebeamer.events.HelpMenuEvent;
 import com.consacresdeleternel.consacrebeamer.events.InsertMenuEvent;
 import com.consacresdeleternel.consacrebeamer.events.PresentationMenuEvent;
+import com.consacresdeleternel.consacrebeamer.manager.CustomAutoCompleteTextFields;
+import com.consacresdeleternel.consacrebeamer.manager.ValueObjectManager;
 
 import javafx.event.EventType;
 import javafx.fxml.FXML;
@@ -36,6 +40,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.PopupWindow.AnchorLocation;
+import org.controlsfx.control.textfield.CustomTextField;
 
 public class MainContainerController implements Initializable {
 
@@ -77,6 +82,9 @@ public class MainContainerController implements Initializable {
 	MaskerPane maskerPane;
 	@FXML
 	HiddenSidesPane hiddenSidesPane;
+	@FXML CustomTextField ctfSearchSong;
+	@Inject
+	private ValueObjectManager valueObjectManager;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -121,6 +129,8 @@ public class MainContainerController implements Initializable {
 		rootNode.setHiddenSidesPane(hiddenSidesPane);
 		hiddenSidesPane.minHeightProperty().bind(rootNode.prefHeightProperty());
 		hiddenSidesPane.minWidthProperty().bind(rootNode.prefWidthProperty());
+		rootNode.setSearchTextField(ctfSearchSong);
+		
 	}
 
 	private List<MenuItem> createMenuItemsFromHelpMenuEnum() {

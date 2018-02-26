@@ -5,13 +5,15 @@
 
 <?import java.lang.*?>
 <?import com.consacresdeleternel.consacrebeamer.maincontainer.songpart.SongPartView?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.web.WebView?>
 <?scenebuilder-preview-i18n-resource /bundle/consacrebeamer_de_DE.properties?>
 <?scenebuilder-stylesheet /com/consacresdeleternel/consacrebeamer/maincontainer/songpart/SongPartView.css?>
 
 <fx:root xmlns:fx="http://javafx.com/fxml" type="SongPartView" fx:id="rootNode" fx:controller="com.consacresdeleternel.consacrebeamer.maincontainer.songpart.SongPartController" maxHeight="300" maxWidth="300">
 
-	<WebView fx:id="wvTextPart" prefHeight="300" prefWidth="300" onMouseClicked="#onShowDiaShow"/> 
+	<WebView fx:id="wvTextPart"/> 
+	<ToggleButton fx:id="tbSelectText" prefHeight="400" prefWidth="400" onAction="#onShowDiaShow"/> 
 	<stylesheets>
 		<String fx:value="/com/consacresdeleternel/consacrebeamer/maincontainer/songpart/SongPartView.css" />
 	</stylesheets>

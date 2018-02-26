@@ -131,15 +131,8 @@ public class BookManager {
 		Optional<ButtonType> showAndWait = customDialog.showAndWait();
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
 			LOG.info("Edit mode");
-			book.setTitle(createBookView.getBookName());
-			book = bookRepository.save(book);
-			if (book == null) {
-				Dialogs.error(Localization.asKey("csb.ExtrasMenu.bookcouldNotBeCreated"),
-						mainContainerView.getScene().getWindow());
-				return;
-			}
+			bookRepository.updateName(book.getId(), createBookView.getBookName());
 			mainContainerView.fireEvent(new BookEvent(BookEvent.RELOAD_BOOKS));
-
 			LoadBookTask loadBookTask = new LoadBookTask(bookRepository);
 			new Thread(loadBookTask).start();
 			taskManager.addTask(loadBookTask);

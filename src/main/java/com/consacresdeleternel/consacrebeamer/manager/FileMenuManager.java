@@ -18,6 +18,7 @@ import com.consacresdeleternel.consacrebeamer.events.BookEvent;
 import com.consacresdeleternel.consacrebeamer.events.CreateOrEditNewSongEvent;
 import com.consacresdeleternel.consacrebeamer.events.FileMenuEvent;
 import com.consacresdeleternel.consacrebeamer.events.ListItemViewEvent;
+import com.consacresdeleternel.consacrebeamer.events.SongEvent;
 import com.consacresdeleternel.consacrebeamer.events.SongPartEvent;
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.CreateOrEditNewSongView;
@@ -56,6 +57,26 @@ public class FileMenuManager {
 				evt -> handleSelectSong(mainContainerView, evt));
 		mainContainerView.addEventHandler(BookEvent.SHOW_SELECTED_SONGS,
 				evt -> handleShowSelectSongs(mainContainerView, evt));
+		mainContainerView.addEventHandler(SongEvent.ADD_SEARCHED_SONG,
+				evt -> handleAddSearchedSong(mainContainerView, evt));
+	}
+
+	private void handleAddSearchedSong(MainContainerView mainContainerView, SongEvent evt) {
+		evt.consume();
+		Song s = evt.getSong();
+		if (!isSongAlreadyInListItemView(s, mainContainerView.getListViewContainer().getChildren())) {
+			createAndAddListItemView(mainContainerView, s);
+		}
+	}
+
+	private void createAndAddListItemView(MainContainerView mainContainerView, Song s) {
+		ListItemView listItemView = new ListItemView();
+		listItemView.addEventHandler(ListItemViewEvent.SHOW_LIST_ITEM_CONTEXT_MENU,
+				e -> handleShowListItemViewContextMenu(mainContainerView, listItemView, e));
+		listItemView.setItemName(s.getSongTitle());
+		listItemView.setItemObject(s);
+		listItemView.setPosition(mainContainerView.getListViewContainer().getChildren().size());
+		addItemViewToList(mainContainerView, s, listItemView);
 	}
 
 	private void handleShowSelectSongs(MainContainerView mainContainerView, BookEvent evt) {
@@ -63,15 +84,9 @@ public class FileMenuManager {
 		List<Song> songs = evt.getSongs();
 		songs.stream().forEach(s -> {
 			if (!isSongAlreadyInListItemView(s, mainContainerView.getListViewContainer().getChildren())) {
-				ListItemView listItemView = new ListItemView();
-				listItemView.addEventHandler(ListItemViewEvent.SHOW_LIST_ITEM_CONTEXT_MENU,
-						e -> handleShowListItemViewContextMenu(mainContainerView, listItemView, e));
-				listItemView.setItemName(s.getSongTitle());
-				listItemView.setItemObject(s);
-				listItemView.setPosition(mainContainerView.getListViewContainer().getChildren().size());
-				addItemViewToList(mainContainerView, s, listItemView);
+				createAndAddListItemView(mainContainerView, s);
 			}
-		
+
 		});
 	}
 
@@ -100,7 +115,6 @@ public class FileMenuManager {
 				mainContainerView.getScene().getWindow());
 		Optional<ButtonType> showAndWait = dialogStage.showAndWait();
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
-			song = songRepository.findById(song.getId());
 			song = createSongFromCreateOrEditNewSongView(createOrEditNewSongView, song);
 			song = songRepository.save(song);
 			if (song != null) {
@@ -118,8 +132,11 @@ public class FileMenuManager {
 		}
 	}
 
+	private ToggleGroup toggleGroup2 = new ToggleGroup();
 	private void createSongPartFromSong(MainContainerView mainContainerView, Song song) {
 		List<SongPartView> songPartViews = new ArrayList<>();
+		if (song.getSongHtml() == null || song.getSongHtml().isEmpty())
+			return;
 		String[] parts = song.getSongHtml().split("---");// text with formating
 		int index = 0;
 		if (parts != null && parts.length > 0) {
@@ -134,6 +151,7 @@ public class FileMenuManager {
 
 				});
 				songPartView.setText(part);
+				toggleGroup2.getToggles().add(songPartView.getTbSelectedText());
 				songPartViews.add(songPartView);
 			}
 		} else {
@@ -143,6 +161,7 @@ public class FileMenuManager {
 				valueObjectManager.getSongPartViewerView().setText(songPartView.getText());
 			});
 			songPartView.setText(song.getSongBody());
+			toggleGroup2.getToggles().add(songPartView.getTbSelectedText());
 			songPartViews.add(songPartView);
 		}
 		mainContainerView.getFlowPane().getChildren().clear();
@@ -197,6 +216,7 @@ public class FileMenuManager {
 			if (song != null) {
 				Dialogs.success(Localization.asKey("csb.alert.songSavingSuccessfulled"),
 						mainContainerView.getScene().getWindow());
+				mainContainerView.fireEvent(new SongEvent(SongEvent.RELOAD_SONGS));
 				ListItemView listItemView = createListItemView(mainContainerView, createOrEditNewSongView, song);
 				addItemViewToList(mainContainerView, song, listItemView);
 			} else {
@@ -343,8 +363,12 @@ public class FileMenuManager {
 			CreateOrEditNewSongEvent e) {
 		e.consume();
 		Song itemObject = (Song) e.getItemObject();
-		createSongPartFromSong(mainContainerView, itemObject);
-		listItemView.setItemName(itemObject.getSongTitle());
-		listItemView.setItemObject(itemObject);
+		if (listItemView.getItemObject() instanceof Song) {
+			if (itemObject.getId().equals(((Song) listItemView.getItemObject()).getId())) {
+				createSongPartFromSong(mainContainerView, itemObject);
+				listItemView.setItemName(itemObject.getSongTitle());
+				listItemView.setItemObject(itemObject);
+			}
+		}
 	}
 }

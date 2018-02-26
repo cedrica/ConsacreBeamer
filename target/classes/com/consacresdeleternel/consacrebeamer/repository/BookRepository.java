@@ -3,7 +3,6 @@ package com.consacresdeleternel.consacrebeamer.repository;
 import javax.inject.Singleton;
 
 import org.apache.log4j.Logger;
-import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -28,7 +27,7 @@ public class BookRepository extends BasicRepository<Book> {
 			tx.commit();
 			
 			return book;
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			if (tx != null)
 				tx.rollback();
 
@@ -52,10 +51,27 @@ public class BookRepository extends BasicRepository<Book> {
 			createQuery2.setParameter("bookId", bookId);
 			createQuery2.executeUpdate();
 			tx.commit();
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
 		}
+	}
+
+	public void updateName(Long bookId, String title) {
+		Session session = null;
+		session = sessionFactory.openSession();
+		try {
+			tx = session.beginTransaction();
+			Query createQuery = session.createQuery("update Book set title = :title where id = :bookId");
+			createQuery.setParameter("title", title);
+			createQuery.setParameter("bookId", bookId);
+			createQuery.executeUpdate();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		};
 	}
 }

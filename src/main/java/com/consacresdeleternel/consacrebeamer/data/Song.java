@@ -45,7 +45,7 @@ public class Song {
 	@Transient
 	private String songHtml;
 	private String textFileReference;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "bookId", nullable = false)
 	private Book book;
 	@OneToMany(orphanRemoval = true)

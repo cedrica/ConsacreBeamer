@@ -10,6 +10,7 @@ import com.consacresdeleternel.consacrebeamer.common.Localization;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -20,6 +21,7 @@ public class MainContainerView extends StackPane {
 	private ObjectProperty<Boolean> saveAs = new SimpleObjectProperty<>(true);
 	private ObjectProperty<FlowPane> flowPane = new SimpleObjectProperty<>();
 	private ObjectProperty<MaskerPane> maskerPane = new SimpleObjectProperty<>();
+	private ObjectProperty<TextField> searchTextField = new SimpleObjectProperty<>();
 	private ObjectProperty<HiddenSidesPane> hiddenSidesPane = new SimpleObjectProperty<>();
 
 	public MainContainerView() {
@@ -85,5 +87,20 @@ public class MainContainerView extends StackPane {
 	public final void setSaveAs(final Boolean saveAs) {
 		this.saveAsProperty().set(saveAs);
 	}
+
+	public final ObjectProperty<TextField> searchTextFieldProperty() {
+		return this.searchTextField;
+	}
+	
+
+	public final TextField getSearchTextField() {
+		return this.searchTextFieldProperty().get();
+	}
+	
+
+	public final void setSearchTextField(final TextField searchTextField) {
+		this.searchTextFieldProperty().set(searchTextField);
+	}
+	
 
 }

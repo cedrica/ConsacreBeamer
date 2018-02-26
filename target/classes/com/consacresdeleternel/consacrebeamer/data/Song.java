@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -46,7 +45,7 @@ public class Song {
 	@Transient
 	private String songHtml;
 	private String textFileReference;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "bookId", nullable = false)
 	private Book book;
 	@OneToMany(orphanRemoval = true)

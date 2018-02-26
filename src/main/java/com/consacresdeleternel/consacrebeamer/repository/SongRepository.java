@@ -5,7 +5,6 @@ import java.util.List;
 import javax.inject.Singleton;
 
 import org.apache.log4j.Logger;
-import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 

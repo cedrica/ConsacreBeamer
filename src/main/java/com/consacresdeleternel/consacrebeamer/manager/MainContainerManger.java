@@ -4,9 +4,12 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import com.consacresdeleternel.consacrebeamer.events.BookEvent;
+import com.consacresdeleternel.consacrebeamer.events.SongEvent;
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
 import com.consacresdeleternel.consacrebeamer.repository.BookRepository;
+import com.consacresdeleternel.consacrebeamer.repository.SongRepository;
 import com.consacresdeleternel.consacrebeamer.tasks.LoadBookTask;
+import com.consacresdeleternel.consacrebeamer.tasks.LoadSongTask;
 import com.consacresdeleternel.consacrebeamer.utils.JFXUtilities;
 
 import javafx.collections.FXCollections;
@@ -30,15 +33,29 @@ public class MainContainerManger {
 	private TaskManager taskManager;
 	@Inject
 	private PresentationManager presentationManager;
+	@Inject
+	private SongRepository songRepository;
 
 	public void init(MainContainerView mainContainerView) {
 		JFXUtilities.bindMaskerPane(mainContainerView.getMaskerPane(), taskManager);
 		loadBooks();
+		loadSongs(mainContainerView);
 		mainContainerView.addEventHandler(BookEvent.RELOAD_BOOKS, evt -> loadBooks());
+		mainContainerView.addEventHandler(SongEvent.RELOAD_SONGS, evt -> loadSongs(mainContainerView));
 		fileMenuManager.init(mainContainerView);
 		extrasMenuManager.init(mainContainerView);
 		bookManager.init(mainContainerView);
 		presentationManager.init(mainContainerView);
+	}
+
+	private void loadSongs(MainContainerView mainContainerView) {
+		LoadSongTask loadSongTask = new LoadSongTask(songRepository);
+		new Thread(loadSongTask).start();
+		taskManager.addTask(loadSongTask);
+		loadSongTask.valueProperty().addListener((obs, oldVal, newVal) -> {
+			valueObjectManager.setSongItems(FXCollections.observableList(newVal));
+			new CustomAutoCompleteTextFields(mainContainerView.getSearchTextField(), newVal);
+		});
 	}
 
 	private void loadBooks() {

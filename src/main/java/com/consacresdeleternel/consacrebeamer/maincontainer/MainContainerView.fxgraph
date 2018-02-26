@@ -118,7 +118,7 @@ dynamic component MainContainerView controlledby MainContainerController resourc
 					},
 					HBox {
 						alignment : "CENTER",
-						CustomTextField {
+						CustomTextField id ctfSearchSong{
 							promptText : rstring "csb.mainContainerView.searchSong",
 							right : Button {
 								cursor : const Cursor#DEFAULT,

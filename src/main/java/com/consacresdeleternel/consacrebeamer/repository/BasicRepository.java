@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
-import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -102,7 +101,6 @@ public class BasicRepository<T> {
 		} catch (Exception e) {
 			if (tx != null)
 				tx.rollback();
-
 			e.printStackTrace();
 		}
 		

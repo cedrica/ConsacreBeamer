@@ -7,6 +7,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 
@@ -15,7 +16,8 @@ public class SongPartView extends StackPane {
 	private StringProperty text = new SimpleStringProperty();
 	private StringProperty html = new SimpleStringProperty();
 	private ObjectProperty<Integer> index = new SimpleObjectProperty<>();
-
+	private ObjectProperty<ToggleButton> tbSelectedText = new SimpleObjectProperty<>();
+	
 	public SongPartView() {
 		Helper.load(this, Localization.getDefault());
 	}
@@ -67,5 +69,20 @@ public class SongPartView extends StackPane {
 	public final void setIndex(final Integer index) {
 		this.indexProperty().set(index);
 	}
+
+	public final ObjectProperty<ToggleButton> tbSelectedTextProperty() {
+		return this.tbSelectedText;
+	}
+	
+
+	public final ToggleButton getTbSelectedText() {
+		return this.tbSelectedTextProperty().get();
+	}
+	
+
+	public final void setTbSelectedText(final ToggleButton tbSelectedText) {
+		this.tbSelectedTextProperty().set(tbSelectedText);
+	}
+	
 
 }

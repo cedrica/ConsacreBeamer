@@ -5,11 +5,11 @@ import java.util.ResourceBundle;
 
 import com.consacresdeleternel.consacrebeamer.events.SongPartEvent;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebView;
+import javafx.scene.control.ToggleButton;
 
 public class SongPartController implements Initializable {
 
@@ -17,26 +17,27 @@ public class SongPartController implements Initializable {
 	SongPartView rootNode;
 	@FXML
 	WebView wvTextPart;
+	@FXML ToggleButton tbSelectText;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// rootNode.backgroundImageProperty().addListener((obs,oldVal,newVal)->{
-		// ImageView imageView = new ImageView(newVal);
-		// imageView.fitWidthProperty().bind(rootNode.widthProperty());
-		// imageView.fitHeightProperty().bind(rootNode.heightProperty());
-		// lblBackgroundImage.setGraphic(imageView);
-		// });
-
+		tbSelectText.selectedProperty().addListener((obs, oldVal, newVal)->{
+			if(newVal){
+				rootNode.setStyle("-fx-border-color:lightblue;-fx-border-width:5px");
+				rootNode.fireEvent(new SongPartEvent(SongPartEvent.SHOW_SONG_PART));
+			}else{
+				rootNode.setStyle(null);
+			}
+		});
+		rootNode.setTbSelectedText(tbSelectText);
 		rootNode.textProperty().addListener((obs, oldVal, newVal) -> {
 			wvTextPart.getEngine().loadContent(newVal);
 		});
 	}
 
 	@FXML
-	public void onShowDiaShow(MouseEvent evt) {
-		if (evt.getButton() == MouseButton.PRIMARY) {
-			rootNode.fireEvent(new SongPartEvent(SongPartEvent.SHOW_SONG_PART));
-		}
+	public void onShowDiaShow(ActionEvent evt) {
+		rootNode.fireEvent(new SongPartEvent(SongPartEvent.SHOW_SONG_PART));
 	}
 
 }
