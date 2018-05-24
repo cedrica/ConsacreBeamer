@@ -1,5 +1,6 @@
 package com.consacresdeleternel.consacrebeamer.events;
 
+import com.consacresdeleternel.consacrebeamer.data.Schedule;
 import com.consacresdeleternel.consacrebeamer.data.Song;
 
 import javafx.event.Event;
@@ -29,8 +30,20 @@ public class FileMenuEvent extends Event {
 		this.song = song;
 	}
 
+	private Schedule schedule;
+
+	public FileMenuEvent(EventType<FileMenuEvent> eventType, Schedule schedule) {
+		super(eventType);
+		this.schedule = schedule;
+	}
+	
 	public Song getSong() {
 		return song;
 	}
+	public Schedule getSchedule() {
+		return schedule;
+	}
+
+	
 
 }

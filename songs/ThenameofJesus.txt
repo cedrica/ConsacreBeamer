@@ -1,9 +1,5 @@
-<html dir="ltr"><head></head><body contenteditable="true"><p>How majestic is Your name, oh Lord<br>
-In all the earth<br>
-Your name is strong and mighty<br>
-Your name is glorious and great<br>
-In Him we're saved<br>
-<p><font face="Segoe UI">---</font></p>
+<html dir="ltr"><head></head><body contenteditable="true"><p>How majestic is Your name,&nbsp;</p><p>oh Lord&nbsp;In all the earth</p><p>Your name is strong and mighty</p><p>Your name is glorious and great</p><p>In Him we're saved<br>
+</p><p><font face="Segoe UI">---</font></p>
 The name of Jesus higher than other names<br>
 King of all Kings, no other name like His<br>
 The name of Jesus higher than other names<br>
@@ -28,7 +24,7 @@ Call that name<br>
 Jesus<br>
 Call that name<br>
 Jesus<br>
-Ohohoh Jesus<br>
+Ohohoh Jesus<div><p><font face="Segoe UI">---</font></p>
 Call that name<br>
 Jesus<br>
 Mighty God<br>
@@ -36,15 +32,4 @@ Jesus<br>
 Marvelous<br>
 Jesus<br>
 Ohohoh Jesus<br>
-<p><font face="Segoe UI">---</font></p>
-Jesus<br>
-Jesus<br>
-Jesus<br>
-Ohohoh Jesus<br>
-You can call that name<br>
-Jesus<br>
-In every situation<br>
-Jesus<br>
-Whatever it is, however it is<br>
-Jesus<br>
-Ohohoh Jesus</p></body></html>
+<p><br></p><p></p></div></body></html>

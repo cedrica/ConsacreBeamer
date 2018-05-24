@@ -4,6 +4,7 @@ import com.consacresdeleternel.consacrebeamer.common.Dialogs;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.CreateOrEditNewSongView;
+import com.consacresdeleternel.consacrebeamer.maincontainer.schedule.create.CreateScheduleView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.songpartviewer.SongPartViewerView;
 
 import javafx.scene.Scene;
@@ -23,7 +24,7 @@ public class DialogManager {
 		Button apply = (Button) customDialog.getDialogPane().lookupButton(ButtonType.APPLY);
 		apply.disableProperty().bind(createBookView.invalidProperty());
 		return customDialog;
-	}
+	}	
 
 	public Dialog<ButtonType> showCreateBookView(CreateBookView createBookView, Window window) {
 		Dialog<ButtonType> customDialog = Dialogs.customDialog(createBookView, Modality.APPLICATION_MODAL, "", window);
@@ -52,4 +53,14 @@ public class DialogManager {
 		stage.setScene(scene);
 		return stage;
 	}
+
+	public Dialog<ButtonType> showCreateNewSchedule(CreateScheduleView createScheduleView, Window window) {
+		Dialog<ButtonType> dialogStage = Dialogs.customDialog(createScheduleView, Modality.APPLICATION_MODAL,
+				Localization.asKey("csb.createScheduleView.title"), window);
+		dialogStage.getDialogPane().getButtonTypes().addAll(ButtonType.APPLY, ButtonType.CANCEL);
+		Button lookupButton = (Button) dialogStage.getDialogPane().lookupButton(ButtonType.APPLY);
+		lookupButton.disableProperty().bind(createScheduleView.invalidProperty());
+		return dialogStage;
+	}
+
 }

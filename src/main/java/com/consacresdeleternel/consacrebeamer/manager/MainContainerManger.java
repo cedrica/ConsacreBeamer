@@ -3,6 +3,8 @@ package com.consacresdeleternel.consacrebeamer.manager;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import org.apache.log4j.Logger;
+
 import com.consacresdeleternel.consacrebeamer.events.BookEvent;
 import com.consacresdeleternel.consacrebeamer.events.SongEvent;
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
@@ -16,8 +18,8 @@ import javafx.collections.FXCollections;
 
 @Singleton
 public class MainContainerManger {
-	// private static final Logger LOG =
-	// Logger.getLogger(MainContainerManger.class);
+	 private static final Logger LOG =
+	 Logger.getLogger(MainContainerManger.class);
 
 	@Inject
 	private FileMenuManager fileMenuManager;
@@ -35,6 +37,8 @@ public class MainContainerManger {
 	private PresentationManager presentationManager;
 	@Inject
 	private SongRepository songRepository;
+	@Inject
+	private ScheduleManager scheduleManager;
 
 	public void init(MainContainerView mainContainerView) {
 		JFXUtilities.bindMaskerPane(mainContainerView.getMaskerPane(), taskManager);
@@ -46,6 +50,7 @@ public class MainContainerManger {
 		extrasMenuManager.init(mainContainerView);
 		bookManager.init(mainContainerView);
 		presentationManager.init(mainContainerView);
+		scheduleManager.init(mainContainerView);
 	}
 
 	private void loadSongs(MainContainerView mainContainerView) {

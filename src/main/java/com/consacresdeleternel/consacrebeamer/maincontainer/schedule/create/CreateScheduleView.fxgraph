@@ -1,0 +1,22 @@
+package com.consacresdeleternel.consacrebeamer.maincontainer.schedule.create
+
+import javafx.scene.layout.AnchorPane
+import com.consacresdeleternel.consacrebeamer.maincontainer.schedule.create.CreateScheduleController
+import javafx.scene.layout.VBox
+import javafx.scene.control.Button
+import javafx.scene.control.TextField
+import com.consacresdeleternel.consacrebeamer.maincontainer.schedule.create.CreateScheduleView
+
+dynamic component CreateScheduleView controlledby CreateScheduleController resourcefile
+"/bundle/consacrebeamer_de_DE.properties" styledwith [
+	"/com/consacresdeleternel/consacrebeamer/maincontainer/schedule/create/CreateScheduleView.css", "/css/svg-icons.css"
+] {
+	CreateScheduleView id createSchedulView {
+		stylesheets : ["/com/consacresdeleternel/consacrebeamer/maincontainer/schedule/create/CreateScheduleView.css", "/css/svg-icons.css"],
+		spacing : 5,
+		TextField id tfScheduleName{
+			static vgrow : "ALWAYS",
+			promptText : rstring "createscheduleview.enterScheduleName"
+		}
+	}
+}

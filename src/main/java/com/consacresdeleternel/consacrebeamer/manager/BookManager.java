@@ -85,7 +85,7 @@ public class BookManager {
 			if (songs != null && !songs.isEmpty()) {
 				Long bookId = songs.get(0).getBook().getId();
 				songs.stream().forEach(s -> {
-					songRepository.removeById(s.getId());
+					songRepository.remove(s);
 					FileUtil.removeFile(s.getTextFileReference());
 				});
 				Book newBook = bookRepository.findById(bookId);

@@ -1,0 +1,120 @@
+package com.consacresdeleternel.consacrebeamer.maincontainer.schedule
+
+import javafx.scene.layout.AnchorPane
+import com.consacresdeleternel.consacrebeamer.maincontainer.schedule.ScheduleListController
+import com.consacresdeleternel.consacrebeamer.maincontainer.schedule.ScheduleListView
+import javafx.scene.layout.VBox
+import org.controlsfx.control.textfield.CustomTextField
+import javafx.scene.control.Label
+import javafx.scene.control.Button
+import org.controlsfx.glyphfont.Glyph
+import impl.org.controlsfx.spreadsheet.TableViewSpanSelectionModel
+import javafx.scene.control.ScrollPane
+import javafx.scene.layout.HBox
+import org.controlsfx.control.CheckListView
+import javafx.scene.control.CheckBox
+import javafx.geometry.Insets
+import javafx.scene.control.ListView
+import javafx.scene.image.ImageView
+import javafx.scene.image.Image
+import javafx.scene.control.RadioButton
+
+dynamic component ScheduleListView controlledby ScheduleListController styledwith [
+	"/com/consacresdeleternel/consacrebeamer/maincontainer/schedule/ScheduleListView.css" ] resourcefile
+"/bundle/consacrebeamer_de_DE.properties" {
+	
+	ScheduleListView id rootNode {
+		stylesheets : [
+			"/com/consacresdeleternel/consacrebeamer/maincontainer/schedule/ScheduleListView.css"
+		],
+		styleClass : ["schedule-list-view"],
+		maxHeight : 600,
+		maxWidth : 600,
+		padding : Insets {
+			top : 10,
+			bottom : 10,
+			left : 10,
+			right : 10
+		},
+		top : HBox {
+			alignment : "CENTER_RIGHT",
+			spacing : 5,
+			padding : Insets {
+				bottom : 5
+			},
+			Button id btnChooseSchedule {
+				graphic : ImageView {
+					fitHeight : 20,
+					fitWidth : 20,
+					image : Image {
+						url : location "/icons/icons8-upload-24.png"
+					}
+				},
+				onAction : controllermethod onChooseSchedule
+			},
+			Button id btnDeleteSchedule {
+				graphic : ImageView {
+					fitHeight : 20,
+					fitWidth : 20,
+					image : Image {
+						url : location "/icons/icons8-trash-50.png"
+					}
+				},
+				onAction : controllermethod onDeleteSchedule
+			}
+		},
+		left : VBox {
+			HBox {
+				spacing : 2,
+				
+				CustomTextField id ctfScheduleName {
+					static hgrow : "ALWAYS",
+					right : Button {
+						style : "-fx-background-color:transparent",
+						graphic : ImageView {
+							fitHeight : 20,
+							fitWidth : 20,
+							image : Image {
+								url : location "/icons/icons8-search-26.png"
+							}
+						}
+					},
+					promptText : rstring "csb.ScheduleListView.searchScheduleName",
+					onKeyReleased : controllermethod onSearchSchedule
+				}
+
+			},
+			ListView < ? > id clvScheduleList {
+				static vgrow : "ALWAYS"
+			}
+		},
+		center : ScrollPane {
+			fitToHeight : true,
+			fitToWidth : true,
+			padding : Insets{
+				top : 5,
+				left : 5,
+				right : 5,
+				bottom : 5
+			},
+			content : VBox id vbSchedulelistViewer
+		},
+		bottom : HBox {
+			padding : Insets {
+				top : 10,
+				bottom : 10,
+				right : 10
+			},
+			alignment : "CENTER_RIGHT",
+			Button {
+				text : rstring "csb.SongListView.closeModal",
+				contentDisplay : "RIGHT",
+				graphic : Glyph {
+					icon : "CLOSE",
+					fontFamily : "FontAwesome"
+				},
+				onAction : controllermethod onCloseHiddenSidePane
+			}
+		}
+	}
+} 

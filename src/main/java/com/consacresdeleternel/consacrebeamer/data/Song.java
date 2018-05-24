@@ -3,7 +3,9 @@ package com.consacresdeleternel.consacrebeamer.data;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,6 +26,8 @@ public class Song {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String songTitle;
+	@ManyToMany(mappedBy = "songs")
+	private List<Schedule> schedules = new ArrayList<>();
 	@Transient
 	private String songBody;
 	@Transient
@@ -45,12 +50,21 @@ public class Song {
 	private String songHtml;
 	private String textFileReference;
 	@ManyToOne
-	@JoinColumn(name = "bookId", nullable = false)
+	@JoinColumn(name = "bookId")
 	private Book book;
-	@OneToMany(orphanRemoval = true)
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "Song_Attachment", joinColumns = @JoinColumn(name = "songId"), inverseJoinColumns = @JoinColumn(name = "attachmentId"))
 	private List<Attachment> attachements = new ArrayList<>();
 
+	
+	public List<Schedule> getSchedules() {
+		return schedules;
+	}
+
+	public void setSchedules(List<Schedule> schedules) {
+		this.schedules = schedules;
+	}
+	
 	public byte[] getSongBodyAsByteArr() {
 		return songBodyAsByteArr;
 	}

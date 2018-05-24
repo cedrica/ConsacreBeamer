@@ -1,8 +1,5 @@
-<html dir="ltr"><head></head><body contenteditable="true"><p>I see my Savior<br>
-With love in His eyes<br>
-His body broken<br>
-With no sin to hide<br>
-<p><font face="Segoe UI">---</font></p>
+<html dir="ltr"><head></head><body contenteditable="true"><p>I see my Savior</p><p>With love in His eyes</p><p>His body broken</p><p>With no sin to hide<br>
+</p><p><font face="Segoe UI">---</font></p>
 I see my Jesus<br>
 Eyes blind with blood<br>
 His face is crimson<br>
@@ -21,4 +18,4 @@ Christ Jesus our King<br>
 See the light tearing through the darkness<br>
 Hear the roar of the rugged cross<br>
 Jesus Christ You alone have saved us<br>
-We worship You now &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p></body></html>
+We worship You now &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<p></p></body></html>

@@ -11,6 +11,7 @@ import com.consacresdeleternel.consacrebeamer.common.Dialogs;
 import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.data.Book;
+import com.consacresdeleternel.consacrebeamer.data.Schedule;
 import com.consacresdeleternel.consacrebeamer.data.Song;
 import com.consacresdeleternel.consacrebeamer.events.BookEvent;
 import com.consacresdeleternel.consacrebeamer.events.CreateOrEditNewSongEvent;
@@ -21,7 +22,9 @@ import com.consacresdeleternel.consacrebeamer.events.SongPartEvent;
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.CreateOrEditNewSongView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.listitem.ListItemView;
+import com.consacresdeleternel.consacrebeamer.maincontainer.schedule.create.CreateScheduleView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.songpart.SongPartView;
+import com.consacresdeleternel.consacrebeamer.repository.ScheduleRepository;
 import com.consacresdeleternel.consacrebeamer.repository.SongRepository;
 import com.consacresdeleternel.consacrebeamer.utils.FileUtil;
 
@@ -46,9 +49,13 @@ public class FileMenuManager {
 	private ValueObjectManager valueObjectManager;
 	@Inject
 	private DialogManager dialogManager;
+	@Inject
+	private ScheduleRepository scheduleRepository;
 
 	public void init(MainContainerView mainContainerView) {
 		mainContainerView.addEventHandler(FileMenuEvent.NEW_SONG, evt -> handleCreateNewSong(mainContainerView, evt));
+		mainContainerView.addEventHandler(FileMenuEvent.NEW_SCHEDULE,
+				evt -> handleCreateNewSchedule(mainContainerView, evt));
 		mainContainerView.addEventHandler(FileMenuEvent.EDIT_SONG, evt -> handleEditSong(mainContainerView, evt));
 		mainContainerView.addEventHandler(CreateOrEditNewSongEvent.SELECT_SONG,
 				evt -> handleSelectSong(mainContainerView, evt));
@@ -56,6 +63,32 @@ public class FileMenuManager {
 				evt -> handleShowSelectSongs(mainContainerView, evt));
 		mainContainerView.addEventHandler(SongEvent.ADD_SEARCHED_SONG,
 				evt -> handleAddSearchedSong(mainContainerView, evt));
+	}
+
+	private void handleCreateNewSchedule(MainContainerView mainContainerView, FileMenuEvent evt) {
+		evt.consume();
+		if(mainContainerView.getListViewContainer().getChildren().size() <= 0){
+			Dialogs.error(Localization.asKey("csb.createNewSchedule.NoItemInList"), mainContainerView.getListViewContainer().getScene().getWindow());
+			return;
+		}
+		CreateScheduleView createScheduleView = new CreateScheduleView();
+		Dialog<ButtonType> dialogStage = dialogManager.showCreateNewSchedule(createScheduleView,
+				mainContainerView.getScene().getWindow());
+		Optional<ButtonType> showAndWait = dialogStage.showAndWait();
+		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
+			Schedule schedule = new Schedule();
+			schedule.setName(createScheduleView.getScheduleName());
+			for (int i = 0; i < mainContainerView.getListViewContainer().getChildren().size(); i++) {
+				Object object = mainContainerView.getListViewContainer().getChildren().get(i);
+				if (object instanceof ListItemView) {
+					Object itemObject = ((ListItemView) object).getItemObject();
+					if (itemObject instanceof Song) {
+						schedule.addSong((Song)itemObject);
+					}
+				}
+			}
+			scheduleRepository.save(schedule);
+		}
 	}
 
 	private void handleAddSearchedSong(MainContainerView mainContainerView, SongEvent evt) {
@@ -130,6 +163,7 @@ public class FileMenuManager {
 	}
 
 	private ToggleGroup toggleGroup2 = new ToggleGroup();
+
 	private void createSongPartFromSong(MainContainerView mainContainerView, Song song) {
 		List<SongPartView> songPartViews = new ArrayList<>();
 		if (song.getSongHtml() == null || song.getSongHtml().isEmpty())

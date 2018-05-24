@@ -15,6 +15,8 @@ public class ExtrasMenuEvent extends Event {
 	public static final EventType<ExtrasMenuEvent> CREATE_NEW_BOOK = new EventType<>("createNewBookExtrasMenuEvent");
 	public static final EventType<ExtrasMenuEvent> SHOW_LIBRARY = new EventType<>("libraryExtrasMenuEvent");
 
+	public static final EventType<ExtrasMenuEvent> SHOW_SCHEDULE_LIST  = new EventType<>("showScheduleLIstExtrasMenuEvent");
+
 	public ExtrasMenuEvent(EventType<ExtrasMenuEvent> eventType) {
 		super(eventType);
 	}
