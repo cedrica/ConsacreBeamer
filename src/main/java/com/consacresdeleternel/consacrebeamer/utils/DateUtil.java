@@ -8,10 +8,11 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DateUtil {
-	private static final Logger LOG = Logger.getLogger(DateUtil.class);
+	private static final Logger LOG = LoggerFactory.getLogger(DateUtil.class);
 
 	public static final String DATETIME_SHORT = "yyyy-MM-dd HH:mm";
 	public static final String TIMESTAMP = "yyyy-MM-dd HH:mm:ss.SSS";

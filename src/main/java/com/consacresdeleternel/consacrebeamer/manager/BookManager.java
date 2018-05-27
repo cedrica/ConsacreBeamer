@@ -6,7 +6,8 @@ import java.util.Optional;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.consacresdeleternel.consacrebeamer.common.Dialogs;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
@@ -30,7 +31,7 @@ import javafx.scene.control.Dialog;
 
 @Singleton
 public class BookManager {
-	private static final Logger LOG = Logger.getLogger(ExtrasMenuManager.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ExtrasMenuManager.class);
 	@Inject
 	private DialogManager dialogManager;
 	@Inject

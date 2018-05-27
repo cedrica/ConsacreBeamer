@@ -4,8 +4,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.util.concurrent.CountDownLatch;
 
-import org.apache.log4j.Logger;
 import org.controlsfx.control.MaskerPane;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.consacresdeleternel.consacrebeamer.manager.TaskManager;
 
@@ -50,7 +51,7 @@ public class JFXUtilities {
 		}
 	}
 
-	private static final Logger LOG = Logger.getLogger(JFXUtilities.class);
+	private static final Logger LOG = LoggerFactory.getLogger(JFXUtilities.class);
 
 	/**
 	 * This method is used to run a specified Runnable in the FX Application

@@ -7,12 +7,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BasicRepository<T> {
-	private static final Logger LOG = Logger.getLogger(BasicRepository.class);
+	private static final Logger LOG = LoggerFactory.getLogger(BasicRepository.class);
 	protected static SessionFactory sessionFactory = null;
 	protected Transaction tx = null;
 	private Class<T> clazz;
@@ -22,6 +23,7 @@ public class BasicRepository<T> {
 		init();
 	}
 
+	
 	protected EntityManagerFactory entityManagerFactory;
 	protected EntityManager entityManager;
 
@@ -62,7 +64,6 @@ public class BasicRepository<T> {
 			entityManager.getTransaction().begin();
 			entityManager.persist(o);
 			entityManager.getTransaction().commit();
-			entityManager.close();
 			return o;
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
@@ -89,7 +90,6 @@ public class BasicRepository<T> {
 			entityManager.getTransaction().begin();
 			entityManager.remove(o);
 			entityManager.getTransaction().commit();
-			entityManager.close();
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			e.printStackTrace();
@@ -140,7 +140,7 @@ public class BasicRepository<T> {
 		// e.printStackTrace();
 		// }
 		try {
-			Query query = entityManager.createQuery("select * from " + clazz.getSimpleName());
+			Query query = entityManager.createQuery("select b from " + this.clazz.getSimpleName()+" b");
 			return query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();

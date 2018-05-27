@@ -3,9 +3,10 @@ package com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import org.apache.log4j.Logger;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
@@ -25,7 +26,7 @@ import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
 
 public class TextController implements Initializable {
-	private static final Logger LOG = Logger.getLogger(TextController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(TextController.class);
 	@FXML
 	TextView rootNode;
 	@FXML
@@ -80,7 +81,7 @@ public class TextController implements Initializable {
 		radioGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 				if (radioGroup.getSelectedToggle() != null) {
-					LOG.info(radioGroup.getSelectedToggle());
+					LOG.info("toggle");
 				}
 			}
 		});

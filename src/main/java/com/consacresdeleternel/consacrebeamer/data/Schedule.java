@@ -2,7 +2,6 @@ package com.consacresdeleternel.consacrebeamer.data;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -24,8 +23,8 @@ public class Schedule {
 	private String name;
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "schedule_song", joinColumns = { @JoinColumn(name = "scheduleId") }, inverseJoinColumns = {
-			@JoinColumn(name = "songId") })
+	@JoinTable(name = "schedule_song", joinColumns = { @JoinColumn(name = "songId") }, inverseJoinColumns = {
+			@JoinColumn(name = "scheduleId") })
 	 List<Song> songs = new ArrayList<>();
 	
 	public String getName() {

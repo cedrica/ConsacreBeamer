@@ -5,16 +5,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.apache.poi.xslf.usermodel.SlideLayout;
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.apache.poi.xslf.usermodel.XSLFSlideLayout;
 import org.apache.poi.xslf.usermodel.XSLFSlideMaster;
 import org.apache.poi.xslf.usermodel.XSLFTextShape;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PPTService {
-	private static final Logger LOG = Logger.getLogger(PPTService.class);
+	private static final Logger LOG = LoggerFactory.getLogger(PPTService.class);
 	private static Process process;
 
 	public static XMLSlideShow generatePPT(String titleText, List<String> songTexts) {
@@ -85,7 +86,7 @@ public class PPTService {
 			// "+process.exitValue());
 			return createTempFile;
 		} catch (IOException e) {
-			LOG.error("Folgender Fehler ist aufgetretten während der Anzeige");
+			LOG.error("Folgender Fehler ist aufgetretten wï¿½hrend der Anzeige");
 			return null;
 		}
 	}

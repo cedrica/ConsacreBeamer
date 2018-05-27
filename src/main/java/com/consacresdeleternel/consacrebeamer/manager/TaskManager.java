@@ -10,7 +10,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.inject.Singleton;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
@@ -45,7 +46,7 @@ public final class TaskManager {
 	double NO_TASKS_RUNNING = 1.0;
 	private static final String WORKER_NAME = "PREAG-Worker-";
 
-	private static final Logger LOG = Logger.getLogger(TaskManager.class);
+	private static final Logger LOG = LoggerFactory.getLogger(TaskManager.class);
 
 	private final ObservableList<Task<?>> tasks = FXCollections.observableArrayList();
 

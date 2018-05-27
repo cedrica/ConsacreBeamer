@@ -3,7 +3,8 @@ package com.consacresdeleternel.consacrebeamer.manager;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.consacresdeleternel.consacrebeamer.events.BookEvent;
 import com.consacresdeleternel.consacrebeamer.events.SongEvent;
@@ -19,7 +20,7 @@ import javafx.collections.FXCollections;
 @Singleton
 public class MainContainerManger {
 	 private static final Logger LOG =
-	 Logger.getLogger(MainContainerManger.class);
+			 LoggerFactory.getLogger(MainContainerManger.class);
 
 	@Inject
 	private FileMenuManager fileMenuManager;

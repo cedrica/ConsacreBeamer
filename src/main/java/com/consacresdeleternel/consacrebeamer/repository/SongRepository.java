@@ -5,7 +5,8 @@ import java.util.List;
 import javax.inject.Singleton;
 import javax.persistence.Query;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.consacresdeleternel.consacrebeamer.data.Schedule;
 import com.consacresdeleternel.consacrebeamer.data.Song;
@@ -13,7 +14,7 @@ import com.consacresdeleternel.consacrebeamer.data.Song;
 @Singleton
 public class SongRepository extends BasicRepository<Song> {
 
-	private static final Logger LOG = Logger.getLogger(SongRepository.class);
+	private static final Logger LOG = LoggerFactory.getLogger(SongRepository.class);
 
 	public SongRepository() {
 		super(Song.class);
@@ -32,7 +33,6 @@ public class SongRepository extends BasicRepository<Song> {
 			query.executeUpdate();
 			entityManager.remove(song);
 			entityManager.getTransaction().commit();
-			entityManager.close();
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			e.printStackTrace();
@@ -54,7 +54,7 @@ public class SongRepository extends BasicRepository<Song> {
 		// } catch (Exception e) {
 		// if (tx != null)
 		// tx.rollback();
-		// LOG.error("Die suche des Lied via title konnte nicht durchgeführt
+		// LOG.error("Die suche des Lied via title konnte nicht durchgefï¿½hrt
 		// werden");
 		// e.printStackTrace();
 		// }
@@ -71,7 +71,7 @@ public class SongRepository extends BasicRepository<Song> {
 		} catch (Exception e) {
 			if (entityManager.getTransaction() != null)
 				entityManager.getTransaction().rollback();
-			LOG.error("Die suche des Lied via title konnte nicht durchgeführt werden");
+			LOG.error("Die suche des Lied via title konnte nicht durchgefï¿½hrt werden");
 			e.printStackTrace();
 		}
 

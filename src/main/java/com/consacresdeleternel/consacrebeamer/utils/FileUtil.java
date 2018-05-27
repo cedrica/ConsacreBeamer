@@ -7,11 +7,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FileUtil {
 
-	private static final Logger LOG = Logger.getLogger(FileUtil.class);
+	private static final Logger LOG = LoggerFactory.getLogger(FileUtil.class);
 	
 	public static void createDirectory(String location) {
 		Path path = Paths.get(location);

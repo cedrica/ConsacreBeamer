@@ -3,14 +3,15 @@ package com.consacresdeleternel.consacrebeamer.repository;
 import javax.inject.Singleton;
 import javax.persistence.Query;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.consacresdeleternel.consacrebeamer.data.Book;
 
 
 @Singleton
 public class BookRepository extends BasicRepository<Book> {
-	private static final Logger LOG = Logger.getLogger(BookRepository.class);
+	private static final Logger LOG = LoggerFactory.getLogger(BookRepository.class);
 
 	public BookRepository() {
 		super(Book.class);
@@ -31,7 +32,7 @@ public class BookRepository extends BasicRepository<Book> {
 //			if (tx != null)
 //				tx.rollback();
 //
-//			LOG.error("Die suche des Lied via title konnte nicht durchgeführt werden");
+//			LOG.error("Die suche des Lied via title konnte nicht durchgefï¿½hrt werden");
 //			e.printStackTrace();
 //		}
 		try {
@@ -40,7 +41,7 @@ public class BookRepository extends BasicRepository<Book> {
 			Book book = (Book) createQuery.getSingleResult();
 			return book;
 		} catch (Exception e) {
-			LOG.error("Die suche des Lied via title konnte nicht durchgeführt werden");
+			LOG.error("Die suche des Lied via title konnte nicht durchgefï¿½hrt werden");
 			e.printStackTrace();
 		}
 		return null;
@@ -70,7 +71,7 @@ public class BookRepository extends BasicRepository<Book> {
 			Book book = entityManager.find(Book.class, bookId);
 			entityManager.remove(book);
 		} catch (Exception e) {
-			LOG.error("Buch "+bookId+" konnte nicht gelöscht werden");
+			LOG.error("Buch "+bookId+" konnte nicht gelï¿½scht werden");
 			e.printStackTrace();
 		}
 	}
