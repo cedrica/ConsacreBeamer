@@ -8,31 +8,44 @@
 <?import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.copyrights.CopyRightsView?>
 <?import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.extras.ExtrasView?>
 <?import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.text.TextView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?scenebuilder-preview-i18n-resource /bundle/consacrebeamer_de_DE.properties?>
 <?scenebuilder-stylesheet /com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/CreateOrEditNewSongView.css?>
 <?scenebuilder-stylesheet /css/svg-icons.css?>
 
-<fx:root xmlns:fx="http://javafx.com/fxml" type="CreateOrEditNewSongView" fx:id="rootNode" fx:controller="com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.CreateOrEditNewSongController">
+<fx:root xmlns:fx="http://javafx.com/fxml" type="CreateOrEditNewSongView" fx:id="rootNode" fx:controller="com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.CreateOrEditNewSongController" maxWidth="600" maxHeight="600" prefHeight="600" prefWidth="600">
 
 	<stylesheets>
 		<String fx:value="/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/CreateOrEditNewSongView.css" />
 		<String fx:value="/css/svg-icons.css" />
 	</stylesheets>
 	<tabs>
-		<Tab closable="false" text="%csb.createOrEditNewSongView.text"> 
+		<Tab closable="false" text="%csb.createOrEditNewSongView.text" style="-fx-background-color:#fff"> 
 			<content>
-				<TextView fx:id="textView"/> 
+				<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color:#fff"> 
+					<content>
+						<TextView fx:id="textView"/> 
+					</content>
+				</ScrollPane>
 			</content>
 		</Tab>
 		<Tab closable="false" text="%csb.createOrEditNewSongView.copyrights"> 
 			<content>
-				<CopyRightsView fx:id="copyRightsView"/> 
+				<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color:#fff"> 
+					<content>
+						<CopyRightsView fx:id="copyRightsView"/> 
+					</content>
+				</ScrollPane>
 			</content>
 		</Tab>
 		<Tab closable="false" text="%csb.createOrEditNewSongView.extras"> 
 			<content>
-				<ExtrasView fx:id="extrasView"/> 
+				<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color:#fff"> 
+					<content>
+						<ExtrasView fx:id="extrasView"/> 
+					</content>
+				</ScrollPane>
 			</content>
 		</Tab>
 	</tabs>

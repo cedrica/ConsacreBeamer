@@ -61,6 +61,9 @@
     /*-fx-dark-text-color: white;*/
 }
 
+
+
+
 /*******************************************************************************
  *                                                                             *
  * Material Design - Cards 				                       				   *
@@ -275,7 +278,7 @@
  ******************************************************************************/
 .context-menu {
     -fx-background-color: rgb(255.0, 255.0, 255.0, 0.95);
-    -fx-background-radius: 2.0;
+    -fx-background-radius: 5.0 5.0 5.0 5.0;
 }
 
 .radio-menu-item, .check-menu-item {
@@ -284,7 +287,7 @@
 
 .radio-menu-item:checked .label, .check-menu-item:checked .label {
     -fx-text-fill: -swatch-500;
-}
+} 
 
 .radio-menu-item:checked > .left-container > .radio, .check-menu-item:checked > .left-container > .check {
     -fx-background-color: -swatch-dark-grey;
@@ -457,7 +460,7 @@
 }
 
 .progress-bar > .bar {
-    -fx-background-color: -swatch-500;
+    -fx-background-color: #f40019;
     -fx-background-radius: 0.0;
     -fx-background-insets: 0.0;
     -fx-border-width: 0.0;
@@ -465,7 +468,7 @@
 }
 
 .progress-bar:indeterminate > .bar {
-    -fx-background-color: derive(-swatch-500, 50.0%);
+    -fx-background-color: #f40019;
     -fx-background-radius: 0.0;
     -fx-background-insets: 0.0;
     -fx-border-width: 0.0;
@@ -759,7 +762,7 @@
 }
 
 .text-area, .text-field {
-    -fx-background-color: transparent;
+    -fx-background-color: #fff;
     -fx-background-radius: 2.0;
     -fx-padding: 0.5em 0.5em 0.5em 0.1em;
     -fx-border-color: -swatch-grey;

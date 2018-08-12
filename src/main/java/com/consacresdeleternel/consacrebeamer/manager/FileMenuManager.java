@@ -28,6 +28,7 @@ import com.consacresdeleternel.consacrebeamer.repository.ScheduleRepository;
 import com.consacresdeleternel.consacrebeamer.repository.SongRepository;
 import com.consacresdeleternel.consacrebeamer.utils.FileUtil;
 
+import de.jensd.fx.fontawesome.AwesomeDude;
 import javafx.collections.ObservableList;
 import javafx.geometry.Side;
 import javafx.scene.Node;
@@ -148,7 +149,7 @@ public class FileMenuManager {
 			song = createSongFromCreateOrEditNewSongView(createOrEditNewSongView, song);
 			song = songRepository.save(song);
 			if (song != null) {
-				FileUtil.saveSongAsTxtFileToSongsFolder(createOrEditNewSongView.getTextView().getSongHtml(),
+				FileUtil.saveSongAsTxtFileToSongsFolder(song.getSongHtml(),
 						song.getTextFileReference());
 				Dialogs.success(Localization.asKey("csb.alert.songSavingSuccessfulled"),
 						mainContainerView.getScene().getWindow());

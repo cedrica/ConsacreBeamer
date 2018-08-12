@@ -12,6 +12,7 @@ import javafx.geometry.Side;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 
 public class CustomAutoCompleteTextFields {
 	private final List<Song> entries;
@@ -32,20 +33,22 @@ public class CustomAutoCompleteTextFields {
 	private void registerListener(TextField textField) {
 		// Add "suggestions" by changing text
 		textField.setOnKeyReleased(evt  -> {
-			String enteredText = textField.getText();
-			if (enteredText == null || enteredText.isEmpty()) {
-				entriesPopup.hide();
-			} else {
-				List<Song> filteredEntries = entries.stream()
-						.filter(e -> e.getSongTitle().startsWith(enteredText)).collect(Collectors.toList());
-				if (!filteredEntries.isEmpty()) {
-					populatePopup(filteredEntries, textField);
-					if (!entriesPopup.isShowing()) { // optional
-						entriesPopup.show(textField, Side.BOTTOM, 0, 0);
-					}
-					// no suggestions -> hide
-				} else {
+			if(evt.getCode() != KeyCode.DOWN) {
+				String enteredText = textField.getText();
+				if (enteredText == null || enteredText.isEmpty()) {
 					entriesPopup.hide();
+				} else {
+					List<Song> filteredEntries = entries.stream()
+							.filter(e -> e.getSongTitle().startsWith(enteredText)).collect(Collectors.toList());
+					if (!filteredEntries.isEmpty()) {
+						populatePopup(filteredEntries, textField);
+						if (!entriesPopup.isShowing()) { // optional
+							entriesPopup.show(textField, Side.BOTTOM, 0, 0);
+						}
+						// no suggestions -> hide
+					} else {
+						entriesPopup.hide();
+					}
 				}
 			}
 		});

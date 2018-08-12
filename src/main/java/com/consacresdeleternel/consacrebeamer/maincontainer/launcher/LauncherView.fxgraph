@@ -9,6 +9,7 @@ import java.lang.Double
 import javafx.scene.layout.StackPane
 import javafx.scene.image.ImageView
 import javafx.scene.image.Image
+import javafx.geometry.Insets
 
 dynamic component LauncherView controlledby LauncherController styledwith [
 	"/com/consacresdeleternel/consacrebeamer/maincontainer/launcher/LauncherView.css" ] resourcefile
@@ -20,12 +21,26 @@ dynamic component LauncherView controlledby LauncherController styledwith [
 		styleClass : [
 			"launcher-view"
 		],
-		center : 
-			ImageView {
-				fitHeight : 150,
-				fitWidth : 400,
-				image : Image { 
-					 url : location "/icons/consacre-beamer-icon.PNG"
-				}
-		} , bottom : HBox { ProgressBar id progressBar { static hgrow : "ALWAYS" , maxWidth : const Double # MAX_VALUE } } }
+		center : ImageView {
+			fitHeight : 300,
+			fitWidth : 300,
+			image : Image {
+				url : location "/icons/consacre-beamer.png"
+			}
+		},
+		bottom : HBox {
+			padding : Insets{
+				bottom : 5,
+				left : 5,
+				right : 5
+			},
+			maxHeight : 5,
+			prefHeight : 5,
+			ProgressBar id progressBar {
+				static hgrow : "ALWAYS",
+				style : "-fx-max-height:5px",
+				maxWidth : const Double#MAX_VALUE
+			}
 		}
+	}
+}

@@ -60,6 +60,7 @@ public class Dialogs {
 		customDialog.initModality(modality);
 		customDialog.setTitle(title);
 		customDialog.getDialogPane().setContent(content);
+		customDialog.setResizable(true);
 		customDialog.initOwner(owner);
 		Window dialogWindow = customDialog.getDialogPane().getScene().getWindow();
 		dialogWindow.setOnCloseRequest(evt -> {

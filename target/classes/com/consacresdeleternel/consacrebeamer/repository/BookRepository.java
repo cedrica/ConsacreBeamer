@@ -36,12 +36,12 @@ public class BookRepository extends BasicRepository<Book> {
 //			e.printStackTrace();
 //		}
 		try {
-			Query createQuery = entityManager.createQuery("from Book b where b.title =:bookTitle");
+			Query createQuery = entityManager.createQuery("select from Book b where b.title =:bookTitle");
 			createQuery.setParameter("bookTitle", bookTitle);
 			Book book = (Book) createQuery.getSingleResult();
 			return book;
 		} catch (Exception e) {
-			LOG.error("Die suche des Lied via title konnte nicht durchgef�hrt werden");
+			LOG.error("Die suche des Lied via "+bookTitle +" konnte nicht durchgef�hrt werden");
 			e.printStackTrace();
 		}
 		return null;

@@ -23,14 +23,15 @@ import javafx.scene.control.ScrollPane
 import javafx.scene.layout.BorderPane
 import org.controlsfx.control.MaskerPane
 import org.controlsfx.control.HiddenSidesPane
+import javafx.scene.control.Label
 
 dynamic component MainContainerView controlledby MainContainerController resourcefile
 "/bundle/consacrebeamer_de_DE.properties" styledwith [
-	"/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.css", "/css/svg-icons.css" ] {
+	"/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.css", "/css/svg-icons.css", "/css/fa.css" ] {
 	MainContainerView id rootNode {
 		stylesheets : [
 			"/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.css",
-			"/css/svg-icons.css"
+			"/css/svg-icons.css", "/css/fa.css"
 		],
 		styleClass : [
 			"main-container-view"
@@ -104,9 +105,10 @@ dynamic component MainContainerView controlledby MainContainerController resourc
 					HBox {
 						alignment : "CENTER",
 						Button {
-							graphic : ImageView {
+							graphic : ImageView{
 								fitHeight : 20,
 								fitWidth : 20,
+								
 								image : Image {
 									url : location "/icons/icons8-book-40.png"
 								}
@@ -168,6 +170,9 @@ dynamic component MainContainerView controlledby MainContainerController resourc
 			},
 			center : SplitPane {
 				VBox id vblistViewContainer {
+					styleClass : [
+						"vb-list-view-container"
+					],
 					maxWidth : 300,
 					padding : Insets {
 						top : 5,
@@ -188,6 +193,7 @@ dynamic component MainContainerView controlledby MainContainerController resourc
 								right : 10,
 								bottom : 10
 							},
+							style : "-fx-background-color:#fff",
 							hgap : 10,
 							vgap : 10
 

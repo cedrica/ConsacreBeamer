@@ -74,7 +74,7 @@ public class FileUtil {
 			faos.write(content.getBytes());
 
 		} catch (Exception e) {
-			LOG.error(e.getLocalizedMessage(), e);
+			LOG.error(e.getMessage());
 			throw new RuntimeException(e);
 		} finally {
 			if (faos != null) {

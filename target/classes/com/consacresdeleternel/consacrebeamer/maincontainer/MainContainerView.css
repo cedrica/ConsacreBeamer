@@ -2,13 +2,23 @@
 	-fx-background-color:#fff;
 }
 .main-container-view .tool-bar{
-	-fx-background-color:lightblue;
+	-fx-background-color:#3A210A;
 }
 .main-container-view .menu-button{
 	-fx-pref-width:100.0px;
-	-fx-background-color:#fff;
+	-fx-font-weight: bold;
+	-fx-font-size:15;
+	-fx-background-color:transparent;
+	-fx-text-fill:#fff;
+}
+.main-container-view .menu-button:hover{
+	-fx-background-color:#efaaaa;
+	-fx-background-radius: 5.0; 
 }
 
+.main-container-view .vb-list-view-container{
+	-fx-background-color:#FFF;
+}
 .main-container-view  .new-file-icon{
 	-fx-background-color:green;
 	-fx-pref-height:15.0px;

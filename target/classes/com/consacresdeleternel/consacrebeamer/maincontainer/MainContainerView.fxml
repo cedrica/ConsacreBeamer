@@ -26,6 +26,7 @@
 <?scenebuilder-preview-i18n-resource /bundle/consacrebeamer_de_DE.properties?>
 <?scenebuilder-stylesheet /com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.css?>
 <?scenebuilder-stylesheet /css/svg-icons.css?>
+<?scenebuilder-stylesheet /css/fa.css?>
 
 <fx:root xmlns:fx="http://javafx.com/fxml" type="MainContainerView" fx:id="rootNode" fx:controller="com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerController">
 
@@ -150,13 +151,16 @@
 		<center>
 			<SplitPane> 
 				<VBox fx:id="vblistViewContainer" maxWidth="300" spacing="5"> 
+					<styleClass>
+						<String fx:value="vb-list-view-container" />
+					</styleClass>
 					<padding>
 						<Insets top="5" left="5" right="5"/> 
 					</padding>
 				</VBox>
 				<VBox fx:id="vbPreviewContainer"> 
 					<ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS"> 
-						<FlowPane fx:id="flowPane" hgap="10" vgap="10"> 
+						<FlowPane fx:id="flowPane" style="-fx-background-color:#fff" hgap="10" vgap="10"> 
 							<padding>
 								<Insets top="10" left="10" right="10" bottom="10"/> 
 							</padding>
@@ -175,6 +179,7 @@
 	<stylesheets>
 		<String fx:value="/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.css" />
 		<String fx:value="/css/svg-icons.css" />
+		<String fx:value="/css/fa.css" />
 	</stylesheets>
 	<styleClass>
 		<String fx:value="main-container-view" />

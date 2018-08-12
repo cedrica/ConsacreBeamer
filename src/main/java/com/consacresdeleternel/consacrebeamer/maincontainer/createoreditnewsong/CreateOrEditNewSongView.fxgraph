@@ -19,6 +19,7 @@ import impl.org.controlsfx.spreadsheet.CellView
 import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.text.TextView
 import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.copyrights.CopyRightsView
 import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.extras.ExtrasView
+import javafx.scene.control.ScrollPane
 
 dynamic component CreateOrEditNewSongView controlledby CreateOrEditNewSongController styledwith [
 	"/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/CreateOrEditNewSongView.css",
@@ -28,22 +29,44 @@ dynamic component CreateOrEditNewSongView controlledby CreateOrEditNewSongContro
 			"/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/CreateOrEditNewSongView.css",
 			"/css/svg-icons.css"
 		],
+		maxWidth : 600,
+		maxHeight : 600,
+		prefHeight  : 600,
+		prefWidth  : 600,
 		tabs : [
-			
+
 			Tab {
 				closable : false,
 				text : rstring "csb.createOrEditNewSongView.text",
-				content : TextView id textView 
+					style : "-fx-background-color:#fff",
+				content : ScrollPane {
+					fitToHeight : true,
+					fitToWidth : true,
+					style : "-fx-background-color:#fff",
+					content : TextView id textView
+				}
 			},
 			Tab {
 				closable : false,
 				text : rstring "csb.createOrEditNewSongView.copyrights",
-				content : CopyRightsView id  copyRightsView
+				content : ScrollPane {
+					fitToHeight : true,
+					fitToWidth : true,
+					style : "-fx-background-color:#fff",
+					content : CopyRightsView id copyRightsView
+				}
+
 			},
 			Tab {
 				closable : false,
 				text : rstring "csb.createOrEditNewSongView.extras",
-				content : ExtrasView id  extrasView
+				content : ScrollPane {
+					fitToHeight : true,
+					fitToWidth : true,
+					style : "-fx-background-color:#fff",
+					content : ExtrasView id extrasView
+				}
+
 			}
 		]
 	}
