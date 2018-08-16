@@ -12,7 +12,7 @@ import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BasicRepository<T> {
+public abstract class BasicRepository<T> {
 	private static final Logger LOG = LoggerFactory.getLogger(BasicRepository.class);
 	protected static SessionFactory sessionFactory = null;
 	protected Transaction tx = null;
@@ -39,6 +39,7 @@ public class BasicRepository<T> {
 			entityManager = entityManagerFactory.createEntityManager();
 		} catch (Exception e) {
 			e.printStackTrace();
+			LOG.error("Initializing of entitity manager fail: ",e.getMessage());
 		}
 
 	}

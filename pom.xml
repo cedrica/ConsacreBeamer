@@ -60,7 +60,12 @@
 			<artifactId>deltaspike-core-api</artifactId>
 			<version>1.5.0</version>
 		</dependency>
-
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.deltaspike.modules</groupId>
 			<artifactId>deltaspike-jpa-module-api</artifactId>
@@ -113,6 +118,11 @@
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
 			<version>1.8.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.sonatype.sisu</groupId>
+			<artifactId>sisu-inject-bean</artifactId>
+			<version>2.3.0</version>
 		</dependency>
 	</dependencies>
 	<build>

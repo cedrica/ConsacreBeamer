@@ -1,0 +1,21 @@
+.list-item-view{
+	-fx-font-weight: bold;
+	-fx-font-size:15;
+}
+
+.list-item-view .toggle-button{
+	-fx-background-color: #3A210A;
+	-fx-text-fill:#FFF;
+}
+.list-item-view .toggle-button:selected{
+	-fx-border-color: #00C6FA;
+	-fx-text-fill:#FFF;
+	-fx-border-width:5px;
+	-fx-border-radius:5px;
+	-fx-background-radius:5px;
+}
+.list-item-view .toggle-button:hover{
+	-fx-text-fill: #00C6FA;
+	
+}
+

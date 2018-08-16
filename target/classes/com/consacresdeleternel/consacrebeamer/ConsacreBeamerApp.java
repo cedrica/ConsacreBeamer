@@ -16,17 +16,24 @@ import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.css.PseudoClass;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 public class ConsacreBeamerApp extends Application {
+	private static final Rectangle2D SCREEN_BOUNDS = Screen.getPrimary().getVisualBounds();
+	private static double[] pref_WH, offset_XY;
 
 	@Override
 	public void start(Stage primaryStage) {
-
-		LauncherTask launcherTask = new LauncherTask(primaryStage);
+		Stage stage = new Stage();
+		stage.initStyle(StageStyle.UNDECORATED);
+		LauncherTask launcherTask = new LauncherTask(stage);
 		new Thread(launcherTask).start();
 		launcherTask.valueProperty().addListener((obs, oldVal, newVal) -> {
 			MainContainerView mainContainerView = newVal.getKey();
@@ -37,65 +44,54 @@ public class ConsacreBeamerApp extends Application {
 			mainContainerManger.init(mainContainerView);
 			Scene scene = new Scene(mainContainerView);
 			scene.getStylesheets().add("/css/Material.css");
+			primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/icons/consacre-icon-sans-bg.png")));
 			primaryStage.setScene(scene);
 			primaryStage.setMaximized(true);
-			primaryStage.setMinWidth(600);
-			primaryStage.setMinHeight(600);
+			primaryStage.setMinWidth(1000);
+			primaryStage.setMinHeight(800);
 			Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
 				@Override
 				public void uncaughtException(Thread t, Throwable e) {
 					System.err.println("Fehler ist aufgetreten");
 				}
 			});
+			stage.close();
 			primaryStage.show();
 		});
 		LauncherView launcherView = new LauncherView();
-		
+		launcherView.getWebView().setOnMousePressed((MouseEvent p) -> {
+			offset_XY = new double[] { p.getSceneX(), p.getSceneY() };
+		});
 
-        Timeline task = new Timeline(
-                new KeyFrame(
-                        Duration.ZERO,
-                        new KeyValue(launcherView.getProgressBar().progressProperty(), 0)
-                ),
-                new KeyFrame(
-                        Duration.seconds(2),
-                        new KeyValue(launcherView.getProgressBar().progressProperty(), 1)
-                )
-        );
+		launcherView.getWebView().setOnMouseDragged((MouseEvent d) -> {
+			// Ensures the stage is not dragged past the taskbar
+			if (d.getScreenY() < (SCREEN_BOUNDS.getMaxY() - 20))
+				stage.setY(d.getScreenY() - offset_XY[1]);
+			stage.setX(d.getScreenX() - offset_XY[0]);
+		});
 
-        // Set the max status
-        int maxStatus = 12;
-        // Create the Property that holds the current status count
-        IntegerProperty statusCountProperty = new SimpleIntegerProperty(1);
-        // Create the timeline that loops the statusCount till the maxStatus
-        Timeline timelineBar = new Timeline(
-                new KeyFrame(
-                        // Set this value for the speed of the animation
-                        Duration.millis(300),
-                        new KeyValue(statusCountProperty, maxStatus)
-                )
-        );
-        // The animation should be infinite
-        timelineBar.setCycleCount(Timeline.INDEFINITE);
-        timelineBar.play();
-        // Add a listener to the statusproperty
-        statusCountProperty.addListener((ov, statusOld, statusNewNumber) -> {
-            int statusNew = statusNewNumber.intValue();
-            // Remove old status pseudo from progress-bar
-            launcherView.getProgressBar().pseudoClassStateChanged(PseudoClass.getPseudoClass("status" + statusOld.intValue()), false);
-            // Add current status pseudo from progress-bar
-            launcherView.getProgressBar().pseudoClassStateChanged(PseudoClass.getPseudoClass("status" + statusNew), true);
-        });
-        task.playFromStart();
-//		launcherView.getProgressBar().progressProperty().bind(launcherTask.progressProperty());
+		launcherView.getWebView().setOnMouseReleased((MouseEvent r) -> {
+			// Ensures the stage is not dragged past top of screen
+			if (stage.getY() < 0.0)
+				stage.setY(0.0);
+		});
+
+	    Timeline task = new Timeline(
+	            new KeyFrame(
+	                    Duration.ZERO,       
+	                    new KeyValue(launcherView.getProgressBar().progressProperty(), 0)
+	            ),
+	            new KeyFrame(
+	                    Duration.seconds(15), 
+	                    new KeyValue(launcherView.getProgressBar().progressProperty(), 1)
+	            )
+	        );
+		task.playFromStart();
 		Scene scene = new Scene(launcherView);
-		scene.getStylesheets().add("/css/Material.css");
-		primaryStage.setScene(scene);
-		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/icons/consacre-icon-sans-bg.png")));
-		primaryStage.setWidth(600);
-		primaryStage.setHeight(400);
-		primaryStage.setMaximized(false);
-		primaryStage.show();
+		stage.setScene(scene);
+		stage.setWidth(800);
+		stage.setHeight(600);
+		stage.show();
 
 	}
 
