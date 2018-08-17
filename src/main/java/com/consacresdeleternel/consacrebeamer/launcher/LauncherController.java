@@ -1,4 +1,4 @@
-package com.consacresdeleternel.consacrebeamer.maincontainer.launcher;
+package com.consacresdeleternel.consacrebeamer.launcher;
 
 import java.net.URL;
 import java.util.ResourceBundle;

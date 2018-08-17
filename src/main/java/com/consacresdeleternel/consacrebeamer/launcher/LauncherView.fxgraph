@@ -1,8 +1,8 @@
-package com.consacresdeleternel.consacrebeamer.maincontainer.launcher
+package com.consacresdeleternel.consacrebeamer.launcher
 
 import javafx.scene.layout.AnchorPane
-import com.consacresdeleternel.consacrebeamer.maincontainer.launcher.LauncherController
-import com.consacresdeleternel.consacrebeamer.maincontainer.launcher.LauncherView
+import com.consacresdeleternel.consacrebeamer.launcher.LauncherController
+import com.consacresdeleternel.consacrebeamer.launcher.LauncherView
 import javafx.scene.control.ProgressBar
 import javafx.scene.layout.HBox
 import java.lang.Double
@@ -13,11 +13,11 @@ import javafx.geometry.Insets
 import javafx.scene.web.WebView
 
 dynamic component LauncherView controlledby LauncherController styledwith [
-	"/com/consacresdeleternel/consacrebeamer/maincontainer/launcher/LauncherView.css" ] resourcefile
+	"/com/consacresdeleternel/consacrebeamer/launcher/LauncherView.css" ] resourcefile
 "/bundle/consacrebeamer_de_DE.properties" {
 	LauncherView id rootNode {
 		stylesheets : [
-			"/com/consacresdeleternel/consacrebeamer/maincontainer/launcher/LauncherView.css"
+			"/com/consacresdeleternel/consacrebeamer/launcher/LauncherView.css"
 		],
 		styleClass : [
 			"launcher-view"

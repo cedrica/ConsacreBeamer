@@ -15,7 +15,7 @@
     -swatch-200: #F9D9A8;
     -swatch-300: #F6C465;
     -swatch-400: rgb(255.0, 193.0, 63.0);
-    -swatch-500: #F19300;
+    -swatch-500: #21C6FF;/*#F19300;*/
     /*default text */
     -fx-text-base-color: #646464;
     -fx-text-button-normal: -swatch-500;
@@ -37,7 +37,7 @@
     -fx-disabled-opacity: 0.7;
 
     /*default colors */
-    -swatch-grey: rgb(200.0, 200.0, 200.0);
+    -swatch-grey: #21C6FF;
     -swatch-dark-grey: rgb(150.0, 150.0, 150.0);
     -swatch-light-grey: rgb(230.0, 230.0, 230.0);
     -swatch-toolbar: rgb(245.0, 245.0, 245.0);
@@ -138,7 +138,7 @@
 
 .toggle-button, .button {
     -fx-text-fill: -fx-text-button-normal;
-    -fx-font-family: 'Roboto';
+    -fx-font-family: 'sans serif';
     -fx-font-weight: bold;
     -fx-background-insets: 0.0;
     -fx-background-radius: 4.0;
@@ -147,7 +147,7 @@
 }
 
 .button-raised .button .text, .button-flat .button .text {
-    -fx-text-weight: Bold;
+ 
 }
 
 .button:default {
@@ -182,7 +182,7 @@
 
 .icon-button .text {
     -fx-font-family: 'MaterialDesignIconicFont';
-    -fx-font-size: 24.0px;
+    /*-fx-font-size: 24.0px;*/
 }
 
 /*******************************************************************************

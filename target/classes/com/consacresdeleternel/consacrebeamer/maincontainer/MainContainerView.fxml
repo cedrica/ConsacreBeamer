@@ -12,7 +12,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -22,7 +21,6 @@
 <?import org.controlsfx.control.HiddenSidesPane?>
 <?import org.controlsfx.control.MaskerPane?>
 <?import org.controlsfx.control.textfield.CustomTextField?>
-<?import org.controlsfx.glyphfont.Glyph?>
 <?scenebuilder-preview-i18n-resource /bundle/consacrebeamer_de_DE.properties?>
 <?scenebuilder-stylesheet /com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.css?>
 <?scenebuilder-stylesheet /css/svg-icons.css?>
@@ -88,20 +86,6 @@
 				</ToolBar>
 				<HBox spacing="10"> 
 					<HBox alignment="CENTER"> 
-						<Button> 
-							<graphic>
-								<ImageView fitHeight="20" fitWidth="20"> 
-									<image>
-										<Image url="@/icons/icons8-book-40.png"/> 
-									</image>
-								</ImageView>
-							</graphic>
-							<tooltip>
-								<Tooltip text="%csb.mainContainerView.songCatalog"/> 
-							</tooltip>
-						</Button>
-					</HBox>
-					<HBox alignment="CENTER"> 
 						<CustomTextField fx:id="ctfSearchSong" promptText="%csb.mainContainerView.searchSong"> 
 							<right>
 								<Button style="-fx-background-color:transparent"> 
@@ -109,7 +93,7 @@
 									<graphic>
 										<ImageView fitHeight="20" fitWidth="20"> 
 											<image>
-												<Image url="@/icons/icons8-search-26.png"/> 
+												<Image url="@/icons/search-icon.png"/> 
 											</image>
 										</ImageView>
 									</graphic>
@@ -124,23 +108,13 @@
 									<graphic>
 										<ImageView fitHeight="20" fitWidth="20"> 
 											<image>
-												<Image url="@/icons/icons8-search-26.png"/> 
+												<Image url="@/icons/search-icon.png"/> 
 											</image>
 										</ImageView>
 									</graphic>
 								</Button>
 							</right>
 						</CustomTextField>
-					</HBox>
-					<HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS"> 
-						<Button> 
-							<graphic>
-								<Glyph icon="CLOSE" fontFamily="FontAwesome"/> 
-							</graphic>
-							<tooltip>
-								<Tooltip text="%csb.mainContainerView.closeToolbar"/> 
-							</tooltip>
-						</Button>
 					</HBox>
 					<padding>
 						<Insets left="5" top="5" bottom="5" right="5"/> 

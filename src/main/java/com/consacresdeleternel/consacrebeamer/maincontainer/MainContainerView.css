@@ -2,11 +2,11 @@
 	-fx-background-color:#fff;
 }
 .main-container-view .tool-bar{
-	-fx-background-color:#3A210A;
+	-fx-background-color:red;
 }
 .main-container-view .menu-button{
 	-fx-pref-width:100.0px;
-	-fx-font-weight: bold;
+    -fx-font-family: 'sans serif';
 	-fx-font-size:15;
 	-fx-background-color:transparent;
 	-fx-text-fill:#fff;

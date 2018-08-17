@@ -3,8 +3,8 @@ package com.consacresdeleternel.consacrebeamer;
 import java.lang.Thread.UncaughtExceptionHandler;
 
 import com.consacresdeleternel.consacrebeamer.events.FileMenuEvent;
+import com.consacresdeleternel.consacrebeamer.launcher.LauncherView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
-import com.consacresdeleternel.consacrebeamer.maincontainer.launcher.LauncherView;
 import com.consacresdeleternel.consacrebeamer.manager.MainContainerManger;
 import com.consacresdeleternel.consacrebeamer.tasks.LauncherTask;
 
@@ -13,9 +13,6 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.css.PseudoClass;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;

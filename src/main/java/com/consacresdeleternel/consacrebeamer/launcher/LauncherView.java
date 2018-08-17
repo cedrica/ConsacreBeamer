@@ -1,4 +1,4 @@
-package com.consacresdeleternel.consacrebeamer.maincontainer.launcher;
+package com.consacresdeleternel.consacrebeamer.launcher;
 
 import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
