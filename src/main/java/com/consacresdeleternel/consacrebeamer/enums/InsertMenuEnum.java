@@ -5,7 +5,7 @@ import com.consacresdeleternel.consacrebeamer.events.InsertMenuEvent;
 import javafx.event.EventType;
 
 public enum InsertMenuEnum {
-	SONG("csb.insertMenuEnum.insertSong", "/icons/icons8-search-40.png", InsertMenuEvent.INSERT_SONG), BIBLE(
+	SONG("csb.insertMenuEnum.insertSong", "/icons/search-icon.png", InsertMenuEvent.INSERT_SONG), BIBLE(
 			"csb.insertMenuEnum.insertBibleVerse", "/icons/icons8-holy-bible-40.png",
 			InsertMenuEvent.INSERT_BIBLE_VERSE), SEPARATOR("csb.mainContainerView.separator", "", null), IMAGE(
 					"csb.insertMenuEnum.insertImage", "/icons/icons8-picture-40.png",
