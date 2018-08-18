@@ -38,7 +38,6 @@ dynamic component CreateOrEditNewSongView controlledby CreateOrEditNewSongContro
 			Tab {
 				closable : false,
 				text : rstring "csb.createOrEditNewSongView.text",
-					style : "-fx-background-color:#fff",
 				content : ScrollPane {
 					fitToHeight : true,
 					fitToWidth : true,

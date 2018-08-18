@@ -166,7 +166,7 @@ dynamic component MainContainerView controlledby MainContainerController resourc
 								right : 10,
 								bottom : 10
 							},
-							style : "-fx-background-color:#fff",
+							style : "-fx-background-color:#FFF",
 							hgap : 10,
 							vgap : 10
 						}

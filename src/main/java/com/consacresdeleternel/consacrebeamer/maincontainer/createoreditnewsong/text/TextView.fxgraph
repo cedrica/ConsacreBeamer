@@ -27,6 +27,7 @@ resourcefile "/bundle/consacrebeamer_de_DE.properties" {
 			left : 10,
 			bottom : 10
 		},
+		styleClass : ["text-view"],
 		center : VBox {
 			spacing : 5,
 			HBox {
@@ -45,7 +46,8 @@ resourcefile "/bundle/consacrebeamer_de_DE.properties" {
 
 			}
 
-		},
+		}
+		/* ,
 		right : VBox {
 			padding : Insets {
 				left : 10
@@ -75,6 +77,7 @@ resourcefile "/bundle/consacrebeamer_de_DE.properties" {
 					text : "3"
 				}
 			}
-		}
+		}*/
+		
 	}
 }

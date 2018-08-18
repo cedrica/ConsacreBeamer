@@ -232,6 +232,7 @@ public class Song {
 		this.textFileReference = textFileReference;
 	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -249,6 +250,7 @@ public class Song {
 		result = prime * result + ((nationalCopy == null) ? 0 : nationalCopy.hashCode());
 		result = prime * result + ((originalTitle == null) ? 0 : originalTitle.hashCode());
 		result = prime * result + ((rights == null) ? 0 : rights.hashCode());
+		result = prime * result + ((schedules == null) ? 0 : schedules.hashCode());
 		result = prime * result + ((songBody == null) ? 0 : songBody.hashCode());
 		result = prime * result + Arrays.hashCode(songBodyAsByteArr);
 		result = prime * result + ((songHtml == null) ? 0 : songHtml.hashCode());
@@ -334,6 +336,11 @@ public class Song {
 				return false;
 		} else if (!rights.equals(other.rights))
 			return false;
+		if (schedules == null) {
+			if (other.schedules != null)
+				return false;
+		} else if (!schedules.equals(other.schedules))
+			return false;
 		if (songBody == null) {
 			if (other.songBody != null)
 				return false;
@@ -376,13 +383,13 @@ public class Song {
 
 	@Override
 	public String toString() {
-		return "Song [id=" + id + ", songTitle=" + songTitle + ", songBody=" + songBody + ", songBodyAsByteArr="
-				+ Arrays.toString(songBodyAsByteArr) + ", copyRightTitle=" + copyRightTitle + ", originalTitle="
-				+ originalTitle + ", autor=" + autor + ", musik=" + musik + ", traduction=" + traduction
-				+ ", copyRight=" + copyRight + ", nationalCopy=" + nationalCopy + ", rights=" + rights + ", ccliNumber="
-				+ ccliNumber + ", bibleVerse=" + bibleVerse + ", additionalInfo=" + additionalInfo + ", songKey="
-				+ songKey + ", tempo=" + tempo + ", songHtml=" + songHtml + ", textFileReference=" + textFileReference
-				+ ", book=" + book + ", attachements=" + attachements + "]";
+		return "Song [id=" + id + ", songTitle=" + songTitle + ", schedules=" + schedules + ", songBody=" + songBody
+				+ ", songBodyAsByteArr=" + Arrays.toString(songBodyAsByteArr) + ", copyRightTitle=" + copyRightTitle
+				+ ", originalTitle=" + originalTitle + ", autor=" + autor + ", musik=" + musik + ", traduction="
+				+ traduction + ", copyRight=" + copyRight + ", nationalCopy=" + nationalCopy + ", rights=" + rights
+				+ ", ccliNumber=" + ccliNumber + ", bibleVerse=" + bibleVerse + ", additionalInfo=" + additionalInfo
+				+ ", songKey=" + songKey + ", tempo=" + tempo + ", songHtml=" + songHtml + ", textFileReference="
+				+ textFileReference + ", book=" + book + ", attachements=" + attachements + "]";
 	}
 
 }

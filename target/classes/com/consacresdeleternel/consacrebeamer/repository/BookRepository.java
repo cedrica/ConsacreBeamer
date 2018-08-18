@@ -1,5 +1,7 @@
 package com.consacresdeleternel.consacrebeamer.repository;
 
+import java.util.List;
+
 import javax.inject.Singleton;
 import javax.persistence.Query;
 
@@ -36,10 +38,12 @@ public class BookRepository extends BasicRepository<Book> {
 //			e.printStackTrace();
 //		}
 		try {
-			Query createQuery = entityManager.createQuery("select from Book b where b.title =:bookTitle");
+			Query createQuery = entityManager.createQuery("select b from Book b where b.title =:bookTitle");
 			createQuery.setParameter("bookTitle", bookTitle);
-			Book book = (Book) createQuery.getSingleResult();
-			return book;
+			List books = createQuery.getResultList();
+			if(!books.isEmpty()) {
+				return (Book) books.get(0);
+			}
 		} catch (Exception e) {
 			LOG.error("Die suche des Lied via "+bookTitle +" konnte nicht durchgef�hrt werden");
 			e.printStackTrace();
@@ -68,9 +72,12 @@ public class BookRepository extends BasicRepository<Book> {
 		
 		
 		try {
+			entityManager.getTransaction().begin();
 			Book book = entityManager.find(Book.class, bookId);
 			entityManager.remove(book);
+			entityManager.getTransaction().commit();
 		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
 			LOG.error("Buch "+bookId+" konnte nicht gel�scht werden");
 			e.printStackTrace();
 		}
@@ -93,7 +100,7 @@ public class BookRepository extends BasicRepository<Book> {
 //		}
 		try {
 			entityManager.getTransaction().begin();
-			Query createQuery = entityManager.createQuery("update Book set title = :title where id = :bookId");
+			Query createQuery = entityManager.createQuery("update Book b set b.title = :title where b.id = :bookId");
 			createQuery.setParameter("title", title);
 			createQuery.setParameter("bookId", bookId);
 			createQuery.executeUpdate();

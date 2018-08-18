@@ -23,7 +23,6 @@ public abstract class BasicRepository<T> {
 		init();
 	}
 
-	
 	protected EntityManagerFactory entityManagerFactory;
 	protected EntityManager entityManager;
 
@@ -39,7 +38,7 @@ public abstract class BasicRepository<T> {
 			entityManager = entityManagerFactory.createEntityManager();
 		} catch (Exception e) {
 			e.printStackTrace();
-			LOG.error("Initializing of entitity manager fail: ",e.getMessage());
+			LOG.error("Initializing of entitity manager fail: ", e.getMessage());
 		}
 
 	}
@@ -65,6 +64,7 @@ public abstract class BasicRepository<T> {
 			entityManager.getTransaction().begin();
 			entityManager.persist(o);
 			entityManager.getTransaction().commit();
+			entityManager.refresh(o);
 			return o;
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
@@ -141,7 +141,12 @@ public abstract class BasicRepository<T> {
 		// e.printStackTrace();
 		// }
 		try {
-			Query query = entityManager.createQuery("select b from " + this.clazz.getSimpleName()+" b");
+			Query query = entityManager.createQuery("select b from " + this.clazz.getSimpleName() + " b");
+			if(query.getResultList() != null) {
+				for (Object o : query.getResultList()) {
+					entityManager.refresh(o);
+				}
+			}
 			return query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();

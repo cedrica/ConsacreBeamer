@@ -21,7 +21,7 @@
 		<String fx:value="/css/svg-icons.css" />
 	</stylesheets>
 	<tabs>
-		<Tab closable="false" text="%csb.createOrEditNewSongView.text" style="-fx-background-color:#fff"> 
+		<Tab closable="false" text="%csb.createOrEditNewSongView.text"> 
 			<content>
 				<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color:#fff"> 
 					<content>
