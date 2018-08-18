@@ -1,17 +1,18 @@
 .list-item-view{
+	-fx-font-weight: bold;
+	-fx-font-size:15;
 }
 
 .list-item-view .toggle-button{
-	-fx-background-color: lightgray;
+	-fx-background-color: #21C6FF;
+	-fx-text-fill:#fff;
 }
 .list-item-view .toggle-button:selected{
-	-fx-background-color: blue;
-	-fx-border-color: darkorange;
-	-fx-border-width:2px;
+	-fx-border-radius:5px;
+	-fx-background-radius:5px;
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
-.list-item-view:hover{
-	-fx-border-color: lightblue;
-	-fx-border-width:2px;
-	
+.list-item-view .toggle-button:hover{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 

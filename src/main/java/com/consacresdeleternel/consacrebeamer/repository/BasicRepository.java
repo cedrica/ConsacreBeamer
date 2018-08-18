@@ -12,7 +12,7 @@ import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BasicRepository<T> {
+public abstract class BasicRepository<T> {
 	private static final Logger LOG = LoggerFactory.getLogger(BasicRepository.class);
 	protected static SessionFactory sessionFactory = null;
 	protected Transaction tx = null;
@@ -23,7 +23,6 @@ public class BasicRepository<T> {
 		init();
 	}
 
-	
 	protected EntityManagerFactory entityManagerFactory;
 	protected EntityManager entityManager;
 
@@ -39,6 +38,7 @@ public class BasicRepository<T> {
 			entityManager = entityManagerFactory.createEntityManager();
 		} catch (Exception e) {
 			e.printStackTrace();
+			LOG.error("Initializing of entitity manager fail: ", e.getMessage());
 		}
 
 	}
@@ -64,6 +64,7 @@ public class BasicRepository<T> {
 			entityManager.getTransaction().begin();
 			entityManager.persist(o);
 			entityManager.getTransaction().commit();
+			entityManager.refresh(o);
 			return o;
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
@@ -140,7 +141,12 @@ public class BasicRepository<T> {
 		// e.printStackTrace();
 		// }
 		try {
-			Query query = entityManager.createQuery("select b from " + this.clazz.getSimpleName()+" b");
+			Query query = entityManager.createQuery("select b from " + this.clazz.getSimpleName() + " b");
+			if(query.getResultList() != null) {
+				for (Object o : query.getResultList()) {
+					entityManager.refresh(o);
+				}
+			}
 			return query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();

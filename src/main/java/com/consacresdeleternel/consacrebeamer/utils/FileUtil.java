@@ -48,11 +48,11 @@ public class FileUtil {
 
 	public static void removeFile(String fileName) {
 		try {
-			File file = new File(System.getProperty("C:\\Users\\HP\\Documents").replace("\\", "/") + "/songs/" + fileName);
-			if (file.delete()) {
+			File file = new File(System.getProperty("user.home").replace("\\", "/") + "/Documents/songs/" + fileName);
+			if (file.exists() && file.delete()) {
 				LOG.info(file.getName() + " is deleted!");
 			} else {
-				LOG.error("Delete operation is failed.");
+				LOG.error("Delete operation is failed. File does not exist");
 			}
 
 		} catch (Exception e) {
@@ -74,7 +74,7 @@ public class FileUtil {
 			faos.write(content.getBytes());
 
 		} catch (Exception e) {
-			LOG.error(e.getLocalizedMessage(), e);
+			LOG.error(e.getMessage());
 			throw new RuntimeException(e);
 		} finally {
 			if (faos != null) {

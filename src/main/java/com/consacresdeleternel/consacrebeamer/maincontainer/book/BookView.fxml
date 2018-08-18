@@ -21,7 +21,7 @@
 		<graphic>
 			<ImageView fitHeight="250" fitWidth="250"> 
 				<image>
-					<Image url="@/icons/icons8-read-filled-250.png"/> 
+					<Image url="@/icons/book.png"/> 
 				</image>
 			</ImageView>
 		</graphic>
@@ -29,7 +29,7 @@
 	<HBox focusTraversable="true" alignment="CENTER" prefHeight="200" prefWidth="200" onMouseClicked="#onOpenBook"> 
 		<VBox alignment="CENTER" style="-fx-background-color:transparent;"> 
 			<TextFlow maxWidth="100"> 
-				<Text fx:id="txtBookTitle" style="-fx-fill:#fff;font-weight:bold;"/> 
+				<Text fx:id="txtBookTitle" style="-fx-fill:#000;font-weight:bold;"/> 
 			</TextFlow>
 		</VBox>
 		<styleClass>

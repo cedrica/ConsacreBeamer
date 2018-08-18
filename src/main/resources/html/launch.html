@@ -1,0 +1,158 @@
+<DOCTYPE html!>
+<html>
+	<head>
+
+		<style>
+			#top{
+				background-color: red;
+				width:100%;
+				height: 50%;
+				
+			}
+			
+			#bottom{
+				background-color: #21C6FF;
+				width:100%;
+				height: 50%;
+			}
+			
+			#image{
+				z-index: 3;
+				/*background-image: url('logo.png');*/
+				position: absolute;
+				top: 44%;
+				left: 5%;
+			}
+			
+			#progress{
+				border: 1 solid gray;
+				height: 5px;
+				width: 90%;
+				z-index:3;
+				position: absolute;
+				background-color: #fff;
+				top: 90%;
+				left:5%;
+				border-radius:  3px;
+			}
+			
+			#lesconsacres{
+				height: 10px;
+				z-index:3;
+				position: absolute;
+				top: 45%;
+				left:18%;
+				font-size:30px;
+				font-family: sans-serif;
+				color:#fff;
+			}
+			
+			#deleternel{
+				z-index:3;
+				position: absolute;
+				top: 50%;
+				left:18%;
+				font-size:20px;
+				font-family: sans-serif;
+			}
+			
+			#pray{
+				z-index:3;
+				position: absolute;
+				top: 42%;
+				left:88.4%;
+			}
+			
+			#worship{
+				z-index:3;
+				position: absolute;
+				top: 38%;
+				left:84%;
+
+			}
+			#bible{
+				z-index:3;
+				position: absolute;
+				top: 42%;
+				left:80%;
+			}
+			
+			#evangelisation{
+				z-index:3;
+				position: absolute;
+				top: 49%;
+				left:84%;
+				
+			}
+			.circle{
+				width: 50px;
+				height: 50px;
+				text-align: center;
+				font-size:10px;
+				vertical-align:middle;
+				line-height: 50px;
+				color:#fff;
+			}
+			
+			
+			.evangeliser{
+-webkit-border-radius: 50%; -moz-border-radius: 50%;border-radius: 50%;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
+ background-color: #ff9a9a; background-image: -webkit-gradient(linear, left top, left bottom, from(#ff9a9a), to(#ff4040));
+ background-image: -webkit-linear-gradient(top, #ff9a9a, #ff4040);
+ background-image: -moz-linear-gradient(top, #ff9a9a, #ff4040);
+ background-image: -ms-linear-gradient(top, #ff9a9a, #ff4040);
+ background-image: -o-linear-gradient(top, #ff9a9a, #ff4040);
+ background-image: linear-gradient(to bottom, #ff9a9a, #ff4040);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#ff9a9a, endColorstr=#ff4040);
+}
+
+.bible_c{
+-webkit-border-radius:  50%; -moz-border-radius:  50%;border-radius:  50%;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
+ background-color: #ffc579; background-image: -webkit-gradient(linear, left top, left bottom, from(#ffc579), to(#fb9d23));
+ background-image: -webkit-linear-gradient(top, #ffc579, #fb9d23);
+ background-image: -moz-linear-gradient(top, #ffc579, #fb9d23);
+ background-image: -ms-linear-gradient(top, #ffc579, #fb9d23);
+ background-image: -o-linear-gradient(top, #ffc579, #fb9d23);
+ background-image: linear-gradient(to bottom, #ffc579, #fb9d23);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#ffc579, endColorstr=#fb9d23);
+}
+.worship_c{
+-webkit-border-radius: 50%; -moz-border-radius: 50%;border-radius: 50%;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
+ background-color: #a7cfdf; background-image: -webkit-gradient(linear, left top, left bottom, from(#a7cfdf), to(#23538a));
+ background-image: -webkit-linear-gradient(top, #a7cfdf, #23538a);
+ background-image: -moz-linear-gradient(top, #a7cfdf, #23538a);
+ background-image: -ms-linear-gradient(top, #a7cfdf, #23538a);
+ background-image: -o-linear-gradient(top, #a7cfdf, #23538a);
+ background-image: linear-gradient(to bottom, #a7cfdf, #23538a);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#a7cfdf, endColorstr=#23538a);
+}
+
+.pray_c{
+-webkit-border-radius: 50%; -moz-border-radius: 50%;border-radius: 50%;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
+ background-color: #4ba614; background-image: -webkit-gradient(linear, left top, left bottom, from(#4ba614), to(#008c00));
+ background-image: -webkit-linear-gradient(top, #4ba614, #008c00);
+ background-image: -moz-linear-gradient(top, #4ba614, #008c00);
+ background-image: -ms-linear-gradient(top, #4ba614, #008c00);
+ background-image: -o-linear-gradient(top, #4ba614, #008c00);
+ background-image: linear-gradient(to bottom, #4ba614, #008c00);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#4ba614, endColorstr=#008c00);
+}
+
+		</style>
+	</head>
+	<body>
+		<div id="top">
+			
+		</div>
+			<div id ="pray" class="pray_c circle">prierre</div>
+			<div id ="worship" class="worship_c circle">louange</div>
+			<div id ="bible" class="bible_c circle">parole</div>
+			<div id ="evangelisation" class="evangeliser circle">Evangeliser</div>
+			
+			<div id ="lesconsacres">LES CONSACRES</div>
+			<div id ="deleternel">de l Eternel</div>
+		<div id ="image">
+			<img src="logo.png" style="width:100px; height:100px"></img>
+		</div>
+		
+		<div id="bottom">
+			
+		</div>
+	</body>
+</html>

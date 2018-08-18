@@ -145,10 +145,13 @@ public class FileMenuManager {
 				mainContainerView.getScene().getWindow());
 		Optional<ButtonType> showAndWait = dialogStage.showAndWait();
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
+			String oldTitle = song.getTextFileReference();
 			song = createSongFromCreateOrEditNewSongView(createOrEditNewSongView, song);
-			song = songRepository.save(song);
+			song = songRepository.update(song);
 			if (song != null) {
-				FileUtil.saveSongAsTxtFileToSongsFolder(createOrEditNewSongView.getTextView().getSongHtml(),
+				//remove old file 
+				FileUtil.removeFile(oldTitle);
+				FileUtil.saveSongAsTxtFileToSongsFolder(song.getSongHtml(),
 						song.getTextFileReference());
 				Dialogs.success(Localization.asKey("csb.alert.songSavingSuccessfulled"),
 						mainContainerView.getScene().getWindow());
@@ -294,7 +297,7 @@ public class FileMenuManager {
 		song.setTempo(createOrEditNewSongView.getCopyRightsView().getTempo());
 		song.setTextFileReference(createOrEditNewSongView.getTextView().getTitle().replaceAll(" ", "").concat(".txt"));
 		// EXTRAS
-		song.setAttachements(createOrEditNewSongView.getExtrasView().getAttachments());
+		//song.setAttachements(createOrEditNewSongView.getExtrasView().getAttachments());
 		return song;
 	}
 

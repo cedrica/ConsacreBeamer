@@ -11,11 +11,11 @@
  ******************************************************************************/
 .root {
     /* Swatch Colors - Blue*/
-    -swatch-100: #D1AE70;
-    -swatch-200: #F9D9A8;
-    -swatch-300: #F6C465;
-    -swatch-400: rgb(255.0, 193.0, 63.0);
-    -swatch-500: #F19300;
+    -swatch-100: #21C6FF;
+    -swatch-200: #21C6FF;
+    -swatch-300: #21C6FF;
+    -swatch-400: #21C6FF;
+    -swatch-500: #21C6FF;/*#F19300;*/
     /*default text */
     -fx-text-base-color: #646464;
     -fx-text-button-normal: -swatch-500;
@@ -37,7 +37,7 @@
     -fx-disabled-opacity: 0.7;
 
     /*default colors */
-    -swatch-grey: rgb(200.0, 200.0, 200.0);
+    -swatch-grey: #21C6FF;
     -swatch-dark-grey: rgb(150.0, 150.0, 150.0);
     -swatch-light-grey: rgb(230.0, 230.0, 230.0);
     -swatch-toolbar: rgb(245.0, 245.0, 245.0);
@@ -60,6 +60,9 @@
     -fx-accent: -swatch-400;
     /*-fx-dark-text-color: white;*/
 }
+
+
+
 
 /*******************************************************************************
  *                                                                             *
@@ -135,7 +138,7 @@
 
 .toggle-button, .button {
     -fx-text-fill: -fx-text-button-normal;
-    -fx-font-family: 'Roboto';
+    -fx-font-family: 'sans serif';
     -fx-font-weight: bold;
     -fx-background-insets: 0.0;
     -fx-background-radius: 4.0;
@@ -144,7 +147,7 @@
 }
 
 .button-raised .button .text, .button-flat .button .text {
-    -fx-text-weight: Bold;
+ 
 }
 
 .button:default {
@@ -179,7 +182,7 @@
 
 .icon-button .text {
     -fx-font-family: 'MaterialDesignIconicFont';
-    -fx-font-size: 24.0px;
+    /*-fx-font-size: 24.0px;*/
 }
 
 /*******************************************************************************
@@ -275,7 +278,7 @@
  ******************************************************************************/
 .context-menu {
     -fx-background-color: rgb(255.0, 255.0, 255.0, 0.95);
-    -fx-background-radius: 2.0;
+    -fx-background-radius: 5.0 5.0 5.0 5.0;
 }
 
 .radio-menu-item, .check-menu-item {
@@ -284,7 +287,7 @@
 
 .radio-menu-item:checked .label, .check-menu-item:checked .label {
     -fx-text-fill: -swatch-500;
-}
+} 
 
 .radio-menu-item:checked > .left-container > .radio, .check-menu-item:checked > .left-container > .check {
     -fx-background-color: -swatch-dark-grey;
@@ -457,7 +460,7 @@
 }
 
 .progress-bar > .bar {
-    -fx-background-color: -swatch-500;
+    -fx-background-color: #f40019;
     -fx-background-radius: 0.0;
     -fx-background-insets: 0.0;
     -fx-border-width: 0.0;
@@ -465,7 +468,7 @@
 }
 
 .progress-bar:indeterminate > .bar {
-    -fx-background-color: derive(-swatch-500, 50.0%);
+    -fx-background-color: #f40019;
     -fx-background-radius: 0.0;
     -fx-background-insets: 0.0;
     -fx-border-width: 0.0;
@@ -673,7 +676,7 @@
     /*-fx-base-color: #656668;*/
     /*-fx-border-color: -swatch-grey;*/
     /*-fx-background-color: derive(white, -10%);*/
-    -fx-background-color: -swatch-grey;
+    -fx-background-color: #21C6FF;
 
     -fx-padding: 0.0 2.0 0.0 2.0; /* 0 3 0 3 */
 }
@@ -759,7 +762,7 @@
 }
 
 .text-area, .text-field {
-    -fx-background-color: transparent;
+    -fx-background-color: #fff;
     -fx-background-radius: 2.0;
     -fx-padding: 0.5em 0.5em 0.5em 0.1em;
     -fx-border-color: -swatch-grey;

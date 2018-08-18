@@ -85,11 +85,12 @@ public class BookManager {
 			List<Song> songs = evt.getSongs();
 			if (songs != null && !songs.isEmpty()) {
 				Long bookId = songs.get(0).getBook().getId();
-				songs.stream().forEach(s -> {
-					songRepository.remove(s);
-					FileUtil.removeFile(s.getTextFileReference());
-				});
 				Book newBook = bookRepository.findById(bookId);
+				songs.stream().forEach(s -> {
+					FileUtil.removeFile(s.getTextFileReference());
+					newBook.getSongs().remove(s);
+					songRepository.remove(s);
+				});
 				Dialogs.success(Localization.asKey("csb.dialogs.songsDeletingSuccessfull"),
 						mainContainerView.getScene().getWindow());
 				songListView.setSongItems(new FilteredList<>(FXCollections.observableList(newBook.getSongs())));
@@ -133,12 +134,12 @@ public class BookManager {
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
 			LOG.info("Edit mode");
 			bookRepository.updateName(book.getId(), createBookView.getBookName());
-			mainContainerView.fireEvent(new BookEvent(BookEvent.RELOAD_BOOKS));
 			LoadBookTask loadBookTask = new LoadBookTask(bookRepository);
 			new Thread(loadBookTask).start();
 			taskManager.addTask(loadBookTask);
 			loadBookTask.valueProperty().addListener((obs, oldVal, newVal) -> {
 				valueObjectManager.setBookItems(FXCollections.observableList(newVal));
+				mainContainerView.getFlowPane().getChildren().clear();
 				newVal.stream().forEach(b -> {
 					BookView bookView = new BookView();
 					bookView.setBook(b);
@@ -148,7 +149,6 @@ public class BookManager {
 				Dialogs.success(Localization.asKey("csb.ExtrasMenu.bookSuccessfullyCreated"),
 						mainContainerView.getScene().getWindow());
 			});
-			mainContainerView.getFlowPane().getChildren().clear();
 
 		}
 	}

@@ -96,7 +96,7 @@
 							<graphic>
 								<ImageView fitHeight="20" fitWidth="20"> 
 									<image>
-										<Image url="@/icons/icons8-search-26.png"/> 
+										<Image url="@/icons/search-icon.png"/> 
 									</image>
 								</ImageView>
 							</graphic>
