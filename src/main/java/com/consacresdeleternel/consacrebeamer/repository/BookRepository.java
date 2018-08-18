@@ -36,7 +36,7 @@ public class BookRepository extends BasicRepository<Book> {
 //			e.printStackTrace();
 //		}
 		try {
-			Query createQuery = entityManager.createQuery("from Book b where b.title =:bookTitle");
+			Query createQuery = entityManager.createQuery("select from Book b where b.title =:bookTitle");
 			createQuery.setParameter("bookTitle", bookTitle);
 			Book book = (Book) createQuery.getSingleResult();
 			return book;

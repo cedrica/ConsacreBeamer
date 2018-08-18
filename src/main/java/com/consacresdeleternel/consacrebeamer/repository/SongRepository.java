@@ -62,7 +62,7 @@ public class SongRepository extends BasicRepository<Song> {
 
 		try {
 			entityManager.getTransaction().begin();
-			Query createQuery = entityManager.createQuery("from Song s where s.songTitle = :songTitle");
+			Query createQuery = entityManager.createQuery("select from Song s where s.songTitle = :songTitle");
 			createQuery.setParameter("songTitle", songTitle);
 			Song song = (Song) createQuery.getSingleResult();
 			entityManager.getTransaction().commit();
