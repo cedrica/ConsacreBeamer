@@ -6,6 +6,8 @@ import javax.inject.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.consacresdeleternel.consacrebeamer.common.Localization;
+import com.consacresdeleternel.consacrebeamer.data.SongCategory;
 import com.consacresdeleternel.consacrebeamer.events.BookEvent;
 import com.consacresdeleternel.consacrebeamer.events.SongEvent;
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
@@ -45,6 +47,7 @@ public class MainContainerManger {
 		JFXUtilities.bindMaskerPane(mainContainerView.getMaskerPane(), taskManager);
 		loadBooks();
 		loadSongs(mainContainerView);
+		loadSonCategory();
 		mainContainerView.addEventHandler(BookEvent.RELOAD_BOOKS, evt -> loadBooks());
 		mainContainerView.addEventHandler(SongEvent.RELOAD_SONGS, evt -> loadSongs(mainContainerView));
 		fileMenuManager.init(mainContainerView);
@@ -62,6 +65,12 @@ public class MainContainerManger {
 			valueObjectManager.setSongItems(FXCollections.observableList(newVal));
 			new CustomAutoCompleteTextFields(mainContainerView.getSearchTextField(), newVal);
 		});
+	}
+	
+	private void loadSonCategory() {
+		valueObjectManager.setSongCategoryItems(
+				FXCollections.observableArrayList(new SongCategory(Localization.asKey("csb.copyRightsView.songCategoryWorship")),
+						new SongCategory(Localization.asKey("csb.copyRightsView.songCategoryAdoration"))));
 	}
 
 	private void loadBooks() {

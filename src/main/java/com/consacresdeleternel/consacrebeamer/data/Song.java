@@ -15,6 +15,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -48,6 +49,8 @@ public class Song {
 	@Transient
 	private String songHtml;
 	private String textFileReference;
+	@OneToOne
+	private SongCategory songCategory;
 	@ManyToOne
 	@JoinColumn(name = "bookId")
 	private Book book;
@@ -233,6 +236,14 @@ public class Song {
 	}
 
 	
+	public SongCategory getSongCategory() {
+		return songCategory;
+	}
+
+	public void setSongCategory(SongCategory songCategory) {
+		this.songCategory = songCategory;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -253,6 +264,7 @@ public class Song {
 		result = prime * result + ((schedules == null) ? 0 : schedules.hashCode());
 		result = prime * result + ((songBody == null) ? 0 : songBody.hashCode());
 		result = prime * result + Arrays.hashCode(songBodyAsByteArr);
+		result = prime * result + ((songCategory == null) ? 0 : songCategory.hashCode());
 		result = prime * result + ((songHtml == null) ? 0 : songHtml.hashCode());
 		result = prime * result + ((songKey == null) ? 0 : songKey.hashCode());
 		result = prime * result + ((songTitle == null) ? 0 : songTitle.hashCode());
@@ -348,6 +360,11 @@ public class Song {
 			return false;
 		if (!Arrays.equals(songBodyAsByteArr, other.songBodyAsByteArr))
 			return false;
+		if (songCategory == null) {
+			if (other.songCategory != null)
+				return false;
+		} else if (!songCategory.equals(other.songCategory))
+			return false;
 		if (songHtml == null) {
 			if (other.songHtml != null)
 				return false;
@@ -389,7 +406,8 @@ public class Song {
 				+ traduction + ", copyRight=" + copyRight + ", nationalCopy=" + nationalCopy + ", rights=" + rights
 				+ ", ccliNumber=" + ccliNumber + ", bibleVerse=" + bibleVerse + ", additionalInfo=" + additionalInfo
 				+ ", songKey=" + songKey + ", tempo=" + tempo + ", songHtml=" + songHtml + ", textFileReference="
-				+ textFileReference + ", book=" + book + ", attachements=" + attachements + "]";
+				+ textFileReference + ", songCategory=" + songCategory + ", book=" + book + ", attachements="
+				+ attachements + "]";
 	}
 
 }

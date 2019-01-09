@@ -5,6 +5,7 @@
 		<class>com.consacresdeleternel.consacrebeamer.data.Song</class>
 		<class>com.consacresdeleternel.consacrebeamer.data.Book</class>
 		<class>com.consacresdeleternel.consacrebeamer.data.Schedule</class>
+		<class>com.consacresdeleternel.consacrebeamer.data.SongCategory</class>
 		<class>com.consacresdeleternel.consacrebeamer.data.Attachment</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver"

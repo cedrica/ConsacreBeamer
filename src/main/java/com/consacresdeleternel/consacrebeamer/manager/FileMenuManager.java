@@ -51,7 +51,8 @@ public class FileMenuManager {
 	private DialogManager dialogManager;
 	@Inject
 	private ScheduleRepository scheduleRepository;
-
+	private ContextMenu contextMenu = new ContextMenu();
+	
 	public void init(MainContainerView mainContainerView) {
 		mainContainerView.addEventHandler(FileMenuEvent.NEW_SONG, evt -> handleCreateNewSong(mainContainerView, evt));
 		mainContainerView.addEventHandler(FileMenuEvent.NEW_SCHEDULE,
@@ -235,6 +236,7 @@ public class FileMenuManager {
 		Dialog<ButtonType> dialogStage = dialogManager.showCreateOrEditNewSong(createOrEditNewSongView,
 				mainContainerView.getScene().getWindow());
 		createOrEditNewSongView.getCopyRightsView().setBookItems(valueObjectManager.getBookItems());
+		createOrEditNewSongView.getCopyRightsView().setSongCategoryItems(valueObjectManager.getSongCategoryItems());
 		Optional<ButtonType> showAndWait = dialogStage.showAndWait();
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
 			Song song = createSongFromCreateOrEditNewSongView(createOrEditNewSongView, new Song());
@@ -315,8 +317,10 @@ public class FileMenuManager {
 	private void handleShowListItemViewContextMenu(MainContainerView mainContainerView, ListItemView listItemView,
 			ListItemViewEvent e) {
 		e.consume();
-		ContextMenu contextMenu = new ContextMenu();
-
+		if (contextMenu.isShowing()) {
+			return;
+		}
+		contextMenu.getItems().clear();
 		MenuItem edit = new MenuItem();
 		edit.setGraphic(Helper.setImageView("/icons/icons8-edit-file-24.png"));
 		edit.setText(Localization.asKey("csb.listItemViewContextMenu.edit"));

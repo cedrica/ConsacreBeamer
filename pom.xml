@@ -28,26 +28,17 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.6</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>5.3.1.Final</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.apache.deltaspike.cdictrl</groupId>
 			<artifactId>deltaspike-cdictrl-api</artifactId>
 			<version>1.2.1</version>
 			<scope>compile</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.weld.se</groupId>
-			<artifactId>weld-se</artifactId>
-			<version>1.1.16.Final</version>
-			<scope>runtime</scope>
-		</dependency>
-
+			
 		<dependency>
 			<groupId>org.apache.deltaspike.cdictrl</groupId>
 			<artifactId>deltaspike-cdictrl-weld</artifactId>
@@ -60,17 +51,23 @@
 			<artifactId>deltaspike-core-api</artifactId>
 			<version>1.5.0</version>
 		</dependency>
-		<!--<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
-			<version>1.2</version>
-			<scope>provided</scope>
-		</dependency>  -->
 		<dependency>
 			<groupId>org.apache.deltaspike.modules</groupId>
 			<artifactId>deltaspike-jpa-module-api</artifactId>
 			<version>1.4.0</version>
 		</dependency>
+			 -->
+		<dependency>
+		    <groupId>javax.inject</groupId>
+		    <artifactId>javax.inject</artifactId>
+		    <version>1</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.jboss.weld.se</groupId>
+		    <artifactId>weld-se</artifactId>
+		    <version>2.4.0.Final</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
