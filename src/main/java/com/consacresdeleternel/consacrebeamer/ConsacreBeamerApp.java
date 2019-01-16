@@ -49,7 +49,8 @@ public class ConsacreBeamerApp extends Application {
 			Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
 				@Override
 				public void uncaughtException(Thread t, Throwable e) {
-					System.err.println("Fehler ist aufgetreten");
+					System.err.println("Folgender Fehler ist aufgetreten: ");
+					e.printStackTrace();
 				}
 			});
 			stage.close();
@@ -88,7 +89,7 @@ public class ConsacreBeamerApp extends Application {
 		stage.setScene(scene);
 		stage.setWidth(800);
 		stage.setHeight(600);
-		stage.show();
+		stage.showAndWait();
 
 	}
 

@@ -1,5 +1,6 @@
 package com.consacresdeleternel.consacrebeamer.factory;
 
+import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.data.SongCategory;
 
 import javafx.scene.control.ListCell;
@@ -14,7 +15,7 @@ public class SongCategoryCellFactory implements Callback<ListView<SongCategory>,
 			protected void updateItem(SongCategory item, boolean empty) {
 				super.updateItem(item, empty);
 				if (!empty) {
-					setText(item.getName());
+					setText((item != null)? Localization.asKey(item.getName()):"");
 				} else {
 					setText(null);
 					setGraphic(null);

@@ -1,14 +1,9 @@
 package com.consacresdeleternel.consacrebeamer.maincontainer;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import javax.inject.Inject;
 
 import org.controlsfx.control.HiddenSidesPane;
 import org.controlsfx.control.MaskerPane;
@@ -28,7 +23,6 @@ import com.consacresdeleternel.consacrebeamer.events.FileMenuEvent;
 import com.consacresdeleternel.consacrebeamer.events.HelpMenuEvent;
 import com.consacresdeleternel.consacrebeamer.events.InsertMenuEvent;
 import com.consacresdeleternel.consacrebeamer.events.PresentationMenuEvent;
-import com.consacresdeleternel.consacrebeamer.manager.ValueObjectManager;
 
 import javafx.event.EventType;
 import javafx.fxml.FXML;

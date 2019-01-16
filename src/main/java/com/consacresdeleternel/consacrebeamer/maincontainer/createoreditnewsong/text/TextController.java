@@ -2,9 +2,7 @@ package com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
 
-import org.controlsfx.validation.Severity;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
 import org.slf4j.Logger;
@@ -54,8 +52,7 @@ public class TextController implements Initializable {
 		validationSupport = new ValidationSupport();
 		Platform.runLater(() -> {
 			validationSupport.registerValidator(tfTitle,true,
-					Validator.createRegexValidator(Localization.asKey("csb.CopyRightsView.titleDonotMatchPattern"),
-							Pattern.compile("a-z\\s\\+"), Severity.ERROR));
+					Validator.createEmptyValidator(Localization.asKey("csb.CopyRightsView.titleDonotMatchPattern")));
 			rootNode.invalidProperty()
 					.bind(validationSupport.invalidProperty().or(rootNode.songTextProperty().isEmpty()));
 		});

@@ -13,6 +13,7 @@ import com.consacresdeleternel.consacrebeamer.events.SongEvent;
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
 import com.consacresdeleternel.consacrebeamer.repository.BookRepository;
 import com.consacresdeleternel.consacrebeamer.repository.SongRepository;
+import com.consacresdeleternel.consacrebeamer.service.SongCategoriesService;
 import com.consacresdeleternel.consacrebeamer.tasks.LoadBookTask;
 import com.consacresdeleternel.consacrebeamer.tasks.LoadSongTask;
 import com.consacresdeleternel.consacrebeamer.utils.JFXUtilities;
@@ -47,7 +48,7 @@ public class MainContainerManger {
 		JFXUtilities.bindMaskerPane(mainContainerView.getMaskerPane(), taskManager);
 		loadBooks();
 		loadSongs(mainContainerView);
-		loadSonCategory();
+		loadSonCategories();
 		mainContainerView.addEventHandler(BookEvent.RELOAD_BOOKS, evt -> loadBooks());
 		mainContainerView.addEventHandler(SongEvent.RELOAD_SONGS, evt -> loadSongs(mainContainerView));
 		fileMenuManager.init(mainContainerView);
@@ -67,10 +68,9 @@ public class MainContainerManger {
 		});
 	}
 	
-	private void loadSonCategory() {
+	private void loadSonCategories() {
 		valueObjectManager.setSongCategoryItems(
-				FXCollections.observableArrayList(new SongCategory(Localization.asKey("csb.copyRightsView.songCategoryWorship")),
-						new SongCategory(Localization.asKey("csb.copyRightsView.songCategoryAdoration"))));
+				FXCollections.observableArrayList(new SongCategoriesService().songCategories()));
 	}
 
 	private void loadBooks() {

@@ -26,6 +26,7 @@ import com.consacresdeleternel.consacrebeamer.maincontainer.schedule.create.Crea
 import com.consacresdeleternel.consacrebeamer.maincontainer.songpart.SongPartView;
 import com.consacresdeleternel.consacrebeamer.repository.ScheduleRepository;
 import com.consacresdeleternel.consacrebeamer.repository.SongRepository;
+import com.consacresdeleternel.consacrebeamer.service.SongCategoriesService;
 import com.consacresdeleternel.consacrebeamer.utils.FileUtil;
 
 import javafx.collections.ObservableList;
@@ -142,6 +143,8 @@ public class FileMenuManager {
 		Song song = evt.getSong();
 		CreateOrEditNewSongView createOrEditNewSongView = createCreateOrEditNewSongViewFromSong(song);
 		createOrEditNewSongView.getTextView().setEditMode(true);
+		createOrEditNewSongView.getCopyRightsView().setBookItems(valueObjectManager.getBookItems());
+		createOrEditNewSongView.getCopyRightsView().setSongCategoryItems(valueObjectManager.getSongCategoryItems());
 		Dialog<ButtonType> dialogStage = dialogManager.showCreateOrEditNewSong(createOrEditNewSongView,
 				mainContainerView.getScene().getWindow());
 		Optional<ButtonType> showAndWait = dialogStage.showAndWait();
@@ -221,6 +224,7 @@ public class FileMenuManager {
 		createOrEditNewSongView.getCopyRightsView().setAdditionalInfo(song.getAdditionalInfo());
 		createOrEditNewSongView.getCopyRightsView().setKey(song.getSongKey());
 		createOrEditNewSongView.getCopyRightsView().setTempo(song.getTempo());
+		createOrEditNewSongView.getCopyRightsView().setSongCategory(SongCategoriesService.createSongCategoryByName(song.getSongCategoryName()));
 		return createOrEditNewSongView;
 	}
 

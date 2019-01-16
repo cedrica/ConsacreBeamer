@@ -1,5 +1,6 @@
 package com.consacresdeleternel.consacrebeamer.converter;
 
+import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.data.SongCategory;
 
 import javafx.util.StringConverter;
@@ -13,7 +14,7 @@ public class SongCategoryConverter extends StringConverter<SongCategory> {
 
 	@Override
 	public String toString(SongCategory songCategory) {
-		return songCategory.getName();
+		return Localization.asKey(songCategory.getName());
 	}
 
 }

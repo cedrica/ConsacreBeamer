@@ -31,14 +31,15 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>5.3.1.Final</version>
+			<version>5.3.6.Final</version>
 		</dependency>
-		<!-- <dependency>
+
+		<dependency>
 			<groupId>org.apache.deltaspike.cdictrl</groupId>
 			<artifactId>deltaspike-cdictrl-api</artifactId>
 			<version>1.2.1</version>
 			<scope>compile</scope>
-			
+		</dependency>
 		<dependency>
 			<groupId>org.apache.deltaspike.cdictrl</groupId>
 			<artifactId>deltaspike-cdictrl-weld</artifactId>
@@ -56,16 +57,11 @@
 			<artifactId>deltaspike-jpa-module-api</artifactId>
 			<version>1.4.0</version>
 		</dependency>
-			 -->
+
 		<dependency>
-		    <groupId>javax.inject</groupId>
-		    <artifactId>javax.inject</artifactId>
-		    <version>1</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.jboss.weld.se</groupId>
-		    <artifactId>weld-se</artifactId>
-		    <version>2.4.0.Final</version>
+			<groupId>org.jboss.weld.se</groupId>
+			<artifactId>weld-se</artifactId>
+			<version>2.4.0.Final</version>
 		</dependency>
 
 		<dependency>
@@ -130,7 +126,9 @@
 			</resource>
 			<resource>
 				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
 			</resource>
 			<resource>
 				<filtering>true</filtering>
