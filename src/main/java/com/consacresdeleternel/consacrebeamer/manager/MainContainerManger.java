@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.consacresdeleternel.consacrebeamer.common.Localization;
+import com.consacresdeleternel.consacrebeamer.customcomponent.CustomAutoCompleteTextFields;
 import com.consacresdeleternel.consacrebeamer.data.SongCategory;
 import com.consacresdeleternel.consacrebeamer.events.BookEvent;
 import com.consacresdeleternel.consacrebeamer.events.SongEvent;

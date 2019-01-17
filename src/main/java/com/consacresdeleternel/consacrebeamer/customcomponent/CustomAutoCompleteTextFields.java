@@ -1,4 +1,4 @@
-package com.consacresdeleternel.consacrebeamer.manager;
+package com.consacresdeleternel.consacrebeamer.customcomponent;
 
 import java.util.LinkedList;
 import java.util.List;
