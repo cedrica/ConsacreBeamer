@@ -27,8 +27,7 @@ import javafx.scene.control.Label
 
 dynamic component MainContainerView controlledby MainContainerController resourcefile
 "/bundle/consacrebeamer_de_DE.properties" styledwith [
-	"/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.css", "/css/svg-icons.css", "/css/fa.css" ]
-{
+	"/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.css", "/css/svg-icons.css", "/css/fa.css" ] {
 	MainContainerView id rootNode {
 		stylesheets : [
 			"/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.css",
@@ -108,16 +107,16 @@ dynamic component MainContainerView controlledby MainContainerController resourc
 						alignment : "CENTER",
 						CustomTextField id ctfSearchSong {
 							promptText : rstring "csb.mainContainerView.searchSong",
-							right : Button {
+							right : Button id btnSearch{
 								style : "-fx-background-color:transparent",
-								cursor : const Cursor#DEFAULT,
-								graphic : ImageView {
+								graphic : ImageView id imvSearch{
 									fitHeight : 20,
 									fitWidth : 20,
-									image : Image {
+									image : Image  {
 										url : location "/icons/search-icon.png"
 									}
-								}
+								},
+								onAction : controllermethod onBtnSearch 
 							}
 						}
 					},
@@ -142,17 +141,22 @@ dynamic component MainContainerView controlledby MainContainerController resourc
 
 			},
 			center : SplitPane {
-				VBox id vblistViewContainer {
-					styleClass : [
-						"vb-list-view-container"
-					],
+				ScrollPane {
+					fitToHeight : true,
+					fitToWidth : true,
 					maxWidth : 300,
-					padding : Insets {
-						top : 5,
-						left : 5,
-						right : 5
-					},
-					spacing : 5
+					VBox id vblistViewContainer {
+						styleClass : [
+							"vb-list-view-container"
+						],
+						padding : Insets {
+							top : 5,
+							left : 5,
+							right : 5,
+							bottom : 5
+						},
+						spacing : 5
+					}
 				},
 				VBox id vbPreviewContainer {
 					ScrollPane {

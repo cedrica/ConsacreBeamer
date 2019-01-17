@@ -2,7 +2,6 @@ package com.consacresdeleternel.consacrebeamer.repository;
 
 import java.util.List;
 
-import javax.inject.Singleton;
 import javax.persistence.Query;
 
 import org.slf4j.Logger;
@@ -11,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import com.consacresdeleternel.consacrebeamer.data.Schedule;
 import com.consacresdeleternel.consacrebeamer.data.Song;
 
-@Singleton
 public class SongRepository extends BasicRepository<Song> {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SongRepository.class);
@@ -71,7 +69,7 @@ public class SongRepository extends BasicRepository<Song> {
 			entityManager.getTransaction().begin();
 			Query createQuery = entityManager.createQuery("select s from Song s where s.songTitle = :songTitle");
 			createQuery.setParameter("songTitle", songTitle);
-			List songs = createQuery.getResultList();
+			List<Song> songs = createQuery.getResultList();
 			if (!songs.isEmpty()) {
 
 				return (Song) songs.get(0);

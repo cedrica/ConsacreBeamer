@@ -1,7 +1,5 @@
 package com.consacresdeleternel.consacrebeamer.maincontainer;
 
-import javax.inject.Singleton;
-
 import org.controlsfx.control.HiddenSidesPane;
 import org.controlsfx.control.MaskerPane;
 
@@ -15,7 +13,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-@Singleton
 public class MainContainerView extends StackPane {
 	private ObjectProperty<VBox> listViewContainer = new SimpleObjectProperty<>();
 	private ObjectProperty<Boolean> saveAs = new SimpleObjectProperty<>(true);

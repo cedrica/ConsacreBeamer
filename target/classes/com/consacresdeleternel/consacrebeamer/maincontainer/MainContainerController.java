@@ -5,12 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.inject.Inject;
-
 import org.controlsfx.control.HiddenSidesPane;
 import org.controlsfx.control.MaskerPane;
 import org.controlsfx.control.textfield.CustomTextField;
 
+import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.enums.EditMenuEnum;
 import com.consacresdeleternel.consacrebeamer.enums.ExtrasMenuEnum;
@@ -24,7 +23,6 @@ import com.consacresdeleternel.consacrebeamer.events.FileMenuEvent;
 import com.consacresdeleternel.consacrebeamer.events.HelpMenuEvent;
 import com.consacresdeleternel.consacrebeamer.events.InsertMenuEvent;
 import com.consacresdeleternel.consacrebeamer.events.PresentationMenuEvent;
-import com.consacresdeleternel.consacrebeamer.manager.ValueObjectManager;
 
 import javafx.event.EventType;
 import javafx.fxml.FXML;
@@ -82,8 +80,9 @@ public class MainContainerController implements Initializable {
 	@FXML
 	HiddenSidesPane hiddenSidesPane;
 	@FXML CustomTextField ctfSearchSong;
-	@Inject
-	private ValueObjectManager valueObjectManager;
+	@FXML Image searchImage;
+	@FXML ImageView imvSearch;
+	@FXML Button btnSearch;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -129,6 +128,14 @@ public class MainContainerController implements Initializable {
 		hiddenSidesPane.minHeightProperty().bind(rootNode.prefHeightProperty());
 		hiddenSidesPane.minWidthProperty().bind(rootNode.prefWidthProperty());
 		rootNode.setSearchTextField(ctfSearchSong);
+		
+		ctfSearchSong.textProperty().addListener((obs, oldVal, newVal)->{
+			if(ctfSearchSong.getText().isEmpty()) {
+				btnSearch.setGraphic(Helper.setImageView("/icons/search-icon.png"));
+			}else {
+				btnSearch.setGraphic(Helper.setImageView("/icons/icons8-delete-500.png"));
+			}
+		});
 		
 	}
 
@@ -318,5 +325,12 @@ public class MainContainerController implements Initializable {
 	public void onShowContextMenuHelp() {
 		contextMenuHelp.show(btnHelp, Side.BOTTOM, 0, 0);
 	}
+
+	@FXML public void onBtnSearch() {
+		if(!ctfSearchSong.getText().isEmpty()) {
+			ctfSearchSong.setText("");
+		}
+	}
+
 
 }

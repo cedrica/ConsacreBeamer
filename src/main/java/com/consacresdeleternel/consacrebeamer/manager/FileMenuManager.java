@@ -26,6 +26,7 @@ import com.consacresdeleternel.consacrebeamer.maincontainer.schedule.create.Crea
 import com.consacresdeleternel.consacrebeamer.maincontainer.songpart.SongPartView;
 import com.consacresdeleternel.consacrebeamer.repository.ScheduleRepository;
 import com.consacresdeleternel.consacrebeamer.repository.SongRepository;
+import com.consacresdeleternel.consacrebeamer.service.SongCategoriesService;
 import com.consacresdeleternel.consacrebeamer.utils.FileUtil;
 
 import javafx.collections.ObservableList;
@@ -51,7 +52,8 @@ public class FileMenuManager {
 	private DialogManager dialogManager;
 	@Inject
 	private ScheduleRepository scheduleRepository;
-
+	private ContextMenu contextMenu = new ContextMenu();
+	
 	public void init(MainContainerView mainContainerView) {
 		mainContainerView.addEventHandler(FileMenuEvent.NEW_SONG, evt -> handleCreateNewSong(mainContainerView, evt));
 		mainContainerView.addEventHandler(FileMenuEvent.NEW_SCHEDULE,
@@ -141,6 +143,8 @@ public class FileMenuManager {
 		Song song = evt.getSong();
 		CreateOrEditNewSongView createOrEditNewSongView = createCreateOrEditNewSongViewFromSong(song);
 		createOrEditNewSongView.getTextView().setEditMode(true);
+		createOrEditNewSongView.getCopyRightsView().setBookItems(valueObjectManager.getBookItems());
+		createOrEditNewSongView.getCopyRightsView().setSongCategoryItems(valueObjectManager.getSongCategoryItems());
 		Dialog<ButtonType> dialogStage = dialogManager.showCreateOrEditNewSong(createOrEditNewSongView,
 				mainContainerView.getScene().getWindow());
 		Optional<ButtonType> showAndWait = dialogStage.showAndWait();
@@ -220,6 +224,7 @@ public class FileMenuManager {
 		createOrEditNewSongView.getCopyRightsView().setAdditionalInfo(song.getAdditionalInfo());
 		createOrEditNewSongView.getCopyRightsView().setKey(song.getSongKey());
 		createOrEditNewSongView.getCopyRightsView().setTempo(song.getTempo());
+		createOrEditNewSongView.getCopyRightsView().setSongCategory(SongCategoriesService.createSongCategoryByName(song.getSongCategoryName()));
 		return createOrEditNewSongView;
 	}
 
@@ -235,6 +240,7 @@ public class FileMenuManager {
 		Dialog<ButtonType> dialogStage = dialogManager.showCreateOrEditNewSong(createOrEditNewSongView,
 				mainContainerView.getScene().getWindow());
 		createOrEditNewSongView.getCopyRightsView().setBookItems(valueObjectManager.getBookItems());
+		createOrEditNewSongView.getCopyRightsView().setSongCategoryItems(valueObjectManager.getSongCategoryItems());
 		Optional<ButtonType> showAndWait = dialogStage.showAndWait();
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
 			Song song = createSongFromCreateOrEditNewSongView(createOrEditNewSongView, new Song());
@@ -315,8 +321,10 @@ public class FileMenuManager {
 	private void handleShowListItemViewContextMenu(MainContainerView mainContainerView, ListItemView listItemView,
 			ListItemViewEvent e) {
 		e.consume();
-		ContextMenu contextMenu = new ContextMenu();
-
+		if (contextMenu.isShowing()) {
+			return;
+		}
+		contextMenu.getItems().clear();
 		MenuItem edit = new MenuItem();
 		edit.setGraphic(Helper.setImageView("/icons/icons8-edit-file-24.png"));
 		edit.setText(Localization.asKey("csb.listItemViewContextMenu.edit"));

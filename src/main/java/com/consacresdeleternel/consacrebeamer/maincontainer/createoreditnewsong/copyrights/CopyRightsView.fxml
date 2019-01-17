@@ -41,6 +41,7 @@
 			<Label text="%csb.copyRightsView.additionalInfo" GridPane.columnIndex="0" GridPane.rowIndex="11"/> 
 			<Label text="%csb.copyRightsView.key" GridPane.columnIndex="0" GridPane.rowIndex="12"/> 
 			<Label text="%csb.copyRightsView.tempo" GridPane.columnIndex="0" GridPane.rowIndex="13"/> 
+			<Label text="%csb.copyRightsView.songCategory" GridPane.columnIndex="0" GridPane.rowIndex="14"/> 
 			<TextField fx:id="tfTitle" GridPane.columnIndex="1" GridPane.rowIndex="0"/> 
 			<TextField fx:id="tfOriginalTitle" GridPane.columnIndex="1" GridPane.rowIndex="1"/> 
 			<TextField fx:id="tfTextAutor" GridPane.columnIndex="1" GridPane.rowIndex="2"/> 
@@ -57,6 +58,9 @@
 			<TextField fx:id="tfAdditionalInfo" GridPane.columnIndex="1" GridPane.rowIndex="11"/> 
 			<TextField fx:id="tfKey" GridPane.columnIndex="1" GridPane.rowIndex="12"/> 
 			<TextField fx:id="tfTempo" GridPane.columnIndex="1" GridPane.rowIndex="13"/> 
+			<ComboBox fx:id="cbSongCategory" GridPane.columnIndex="1" GridPane.rowIndex="14"> 
+				<maxWidth><Double fx:constant="MAX_VALUE" /></maxWidth>
+			</ComboBox>
 			<columnConstraints>
 				<ColumnConstraints/> 
 				<ColumnConstraints hgrow="ALWAYS"/> 

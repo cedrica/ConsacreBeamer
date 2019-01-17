@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<songCategoryStore>
+	<songCategory>
+		<name>csb.copyRightsView.songCategory.worship</name>
+	</songCategory>
+	<songCategory>
+		<name>csb.copyRightsView.songCategory.adoration</name>
+	</songCategory>
+</songCategoryStore>

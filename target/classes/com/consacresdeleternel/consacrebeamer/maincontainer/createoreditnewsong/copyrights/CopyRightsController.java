@@ -8,8 +8,11 @@ import org.controlsfx.validation.Validator;
 
 import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.converter.BookConverter;
+import com.consacresdeleternel.consacrebeamer.converter.SongCategoryConverter;
 import com.consacresdeleternel.consacrebeamer.data.Book;
+import com.consacresdeleternel.consacrebeamer.data.SongCategory;
 import com.consacresdeleternel.consacrebeamer.factory.BookCellFactory;
+import com.consacresdeleternel.consacrebeamer.factory.SongCategoryCellFactory;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -50,6 +53,7 @@ public class CopyRightsController implements Initializable {
 	@FXML
 	ComboBox<Book> cbSongBuch;
 	private ValidationSupport validationSupport;
+	@FXML ComboBox<SongCategory> cbSongCategory;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -64,12 +68,17 @@ public class CopyRightsController implements Initializable {
 					Validator.createEmptyValidator(Localization.asKey("csb.CopyRightsView.titleIsRequired")));
 			validationSupport.registerValidator(cbSongBuch,
 					Validator.createEmptyValidator(Localization.asKey("csb.CopyRightsView.BuchIsRequired")));
+			validationSupport.registerValidator(cbSongCategory,
+					Validator.createEmptyValidator(Localization.asKey("csb.CopyRightsView.songCategoryIsRequired")));
 			validationSupport.registerValidator(tfCopyright,
 					Validator.createEmptyValidator(Localization.asKey("csb.CopyRightsView.CopyRightIsRequired")));
 			rootNode.invalidProperty().bind(validationSupport.invalidProperty());
 		});
 		cbSongBuch.setConverter(new BookConverter());
 		cbSongBuch.setCellFactory(new BookCellFactory());
+
+		cbSongCategory.setConverter(new SongCategoryConverter());
+		cbSongCategory.setCellFactory(new SongCategoryCellFactory());
 	}
 
 	private void registerBindings() {
@@ -84,10 +93,12 @@ public class CopyRightsController implements Initializable {
 		rootNode.cCLiNrProperty().bindBidirectional(tfCCLiNr.textProperty());
 		rootNode.bibleReferenzProperty().bindBidirectional(tfBibleReferenz.textProperty());
 		rootNode.songBuchProperty().bindBidirectional(cbSongBuch.valueProperty());
+		rootNode.songCategoryProperty().bindBidirectional(cbSongCategory.valueProperty());
 		rootNode.additionalInfoProperty().bindBidirectional(tfAdditionalInfo.textProperty());
 		rootNode.keyProperty().bindBidirectional(tfKey.textProperty());
 		rootNode.tempoProperty().bindBidirectional(tfTempo.textProperty());
 		cbSongBuch.itemsProperty().bind(rootNode.bookItemsProperty());
+		cbSongCategory.itemsProperty().bind(rootNode.songCategoryItemsProperty());
 	}
 
 }

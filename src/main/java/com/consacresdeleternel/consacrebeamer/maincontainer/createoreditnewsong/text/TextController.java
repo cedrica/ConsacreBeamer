@@ -51,8 +51,8 @@ public class TextController implements Initializable {
 		registerListener();
 		validationSupport = new ValidationSupport();
 		Platform.runLater(() -> {
-			validationSupport.registerValidator(tfTitle,
-					Validator.createEmptyValidator(Localization.asKey("csb.CopyRightsView.titleIsRequired")));
+			validationSupport.registerValidator(tfTitle,true,
+					Validator.createEmptyValidator(Localization.asKey("csb.CopyRightsView.titleDonotMatchPattern")));
 			rootNode.invalidProperty()
 					.bind(validationSupport.invalidProperty().or(rootNode.songTextProperty().isEmpty()));
 		});

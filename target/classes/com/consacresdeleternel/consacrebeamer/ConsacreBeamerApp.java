@@ -26,10 +26,12 @@ public class ConsacreBeamerApp extends Application {
 	private static final Rectangle2D SCREEN_BOUNDS = Screen.getPrimary().getVisualBounds();
 	private static double[] pref_WH, offset_XY;
 
+
 	@Override
 	public void start(Stage primaryStage) {
 		Stage stage = new Stage();
 		stage.initStyle(StageStyle.UNDECORATED);
+
 		LauncherTask launcherTask = new LauncherTask(stage);
 		new Thread(launcherTask).start();
 		launcherTask.valueProperty().addListener((obs, oldVal, newVal) -> {
@@ -47,9 +49,11 @@ public class ConsacreBeamerApp extends Application {
 			primaryStage.setMinWidth(1000);
 			primaryStage.setMinHeight(800);
 			Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
+
 				@Override
 				public void uncaughtException(Thread t, Throwable e) {
-					System.err.println("Fehler ist aufgetreten");
+					System.err.println("Folgender Fehler ist aufgetreten: ");
+					e.printStackTrace();
 				}
 			});
 			stage.close();
@@ -73,22 +77,16 @@ public class ConsacreBeamerApp extends Application {
 				stage.setY(0.0);
 		});
 
-	    Timeline task = new Timeline(
-	            new KeyFrame(
-	                    Duration.ZERO,       
-	                    new KeyValue(launcherView.getProgressBar().progressProperty(), 0)
-	            ),
-	            new KeyFrame(
-	                    Duration.seconds(15), 
-	                    new KeyValue(launcherView.getProgressBar().progressProperty(), 1)
-	            )
-	        );
+		Timeline task = new Timeline(
+				new KeyFrame(Duration.ZERO, new KeyValue(launcherView.getProgressBar().progressProperty(), 0)),
+				new KeyFrame(Duration.seconds(15), new KeyValue(launcherView.getProgressBar().progressProperty(), 1)));
 		task.playFromStart();
+
 		Scene scene = new Scene(launcherView);
 		stage.setScene(scene);
 		stage.setWidth(800);
 		stage.setHeight(600);
-		stage.show();
+		stage.showAndWait();
 
 	}
 

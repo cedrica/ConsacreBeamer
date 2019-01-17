@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 
 import com.consacresdeleternel.consacrebeamer.data.Book;
 import com.consacresdeleternel.consacrebeamer.data.Song;
+import com.consacresdeleternel.consacrebeamer.data.SongCategory;
 import com.consacresdeleternel.consacrebeamer.maincontainer.songpartviewer.SongPartViewerView;
 
 import javafx.beans.property.BooleanProperty;
@@ -24,6 +25,7 @@ public class ValueObjectManager {
 
 	private ListProperty<Book> bookItems = new SimpleListProperty<>(FXCollections.observableArrayList());
 	private ListProperty<Song> songItems = new SimpleListProperty<>(FXCollections.observableArrayList());
+	private ListProperty<SongCategory> songCategoryItems = new SimpleListProperty<>(FXCollections.observableArrayList());
 	private ObjectProperty<SongPartViewerView> songPartViewerView = new SimpleObjectProperty<>();
 
 	public final ListProperty<Book> bookItemsProperty() {
@@ -73,5 +75,20 @@ public class ValueObjectManager {
 	public final void setSongItems(final ObservableList<Song> songItems) {
 		this.songItemsProperty().set(songItems);
 	}
+
+	public final ListProperty<SongCategory> songCategoryItemsProperty() {
+		return this.songCategoryItems;
+	}
+	
+
+	public final ObservableList<SongCategory> getSongCategoryItems() {
+		return this.songCategoryItemsProperty().get();
+	}
+	
+
+	public final void setSongCategoryItems(final ObservableList<SongCategory> songCategoryItems) {
+		this.songCategoryItemsProperty().set(songCategoryItems);
+	}
+	
 
 }

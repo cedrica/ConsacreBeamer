@@ -2,7 +2,6 @@ package com.consacresdeleternel.consacrebeamer.repository;
 
 import java.util.List;
 
-import javax.inject.Singleton;
 import javax.persistence.Query;
 
 import org.slf4j.Logger;
@@ -11,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import com.consacresdeleternel.consacrebeamer.data.Book;
 
 
-@Singleton
 public class BookRepository extends BasicRepository<Book> {
 	private static final Logger LOG = LoggerFactory.getLogger(BookRepository.class);
 
@@ -40,9 +38,9 @@ public class BookRepository extends BasicRepository<Book> {
 		try {
 			Query createQuery = entityManager.createQuery("select b from Book b where b.title =:bookTitle");
 			createQuery.setParameter("bookTitle", bookTitle);
-			List books = createQuery.getResultList();
+			List<Book> books = createQuery.getResultList();
 			if(!books.isEmpty()) {
-				return (Book) books.get(0);
+				return books.get(0);
 			}
 		} catch (Exception e) {
 			LOG.error("Die suche des Lied via "+bookTitle +" konnte nicht durchgef�hrt werden");

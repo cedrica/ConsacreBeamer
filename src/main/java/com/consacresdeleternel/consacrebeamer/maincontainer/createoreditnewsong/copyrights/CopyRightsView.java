@@ -3,6 +3,7 @@ package com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong
 import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.data.Book;
+import com.consacresdeleternel.consacrebeamer.data.SongCategory;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ListProperty;
@@ -20,7 +21,9 @@ public class CopyRightsView extends BorderPane {
 	private StringProperty key = new SimpleStringProperty();
 	private StringProperty additionalInfo = new SimpleStringProperty();
 	private ObjectProperty<Book> songBuch = new SimpleObjectProperty<>();
+	private ObjectProperty<SongCategory> songCategory = new SimpleObjectProperty<>();
 	private ListProperty<Book> bookItems = new SimpleListProperty<>();
+	private ListProperty<SongCategory> songCategoryItems = new SimpleListProperty<>();
 	private StringProperty bibleReferenz = new SimpleStringProperty();
 	private StringProperty cCLiNr = new SimpleStringProperty();
 	private StringProperty rights = new SimpleStringProperty();
@@ -228,5 +231,35 @@ public class CopyRightsView extends BorderPane {
 	public final void setBookItems(final ObservableList<Book> bookItems) {
 		this.bookItemsProperty().set(bookItems);
 	}
+
+	public final ListProperty<SongCategory> songCategoryItemsProperty() {
+		return this.songCategoryItems;
+	}
+	
+
+	public final ObservableList<SongCategory> getSongCategoryItems() {
+		return this.songCategoryItemsProperty().get();
+	}
+	
+
+	public final void setSongCategoryItems(final ObservableList<SongCategory> songCategoryItems) {
+		this.songCategoryItemsProperty().set(songCategoryItems);
+	}
+
+	public final ObjectProperty<SongCategory> songCategoryProperty() {
+		return this.songCategory;
+	}
+	
+
+	public final SongCategory getSongCategory() {
+		return this.songCategoryProperty().get();
+	}
+	
+
+	public final void setSongCategory(final SongCategory songCategory) {
+		this.songCategoryProperty().set(songCategory);
+	}
+	
+	
 
 }

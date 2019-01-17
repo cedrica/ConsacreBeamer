@@ -116,6 +116,11 @@ dynamic component CopyRightsView controlledby CopyRightsController styledwith [
 				static rowIndex : 13,
 				text : rstring "csb.copyRightsView.tempo"
 			},
+			Label {
+				static columnIndex : 0,
+				static rowIndex : 14,
+				text : rstring "csb.copyRightsView.songCategory"
+			},
 			//COLUMN2
 			TextField id tfTitle{
 				static columnIndex : 1,
@@ -173,6 +178,11 @@ dynamic component CopyRightsView controlledby CopyRightsController styledwith [
 			TextField id tfTempo{
 				static columnIndex : 1,
 				static rowIndex : 13
+			},
+			ComboBox<?> id cbSongCategory{
+				static columnIndex : 1,
+				static rowIndex : 14,
+				maxWidth : const Double#MAX_VALUE
 			}
 		}
 	}
