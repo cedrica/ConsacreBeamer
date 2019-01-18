@@ -3,9 +3,6 @@ package com.consacresdeleternel.consacrebeamer.manager;
 import java.util.List;
 import java.util.Optional;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,8 +15,7 @@ import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.BookView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.songlist.SongListView;
-import com.consacresdeleternel.consacrebeamer.repository.BookRepository;
-import com.consacresdeleternel.consacrebeamer.repository.SongRepository;
+import com.consacresdeleternel.consacrebeamer.repository.RepositoryProvider;
 import com.consacresdeleternel.consacrebeamer.tasks.LoadBookTask;
 import com.consacresdeleternel.consacrebeamer.utils.FileUtil;
 
@@ -29,21 +25,15 @@ import javafx.geometry.Side;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 
-@Singleton
 public class BookManager {
 	private static final Logger LOG = LoggerFactory.getLogger(ExtrasMenuManager.class);
-	@Inject
-	private DialogManager dialogManager;
-	@Inject
-	private BookRepository bookRepository;
-	@Inject
-	private SongRepository songRepository;
-	@Inject
-	private ValueObjectManager valueObjectManager;
-	@Inject
-	private TaskManager taskManager;
 
-	public void init(MainContainerView mainContainerView) {
+	private ManagerProvider managerProvider;
+	private RepositoryProvider repositoryProvider;
+	
+	public void init(MainContainerView mainContainerView, ManagerProvider managerProvider,RepositoryProvider repositoryProvider) {
+		this.managerProvider = managerProvider;
+		this.repositoryProvider = repositoryProvider;
 		mainContainerView.addEventHandler(BookEvent.REMOVE_BOOK, evt -> handleRemoveBook(mainContainerView, evt));
 		mainContainerView.addEventHandler(BookEvent.EDIT_BOOK, evt -> handleEditBook(mainContainerView, evt));
 		mainContainerView.addEventHandler(BookEvent.SHOW_SONG_LIST, evt -> handleShowSongList(mainContainerView, evt));
@@ -57,12 +47,12 @@ public class BookManager {
 		Optional<ButtonType> showAndWait = confirm.showAndWait();
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.YES) {
 			Book book = evt.getBook();
-			bookRepository.removeById(book.getId());
-			LoadBookTask loadBookTask = new LoadBookTask(bookRepository);
+			repositoryProvider.getBookRepository().removeById(book.getId());
+			LoadBookTask loadBookTask = new LoadBookTask(repositoryProvider.getBookRepository());
 			new Thread(loadBookTask).start();
-			taskManager.addTask(loadBookTask);
+			managerProvider.getTaskManager().addTask(loadBookTask);
 			loadBookTask.valueProperty().addListener((obs, oldVal, newVal) -> {
-				valueObjectManager.setBookItems(FXCollections.observableList(newVal));
+				managerProvider.getValueObjectManager().setBookItems(FXCollections.observableList(newVal));
 				mainContainerView.getFlowPane().getChildren().clear();
 				newVal.stream().forEach(b -> {
 					BookView bookView = new BookView();
@@ -85,11 +75,11 @@ public class BookManager {
 			List<Song> songs = evt.getSongs();
 			if (songs != null && !songs.isEmpty()) {
 				Long bookId = songs.get(0).getBook().getId();
-				Book newBook = bookRepository.findById(bookId);
+				Book newBook = repositoryProvider.getBookRepository().findById(bookId);
 				songs.stream().forEach(s -> {
 					FileUtil.removeFile(s.getTextFileReference());
 					newBook.getSongs().remove(s);
-					songRepository.remove(s);
+					repositoryProvider.getSongRepository().remove(s);
 				});
 				Dialogs.success(Localization.asKey("csb.dialogs.songsDeletingSuccessfull"),
 						mainContainerView.getScene().getWindow());
@@ -128,17 +118,17 @@ public class BookManager {
 		evt.consume();
 		Book book = evt.getBook();
 		CreateBookView createBookView = createEditBookViewFromBook(book);
-		Dialog<ButtonType> customDialog = dialogManager.showEditBookDialog(createBookView,
+		Dialog<ButtonType> customDialog = managerProvider.getDialogManager().showEditBookDialog(createBookView,
 				mainContainerView.getScene().getWindow());
 		Optional<ButtonType> showAndWait = customDialog.showAndWait();
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
 			LOG.info("Edit mode");
-			bookRepository.updateName(book.getId(), createBookView.getBookName());
-			LoadBookTask loadBookTask = new LoadBookTask(bookRepository);
+			repositoryProvider.getBookRepository().updateName(book.getId(), createBookView.getBookName());
+			LoadBookTask loadBookTask = new LoadBookTask(repositoryProvider.getBookRepository());
 			new Thread(loadBookTask).start();
-			taskManager.addTask(loadBookTask);
+			managerProvider.getTaskManager().addTask(loadBookTask);
 			loadBookTask.valueProperty().addListener((obs, oldVal, newVal) -> {
-				valueObjectManager.setBookItems(FXCollections.observableList(newVal));
+				managerProvider.getValueObjectManager().setBookItems(FXCollections.observableList(newVal));
 				mainContainerView.getFlowPane().getChildren().clear();
 				newVal.stream().forEach(b -> {
 					BookView bookView = new BookView();

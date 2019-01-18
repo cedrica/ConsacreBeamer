@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 import com.consacresdeleternel.consacrebeamer.common.Dialogs;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.data.Book;
@@ -17,9 +14,7 @@ import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.BookView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.schedule.ScheduleListView;
-import com.consacresdeleternel.consacrebeamer.repository.BookRepository;
-import com.consacresdeleternel.consacrebeamer.repository.ScheduleRepository;
-import com.consacresdeleternel.consacrebeamer.repository.SongRepository;
+import com.consacresdeleternel.consacrebeamer.repository.RepositoryProvider;
 import com.consacresdeleternel.consacrebeamer.utils.FileUtil;
 
 import javafx.collections.FXCollections;
@@ -27,18 +22,14 @@ import javafx.geometry.Side;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 
-@Singleton
 public class ExtrasMenuManager {
-	@Inject
-	private BookRepository bookRepository;
-	@Inject
-	private DialogManager dialogManager;
-	@Inject
-	private ScheduleRepository scheduleRepository;
-	@Inject
-	private SongRepository songRepository;
 
-	public void init(MainContainerView mainContainerView) {
+	private ManagerProvider managerProvider;
+	private RepositoryProvider repositoryProvider;
+	
+	public void init(MainContainerView mainContainerView, ManagerProvider managerProvider,RepositoryProvider repositoryProvider) {
+		this.managerProvider = managerProvider;
+		this.repositoryProvider = repositoryProvider;
 		mainContainerView.addEventHandler(ExtrasMenuEvent.CREATE_NEW_BOOK,
 				evt -> handleCreateBook(mainContainerView, evt));
 		mainContainerView.addEventHandler(ExtrasMenuEvent.SHOW_LIBRARY,
@@ -55,7 +46,7 @@ public class ExtrasMenuManager {
 			mainContainerView.getHiddenSidesPane().setVisible(false);
 		} else {
 			mainContainerView.getHiddenSidesPane().setPinnedSide(Side.TOP);
-			List<Schedule> scheduleList = scheduleRepository.findAll();
+			List<Schedule> scheduleList = repositoryProvider.getScheduleRepository().findAll();
 			if (scheduleList == null) {
 				scheduleList = new ArrayList<>();
 			}
@@ -68,7 +59,7 @@ public class ExtrasMenuManager {
 
 	private void handleShowLibrary(MainContainerView mainContainerView, ExtrasMenuEvent evt) {
 		evt.consume();
-		List<Book> books = bookRepository.findAll();
+		List<Book> books =  repositoryProvider.getBookRepository().findAll();
 		if (books == null || books.isEmpty()) {
 			Dialogs.info(Localization.asKey("csb.ExtrasMenu.libraryIsEmpty"), mainContainerView.getScene().getWindow());
 			return;
@@ -90,26 +81,26 @@ public class ExtrasMenuManager {
 		evt.consume();
 		CreateBookView createBookView = new CreateBookView();
 		createBookView.setEditMode(false);
-		Dialog<ButtonType> customDialog = dialogManager.showCreateBookView(createBookView,
+		Dialog<ButtonType> customDialog = managerProvider.getDialogManager().showCreateBookView(createBookView,
 				mainContainerView.getScene().getWindow());
 		Optional<ButtonType> showAndWait = customDialog.showAndWait();
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
 			Book book = new Book();
 			book.setTitle(createBookView.getBookName());
-			Book duplicat = bookRepository.findByTitle(createBookView.getBookName().trim());
+			Book duplicat =  repositoryProvider.getBookRepository().findByTitle(createBookView.getBookName().trim());
 			if (duplicat != null) {
 				Dialogs.error(Localization.asKey("csb.ExtrasMenu.duplicatedBook"),
 						mainContainerView.getScene().getWindow());
 				return;
 			}
-			book = bookRepository.save(book);
+			book =  repositoryProvider.getBookRepository().save(book);
 			if (book == null) {
 				Dialogs.error(Localization.asKey("csb.ExtrasMenu.bookcouldNotBeCreated"),
 						mainContainerView.getScene().getWindow());
 				return;
 			}
 			mainContainerView.fireEvent(new BookEvent(BookEvent.RELOAD_BOOKS));
-			List<Book> books = bookRepository.findAll();
+			List<Book> books = repositoryProvider.getBookRepository().findAll();
 			mainContainerView.getFlowPane().getChildren().clear();
 			books.stream().forEach(b -> {
 				BookView bookView = new BookView();

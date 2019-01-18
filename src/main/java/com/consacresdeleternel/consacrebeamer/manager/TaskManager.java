@@ -8,8 +8,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.inject.Singleton;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +37,6 @@ import javafx.scene.control.ProgressIndicator;
  * @author c.watzl
  */
 
-@Singleton
 public final class TaskManager {
 
 	public static double INTERMEDIATE = ProgressBar.INDETERMINATE_PROGRESS;
@@ -58,7 +55,7 @@ public final class TaskManager {
 
 	private final ExecutorService executorService;
 
-	private TaskManager() {
+	public TaskManager() {
 		executorService = createExecutor();
 		progressIndicators.addListener((ListChangeListener.Change<? extends ProgressIndicator> c) -> {
 

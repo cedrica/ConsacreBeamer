@@ -14,7 +14,7 @@ public class SongCategoryConverter extends StringConverter<SongCategory> {
 
 	@Override
 	public String toString(SongCategory songCategory) {
-		return Localization.asKey(songCategory.getName());
+		return (songCategory != null)? Localization.asKey(songCategory.getName()):"";
 	}
 
 }

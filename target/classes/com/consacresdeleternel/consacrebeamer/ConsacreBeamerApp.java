@@ -32,7 +32,7 @@ public class ConsacreBeamerApp extends Application {
 		Stage stage = new Stage();
 		stage.initStyle(StageStyle.UNDECORATED);
 
-		LauncherTask launcherTask = new LauncherTask(stage);
+		LauncherTask launcherTask = new LauncherTask();
 		new Thread(launcherTask).start();
 		launcherTask.valueProperty().addListener((obs, oldVal, newVal) -> {
 			MainContainerView mainContainerView = newVal.getKey();

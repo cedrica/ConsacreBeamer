@@ -3,8 +3,6 @@ package com.consacresdeleternel.consacrebeamer.manager;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.inject.Singleton;
-
 import com.consacresdeleternel.consacrebeamer.data.Book;
 import com.consacresdeleternel.consacrebeamer.data.Song;
 import com.consacresdeleternel.consacrebeamer.data.SongCategory;
@@ -19,7 +17,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
-@Singleton
 public class ValueObjectManager {
 	private ObjectProperty<Map<Node, BooleanProperty>> saveAsBinder = new SimpleObjectProperty<>(new HashMap<>());
 

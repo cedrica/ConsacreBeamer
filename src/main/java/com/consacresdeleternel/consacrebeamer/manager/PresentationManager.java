@@ -1,22 +1,18 @@
 package com.consacresdeleternel.consacrebeamer.manager;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import com.consacresdeleternel.consacrebeamer.events.PresentationMenuEvent;
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.songpartviewer.SongPartViewerView;
+import com.consacresdeleternel.consacrebeamer.repository.RepositoryProvider;
 
 import javafx.stage.Stage;
 
-@Singleton
 public class PresentationManager {
-	@Inject
-	private DialogManager dialogManager;
-	@Inject
-	private ValueObjectManager valueObjectManager;
-
-	public void init(MainContainerView mainContainerView) {
+	private ManagerProvider managerProvider;
+	
+	public void init(MainContainerView mainContainerView, ManagerProvider managerProvider,RepositoryProvider repositoryProvider) {
+		this.managerProvider = managerProvider;
 		mainContainerView.addEventHandler(PresentationMenuEvent.START_PRESENTATION,
 				evt -> handleStartPresentation(mainContainerView, evt));
 	}
@@ -24,8 +20,8 @@ public class PresentationManager {
 	private void handleStartPresentation(MainContainerView mainContainerView, PresentationMenuEvent evt) {
 		evt.consume();
 		SongPartViewerView songPartViewerView = new SongPartViewerView();
-		valueObjectManager.setSongPartViewerView(songPartViewerView);
-		Stage dialogStage = dialogManager.showStartPresentationView(songPartViewerView,
+		managerProvider.getValueObjectManager().setSongPartViewerView(songPartViewerView);
+		Stage dialogStage = managerProvider.getDialogManager().showStartPresentationView(songPartViewerView,
 				mainContainerView.getScene().getWindow());
 		dialogStage.setFullScreen(true);
 		dialogStage.show();

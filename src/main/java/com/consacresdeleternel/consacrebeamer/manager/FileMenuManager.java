@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 import com.consacresdeleternel.consacrebeamer.common.Dialogs;
 import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
@@ -24,8 +21,7 @@ import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.
 import com.consacresdeleternel.consacrebeamer.maincontainer.listitem.ListItemView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.schedule.create.CreateScheduleView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.songpart.SongPartView;
-import com.consacresdeleternel.consacrebeamer.repository.ScheduleRepository;
-import com.consacresdeleternel.consacrebeamer.repository.SongRepository;
+import com.consacresdeleternel.consacrebeamer.repository.RepositoryProvider;
 import com.consacresdeleternel.consacrebeamer.service.SongCategoriesService;
 import com.consacresdeleternel.consacrebeamer.utils.FileUtil;
 
@@ -39,22 +35,16 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 
-@Singleton
 public class FileMenuManager {
-	// private static final Logger LOG =
-	// Logger.getLogger(FileMenuManager.class);
 	private ToggleGroup toggleGroup = new ToggleGroup();
-	@Inject
-	private SongRepository songRepository;
-	@Inject
-	private ValueObjectManager valueObjectManager;
-	@Inject
-	private DialogManager dialogManager;
-	@Inject
-	private ScheduleRepository scheduleRepository;
 	private ContextMenu contextMenu = new ContextMenu();
-	
-	public void init(MainContainerView mainContainerView) {
+	private ManagerProvider managerProvider;
+	private RepositoryProvider repositoryProvider;
+
+	public void init(MainContainerView mainContainerView, ManagerProvider managerProvider,
+			RepositoryProvider repositoryProvider) {
+		this.managerProvider = managerProvider;
+		this.repositoryProvider = repositoryProvider;
 		mainContainerView.addEventHandler(FileMenuEvent.NEW_SONG, evt -> handleCreateNewSong(mainContainerView, evt));
 		mainContainerView.addEventHandler(FileMenuEvent.NEW_SCHEDULE,
 				evt -> handleCreateNewSchedule(mainContainerView, evt));
@@ -69,12 +59,13 @@ public class FileMenuManager {
 
 	private void handleCreateNewSchedule(MainContainerView mainContainerView, FileMenuEvent evt) {
 		evt.consume();
-		if(mainContainerView.getListViewContainer().getChildren().size() <= 0){
-			Dialogs.error(Localization.asKey("csb.createNewSchedule.NoItemInList"), mainContainerView.getListViewContainer().getScene().getWindow());
+		if (mainContainerView.getListViewContainer().getChildren().size() <= 0) {
+			Dialogs.error(Localization.asKey("csb.createNewSchedule.NoItemInList"),
+					mainContainerView.getListViewContainer().getScene().getWindow());
 			return;
 		}
 		CreateScheduleView createScheduleView = new CreateScheduleView();
-		Dialog<ButtonType> dialogStage = dialogManager.showCreateNewSchedule(createScheduleView,
+		Dialog<ButtonType> dialogStage = managerProvider.getDialogManager().showCreateNewSchedule(createScheduleView,
 				mainContainerView.getScene().getWindow());
 		Optional<ButtonType> showAndWait = dialogStage.showAndWait();
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
@@ -85,11 +76,11 @@ public class FileMenuManager {
 				if (object instanceof ListItemView) {
 					Object itemObject = ((ListItemView) object).getItemObject();
 					if (itemObject instanceof Song) {
-						schedule.addSong((Song)itemObject);
+						schedule.addSong((Song) itemObject);
 					}
 				}
 			}
-			scheduleRepository.save(schedule);
+			repositoryProvider.getScheduleRepository().save(schedule);
 		}
 	}
 
@@ -143,27 +134,25 @@ public class FileMenuManager {
 		Song song = evt.getSong();
 		CreateOrEditNewSongView createOrEditNewSongView = createCreateOrEditNewSongViewFromSong(song);
 		createOrEditNewSongView.getTextView().setEditMode(true);
-		createOrEditNewSongView.getCopyRightsView().setBookItems(valueObjectManager.getBookItems());
-		createOrEditNewSongView.getCopyRightsView().setSongCategoryItems(valueObjectManager.getSongCategoryItems());
-		Dialog<ButtonType> dialogStage = dialogManager.showCreateOrEditNewSong(createOrEditNewSongView,
-				mainContainerView.getScene().getWindow());
+		createOrEditNewSongView.getCopyRightsView()
+				.setBookItems(managerProvider.getValueObjectManager().getBookItems());
+		createOrEditNewSongView.getCopyRightsView()
+				.setSongCategoryItems(managerProvider.getValueObjectManager().getSongCategoryItems());
+		Dialog<ButtonType> dialogStage = managerProvider.getDialogManager()
+				.showCreateOrEditNewSong(createOrEditNewSongView, mainContainerView.getScene().getWindow());
 		Optional<ButtonType> showAndWait = dialogStage.showAndWait();
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
 			String oldTitle = song.getTextFileReference();
 			song = createSongFromCreateOrEditNewSongView(createOrEditNewSongView, song);
-			song = songRepository.update(song);
+
+			// remove old file
+			FileUtil.removeFile(oldTitle);
+			FileUtil.saveSongAsTxtFileToSongsFolder(song.getSongHtml(), song.getTextFileReference());
+			repositoryProvider.getSongRepository().update(song);
 			if (song != null) {
-				//remove old file 
-				FileUtil.removeFile(oldTitle);
-				FileUtil.saveSongAsTxtFileToSongsFolder(song.getSongHtml(),
-						song.getTextFileReference());
 				Dialogs.success(Localization.asKey("csb.alert.songSavingSuccessfulled"),
 						mainContainerView.getScene().getWindow());
-			} else {
-				Dialogs.error(Localization.asKey("csb.alert.songSavingMissed"),
-						mainContainerView.getScene().getWindow());
-				return;
-			}
+			} 
 			mainContainerView.fireEvent(
 					new CreateOrEditNewSongEvent(CreateOrEditNewSongEvent.UPDATE_LIST_ITEM_AND_SONG_PART, song));
 		}
@@ -182,8 +171,8 @@ public class FileMenuManager {
 				SongPartView songPartView = new SongPartView();
 				songPartView.setIndex(index++);
 				songPartView.addEventHandler(SongPartEvent.SHOW_SONG_PART, evt -> {
-					if (valueObjectManager.getSongPartViewerView() != null) {
-						valueObjectManager.getSongPartViewerView().setText(songPartView.getText());
+					if (managerProvider.getValueObjectManager().getSongPartViewerView() != null) {
+						managerProvider.getValueObjectManager().getSongPartViewerView().setText(songPartView.getText());
 					}
 					reformIndexes(songPartViews, songPartView);
 
@@ -196,7 +185,7 @@ public class FileMenuManager {
 			SongPartView songPartView = new SongPartView();
 			songPartView.setIndex(index++);
 			songPartView.addEventHandler(SongPartEvent.SHOW_SONG_PART, evt -> {
-				valueObjectManager.getSongPartViewerView().setText(songPartView.getText());
+				managerProvider.getValueObjectManager().getSongPartViewerView().setText(songPartView.getText());
 			});
 			songPartView.setText(song.getSongBody());
 			toggleGroup2.getToggles().add(songPartView.getTbSelectedText());
@@ -224,7 +213,8 @@ public class FileMenuManager {
 		createOrEditNewSongView.getCopyRightsView().setAdditionalInfo(song.getAdditionalInfo());
 		createOrEditNewSongView.getCopyRightsView().setKey(song.getSongKey());
 		createOrEditNewSongView.getCopyRightsView().setTempo(song.getTempo());
-		createOrEditNewSongView.getCopyRightsView().setSongCategory(SongCategoriesService.createSongCategoryByName(song.getSongCategoryName()));
+		createOrEditNewSongView.getCopyRightsView()
+				.setSongCategory(SongCategoriesService.createSongCategoryById(song.getSongCategoryId()));
 		return createOrEditNewSongView;
 	}
 
@@ -237,22 +227,24 @@ public class FileMenuManager {
 	private void handleCreateNewSong(MainContainerView mainContainerView, FileMenuEvent evt) {
 		evt.consume();
 		CreateOrEditNewSongView createOrEditNewSongView = new CreateOrEditNewSongView();
-		Dialog<ButtonType> dialogStage = dialogManager.showCreateOrEditNewSong(createOrEditNewSongView,
-				mainContainerView.getScene().getWindow());
-		createOrEditNewSongView.getCopyRightsView().setBookItems(valueObjectManager.getBookItems());
-		createOrEditNewSongView.getCopyRightsView().setSongCategoryItems(valueObjectManager.getSongCategoryItems());
+		Dialog<ButtonType> dialogStage = managerProvider.getDialogManager()
+				.showCreateOrEditNewSong(createOrEditNewSongView, mainContainerView.getScene().getWindow());
+		createOrEditNewSongView.getCopyRightsView()
+				.setBookItems(managerProvider.getValueObjectManager().getBookItems());
+		createOrEditNewSongView.getCopyRightsView()
+				.setSongCategoryItems(managerProvider.getValueObjectManager().getSongCategoryItems());
 		Optional<ButtonType> showAndWait = dialogStage.showAndWait();
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
 			Song song = createSongFromCreateOrEditNewSongView(createOrEditNewSongView, new Song());
 			FileUtil.saveSongAsTxtFileToSongsFolder(createOrEditNewSongView.getTextView().getSongHtml(),
 					song.getTextFileReference());
-			Song findByTitle = songRepository.findByTitle(song.getSongTitle());
+			Song findByTitle = repositoryProvider.getSongRepository().findByTitle(song.getSongTitle());
 			if (findByTitle != null) {
 				Dialogs.error(Localization.asKey("csb.alert.songAlreadyExist"),
 						mainContainerView.getScene().getWindow());
 				return;
 			}
-			song = songRepository.save(song);
+			song = repositoryProvider.getSongRepository().save(song);
 			if (song != null) {
 				Dialogs.success(Localization.asKey("csb.alert.songSavingSuccessfulled"),
 						mainContainerView.getScene().getWindow());
@@ -269,9 +261,11 @@ public class FileMenuManager {
 
 	private void addItemViewToList(MainContainerView mainContainerView, Song song, ListItemView listItemView) {
 		toggleGroup.getToggles().add(listItemView.getToggle());
-		valueObjectManager.getSaveAsBinder().put(listItemView, listItemView.getToggle().selectedProperty());
+		managerProvider.getValueObjectManager().getSaveAsBinder().put(listItemView,
+				listItemView.getToggle().selectedProperty());
 		mainContainerView.saveAsProperty().unbind();
-		mainContainerView.saveAsProperty().bind(Helper.concatProperties(valueObjectManager.getSaveAsBinder()));
+		mainContainerView.saveAsProperty()
+				.bind(Helper.concatProperties(managerProvider.getValueObjectManager().getSaveAsBinder()));
 		mainContainerView.getListViewContainer().getChildren().add(listItemView);
 		createSongPartFromSong(mainContainerView, song);
 		mainContainerView.addEventHandler(CreateOrEditNewSongEvent.UPDATE_LIST_ITEM_AND_SONG_PART,
@@ -282,8 +276,10 @@ public class FileMenuManager {
 		song.setSongTitle(createOrEditNewSongView.getTextView().getTitle());
 		song.setSongBody(createOrEditNewSongView.getTextView().getSongText());
 		song.setSongBodyAsByteArr(createOrEditNewSongView.getTextView().getSongText().getBytes());
-		// COPYRIGHT
-		song.setSongHtml(createOrEditNewSongView.getTextView().getSongHtml());
+		// html text can be null when during editing html-editor is not touched
+		if (createOrEditNewSongView.getTextView().getSongHtml() != null
+				&& !createOrEditNewSongView.getTextView().getSongHtml().isEmpty())
+			song.setSongHtml(createOrEditNewSongView.getTextView().getSongHtml());
 		song.setCopyRightTitle(createOrEditNewSongView.getCopyRightsView().getTitle());
 		song.setCopyRight(createOrEditNewSongView.getCopyRightsView().getCopyright());
 		song.setOriginalTitle(createOrEditNewSongView.getCopyRightsView().getOriginalTitle());
@@ -297,13 +293,14 @@ public class FileMenuManager {
 		Book songBuch = createOrEditNewSongView.getCopyRightsView().getSongBuch();
 		song.setBook(songBuch);
 		songBuch.addSong(song);
-		// bookRepository.save(songBuch);
+		song.setSongCategoryName(createOrEditNewSongView.getCopyRightsView().getSongCategory().getName());
+		song.setSongCategoryId(createOrEditNewSongView.getCopyRightsView().getSongCategory().getId());
 		song.setAdditionalInfo(createOrEditNewSongView.getCopyRightsView().getAdditionalInfo());
 		song.setSongKey(createOrEditNewSongView.getCopyRightsView().getKey());
 		song.setTempo(createOrEditNewSongView.getCopyRightsView().getTempo());
 		song.setTextFileReference(createOrEditNewSongView.getTextView().getTitle().replaceAll(" ", "").concat(".txt"));
 		// EXTRAS
-		//song.setAttachements(createOrEditNewSongView.getExtrasView().getAttachments());
+		// song.setAttachements(createOrEditNewSongView.getExtrasView().getAttachments());
 		return song;
 	}
 

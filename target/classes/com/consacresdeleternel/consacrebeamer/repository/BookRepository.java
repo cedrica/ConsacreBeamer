@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import com.consacresdeleternel.consacrebeamer.data.Book;
 
-
 public class BookRepository extends BasicRepository<Book> {
 	private static final Logger LOG = LoggerFactory.getLogger(BookRepository.class);
 

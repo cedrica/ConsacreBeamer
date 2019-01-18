@@ -71,7 +71,8 @@ public class FileUtil {
 		FileOutputStream faos = null;
 		try {
 			faos = new FileOutputStream(file);
-			faos.write(content.getBytes());
+			byte[] byteContent = (content != null)? content.getBytes(): "".getBytes();
+			faos.write(byteContent);
 
 		} catch (Exception e) {
 			LOG.error(e.getMessage());

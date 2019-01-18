@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <songCategoryStore>
 	<songCategory>
+		<id>1</id>
 		<name>csb.copyRightsView.songCategory.worship</name>
 	</songCategory>
 	<songCategory>
+		<id>2</id>
 		<name>csb.copyRightsView.songCategory.adoration</name>
 	</songCategory>
 </songCategoryStore>

@@ -2,13 +2,13 @@ package com.consacresdeleternel.consacrebeamer.service;
 
 import java.io.File;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 import com.consacresdeleternel.consacrebeamer.catalog.SongCategoryStore;
-import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.data.SongCategory;
 
 public class SongCategoriesService {
@@ -27,14 +27,14 @@ public class SongCategoriesService {
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
-
 		return null;
 	}
 
-	public static SongCategory createSongCategoryByName(String songCategoryName) {
-		if(songCategoryName == null)
-			return null;
-		return new SongCategory(Localization.asKey(songCategoryName));
+	public static SongCategory createSongCategoryById(int songCategoryId) {
+		SongCategoriesService songCategoriesService = new SongCategoriesService();
+		return (songCategoriesService.songCategories() != null)? 
+				songCategoriesService.songCategories().stream().filter(song -> song.getId() == songCategoryId).collect(Collectors.toList()).get(0):null;
+		
 	}
 
 }

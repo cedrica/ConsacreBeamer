@@ -48,7 +48,9 @@ public class Song {
 	@Transient
 	private String songHtml;
 	private String textFileReference;
+	@Transient
 	private String songCategoryName;
+	private int songCategoryId;
 	@ManyToOne
 	@JoinColumn(name = "bookId")
 	private Book book;
@@ -238,10 +240,21 @@ public class Song {
 		return songCategoryName;
 	}
 
-	public void setSongCategoryId(String songCategoryName) {
+	public void setSongCategoryName(String songCategoryName) {
 		this.songCategoryName = songCategoryName;
 	}
+	
+	
 
+	public int getSongCategoryId() {
+		return songCategoryId;
+	}
+
+	public void setSongCategoryId(int songCategoryId) {
+		this.songCategoryId = songCategoryId;
+	}
+
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -262,6 +275,7 @@ public class Song {
 		result = prime * result + ((schedules == null) ? 0 : schedules.hashCode());
 		result = prime * result + ((songBody == null) ? 0 : songBody.hashCode());
 		result = prime * result + Arrays.hashCode(songBodyAsByteArr);
+		result = prime * result + songCategoryId;
 		result = prime * result + ((songCategoryName == null) ? 0 : songCategoryName.hashCode());
 		result = prime * result + ((songHtml == null) ? 0 : songHtml.hashCode());
 		result = prime * result + ((songKey == null) ? 0 : songKey.hashCode());
@@ -358,6 +372,8 @@ public class Song {
 			return false;
 		if (!Arrays.equals(songBodyAsByteArr, other.songBodyAsByteArr))
 			return false;
+		if (songCategoryId != other.songCategoryId)
+			return false;
 		if (songCategoryName == null) {
 			if (other.songCategoryName != null)
 				return false;
@@ -404,8 +420,8 @@ public class Song {
 				+ traduction + ", copyRight=" + copyRight + ", nationalCopy=" + nationalCopy + ", rights=" + rights
 				+ ", ccliNumber=" + ccliNumber + ", bibleVerse=" + bibleVerse + ", additionalInfo=" + additionalInfo
 				+ ", songKey=" + songKey + ", tempo=" + tempo + ", songHtml=" + songHtml + ", textFileReference="
-				+ textFileReference + ", songCategoryName=" + songCategoryName + ", book=" + book + ", attachements="
-				+ attachements + "]";
+				+ textFileReference + ", songCategoryName=" + songCategoryName + ", songCategoryId=" + songCategoryId
+				+ ", book=" + book + ", attachements=" + attachements + "]";
 	}
 
 }

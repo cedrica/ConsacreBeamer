@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import com.consacresdeleternel.consacrebeamer.data.Schedule;
 import com.consacresdeleternel.consacrebeamer.data.Song;
-
 public class SongRepository extends BasicRepository<Song> {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SongRepository.class);
