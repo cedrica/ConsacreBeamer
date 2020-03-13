@@ -42,7 +42,7 @@
 			<Label text="%csb.copyRightsView.key" GridPane.columnIndex="0" GridPane.rowIndex="12"/> 
 			<Label text="%csb.copyRightsView.tempo" GridPane.columnIndex="0" GridPane.rowIndex="13"/> 
 			<Label text="%csb.copyRightsView.songCategory" GridPane.columnIndex="0" GridPane.rowIndex="14"/> 
-			<TextField fx:id="tfTitle" GridPane.columnIndex="1" GridPane.rowIndex="0"/> 
+			<TextField fx:id="tfTitle" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="0"/> 
 			<TextField fx:id="tfOriginalTitle" GridPane.columnIndex="1" GridPane.rowIndex="1"/> 
 			<TextField fx:id="tfTextAutor" GridPane.columnIndex="1" GridPane.rowIndex="2"/> 
 			<TextField fx:id="tfMusik" GridPane.columnIndex="1" GridPane.rowIndex="3"/> 

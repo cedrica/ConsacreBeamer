@@ -1,0 +1,37 @@
+package com.consacresdeleternel.consacrebeamer.maincontainer.customlistview
+
+import javafx.scene.layout.AnchorPane
+import javafx.scene.control.Label
+import javafx.scene.control.CheckBox
+import javafx.scene.control.TextField
+import javafx.scene.control.ListView
+import javafx.scene.layout.HBox
+import com.consacresdeleternel.consacrebeamer.customlistview.CustomListView
+import com.consacresdeleternel.consacrebeamer.customlistview.CustomListViewModel
+
+dynamic component CustomListViewModel controlledby CustomListView styledwith ["/com/consacresdeleternel/consacrebeamer/maincontainer/customlistview/CustomListView.css"]{
+	CustomListViewModel id rootNode {
+		stylesheets : ["/com/consacresdeleternel/consacrebeamer/maincontainer/customlistview/CustomListView.css"],
+		styleClass : ["custom-list-view"],
+		HBox{
+			alignment : "BASELINE_CENTER",
+			Label id lblListTitle{
+			text : bind rootNode#listTitel,
+			styleClass : ["listview-titel"]
+		}
+		}
+		,
+		CheckBox id checkSelectAll {
+			visible : bind rootNode#selectAllVisible
+		},
+		TextField id tfSearch {
+			^id : "tfSearch",
+			visible : bind rootNode#searchVisible,
+			promptText : "search items ..."
+		},
+		ListView id lvItems {
+			static vgrow : "ALWAYS"
+			
+		}
+	}
+}

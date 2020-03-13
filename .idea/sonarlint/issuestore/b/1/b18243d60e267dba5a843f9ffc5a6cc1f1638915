@@ -1,0 +1,10 @@
+
+tsquid:S3252*"]Use static access with "javafx.scene.control.ProgressIndicator" for "INDETERMINATE_PROGRESS".(ÆÕÈ°
+Isquid:S1444*"2Make this "public static INTERMEDIATE" field final(ÆÕÈ°
+ssquid:S00116+"[Rename this field "NO_TASKS_RUNNING" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ñ¿‘Ç
+nsquid:S3008*"WRename this field "INTERMEDIATE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆÕÈ°
+Ysquid:S3457ü"AFormat specifiers should be used instead of string concatenation.(œäíŒ
+Xsquid:S3457}"AFormat specifiers should be used instead of string concatenation.(Åî½Ç
+Osquid:S2629ü"7Use the built-in formatting to construct this argument.(œäíŒ
+hsquid:S3776:"RRefactor this method to reduce its Cognitive Complexity from 50 to the 15 allowed.(œ«èl
+†"squid:ClassVariableVisibilityCheck*"XMake INTERMEDIATE a static final constant or non-public and provide accessors if needed.(ÆÕÈ°

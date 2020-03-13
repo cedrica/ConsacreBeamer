@@ -1,0 +1,11 @@
+package com.consacresdeleternel.consacrebeamer.maincontainer.bibel
+
+import javafx.scene.layout.AnchorPane
+import com.consacresdeleternel.consacrebeamer.bibel.BibelWidzardView
+import com.consacresdeleternel.consacrebeamer.bibel.BibelWidzardViewModel
+
+dynamic component BibelWidzardViewModel controlledby BibelWidzardView {
+	BibelWidzardViewModel id rootNode {
+
+	}
+}

@@ -1,0 +1,8 @@
+
+Isquid:S1602»",Remove useless curly braces around statement(×ƒà—ûÿÿÿÿ
+hsquid:CommentedOutCodeLine¯"<This block of commented-out lines of code should be removed.(áö´ÿüÿÿÿÿ
+Tsquid:S2589˜"7Remove this expression which always evaluates to "true"(û®þ’ýÿÿÿÿ
+2squid:S3626}"Remove this redundant jump.(ÉŠ©ƒ
+Lsquid:S1066–"/Merge this if statement with the enclosing one.(Ž´™ßýÿÿÿÿ
+3squid:S3626"Remove this redundant jump.(ûÁÝ…
+Vsquid:S1854º"9Remove this useless assignment to local variable "index".(Ã–žßÿÿÿÿÿ

@@ -1,0 +1,12 @@
+
+Csquid:S1602?",Remove useless curly braces around statement(ÃüùÛ
+O
+squid:S1067"9Replace this use of System.out or System.err by a logger.(ÄŒ‘”
+Dsquid:S16043"(Make this anonymous inner class a lambda(‚¬íÍıÿÿÿÿ
+Gsquid:S1068"+Remove this unused "pref_WH" private field.(êÈÙòıÿÿÿÿ
+Hsquid:S1602(",Remove useless curly braces around statement(¨ùÉïüÿÿÿÿ
+psquid:S3008"TRename this field "offset_XY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êÈÙòıÿÿÿÿ
+nsquid:S3008"RRename this field "pref_WH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êÈÙòıÿÿÿÿ
+?squid:S11488"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+Msquid:S2696@"6Make the enclosing method "static" or remove this set.(ÎÇä‚
+Csquid:S1659"'Declare "offset_XY" on a separate line.(êÈÙòıÿÿÿÿ

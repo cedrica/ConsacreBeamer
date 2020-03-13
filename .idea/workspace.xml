@@ -2,107 +2,110 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d500200-d5cc-40cc-85d1-d40ae879bc4f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_3_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_persistence_javax_persistence_api_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_8_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_deltaspike_cdictrl_deltaspike_cdictrl_api_1_2_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_deltaspike_cdictrl_deltaspike_cdictrl_weld_1_2_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_deltaspike_core_deltaspike_core_api_1_5_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_deltaspike_modules_deltaspike_jpa_module_api_1_4_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_jandex_2_0_3_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jsoup_jsoup_1_8_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_sonatype_sisu_sisu_guava_0_9_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_sonatype_sisu_sisu_guice_no_aop_3_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_sonatype_sisu_sisu_inject_bean_2_3_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_derby_derby_10_10_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_derby_derbyclient_10_10_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_4_0_1_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_5_0_3_Final.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_core_4_1_0_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_core_5_3_1_Final.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_entitymanager_4_1_0_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_entitymanager_5_3_1_Final.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_javax_persistence_hibernate_jpa_2_0_api_1_0_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_15_0_GA.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_22_0_GA.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_1_0_CR2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_3_2_Final.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_spec_javax_transaction_jboss_transaction_api_1_1_spec_1_0_0_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_spec_javax_transaction_jboss_transaction_api_1_2_spec_1_1_1_Final.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_se_weld_se_2_4_0_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_se_weld_se_1_1_16_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_javax_activation_api_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_jandex_2_0_5_Final.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_8_12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_8_17.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_deltaspike_cdictrl_deltaspike_cdictrl_api_1_2_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_deltaspike_cdictrl_deltaspike_cdictrl_weld_1_2_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_deltaspike_core_deltaspike_core_api_1_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_deltaspike_modules_deltaspike_jpa_module_api_1_4_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_5_0_3_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_5_0_4_Final.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_core_5_3_1_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_core_5_3_6_Final.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_entitymanager_5_3_1_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_entitymanager_5_3_6_Final.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_22_0_GA.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_23_1_GA.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_jandex_2_0_3_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_se_weld_se_1_1_16_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_sonatype_sisu_sisu_guava_0_9_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_sonatype_sisu_sisu_guice_no_aop_3_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_sonatype_sisu_sisu_inject_bean_2_3_0.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsacreBeamer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ConsacreBeamer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/manager/FileMenuManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/manager/FileMenuManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/repository/BasicRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/repository/BasicRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/bundle/consacrebeamer_de_DE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/bundle/consacrebeamer_de_DE.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/repository/BasicRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/repository/BasicRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/beans.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/persistence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/bundle/consacrebeamer_de_DE.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/ConsacreBeamerApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/CopyRightsViewTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/CreateOrEditNewSongViewTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/ListItemViewTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/SongPartViewTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/TextViewTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/common/Dialogs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/common/Helper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/common/Localization.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/data/Book.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/data/Song.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/events/CreateOrEditNewSongEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/events/FileMenuEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/events/ListItemViewEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/events/SongPartEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/book/BookController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/book/BookView.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/book/BookView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/book/BookView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/CreateOrEditNewSongController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/CreateOrEditNewSongView.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/CreateOrEditNewSongView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/CreateOrEditNewSongView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/copyrights/CopyRightsController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/copyrights/CopyRightsView.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/copyrights/CopyRightsView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/copyrights/CopyRightsView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/text/TextController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/text/TextView.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/text/TextView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/createoreditnewsong/text/TextView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/listitem/ListItemController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/listitem/ListItemView.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/listitem/ListItemView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/listitem/ListItemView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/songpart/SongPartController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/songpart/SongPartView.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/songpart/SongPartView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/maincontainer/songpart/SongPartView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/manager/MainContainerManger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/repository/BasicRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/repository/BookRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/repository/SongRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/service/PPTService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/consacresdeleternel/consacrebeamer/utils/GlyphUtilities.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/css/Material.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/css/bootstrap.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/css/root.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/css/svg-icons.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/Unbenannt.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/consacre-beamer-icon.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/icons8-add-file-40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/icons8-add-folder-50.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/icons8-cancel-40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/icons8-copy-40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/icons8-delete-file-40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/icons8-edit-file-40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/icons8-health-calendar-40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/icons8-movie-filled-40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/icons8-new-slide-40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/icons8-next-40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/icons8-open-40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/icons8-print-40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/icons8-read-100.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/icons8-save-48.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/icons8-save-as-50.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/icons8-shutdown-40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/icons8-view-40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons/svg-free-icons/Unbenannt.MHT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/icons8-add-file-40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/image.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/icons8-add-file-40.png" beforeDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainContainerView.fxgraph" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.fxgraph">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="persistence.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="ConsacreBeamerApp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/ConsacreBeamerApp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="35" column="15" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TaskManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/manager/TaskManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileMenuManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/manager/FileMenuManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="29" selection-start-line="29" selection-end-line="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LauncherTask.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/tasks/LauncherTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainContainerView.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.fxml">
-          <provider selected="true" editor-type-id="text-editor" />
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <dirStrings>
@@ -112,13 +115,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/maincontainer/songpartviewer/SongPartViewerView.fxgraph" />
-        <option value="$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/manager/FileMenuManager.java" />
-      </list>
-    </option>
+  <component name="InvalidFacetManager">
+    <ignored-facets>
+      <facet id="ConsacreBeamer/invalid/Hibernate" />
+      <facet id="ConsacreBeamer/invalid/JPA" />
+    </ignored-facets>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -127,6 +128,11 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:/Program Files/apache-foundation/apache-maven-3.6.2" />
+      </MavenGeneralSettings>
+    </option>
     <option name="importingSettings">
       <MavenImportingSettings>
         <option name="useMavenOutput" value="false" />
@@ -136,55 +142,19 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1552" />
-    <option name="height" value="392" />
-  </component>
+  <component name="ProjectId" id="1YvlSV51xnp5V6bZP9sUqHV7ICk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="ProjectView">
-    <navigator currentView="PackagesPane" proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ConsacreBeamer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ConsacreBeamer" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ConsacreBeamer" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ConsacreBeamer" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="ConsacreBeamer" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ConsacreBeamer" type="616d4139:PackageViewModuleNode" />
-              <item name="com.consacresdeleternel.consacrebeamer" type="1f31426a:PackageElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
-    </panes>
-  </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.33563218" />
+    <property name="settings.editor.selected.configurable" value="project.scopes" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -199,8 +169,11 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="Applet" factoryName="Applet">
+    <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="ConsacreBeamerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.consacresdeleternel.consacrebeamer.ConsacreBeamerApp" />
@@ -212,47 +185,31 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
+    <configuration default="true" type="TestNG">
       <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
       <properties />
       <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <recent_temporary>
       <list>
@@ -277,128 +234,20 @@
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="1915000" />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <layout>
-      <window_info anchor="right" id="Palette" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="16" side_tool="true" />
-      <window_info anchor="bottom" id="JRebel Console" order="15" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="9" />
-      <window_info anchor="bottom" id="JRebel Executor" order="14" />
-      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="right" id="CDI" />
-      <window_info id="Capture Tool" order="9" />
-      <window_info id="Designer" order="9" />
-      <window_info anchor="right" id="Database" order="6" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="9" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="10" visible="true" weight="0.16315205" />
-      <window_info anchor="right" id="Palette&#9;" order="9" />
-      <window_info id="Image Layers" order="9" />
-      <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.32971373" />
-      <window_info anchor="right" id="Capture Analysis" order="9" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="16" />
-      <window_info anchor="bottom" id="Terminal" order="16" />
-      <window_info id="Persistence" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18123667" />
-      <window_info id="JRebel" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info id="Favorites" order="9" side_tool="true" />
-      <window_info id="Web" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Application Servers" order="7" weight="0.32872656" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.fxgraph">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/maincontainer/songpartviewer/SongPartViewerView.fxgraph">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="33" lean-forward="true" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/maincontainer/songpartviewer/SongPartViewerView.fxgraph">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/ConsacreBeamerApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="35" column="15" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/manager/TaskManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/manager/FileMenuManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/tasks/LauncherTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.fxml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/consacresdeleternel/consacrebeamer/maincontainer/MainContainerView.fxgraph">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

@@ -1,0 +1,21 @@
+.chapter-view{
+	
+}
+
+.chapter-view .titel{
+	-fx-font-weight: bold;
+	-fx-font-size: 18px;
+}
+.chapter-view .button{
+	-fx-background-color: transparent;
+}
+.chapter-view .tile-pane .button{
+	-fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+	-fx-pref-width: 40px;
+	-fx-pref-height: 40px;
+}
+
+.chapter-view .tile-pane .button:hover{
+	-fx-background-color: gray;
+}
