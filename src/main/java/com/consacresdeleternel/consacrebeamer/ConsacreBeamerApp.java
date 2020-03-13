@@ -2,6 +2,7 @@ package com.consacresdeleternel.consacrebeamer;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 
+import com.consacresdeleternel.consacrebeamer.common.Dialogs;
 import com.consacresdeleternel.consacrebeamer.events.FileMenuEvent;
 import com.consacresdeleternel.consacrebeamer.launcher.LauncherView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
@@ -52,7 +53,7 @@ public class ConsacreBeamerApp extends Application {
 
 				@Override
 				public void uncaughtException(Thread t, Throwable e) {
-					System.err.println("Folgender Fehler ist aufgetreten: ");
+					Dialogs.error(e.getMessage(),mainContainerView.getScene().getWindow());
 					e.printStackTrace();
 				}
 			});

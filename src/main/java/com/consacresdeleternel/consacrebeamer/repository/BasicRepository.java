@@ -1,12 +1,12 @@
 package com.consacresdeleternel.consacrebeamer.repository;
 
+import java.rmi.ServerException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.slf4j.Logger;
@@ -27,12 +27,6 @@ public abstract class BasicRepository<T> {
 	protected EntityManager entityManager;
 
 	private void init() {
-		// try{
-		// sessionFactory = new
-		// Configuration().configure("/hibernate.cfg.xml").buildSessionFactory();
-		// }catch (Exception e) {
-		// e.printStackTrace();// TODO: handle exception
-		// }
 		try {
 			entityManagerFactory = Persistence.createEntityManagerFactory("manager");
 			entityManager = entityManagerFactory.createEntityManager();
@@ -42,104 +36,41 @@ public abstract class BasicRepository<T> {
 		}
 
 	}
-
 	public T save(T o) {
-		// Session session = null;
-		// session = sessionFactory.openSession();
-		// try {
-		// tx = session.beginTransaction();
-		// session.saveOrUpdate(o);
-		// tx.commit();
-		//
-		// return o;
-		// } catch (Exception e) {
-		// if (tx != null)
-		// tx.rollback();
-		// e.printStackTrace();
-		// LOG.error("Object konnte nicht gespeichert werden: " +
-		// e.getMessage());
-		// return null;
-		// }
 		try {
 			entityManager.getTransaction().begin();
 			entityManager.persist(o);
+			entityManager.flush();
 			entityManager.getTransaction().commit();
-			entityManager.refresh(o);
 			return o;
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
-			e.printStackTrace();
+			throw new InternalError(e.getMessage(), e);
 		}
-		return null;
 	}
 
-	public void remove(T o) {
-		// Session session = null;
-		// session = sessionFactory.openSession();
-		// try {
-		// tx = session.beginTransaction();
-		// session.delete(o);
-		// tx.commit();
-		//
-		// } catch (Exception e) {
-		// if (tx != null)
-		// tx.rollback();
-		//
-		// e.printStackTrace();
-		// }
+	public void remove(T o){
 		try {
 			entityManager.getTransaction().begin();
 			entityManager.remove(o);
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
-			e.printStackTrace();
+			throw new InternalError(e.getMessage(), e);
 		}
 	}
 
-	public T findById(long id) {
-		// Session session = null;
-		// session = sessionFactory.openSession();
-		// try {
-		// tx = session.beginTransaction();
-		// @SuppressWarnings("unchecked")
-		// T entity = (T) session.get(this.clazz, id);
-		// tx.commit();
-		//
-		// return entity;
-		//
-		// } catch (Exception e) {
-		// if (tx != null)
-		// tx.rollback();
-		//
-		// e.printStackTrace();
-		// }
+	public T findById(long id)  {
 		try {
 			T result = entityManager.find(clazz, id);
 			return result;
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new InternalError(e.getMessage(), e);
 		}
-		return null;
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<T> findAll() {
-		// Session session = null;
-		// session = sessionFactory.openSession();
-		// try {
-		// tx = session.beginTransaction();
-		// String sql = "select b from " + this.clazz.getSimpleName() + " b";
-		// Query query = session.createQuery(sql);
-		// tx.commit();
-		//
-		// return query.list();
-		//
-		// } catch (Exception e) {
-		// if (tx != null)
-		// tx.rollback();
-		// e.printStackTrace();
-		// }
 		try {
 			Query query = entityManager.createQuery("select b from " + this.clazz.getSimpleName() + " b");
 			if(query.getResultList() != null) {
@@ -149,9 +80,8 @@ public abstract class BasicRepository<T> {
 			}
 			return query.getResultList();
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new InternalError(e.getMessage(), e);
 		}
-		return null;
 	}
 
 }

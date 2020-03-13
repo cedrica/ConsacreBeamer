@@ -16,7 +16,7 @@ public class MainContainerManger {
 
 private ManagerProvider managerProvider;
 private RepositoryProvider repositoryProvider;
-	public void init(MainContainerView mainContainerView) {
+	public void init(MainContainerView mainContainerView){
 		this.managerProvider = new ManagerProvider();
 		this.repositoryProvider = new RepositoryProvider();
 		JFXUtilities.bindMaskerPane(mainContainerView.getMaskerPane(), managerProvider.getTaskManager());

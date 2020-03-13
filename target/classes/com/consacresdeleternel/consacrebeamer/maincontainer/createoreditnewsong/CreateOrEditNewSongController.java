@@ -26,6 +26,9 @@ public class CreateOrEditNewSongController implements Initializable {
 		rootNode.setTextView(textView);
 		rootNode.setCopyRightsView(copyRightsView);
 		rootNode.setExtrasView(extrasView);
+		textView.titleProperty().addListener((obs, oldVal,newVal) ->{
+			copyRightsView.setTitle(newVal);
+		});
 	}
 
 }

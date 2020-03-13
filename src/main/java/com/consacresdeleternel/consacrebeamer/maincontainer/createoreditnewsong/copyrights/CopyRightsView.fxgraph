@@ -124,7 +124,8 @@ dynamic component CopyRightsView controlledby CopyRightsController styledwith [
 			//COLUMN2
 			TextField id tfTitle{
 				static columnIndex : 1,
-				static rowIndex : 0
+				static rowIndex : 0,
+				disable: true
 			},
 			TextField id tfOriginalTitle {
 				static columnIndex : 1,

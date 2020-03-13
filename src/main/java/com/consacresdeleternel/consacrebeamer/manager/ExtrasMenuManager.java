@@ -10,6 +10,8 @@ import com.consacresdeleternel.consacrebeamer.data.Book;
 import com.consacresdeleternel.consacrebeamer.data.Schedule;
 import com.consacresdeleternel.consacrebeamer.events.BookEvent;
 import com.consacresdeleternel.consacrebeamer.events.ExtrasMenuEvent;
+import com.consacresdeleternel.consacrebeamer.exceptions.BookNotFoundException;
+import com.consacresdeleternel.consacrebeamer.exceptions.DuplicateFoundException;
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.BookView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookView;
@@ -27,7 +29,7 @@ public class ExtrasMenuManager {
 	private ManagerProvider managerProvider;
 	private RepositoryProvider repositoryProvider;
 	
-	public void init(MainContainerView mainContainerView, ManagerProvider managerProvider,RepositoryProvider repositoryProvider) {
+	public void init(MainContainerView mainContainerView, ManagerProvider managerProvider,RepositoryProvider repositoryProvider){
 		this.managerProvider = managerProvider;
 		this.repositoryProvider = repositoryProvider;
 		mainContainerView.addEventHandler(ExtrasMenuEvent.CREATE_NEW_BOOK,
@@ -87,17 +89,20 @@ public class ExtrasMenuManager {
 		if (showAndWait.isPresent() && showAndWait.get() == ButtonType.APPLY) {
 			Book book = new Book();
 			book.setTitle(createBookView.getBookName());
-			Book duplicat =  repositoryProvider.getBookRepository().findByTitle(createBookView.getBookName().trim());
-			if (duplicat != null) {
-				Dialogs.error(Localization.asKey("csb.ExtrasMenu.duplicatedBook"),
-						mainContainerView.getScene().getWindow());
-				return;
+			try{
+				Book duplicat =  repositoryProvider.getBookRepository().findByTitle(createBookView.getBookName().trim());
+				if (duplicat != null) {
+					throw new DuplicateFoundException(Localization.asKey("csb.ExtrasMenu.duplicatedBook"));
+				}
+			} catch (Exception e) {
+				
 			}
-			book =  repositoryProvider.getBookRepository().save(book);
-			if (book == null) {
-				Dialogs.error(Localization.asKey("csb.ExtrasMenu.bookcouldNotBeCreated"),
-						mainContainerView.getScene().getWindow());
-				return;
+			try {
+				book =  repositoryProvider.getBookRepository().save(book);
+				if (book == null) {
+					throw new BookNotFoundException(Localization.asKey("csb.ExtrasMenu.bookcouldNotBeCreated"));
+				}
+			} catch (Exception e) {
 			}
 			mainContainerView.fireEvent(new BookEvent(BookEvent.RELOAD_BOOKS));
 			List<Book> books = repositoryProvider.getBookRepository().findAll();
