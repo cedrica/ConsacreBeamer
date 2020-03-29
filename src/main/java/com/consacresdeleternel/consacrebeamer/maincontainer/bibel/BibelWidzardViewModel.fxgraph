@@ -1,11 +1,33 @@
 package com.consacresdeleternel.consacrebeamer.maincontainer.bibel
 
 import javafx.scene.layout.AnchorPane
-import com.consacresdeleternel.consacrebeamer.bibel.BibelWidzardView
-import com.consacresdeleternel.consacrebeamer.bibel.BibelWidzardViewModel
+import com.consacresdeleternel.consacrebeamer.maincontainer.bibel.BibelWidzardView
+import com.consacresdeleternel.consacrebeamer.maincontainer.bibel.BibelWidzardViewModel
+import com.consacresdeleternel.consacrebeamer.maincontainer.customlistview.CustomListViewModel
+import javafx.scene.layout.StackPane
+import com.consacresdeleternel.consacrebeamer.maincontainer.chapterview.ChapterOrVersePageViewModel
+import com.consacresdeleternel.consacrebeamer.data.Chapter
+import com.consacresdeleternel.consacrebeamer.data.Verse
+import com.consacresdeleternel.consacrebeamer.maincontainer.textofverse.TextOfVerseViewModel
 
 dynamic component BibelWidzardViewModel controlledby BibelWidzardView {
 	BibelWidzardViewModel id rootNode {
+		children : [
+			CustomListViewModel id customListViewModel,
+			StackPane{
+				children : [
+					ChapterOrVersePageViewModel<Chapter> id chapterViewModel {
+						visible : true
+					},
+					ChapterOrVersePageViewModel<Verse> id verseViewModel {
+						visible : false
+					},
+					TextOfVerseViewModel id textOfVerseViewModel{
+						visible: false
+					}
+				]
+			}
+		]
 
 	}
 }

@@ -1,4 +1,4 @@
-package com.consacresdeleternel.consacrebeamer.customlistview;
+package com.consacresdeleternel.consacrebeamer.maincontainer.customlistview;
 
 public class CustomListBasicObject {
 private String name;

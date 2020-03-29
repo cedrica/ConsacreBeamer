@@ -1,41 +1,48 @@
 package com.consacresdeleternel.consacrebeamer.bibel;
 
-import static org.junit.Assert.assertEquals;
+import java.util.List;
 
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
-import com.consacresdeleternel.consacrebeamer.maincontainer.bibel.BibelEvent;
+import com.consacresdeleternel.consacrebeamer.BibelBook;
+import com.consacresdeleternel.consacrebeamer.TestHelper;
 import com.consacresdeleternel.consacrebeamer.maincontainer.bibel.BibelWidzardViewModel;
 
 import javafx.application.Platform;
-import javafx.scene.Parent;
+import javafx.collections.FXCollections;
 import javafx.scene.Scene;
-import javafx.scene.control.Dialog;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class BibelWidzardViewModelTest extends ApplicationTest {
 	BibelWidzardViewModel bibelWidzardViewModel;
-	Dialog dialog = new Dialog();
 	@Override
 	public void start(Stage stage) throws Exception {
-	
-		dialog.getDialogPane().setContent(bibelWidzardViewModel);
 		bibelWidzardViewModel = new BibelWidzardViewModel();
-		stage.setScene(new Scene(new VBox((Parent)bibelWidzardViewModel), 800, 600));
+		bibelWidzardViewModel.getCustomListView().setListTitel("Livres");
+		List<BibelBook> books = TestHelper.createBibleBooks();
+		bibelWidzardViewModel.getCustomListView().setSearchVisible(true);
+		bibelWidzardViewModel.getCustomListView().setBibelBooks(FXCollections.observableList(books));
+		bibelWidzardViewModel.getCustomListView().setSelectIndex(0);
+		bibelWidzardViewModel.getChapterView().setTitle("chapter");
+		bibelWidzardViewModel.getVerseView().setTitle("Verses");
+		stage.setScene(new Scene(bibelWidzardViewModel));
 		stage.show();
 	}
 
 
 	@Test
 	public void assertVersenumber() {
-		Platform.runLater(() ->{
-			bibelWidzardViewModel.addEventHandler(BibelEvent.CHAPTER, event ->{
-				event.consume();
-				assertEquals(10, event.getChapter().getVerses().size());
-			});
+		Platform.runLater(() -> {
+			Button button =  (Button) bibelWidzardViewModel.getChapterView().lookup("#button_1");
+			clickOn(button);
 		});
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

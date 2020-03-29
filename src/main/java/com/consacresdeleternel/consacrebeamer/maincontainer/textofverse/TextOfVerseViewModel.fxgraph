@@ -1,0 +1,17 @@
+package com.consacresdeleternel.consacrebeamer.maincontainer.textofverse
+
+import javafx.scene.layout.AnchorPane
+import com.consacresdeleternel.consacrebeamer.maincontainer.textofverse.TextOfVerseViewModel
+import javafx.scene.web.WebView
+import com.consacresdeleternel.consacrebeamer.maincontainer.textofverse.TextOfVerseView
+
+dynamic component TextOfVerseViewModel controlledby TextOfVerseView styledwith ["/com/consacresdeleternel/consacrebeamer/maincontainer/textofverse/TextOfVerseView.css"] {
+	TextOfVerseViewModel id rootNode {
+		stylesheets : ["/com/consacresdeleternel/consacrebeamer/maincontainer/textofverse/TextOfVerseView.css"],
+		styleClass : ["text-of-verse-view"],
+		//style : "margin: 10 10 10 10",
+		
+		content : WebView id webViewChapterText{
+		}
+	}
+}

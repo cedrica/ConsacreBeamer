@@ -7,7 +7,7 @@ import javafx.event.EventType;
 public enum InsertMenuEnum {
 	SONG("csb.insertMenuEnum.insertSong", "/icons/search-icon.png", InsertMenuEvent.INSERT_SONG), BIBLE(
 			"csb.insertMenuEnum.insertBibleVerse", "/icons/icons8-holy-bible-40.png",
-			InsertMenuEvent.INSERT_BIBLE_VERSE), SEPARATOR("csb.mainContainerView.separator", "", null), IMAGE(
+			InsertMenuEvent.SHOW_BIBEL), SEPARATOR("csb.mainContainerView.separator", "", null), IMAGE(
 					"csb.insertMenuEnum.insertImage", "/icons/icons8-picture-40.png",
 					InsertMenuEvent.INSERT_IMAGE), VIDEO("csb.insertMenuEnum.insertVideo",
 							"/icons/icons8-hd-1080p-40.png", InsertMenuEvent.INSERT_VIDEO), MUSIC(

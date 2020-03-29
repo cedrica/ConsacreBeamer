@@ -3,16 +3,15 @@ package com.consacresdeleternel.consacrebeamer.bibel;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
 import com.consacresdeleternel.consacrebeamer.BibelBook;
-import com.consacresdeleternel.consacrebeamer.Chapter;
-import com.consacresdeleternel.consacrebeamer.Verse;
-import com.consacresdeleternel.consacrebeamer.bibel.BibelEvent;
+import com.consacresdeleternel.consacrebeamer.TestHelper;
+import com.consacresdeleternel.consacrebeamer.maincontainer.bibel.BibelEvent;
+import com.consacresdeleternel.consacrebeamer.maincontainer.customlistview.CustomListViewModel;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -24,14 +23,11 @@ public class CustomListViewModelTest extends ApplicationTest{
 
 	private CustomListViewModel customListViewModel;
 	
-	private String[] names = {"Genese","Exode","Levitiques","Nombres","Deuteronome","Job","Esdras","Samuel","Juges"};
-	private int[] chapNum = {12,33,44,13,53,23,44,23,43};
-	private int[] verses = {34,33,44,13,53,23,22,43,22};
 	
 	@Override
 	public void start(Stage stage) throws Exception {
 		customListViewModel = new CustomListViewModel();
-		List<BibelBook> books = createBibleBooks();
+		List<BibelBook> books = TestHelper.createBibleBooks();
 		customListViewModel.setBibelBooks(FXCollections.observableArrayList(books));
 		customListViewModel.setListTitel("Livres");
 		customListViewModel.setSearchVisible(true);
@@ -60,28 +56,6 @@ public class CustomListViewModelTest extends ApplicationTest{
 		});
 	}
 
-	//TODO
-	//This function belongs to an Helper class and muss be tested too
-	// at the moment it construct is wrong
-	private List<BibelBook> createBibleBooks() {
-		List<BibelBook> bibelBooks = new ArrayList<BibelBook>();
-		for (String name: names) {
-			BibelBook bibelBook = new BibelBook();
-			bibelBook.setName(name);
-			for (int i = 0; i < chapNum.length; i++) {
-				Chapter chapter = new Chapter();
-				chapter.setChapterNumber(1);
-				for (int j = 0; j < verses.length; j++) {
-					Verse verse = new Verse();
-					verse.setVerseNumber(j);
-					verse.setVerseNumber(j);
-					chapter.addVerse(verse);
-					bibelBook.addChapters(chapter);
-				}
-			}
-			bibelBooks.add(bibelBook);
-		}
-		return bibelBooks;
-	}
+	
 
 }

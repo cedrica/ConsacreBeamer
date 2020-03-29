@@ -1,12 +1,12 @@
 package com.consacresdeleternel.consacrebeamer.repository;
 
-import java.rmi.ServerException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.slf4j.Logger;
@@ -38,7 +38,9 @@ public abstract class BasicRepository<T> {
 	}
 	public T save(T o) {
 		try {
-			entityManager.getTransaction().begin();
+			if(!entityManager.getTransaction().isActive()) {
+				entityManager.getTransaction().begin();	
+			} 
 			entityManager.persist(o);
 			entityManager.flush();
 			entityManager.getTransaction().commit();
@@ -51,7 +53,9 @@ public abstract class BasicRepository<T> {
 
 	public void remove(T o){
 		try {
-			entityManager.getTransaction().begin();
+			if(!entityManager.getTransaction().isActive()) {
+				entityManager.getTransaction().begin();	
+			} 
 			entityManager.remove(o);
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.consacresdeleternel.consacrebeamer.common.Dialogs;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
 import com.consacresdeleternel.consacrebeamer.data.Book;
@@ -28,7 +31,7 @@ public class ExtrasMenuManager {
 
 	private ManagerProvider managerProvider;
 	private RepositoryProvider repositoryProvider;
-	
+	private static final Logger LOG = LoggerFactory.getLogger(ExtrasMenuManager.class);
 	public void init(MainContainerView mainContainerView, ManagerProvider managerProvider,RepositoryProvider repositoryProvider){
 		this.managerProvider = managerProvider;
 		this.repositoryProvider = repositoryProvider;
@@ -95,7 +98,7 @@ public class ExtrasMenuManager {
 					throw new DuplicateFoundException(Localization.asKey("csb.ExtrasMenu.duplicatedBook"));
 				}
 			} catch (Exception e) {
-				
+				e.fillInStackTrace();
 			}
 			try {
 				book =  repositoryProvider.getBookRepository().save(book);
@@ -103,6 +106,7 @@ public class ExtrasMenuManager {
 					throw new BookNotFoundException(Localization.asKey("csb.ExtrasMenu.bookcouldNotBeCreated"));
 				}
 			} catch (Exception e) {
+				LOG.error(e.getMessage(), e);
 			}
 			mainContainerView.fireEvent(new BookEvent(BookEvent.RELOAD_BOOKS));
 			List<Book> books = repositoryProvider.getBookRepository().findAll();

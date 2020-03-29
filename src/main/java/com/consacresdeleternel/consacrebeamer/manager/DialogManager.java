@@ -2,6 +2,7 @@ package com.consacresdeleternel.consacrebeamer.manager;
 
 import com.consacresdeleternel.consacrebeamer.common.Dialogs;
 import com.consacresdeleternel.consacrebeamer.common.Localization;
+import com.consacresdeleternel.consacrebeamer.maincontainer.bibel.BibelWidzardViewModel;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.createoreditnewsong.CreateOrEditNewSongView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.schedule.create.CreateScheduleView;
@@ -63,4 +64,10 @@ public class DialogManager {
 		return dialogStage;
 	}
 
+	public Dialog<ButtonType> showBibelWidzard(BibelWidzardViewModel bibelWidzardView, Window window) {
+		Dialog<ButtonType> dialogStage = Dialogs.customDialog(bibelWidzardView, Modality.APPLICATION_MODAL,
+				Localization.asKey("csb.bibelWidzardView.title"), window);
+		dialogStage.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL);
+		return dialogStage;
+	}
 }

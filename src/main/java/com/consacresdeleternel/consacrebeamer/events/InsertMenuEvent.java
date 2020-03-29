@@ -20,6 +20,7 @@ public class InsertMenuEvent extends Event {
 	public static final EventType<InsertMenuEvent> INSERT_BIBLE_VERSE = new EventType<>(
 			"insertBibleVerseInsertMenuEvent");
 	public static final EventType<InsertMenuEvent> INSERT_SONG = new EventType<>("insertSongInsertMenuEvent");
+	public static final EventType<InsertMenuEvent> SHOW_BIBEL =  new EventType<>("showBibelInsertMenuEvent");
 
 	public InsertMenuEvent(EventType<InsertMenuEvent> eventType) {
 		super(eventType);

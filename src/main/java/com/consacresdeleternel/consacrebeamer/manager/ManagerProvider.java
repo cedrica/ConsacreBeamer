@@ -12,6 +12,7 @@ public class ManagerProvider {
 	private SongManager songManager;
 	private ValueObjectManager valueObjectManager;
 	private TaskManager taskManager;
+	private InsertManager insertManager;
 	
 	public  ManagerProvider() {
 		this.bookManager = new BookManager();
@@ -24,6 +25,7 @@ public class ManagerProvider {
 		this.songManager = new SongManager();
 		this.valueObjectManager = new ValueObjectManager();
 		this.taskManager = new TaskManager();
+		this.insertManager = new InsertManager();
 	}
 
 	
@@ -84,4 +86,11 @@ public class ManagerProvider {
 		// TODO Auto-generated method stub
 		return this.taskManager;
 	}
+
+
+	public InsertManager getInsertManager() {
+		return insertManager;
+	}
+	
+	
 }

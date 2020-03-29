@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<style>
+#section1 {
+
+}
+
+</style>
+</head>
+<body>
+<h1>$selectedChapter.getChapterNumber()</h1>
+#foreach($verse in $selectedChapter.getVerses())
+	<div style="margin-top:5px" id="$verse.getVerseNumber()">
+	  <span>$selectedChapter.getChapterNumber() $verse.getVerseNumber() $verse.getText()</span>
+	</div>
+#end
+
+<script>
+	var selectedVerse = $selectedVerseJson//ohne json kann in javascript daten nicht gelesen werden
+	var section =  selectedVerse.verseNumber;
+	document.getElementById(section).style.backgroundColor = 'red';
+	$('html, body').animate({
+	  scrollTop: $("#"+section).offset().top
+	}, 800, function(){
+	  // Add hash (#) to URL when done scrolling (default click behavior)
+	  window.location.section = "#"+section;
+	});
+</script>
+</body>
+</html>

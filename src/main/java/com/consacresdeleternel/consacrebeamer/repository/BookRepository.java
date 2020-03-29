@@ -3,6 +3,7 @@ package com.consacresdeleternel.consacrebeamer.repository;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,10 +20,10 @@ public class BookRepository extends BasicRepository<Book> {
 
 	public Book findByTitle(String bookTitle) {
 		try {
-			Query createQuery = entityManager.createQuery("select b from Book b where b.title =:bookTitle");
-			createQuery.setParameter("bookTitle", bookTitle);
+			TypedQuery<Book> createQuery = entityManager.createQuery("SELECT b from Book b where b.title = :title", Book.class);
+			createQuery.setParameter("title", bookTitle);
 			List<Book> books = createQuery.getResultList();
-			if(books != null || books.size() > 0) {
+			if(books != null && books.size() > 0) {
 				return books.get(0);
 			}
 			return null;

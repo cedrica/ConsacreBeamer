@@ -25,7 +25,7 @@ import javafx.util.Duration;
 
 public class ConsacreBeamerApp extends Application {
 	private static final Rectangle2D SCREEN_BOUNDS = Screen.getPrimary().getVisualBounds();
-	private static double[] pref_WH, offset_XY;
+	private static double[] offset_XY;
 
 
 	@Override

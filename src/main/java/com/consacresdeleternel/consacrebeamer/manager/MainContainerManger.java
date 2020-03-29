@@ -30,6 +30,7 @@ private RepositoryProvider repositoryProvider;
 		managerProvider.getBookManager().init(mainContainerView, managerProvider, repositoryProvider);
 		managerProvider.getPresentationManager().init(mainContainerView, managerProvider, repositoryProvider);
 		managerProvider.getScheduleManager().init(mainContainerView, managerProvider, repositoryProvider);
+		managerProvider.getInsertManager().init(mainContainerView, managerProvider, repositoryProvider);
 	}
 
 	private void loadSongs(MainContainerView mainContainerView) {

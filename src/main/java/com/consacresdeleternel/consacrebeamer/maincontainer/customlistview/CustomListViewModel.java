@@ -1,5 +1,6 @@
-package com.consacresdeleternel.consacrebeamer.customlistview;
+package com.consacresdeleternel.consacrebeamer.maincontainer.customlistview;
 
+import com.consacresdeleternel.consacrebeamer.BibelBook;
 import com.consacresdeleternel.consacrebeamer.Helper;
 
 import javafx.beans.property.BooleanProperty;
@@ -11,13 +12,15 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
-public class CustomListViewModel extends VBox{
+public class CustomListViewModel extends BorderPane{
 	private StringProperty listTitel = new SimpleStringProperty();
-	private ListProperty<CustomListBasicObject> bibelBooks = new SimpleListProperty<CustomListBasicObject>();
+	private ListProperty<BibelBook> bibelBooks = new SimpleListProperty<BibelBook>();
 	private BooleanProperty selectAllVisible = new SimpleBooleanProperty();
 	private ObjectProperty<Integer> selectIndex = new SimpleObjectProperty<Integer>();
+	private ObjectProperty<CustomListBasicObject> selectedBibel = new SimpleObjectProperty<CustomListBasicObject>();
 	private BooleanProperty searchVisible = new SimpleBooleanProperty();
 	private StringProperty search = new SimpleStringProperty();
 	
@@ -38,15 +41,15 @@ public class CustomListViewModel extends VBox{
 		this.listTitelProperty().set(listTitel);
 	}
 	
-	public final ListProperty<CustomListBasicObject> bibelBooksProperty() {
+	public final ListProperty<BibelBook> bibelBooksProperty() {
 		return this.bibelBooks;
 	}
 	
-	public final ObservableList<CustomListBasicObject> getBibelBooks() {
+	public final ObservableList<BibelBook> getBibelBooks() {
 		return this.bibelBooksProperty().get();
 	}
 	
-	public final void setBibelBooks(final ObservableList<CustomListBasicObject> bibelBooks) {
+	public final void setBibelBooks(final ObservableList<BibelBook> bibelBooks) {
 		this.bibelBooksProperty().set(bibelBooks);
 	}
 
@@ -106,5 +109,22 @@ public class CustomListViewModel extends VBox{
 	public final void setSelectIndex(final Integer selectIndex) {
 		this.selectIndexProperty().set(selectIndex);
 	}
+
+	public final ObjectProperty<CustomListBasicObject> selectedBibelProperty() {
+		return this.selectedBibel;
+	}
+	
+
+	public final CustomListBasicObject getSelectedBibel() {
+		return this.selectedBibelProperty().get();
+	}
+	
+
+	public final void setSelectedBibel(final CustomListBasicObject selectedBibel) {
+		this.selectedBibelProperty().set(selectedBibel);
+	}
+	
+	
+	
 
 }
