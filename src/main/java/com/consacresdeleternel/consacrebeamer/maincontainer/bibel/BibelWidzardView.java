@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.consacresdeleternel.consacrebeamer.BibelBook;
+import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.data.Chapter;
 import com.consacresdeleternel.consacrebeamer.data.Verse;
 import com.consacresdeleternel.consacrebeamer.maincontainer.chapterview.ChapterOrVersePageViewModel;
@@ -37,8 +38,11 @@ public class BibelWidzardView implements Initializable{
 	private Chapter selectedChapter = null;
 	private void registerHandler() {
 		customListViewModel.bibelBooksProperty().addListener((obs, oldVal, books) -> {
-			if(books != null && !books.isEmpty())
+			if(books != null && !books.isEmpty()) {
 				chapterViewModel.setChaptersOrVerses(FXCollections.observableList(((BibelBook) books.get(0)).getChapters()));
+				this.selectedBibelBook = (BibelBook) books.get(0);
+			}
+				
 		});
 		
 		customListViewModel.addEventHandler(BibelEvent.CUSTOM_LIST, evt ->{
@@ -76,11 +80,18 @@ public class BibelWidzardView implements Initializable{
 			verseViewModel.setSelectedBibel(newVal);
 		});
 	}
-
+	private BibelBook selectedBibelBook = null; 
 	private void configureChapters(BibelEvent evt) {
+		Helper.resetHtmlFile("".getBytes());
 		BibelBook bibelBook = (BibelBook) evt.getCustomListBasicObject();
+		if(bibelBook == null) {
+			bibelBook = selectedBibelBook;
+		} else {
+			selectedBibelBook = bibelBook;
+		}
 		chapterViewModel.setVisible(true);
 		verseViewModel.setVisible(false);
+		textOfVerseViewModel.setVisible(false);
 		chapterViewModel.setChaptersOrVerses(FXCollections.observableList(bibelBook.getChapters()));
 	}
 

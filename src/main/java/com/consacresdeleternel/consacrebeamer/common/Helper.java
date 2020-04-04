@@ -1,6 +1,8 @@
 package com.consacresdeleternel.consacrebeamer.common;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -38,9 +40,13 @@ public class Helper {
 			e.printStackTrace();
 		}
 	}
-
-	public static void load(Object o) {
-
+	
+	public static void resetHtmlFile(byte[] data) {
+		try {
+		    Files.write(Paths.get("src/main/resources/selected-verse.html"), data);
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
 	}
 
 	public static String html2text(String htmlText) {

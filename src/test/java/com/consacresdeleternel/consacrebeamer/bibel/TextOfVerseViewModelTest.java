@@ -1,5 +1,7 @@
 package com.consacresdeleternel.consacrebeamer.bibel;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import org.testfx.framework.junit.ApplicationTest;
 
 import com.consacresdeleternel.consacrebeamer.data.Chapter;
 import com.consacresdeleternel.consacrebeamer.data.Verse;
+import com.consacresdeleternel.consacrebeamer.maincontainer.textofverse.TextOfVerseView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.textofverse.TextOfVerseViewModel;
 
 import javafx.scene.Scene;
@@ -31,7 +34,19 @@ public class TextOfVerseViewModelTest extends ApplicationTest {
 
 	@Test
 	public void testLook() throws InterruptedException {
-		Thread.sleep(10000);
+	}
+	
+	@Test
+	public void updateHtmlFile() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		Verse verse = new Verse();
+		verse.setText("Tu aimeras le ddd ton Dieu");
+		Chapter chapter = new Chapter();
+		chapter.setChapterNumber(2);
+		chapter.getVerses().add(verse);
+		Method method = TextOfVerseView.class.getDeclaredMethod("updateHtmlFile",Chapter.class, Verse.class);
+		method.setAccessible(true);
+		Object r = method.invoke(new TextOfVerseView(),chapter,  verse);
+		System.out.println(r);
 	}
 	
 	private List<Chapter> mockSomeChapters() {

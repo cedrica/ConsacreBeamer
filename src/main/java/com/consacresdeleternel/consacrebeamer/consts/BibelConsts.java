@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BibelConsts {
-	public static List<String> BIBEL_BUCH_NAMES_DE = Arrays.asList(
+	public static List<String> BIBEL_BOOK_NAMES_DE = Arrays.asList(
 			"1 Mose",
 			"2 Mose",
 			"3 Mose",
@@ -72,7 +72,7 @@ public class BibelConsts {
 			"Judas",
 			"Offenbarung");
 	
-	public static List<String> BIBEL_BUCH_NAMES_FR = Arrays.asList(
+	public static List<String> BIBEL_BOOK_NAMES_FR = Arrays.asList(
 			"Genèse",
 			"Exode",
 			"Levitique",

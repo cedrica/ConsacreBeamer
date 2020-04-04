@@ -8,13 +8,18 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?scenebuilder-stylesheet /com/consacresdeleternel/consacrebeamer/maincontainer/customlistview/CustomListView.css?>
 
-<fx:root xmlns:fx="http://javafx.com/fxml" type="CustomListViewModel" fx:id="rootNode" fx:controller="com.consacresdeleternel.consacrebeamer.maincontainer.customlistview.CustomListView">
+<fx:root xmlns:fx="http://javafx.com/fxml" type="CustomListViewModel" fx:id="rootNode" fx:controller="com.consacresdeleternel.consacrebeamer.maincontainer.customlistview.CustomListView" minWidth="200">
+	<fx:define>
+		<ToggleGroup fx:id="toggleGroup"/> 
+	</fx:define>
 
 	<stylesheets>
 		<String fx:value="/com/consacresdeleternel/consacrebeamer/maincontainer/customlistview/CustomListView.css" />
@@ -31,12 +36,13 @@
 					</styleClass>
 				</Label>
 			</HBox>
+			<Separator orientation="HORIZONTAL"/> 
 			<CheckBox fx:id="checkSelectAll" visible="${rootNode.selectAllVisible}"/> 
 			<TextField fx:id="tfSearch" id="tfSearch" visible="${rootNode.searchVisible}" promptText="search items ..."/> 
 			<HBox> 
-				<ToggleButton text="FR"/> 
-				<ToggleButton text="DE"/> 
-				<ToggleButton text="EN"/> 
+				<ToggleButton text="FR" toggleGroup="$toggleGroup" onAction="#onFr" selected="true"/> 
+				<ToggleButton text="DE" toggleGroup="$toggleGroup" onAction="#onDe"/> 
+				<ToggleButton text="EN" toggleGroup="$toggleGroup" onAction="#onEn"/> 
 			</HBox>
 		</VBox>
 	</top>

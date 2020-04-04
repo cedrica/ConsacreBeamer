@@ -11,11 +11,16 @@ import com.consacresdeleternel.consacrebeamer.maincontainer.customlistview.Custo
 import javafx.scene.layout.VBox
 import javafx.scene.control.Button
 import javafx.scene.control.ToggleButton
+import javafx.scene.control.Separator
+import javafx.scene.control.ToggleGroup
 
 dynamic component CustomListViewModel controlledby CustomListView styledwith ["/com/consacresdeleternel/consacrebeamer/maincontainer/customlistview/CustomListView.css"]{
+
+	define ToggleGroup id toggleGroup
 	CustomListViewModel id rootNode {
 		stylesheets : ["/com/consacresdeleternel/consacrebeamer/maincontainer/customlistview/CustomListView.css"],
 		styleClass : ["custom-list-view"],
+		minWidth : 200,
 		top:VBox {
 			HBox{
 				alignment : "BASELINE_CENTER",
@@ -23,6 +28,9 @@ dynamic component CustomListViewModel controlledby CustomListView styledwith ["/
 					text : bind rootNode#listTitel,
 					styleClass : ["listview-titel"]
 				}
+			},
+			Separator{
+				orientation : "HORIZONTAL"
 			}
 			,
 			CheckBox id checkSelectAll {
@@ -36,13 +44,20 @@ dynamic component CustomListViewModel controlledby CustomListView styledwith ["/
 			HBox{
 				//vgap: 5,
 				ToggleButton{
-				text : "FR"	
+				text : "FR"	,
+				toggleGroup : idref toggleGroup,
+				onAction : controllermethod onFr,
+				selected : true
 				},
 				ToggleButton{
-					text : "DE"
+					text : "DE"	,
+				toggleGroup : idref toggleGroup,
+				onAction : controllermethod onDe
 				},
 				ToggleButton{
-					text : "EN"
+					text : "EN"	,
+				toggleGroup : idref toggleGroup,
+				onAction : controllermethod onEn
 				}
 			}
 		},

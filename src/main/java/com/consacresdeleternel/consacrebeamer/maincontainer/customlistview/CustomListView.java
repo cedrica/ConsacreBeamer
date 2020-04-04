@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 import com.consacresdeleternel.consacrebeamer.BibelBook;
+import com.consacresdeleternel.consacrebeamer.enums.Language;
 import com.consacresdeleternel.consacrebeamer.maincontainer.bibel.BibelEvent;
 
 import javafx.collections.FXCollections;
@@ -79,5 +80,17 @@ public class CustomListView implements Initializable{
 				};
 			}
 		});
+	}
+
+	@FXML public void onFr() {
+		rootNode.fireEvent(new BibelEvent(Language.FR, null, BibelEvent.LOAD_LANGUAGE));
+	}
+
+	@FXML public void onDe() {
+		rootNode.fireEvent(new BibelEvent(Language.DE, null, BibelEvent.LOAD_LANGUAGE));
+	}
+
+	@FXML public void onEn() {
+		rootNode.fireEvent(new BibelEvent(Language.EN, null, BibelEvent.LOAD_LANGUAGE));
 	}
 }

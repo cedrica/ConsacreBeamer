@@ -30,7 +30,7 @@ public class InsertManagerTest {
 
 		Pair<String, String> pair1 = new Pair<String, String>("1","je suis");
 		Pair<String, String> pair2 = new Pair<String, String>("2","tu es");
-		Pair<String, String> pair3 = new Pair<String, String>("3","il est");
+		Pair<String, String> pair3 = new Pair<String, String>("3","Quand les jours du deuil furent passÃƒÂ©s, Joseph s'adressa");
 		pairList = Arrays.asList(pair1, pair2, pair3);
 	}
 	
@@ -41,6 +41,7 @@ public class InsertManagerTest {
 		Object r = method.invoke(insertManager, pairList);
 		assertEquals(3, ((List<Verse>) r).size());
 		assertEquals("je suis", ((List<Verse>) r).get(0).getText());
+		assertEquals("Quand les jours du deuil furent passés, Joseph s'adressa", ((List<Verse>) r).get(2).getText());
 	}
 	
 	

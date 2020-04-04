@@ -14,7 +14,7 @@
 <h1>$selectedChapter.getChapterNumber()</h1>
 #foreach($verse in $selectedChapter.getVerses())
 	<div style="margin-top:5px" id="$verse.getVerseNumber()">
-	  <span>$selectedChapter.getChapterNumber() $verse.getVerseNumber() $verse.getText()</span>
+	  <span>$verse.getVerseNumber() $verse.getText()</span>
 	</div>
 #end
 

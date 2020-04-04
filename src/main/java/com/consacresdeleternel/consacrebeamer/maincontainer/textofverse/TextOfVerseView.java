@@ -1,10 +1,7 @@
 package com.consacresdeleternel.consacrebeamer.maincontainer.textofverse;
 
-import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
@@ -29,36 +26,23 @@ public class TextOfVerseView implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		rootNode.selectedChapterProperty().addListener((obs, oldVal, selectedChapter) -> {
-			String template = createTemplate(selectedChapter, rootNode.getSelectedVerse());
-	        try {
-	            Files.write(Paths.get("src/main/resources/selected-verse.html"), template.getBytes());
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	        URL url = this.getClass().getResource("/selected-verse.html");
-	        webViewChapterText.getEngine().load(url.toString());
-	        webViewChapterText.getEngine().reload();
+		rootNode.selectedVerseProperty().addListener((obs, oldVal, selectedVerse) -> {
+			String template = createTemplate(rootNode.getSelectedChapter(),selectedVerse);
+	        webViewChapterText.getEngine().loadContent(template);
 		});
 	}
-	
-	String createTemplate(Chapter selectedChapter, Verse selectedVerse) {
-        VelocityEngine velocityEngine = new VelocityEngine();
 
+	private String createTemplate(Chapter selectedChapter, Verse selectedVerse) {
+        VelocityEngine velocityEngine = new VelocityEngine();
         Properties props = new Properties();
         String path = getClass().getResource("").getPath();
         props.put("file.resource.loader.path", path);
-
         velocityEngine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath"); 
         velocityEngine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
-        
-        //velocityEngine.init(props);
-
+        velocityEngine.setProperty(RuntimeConstants.VM_PERM_ALLOW_INLINE_REPLACE_GLOBAL, true); 
         Template t = velocityEngine.getTemplate("selected-vesre.vm");
 
         VelocityContext context = new VelocityContext();
-        context.put("type", "ReqIF");
-
         context.put("selectedChapter", selectedChapter);
 
         Gson gson = new Gson();

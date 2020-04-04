@@ -52,10 +52,13 @@ public class CustomListViewModelTest extends ApplicationTest{
 		Platform.runLater(() -> {
 			TextField tfSerach = (TextField) customListViewModel.lookup("#tfSearch");
 			clickOn(tfSerach).write("Levitiques");
-			assertEquals("Levitiques", customListViewModel.getSearch());
+			assertEquals(null, customListViewModel.getSearch());
 		});
 	}
 
 	
-
+	@Test
+	public void lookAndFill() throws InterruptedException {
+		Thread.sleep(10000);
+	}
 }

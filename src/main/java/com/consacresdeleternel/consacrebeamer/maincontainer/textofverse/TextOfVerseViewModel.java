@@ -9,7 +9,6 @@ import com.consacresdeleternel.consacrebeamer.data.Verse;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.VBox;
 
 public class TextOfVerseViewModel extends ScrollPane{
 	private ObjectProperty<Chapter> selectedChapter = new SimpleObjectProperty<>();

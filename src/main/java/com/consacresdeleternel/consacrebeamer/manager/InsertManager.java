@@ -1,6 +1,7 @@
 package com.consacresdeleternel.consacrebeamer.manager;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -30,7 +31,9 @@ import javafx.util.Pair;
 
 public class InsertManager {
 	private ManagerProvider managerProvider;
-	private static final String BIBEL_LOCATION = "src/main/resources/bibel/French__Louis_Segond_(1910)__ls1910__LTR.txt";
+	private static final String BIBEL_FR = "src/main/resources/bibel/French__Louis_Segond_(1910)__ls1910__LTR.txt";
+	private static final String BIBEL_DE = "src/main/resources/bibel/German__Elberfelder_(1905)__elberfelder1905__LTR.txt";
+	private static final String BIBEL_EN = "src/main/resources/bibel/English__Darby__darby__LTR.txt";
 
 	
 	public void init(MainContainerView mainContainerView, ManagerProvider managerProvider,RepositoryProvider repositoryProvider) {
@@ -44,7 +47,7 @@ public class InsertManager {
 		BibelWidzardViewModel bibelWidzardViewModel = createBible();
 		
 		bibelWidzardViewModel.getCustomListView().addEventFilter(BibelEvent.LOAD_LANGUAGE, event ->{
-			List<BibelBook> bibelBooks = readBooksFromFiles(event.getLanguage(), BIBEL_LOCATION );
+			List<BibelBook> bibelBooks = readBooksFromFiles(event.getLanguage() );
 			bibelWidzardViewModel.getCustomListView().setSearchVisible(true);
 			bibelWidzardViewModel.getCustomListView().setBibelBooks(FXCollections.observableList(bibelBooks));
 			bibelWidzardViewModel.getCustomListView().setSelectIndex(0);
@@ -54,8 +57,16 @@ public class InsertManager {
 		dialogStage.show();
 	}
 
-	private List<BibelBook> readBooksFromFiles(Language language, String fileLocation) {
+	private List<BibelBook> readBooksFromFiles(Language language) {
 		List<BibelBook> books = new ArrayList();
+		String fileLocation = BIBEL_FR;
+		if(language == Language.DE) {
+			fileLocation = BIBEL_DE;
+		} else if(language == Language.FR) {
+			fileLocation = BIBEL_FR;
+		} else if(language == Language.EN) {
+			fileLocation = BIBEL_EN;
+		}
 		try {
 			List<String> allLines = Files.readAllLines(Paths.get(fileLocation));
 			Map<String, List<Map<String, List<Pair<String, String>>>>> bibelMap = new HashMap();
@@ -69,7 +80,6 @@ public class InsertManager {
 				if(!chapterNum.equals(oldChapterNum)) {
 					chapterMap = new HashMap();
 					oldChapterNum = chapterNum;
-
 					if( bibelMap.get(bookNumber) == null) {
 						bibelMap.put(bookNumber, new ArrayList<Map<String, List<Pair<String, String>>>>());
 					}
@@ -88,15 +98,18 @@ public class InsertManager {
 			TreeMap<String, String> sorted = new TreeMap(bibelMap);
 			for (String bookNumber  : sorted.keySet()) {
 				BibelBook bibelBook = new BibelBook();
-				if(Language.FR.equals(language)) {
-					try {
-						String name = findBibelBookNameByNumber(Integer.parseInt(bookNumber) -1, BibelConsts.BIBEL_BOOK_NAMES_EN);
-						bibelBook.setName(name);
-					} catch (BookNotFoundException e) {
-						e.printStackTrace();
+				try {
+					String name = "";
+					if(Language.FR.equals(language)) {
+						name = findBibelBookNameByNumber(Integer.parseInt(bookNumber) -1, BibelConsts.BIBEL_BOOK_NAMES_FR);
+					} else if(Language.EN.equals(language)) {
+						name = findBibelBookNameByNumber(Integer.parseInt(bookNumber) -1, BibelConsts.BIBEL_BOOK_NAMES_EN);
+					} else if(Language.DE.equals(language)) {
+						name = findBibelBookNameByNumber(Integer.parseInt(bookNumber) -1, BibelConsts.BIBEL_BOOK_NAMES_DE);
 					}
-				} else if(Language.EN.equals(language)) {
-					
+					bibelBook.setName(name);
+				} catch (BookNotFoundException e) {
+					e.printStackTrace();
 				}
 				List<Chapter> chapters = constructChapters(bibelMap.get(bookNumber));
 				bibelBook.getChapters().addAll(chapters);
@@ -128,7 +141,14 @@ public class InsertManager {
 		for (Pair<String, String> pair : list) {
 			Verse verse = new Verse();
 			verse.setVerseNumber(Integer.parseInt(pair.getKey()));
-			verse.setText(pair.getValue());
+			byte ptext[];
+			try {
+				ptext = pair.getValue().getBytes("Big5");
+				String textInUTF8 = new String(ptext, "utf-8"); 
+				verse.setText(textInUTF8);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			} 
 			verses.add(verse);
 		}
 		return verses;
@@ -187,7 +207,7 @@ public class InsertManager {
 		bibelWidzardViewModel.getCustomListView().setListTitel(Localization.asKey("csb.bibelWidzardView.buchs"));
 		bibelWidzardViewModel.getChapterView().setTitle(Localization.asKey("csb.bibelWidzardView.chapters"));
 		bibelWidzardViewModel.getVerseView().setTitle(Localization.asKey("csb.bibelWidzardView.verses"));
-		List<BibelBook> bibelBooks = readBooksFromFiles(Language.FR, BIBEL_LOCATION );
+		List<BibelBook> bibelBooks = readBooksFromFiles(Language.FR);
 		bibelWidzardViewModel.getCustomListView().setSearchVisible(true);
 		bibelWidzardViewModel.getCustomListView().setBibelBooks(FXCollections.observableList(bibelBooks));
 		bibelWidzardViewModel.getCustomListView().setSelectIndex(0);

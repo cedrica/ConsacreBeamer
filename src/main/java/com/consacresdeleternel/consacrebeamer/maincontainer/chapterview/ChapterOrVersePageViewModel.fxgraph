@@ -14,13 +14,16 @@ import javafx.scene.layout.VBox
 import org.controlsfx.glyphfont.Glyph
 import com.consacresdeleternel.consacrebeamer.maincontainer.chapterview.ChapterOrVersePageView
 import com.consacresdeleternel.consacrebeamer.maincontainer.chapterview.ChapterOrVersePageViewModel
+import javafx.scene.control.ScrollPane
 
 dynamic component ChapterOrVersePageViewModel controlledby ChapterOrVersePageView styledwith["/com/consacresdeleternel/consacrebeamer/maincontainer/chapterview/ChapterOrVersePageView.css"]{
 	ChapterOrVersePageViewModel id rootNode {
 		stylesheets : ["/com/consacresdeleternel/consacrebeamer/maincontainer/chapterview/ChapterOrVersePageView.css"],
 		styleClass : ["chapter-view"],
 		prefHeight : 400,
+		minWidth : 300,
 		prefWidth : 400,
+		maxHeight  : 400,
 		top : VBox{
 			HBox{
 				HBox{
@@ -45,11 +48,19 @@ dynamic component ChapterOrVersePageViewModel controlledby ChapterOrVersePageVie
 				orientation : "HORIZONTAL"
 			}		
 		},
-		center : TilePane id tpChaptersOrVerses{
-			styleClass : ["tile-pane"],
-			hgap : 5,
-			vgap : 5,
-			orientation : "HORIZONTAL"
+		center : ScrollPane{
+			fitToHeight : true,
+			fitToWidth : true,
+			style : "-fx-background-color:#fff",
+			minHeight : 500,
+			
+			content : TilePane id tpChaptersOrVerses{
+				style : "-fx-background-color:#fff",
+				styleClass : ["tile-pane"],
+				hgap : 5,
+				vgap : 5,
+				orientation : "HORIZONTAL"
+			}
 		}
 	}
 }

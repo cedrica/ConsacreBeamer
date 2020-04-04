@@ -13,7 +13,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 
 public class CustomListViewModel extends BorderPane{
 	private StringProperty listTitel = new SimpleStringProperty();
