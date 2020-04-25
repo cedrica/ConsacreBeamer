@@ -33,10 +33,11 @@ resourcefile "/bundle/consacrebeamer_de_DE.properties"{
 			maxWidth : const Double#MAX_VALUE,
 			promptText : rstring "csb.CreateBookView.bookName"
 		},
+		
 		center : VBox id vbSongsContainer {
 			visible : false,
 			
-			CheckListView<?> id clvSongs {
+			CheckListView id clvSongs {
 				static vgrow : "ALWAYS",
 				placeholder : Label{
 					text : rstring "csb.CreateBookView.noSongsAvailable"
