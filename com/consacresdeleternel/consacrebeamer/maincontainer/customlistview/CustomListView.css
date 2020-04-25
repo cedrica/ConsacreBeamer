@@ -1,0 +1,8 @@
+.custom-list-view{
+	
+}
+
+.custom-list-view .listview-titel{
+	-fx-font-weight: bold;
+	-fx-font-size: 18px;
+}

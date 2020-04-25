@@ -1,6 +1,6 @@
 package com.consacresdeleternel.consacrebeamer.service;
 
-import java.io.File;
+import java.io.InputStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,11 +18,11 @@ public class SongCategoriesService {
 
 		try {
 			ClassLoader classLoader = SongCategoriesService.class.getClassLoader();
-			File file = new File(classLoader.getResource(SONGCATEGORYSTORE_XML).getFile());
+			InputStream is = classLoader.getResourceAsStream(SONGCATEGORYSTORE_XML);
 			//File file = new File(SONGCATEGORYSTORE_XML);
 			JAXBContext jaxbContext = JAXBContext.newInstance(SongCategoryStore.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			SongCategoryStore songCategoryStrore = (SongCategoryStore) jaxbUnmarshaller.unmarshal(file);
+			SongCategoryStore songCategoryStrore = (SongCategoryStore) jaxbUnmarshaller.unmarshal(is);
 			return songCategoryStrore.getSongCategories();
 		} catch (JAXBException e) {
 			e.printStackTrace();
