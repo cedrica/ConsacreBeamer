@@ -12,23 +12,18 @@ import java.util.TreeMap;
 import java.util.regex.Pattern;
 
 import com.consacresdeleternel.consacrebeamer.BibelBook;
-import com.consacresdeleternel.consacrebeamer.consts.BibelConsts;
+import com.consacresdeleternel.consacrebeamer.consts.BibelBooksConsts;
 import com.consacresdeleternel.consacrebeamer.data.Chapter;
 import com.consacresdeleternel.consacrebeamer.data.Verse;
 import com.consacresdeleternel.consacrebeamer.enums.Language;
 import com.consacresdeleternel.consacrebeamer.exceptions.BookNotFoundException;
-
+import static com.consacresdeleternel.consacrebeamer.consts.BibelFilesConst.*;
 import javafx.util.Pair;
 
 public class BibelParserTxtImpl implements BibelParserTxt{
 	
-	public static final String BIBEL_FR = "src/main/resources/bibel/French__Louis_Segond_(1910)__ls1910__LTR.txt";
-	public static final String BIBEL_DE = "src/main/resources/bibel/German__Elberfelder_(1905)__elberfelder1905__LTR.txt";
-	public static final String BIBEL_EN = "src/main/resources/bibel/English__Darby__darby__LTR.txt";
-
-
 	@Override
-	public List<BibelBook> readBooksFromFiles(Language language) {
+	public List<BibelBook> readBibelBooksFromFiles(Language language) {
 		List<BibelBook> books = new ArrayList();
 		String fileLocation = BIBEL_FR;
 		if(language == Language.DE) {
@@ -64,19 +59,19 @@ public class BibelParserTxtImpl implements BibelParserTxt{
 				List verses = chapterMap.get(chapterNum);
 				verses.add(new Pair(verseNum, verseText));
 				chapterMap.put(chapterNum, verses);
-				
 			}
+			
 			TreeMap<String, String> sorted = new TreeMap(bibelMap);
 			for (String bookNumber  : sorted.keySet()) {
 				BibelBook bibelBook = new BibelBook();
 				try {
 					String name = "";
 					if(Language.FR.equals(language)) {
-						name = findBibelBookNameByNumber(Integer.parseInt(bookNumber) -1, BibelConsts.BIBEL_BOOK_NAMES_FR);
+						name = findBibelBookNameByNumber(Integer.parseInt(bookNumber) -1, BibelBooksConsts.BIBEL_BOOK_NAMES_FR);
 					} else if(Language.EN.equals(language)) {
-						name = findBibelBookNameByNumber(Integer.parseInt(bookNumber) -1, BibelConsts.BIBEL_BOOK_NAMES_EN);
+						name = findBibelBookNameByNumber(Integer.parseInt(bookNumber) -1, BibelBooksConsts.BIBEL_BOOK_NAMES_EN);
 					} else if(Language.DE.equals(language)) {
-						name = findBibelBookNameByNumber(Integer.parseInt(bookNumber) -1, BibelConsts.BIBEL_BOOK_NAMES_DE);
+						name = findBibelBookNameByNumber(Integer.parseInt(bookNumber) -1, BibelBooksConsts.BIBEL_BOOK_NAMES_DE);
 					}
 					bibelBook.setName(name);
 				} catch (BookNotFoundException e) {
@@ -93,8 +88,7 @@ public class BibelParserTxtImpl implements BibelParserTxt{
 		return null;
 	}
 
-	@Override
-	public List<Chapter> constructChapters(List<Map<String, List<Pair<String, String>>>> chapterMaps) {
+	private List<Chapter> constructChapters(List<Map<String, List<Pair<String, String>>>> chapterMaps) {
 		List<Chapter> chapters = new ArrayList();
 		for (Map<String, List<Pair<String, String>>> chapterMap : chapterMaps) {
 			Chapter chapter = new Chapter();
@@ -108,8 +102,7 @@ public class BibelParserTxtImpl implements BibelParserTxt{
 		return chapters;
 	}
 	
-	@Override
-	public List<Verse> constructVerses(List<Pair<String, String>> list) {
+	private List<Verse> constructVerses(List<Pair<String, String>> list) {
 		List<Verse> verses = new ArrayList<Verse>();
 		for (Pair<String, String> pair : list) {
 			Verse verse = new Verse();
@@ -127,8 +120,7 @@ public class BibelParserTxtImpl implements BibelParserTxt{
 		return verses;
 	}
 	
-	@Override
-	public String findBibelBookNameByNumber(int bookNum, List<String> bibelBookNames) throws BookNotFoundException {
+	private String findBibelBookNameByNumber(int bookNum, List<String> bibelBookNames) throws BookNotFoundException {
 		if (bibelBookNames != null && !bibelBookNames.isEmpty())
 			return bibelBookNames.get(bookNum);
 		else {
@@ -137,8 +129,7 @@ public class BibelParserTxtImpl implements BibelParserTxt{
 			
 	}
 
-	@Override
-	public String retrieveVerseTextFromLine(String line) {
+	private String retrieveVerseTextFromLine(String line) {
 		//z.B. Line == 01O||1||1||Au commencement, Dieu crÃ©a les cieux et la terre.
 		String[] lineParts = line.split(Pattern.quote("||"));
 		if(lineParts == null || lineParts.length < 4) {
@@ -147,8 +138,7 @@ public class BibelParserTxtImpl implements BibelParserTxt{
 		return lineParts[3];
 	}
 
-	@Override
-	public String retrieveVerseNum(String line) {
+	private String retrieveVerseNum(String line) {
 		String[] lineParts = line.split(Pattern.quote("||"));
 		if(lineParts == null || lineParts.length < 4) {
 			throw new RuntimeException("No versenumber could be retrieved from line: "+ line);
@@ -156,8 +146,7 @@ public class BibelParserTxtImpl implements BibelParserTxt{
 		return lineParts[2];
 	}
 
-	@Override
-	public String retrieveChapterNum(String line) {
+	private String retrieveChapterNum(String line) {
 		String[] lineParts = line.split(Pattern.quote("||"));
 		if(lineParts == null || lineParts.length < 4) {
 			throw new RuntimeException("No chapternumber could be retrieved from line: "+ line);
@@ -165,8 +154,7 @@ public class BibelParserTxtImpl implements BibelParserTxt{
 		return lineParts[1];
 	}
 
-	@Override
-	public String retrievebookNum(String line) {
+	private String retrievebookNum(String line) {
 		String[] lineParts = line.split(Pattern.quote("||"));
 		if(lineParts == null || lineParts.length < 4) {
 			throw new RuntimeException("No booknumber could be retrieved from line: "+ line);

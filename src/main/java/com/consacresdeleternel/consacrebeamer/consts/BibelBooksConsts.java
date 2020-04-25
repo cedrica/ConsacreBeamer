@@ -3,7 +3,7 @@ package com.consacresdeleternel.consacrebeamer.consts;
 import java.util.Arrays;
 import java.util.List;
 
-public class BibelConsts {
+public class BibelBooksConsts {
 	public static List<String> BIBEL_BOOK_NAMES_DE = Arrays.asList(
 			"1 Mose",
 			"2 Mose",

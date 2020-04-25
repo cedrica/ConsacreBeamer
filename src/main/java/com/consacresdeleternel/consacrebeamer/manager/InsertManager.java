@@ -33,7 +33,7 @@ public class InsertManager {
 		loadBibelWidzard.valueProperty().addListener((obs, oldVal, bibelBooks) -> {
 			BibelWidzardViewModel bibelWidzardViewModel = createBible(bibelBooks);
 			bibelWidzardViewModel.getCustomListView().addEventFilter(BibelEvent.LOAD_LANGUAGE, event ->{
-				List<BibelBook> reloadedBibelBooks = new BibelParserTxtImpl().readBooksFromFiles(event.getLanguage() );
+				List<BibelBook> reloadedBibelBooks = new BibelParserTxtImpl().readBibelBooksFromFiles(event.getLanguage() );
 				bibelWidzardViewModel.getCustomListView().setSearchVisible(true);
 				bibelWidzardViewModel.getCustomListView().setBibelBooks(FXCollections.observableList(reloadedBibelBooks));
 				bibelWidzardViewModel.getCustomListView().setSelectIndex(0);

@@ -13,7 +13,7 @@ public class LoadBibelWidzard extends Task<List<BibelBook>> {
 	
 	@Override
 	protected List<BibelBook> call() throws Exception {
-		return bibelParserTxtImpl.readBooksFromFiles(Language.FR);
+		return bibelParserTxtImpl.readBibelBooksFromFiles(Language.FR);
 	}
 
 
