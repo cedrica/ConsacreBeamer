@@ -43,7 +43,7 @@ public class Helper {
 	
 	public static void resetHtmlFile(byte[] data) {
 		try {
-		    Files.write(Paths.get("src/main/resources/selected-verse.html"), data);
+		    Files.write(Paths.get("src","main","resources", "selected-verse.html"), data);
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}

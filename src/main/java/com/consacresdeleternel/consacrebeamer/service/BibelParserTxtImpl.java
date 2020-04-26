@@ -17,6 +17,8 @@ import com.consacresdeleternel.consacrebeamer.data.Chapter;
 import com.consacresdeleternel.consacrebeamer.data.Verse;
 import com.consacresdeleternel.consacrebeamer.enums.Language;
 import com.consacresdeleternel.consacrebeamer.exceptions.BookNotFoundException;
+import com.consacresdeleternel.consacrebeamer.utils.FileUtil;
+
 import static com.consacresdeleternel.consacrebeamer.consts.BibelFilesConst.*;
 import javafx.util.Pair;
 
@@ -34,7 +36,7 @@ public class BibelParserTxtImpl implements BibelParserTxt{
 			fileLocation = BIBEL_EN;
 		}
 		try {
-			List<String> allLines = Files.readAllLines(Paths.get(fileLocation));
+			List<String> allLines = FileUtil.readLines(fileLocation);
 			Map<String, List<Map<String, List<Pair<String, String>>>>> bibelMap = new HashMap();
 			Map<String, List<Pair<String, String>>> chapterMap = null;
 			String oldChapterNum = "";

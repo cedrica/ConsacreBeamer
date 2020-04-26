@@ -1,11 +1,16 @@
 package com.consacresdeleternel.consacrebeamer.utils;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,6 +69,17 @@ public class FileUtil {
 
 	private static boolean isFileNameCorrect(String fileName) {
 		return fileName.trim().endsWith(".txt");
+	}
+	
+	public static List<String> readLines(String pathToFile) throws IOException{
+		List<String> lines = new ArrayList();
+		InputStream is = FileUtil.class.getResourceAsStream(pathToFile);
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		String line;
+		while((line = br.readLine()) != null) {
+			lines.add(line);
+		}
+		return lines;
 	}
 
 	public static void writeStringToFile(String content, String filename) {

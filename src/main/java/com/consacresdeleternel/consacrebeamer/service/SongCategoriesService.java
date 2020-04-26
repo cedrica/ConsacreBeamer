@@ -19,7 +19,6 @@ public class SongCategoriesService {
 		try {
 			ClassLoader classLoader = SongCategoriesService.class.getClassLoader();
 			InputStream is = classLoader.getResourceAsStream(SONGCATEGORYSTORE_XML);
-			//File file = new File(SONGCATEGORYSTORE_XML);
 			JAXBContext jaxbContext = JAXBContext.newInstance(SongCategoryStore.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			SongCategoryStore songCategoryStrore = (SongCategoryStore) jaxbUnmarshaller.unmarshal(is);
