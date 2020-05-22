@@ -951,3 +951,8 @@
 	-fx-max-width: infinity;
 	-fx-max-height: infinity;
 }
+
+.listview-titel{
+	-fx-font-weight: bold;
+	-fx-font-size: 18px;
+}

@@ -1,0 +1,70 @@
+package com.consacresdeleternel.consacrebeamer.maincontainer.filterforsongscategory
+
+import com.consacresdeleternel.consacrebeamer.maincontainer.filterforsongscategory.FilterForSongsCategoryView
+import com.consacresdeleternel.consacrebeamer.maincontainer.filterforsongscategory.FilterForSongsCategoryViewModel
+import javafx.scene.control.Accordion
+import javafx.scene.layout.BorderPane
+import javafx.scene.text.Text
+import javafx.scene.layout.VBox
+import javafx.scene.control.Label
+import javafx.scene.control.CheckBox
+import javafx.scene.control.TextField
+import javafx.scene.control.ListView
+import com.consacresdeleternel.consacrebeamer.data.Album
+import javafx.scene.layout.HBox
+import javafx.scene.control.RadioButton
+import org.controlsfx.control.textfield.CustomTextField
+import javafx.scene.control.Button
+import org.controlsfx.glyphfont.Glyph
+import javafx.scene.layout.TilePane
+import com.consacresdeleternel.consacrebeamer.maincontainer.albumlistview.AlbumListViewViewModel
+
+dynamic component FilterForSongsCategoryViewModel controlledby FilterForSongsCategoryView styledwith["/com/consacresdeleternel/consacrebeamer/maincontainer/filterforsongscategory/FilterForSongsCategoryView.css"]{
+	FilterForSongsCategoryViewModel id rootNode {
+		
+		stylesheets : [
+			"/com/consacresdeleternel/consacrebeamer/maincontainer/filterforsongscategory/FilterForSongsCategoryView.css",
+			"/css/svg-icons.css",
+			"/css/fa.css"
+		],
+		styleClass : [
+			"filter-for-songscategory-view-model"
+		],
+		children : [
+			AlbumListViewViewModel id albumListViewViewModel,
+			BorderPane{
+				static hgrow : "ALWAYS",
+				top : HBox {
+					HBox{
+						alignment : "CENTER_LEFT",
+						RadioButton {
+							text : "LOUANGE"	
+						}	
+					}
+					,
+					HBox{
+						alignment : "CENTER_RIGHT",
+						RadioButton {
+							text : "ADORATION"
+						}	
+					}
+				},
+				center : VBox{
+					CustomTextField id ctfSearchSongs{
+						right : Button{
+							graphic : Glyph{
+								icon : "CLOSE",
+								fontFamily : "FontAwesome"
+							}
+						}
+					},
+					TilePane id tpSongs{
+						
+					}
+				}
+				
+			}
+		]
+		
+	}
+}
