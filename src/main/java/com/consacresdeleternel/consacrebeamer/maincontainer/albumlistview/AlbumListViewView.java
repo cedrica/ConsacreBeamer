@@ -50,7 +50,7 @@ public class AlbumListViewView implements Initializable{
 			@Override
 			public ListCell<Book> call(ListView<Book> param) {
 				return new ListCell<Book>() {
-					private ObservableList<Book> selectedBooks = FXCollections.observableList(new ArrayList());
+					private ObservableList<Book> selectedBooks = FXCollections.observableList(new ArrayList<>());
 
 					@Override
 					protected void updateItem(Book item, boolean empty) {

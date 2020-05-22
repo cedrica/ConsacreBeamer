@@ -14,6 +14,7 @@ public class AlbumListViewViewModel extends BorderPane {
 	private ListProperty<Book> selectedAlbums = new SimpleListProperty<>();
 	private BooleanProperty selectAllAlbum = new SimpleBooleanProperty(false);
 	private ListProperty<Book> Books = new SimpleListProperty<>();
+	
 	public AlbumListViewViewModel() {
 		Helper.load(this);
 	}
