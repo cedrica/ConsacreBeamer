@@ -1,0 +1,68 @@
+package com.consacresdeleternel.consacrebeamer.maincontainer.filteredsongs
+
+import javafx.scene.layout.BorderPane
+import com.consacresdeleternel.consacrebeamer.maincontainer.filteredsongs.FilteredSongsView
+import com.consacresdeleternel.consacrebeamer.maincontainer.filteredsongs.FilteredSongsViewModel
+import javafx.scene.layout.HBox
+import javafx.scene.control.RadioButton
+import javafx.scene.layout.VBox
+import org.controlsfx.control.textfield.CustomTextField
+import javafx.scene.control.Button
+import org.controlsfx.glyphfont.Glyph
+import javafx.scene.layout.TilePane
+import javafx.scene.control.ToggleGroup
+import javafx.geometry.Insets
+
+dynamic component FilteredSongsViewModel controlledby FilteredSongsView styledwith["/com/consacresdeleternel/consacrebeamer/maincontainer/filteredsongs/FilteredSongsView.css"] {
+	define ToggleGroup id radioGroup
+	FilteredSongsViewModel id rootNode {
+		stylesheets : ["/com/consacresdeleternel/consacrebeamer/maincontainer/filteredsongs/FilteredSongsView.css"],
+		styleClass : ["filtered-songs-view"],
+		top : HBox {
+			minHeight : 40,
+			alignment:"BASELINE_CENTER",
+			HBox {
+				alignment : "CENTER",
+				spacing : 10,
+				RadioButton id rbWorship{
+					text : "LOUANGE",
+					toggleGroup : idref radioGroup
+				},
+				RadioButton id rbAdoration{
+					text : "ADORATION",
+					toggleGroup : idref radioGroup
+				}	
+			}
+		},
+		center : VBox {
+			CustomTextField id ctfSearchSongs{
+				promptText : "Search...",
+				right : Button {
+					graphic : Glyph {
+						icon : "CLOSE",
+						fontFamily : "FontAwesome"
+					}
+				}
+			},
+			spacing : 10,
+			TilePane id tpSongs{
+				static vgrow : "ALWAYS",
+				hgap : 10,
+				vgap : 10,
+				padding : Insets {
+					bottom : 20,
+					left : 20,
+					right : 20,
+					top : 20
+				}
+			}
+		}
+		
+	}
+}
+
+/*
+ * 	FilteredSongsViewModel id rootNode{
+		
+	}
+ */

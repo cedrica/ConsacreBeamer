@@ -1,19 +1,24 @@
 package com.consacresdeleternel.consacrebeamer.maincontainer.filterforsongscategory;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ListView;
 import org.controlsfx.control.textfield.CustomTextField;
 
 import com.consacresdeleternel.consacrebeamer.data.Book;
-
-import javafx.scene.layout.TilePane;
+import com.consacresdeleternel.consacrebeamer.data.Song;
 import com.consacresdeleternel.consacrebeamer.maincontainer.albumlistview.AlbumListViewViewModel;
+import com.consacresdeleternel.consacrebeamer.maincontainer.filteredsongs.FilteredSongsViewModel;
+
+import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.TilePane;
 
 public class FilterForSongsCategoryView implements Initializable {
 
@@ -24,9 +29,17 @@ public class FilterForSongsCategoryView implements Initializable {
 	@FXML TilePane tpSongs;
 	@FXML ListView<Book> lvAlbums;
 	@FXML AlbumListViewViewModel albumListViewViewModel;
+	@FXML FilteredSongsViewModel filteredSongsViewModel;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		albumListViewViewModel.albumsProperty().addListener((obs, oldVal, books) -> {
+			List<Song> songs = new ArrayList<>();
+			books.forEach(book -> {
+				songs.addAll(book.getSongs());
+			});
+			filteredSongsViewModel.setFilteredSongs(FXCollections.observableList(songs));	
+		});
 		
 	}
 

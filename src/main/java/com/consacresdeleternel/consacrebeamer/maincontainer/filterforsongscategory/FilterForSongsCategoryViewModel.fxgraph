@@ -18,6 +18,7 @@ import javafx.scene.control.Button
 import org.controlsfx.glyphfont.Glyph
 import javafx.scene.layout.TilePane
 import com.consacresdeleternel.consacrebeamer.maincontainer.albumlistview.AlbumListViewViewModel
+import com.consacresdeleternel.consacrebeamer.maincontainer.filteredsongs.FilteredSongsViewModel
 
 dynamic component FilterForSongsCategoryViewModel controlledby FilterForSongsCategoryView styledwith["/com/consacresdeleternel/consacrebeamer/maincontainer/filterforsongscategory/FilterForSongsCategoryView.css"]{
 	FilterForSongsCategoryViewModel id rootNode {
@@ -32,39 +33,7 @@ dynamic component FilterForSongsCategoryViewModel controlledby FilterForSongsCat
 		],
 		children : [
 			AlbumListViewViewModel id albumListViewViewModel,
-			BorderPane{
-				static hgrow : "ALWAYS",
-				top : HBox {
-					HBox{
-						alignment : "CENTER_LEFT",
-						RadioButton {
-							text : "LOUANGE"	
-						}	
-					}
-					,
-					HBox{
-						alignment : "CENTER_RIGHT",
-						RadioButton {
-							text : "ADORATION"
-						}	
-					}
-				},
-				center : VBox{
-					CustomTextField id ctfSearchSongs{
-						right : Button{
-							graphic : Glyph{
-								icon : "CLOSE",
-								fontFamily : "FontAwesome"
-							}
-						}
-					},
-					TilePane id tpSongs{
-						
-					}
-				}
-				
-			}
+			FilteredSongsViewModel id filteredSongsViewModel
 		]
-		
 	}
 }

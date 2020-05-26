@@ -5,15 +5,8 @@
 
 <?import java.lang.*?>
 <?import com.consacresdeleternel.consacrebeamer.maincontainer.albumlistview.AlbumListViewViewModel?>
+<?import com.consacresdeleternel.consacrebeamer.maincontainer.filteredsongs.FilteredSongsViewModel?>
 <?import com.consacresdeleternel.consacrebeamer.maincontainer.filterforsongscategory.FilterForSongsCategoryViewModel?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.TilePane?>
-<?import javafx.scene.layout.VBox?>
-<?import org.controlsfx.control.textfield.CustomTextField?>
-<?import org.controlsfx.glyphfont.Glyph?>
 <?scenebuilder-stylesheet /com/consacresdeleternel/consacrebeamer/maincontainer/filterforsongscategory/FilterForSongsCategoryView.css?>
 
 <fx:root xmlns:fx="http://javafx.com/fxml" type="FilterForSongsCategoryViewModel" fx:id="rootNode" fx:controller="com.consacresdeleternel.consacrebeamer.maincontainer.filterforsongscategory.FilterForSongsCategoryView">
@@ -28,31 +21,6 @@
 	</styleClass>
 	<children>
 		<AlbumListViewViewModel fx:id="albumListViewViewModel"/> 
-		<BorderPane FilterForSongsCategoryViewModel.hgrow="ALWAYS"> 
-			<top>
-				<HBox> 
-					<HBox alignment="CENTER_LEFT"> 
-						<RadioButton text="LOUANGE"/> 
-					</HBox>
-					<HBox alignment="CENTER_RIGHT"> 
-						<RadioButton text="ADORATION"/> 
-					</HBox>
-				</HBox>
-			</top>
-			<center>
-				<VBox> 
-					<CustomTextField fx:id="ctfSearchSongs"> 
-						<right>
-							<Button> 
-								<graphic>
-									<Glyph icon="CLOSE" fontFamily="FontAwesome"/> 
-								</graphic>
-							</Button>
-						</right>
-					</CustomTextField>
-					<TilePane fx:id="tpSongs"/> 
-				</VBox>
-			</center>
-		</BorderPane>
+		<FilteredSongsViewModel fx:id="filteredSongsViewModel"/> 
 	</children>
 </fx:root>

@@ -1,0 +1,13 @@
+.filtered-songs-view {
+	
+}
+
+.filtered-songs-view .title-pane {
+	-fx-background-color: red;
+}
+
+.filtered-songs-view #ctfSearchSongs .button {
+	-fx-background-color: transparent;
+	-fx-text-fill: #234;
+}
+
