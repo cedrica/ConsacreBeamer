@@ -29,14 +29,16 @@
 	</styleClass>
 	<top>
 		<HBox minHeight="40" alignment="BASELINE_CENTER"> 
-			<HBox alignment="CENTER" spacing="10"> 
-				<RadioButton fx:id="rbWorship" text="LOUANGE" toggleGroup="$radioGroup"/> 
-				<RadioButton fx:id="rbAdoration" text="ADORATION" toggleGroup="$radioGroup"/> 
-			</HBox>
+			<VBox alignment="BASELINE_CENTER" HBox.hgrow="ALWAYS"> 
+				<HBox alignment="BASELINE_CENTER" spacing="10"> 
+					<RadioButton fx:id="rbWorship" text="LOUANGE" toggleGroup="$radioGroup"/> 
+					<RadioButton fx:id="rbAdoration" text="ADORATION" toggleGroup="$radioGroup"/> 
+				</HBox>
+			</VBox>
 		</HBox>
 	</top>
 	<center>
-		<VBox spacing="10"> 
+		<VBox> 
 			<CustomTextField fx:id="ctfSearchSongs" promptText="Search..."> 
 				<right>
 					<Button> 
@@ -45,12 +47,16 @@
 						</graphic>
 					</Button>
 				</right>
+				<maxWidth><Double fx:constant="MAX_VALUE" /></maxWidth>
 			</CustomTextField>
-			<TilePane fx:id="tpSongs" hgap="10" vgap="10" VBox.vgrow="ALWAYS"> 
-				<padding>
-					<Insets bottom="20" left="20" right="20" top="20"/> 
-				</padding>
-			</TilePane>
+			<HBox VBox.vgrow="ALWAYS"> 
+				<TilePane fx:id="tpSongs" style="-fx-background-color:#fff" hgap="10" vgap="10" HBox.hgrow="ALWAYS"> 
+					<padding>
+						<Insets top="20" left="10" right="10"/> 
+					</padding>
+					<maxWidth><Double fx:constant="MAX_VALUE" /></maxWidth>
+				</TilePane>
+			</HBox>
 		</VBox>
 	</center>
 </fx:root>

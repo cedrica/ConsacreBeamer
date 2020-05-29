@@ -7,6 +7,7 @@ import java.util.Base64;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,12 +15,18 @@ import org.controlsfx.glyphfont.FontAwesome;
 import org.controlsfx.glyphfont.Glyph;
 import org.controlsfx.glyphfont.GlyphFontRegistry;
 
+import com.consacresdeleternel.consacrebeamer.data.Book;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -130,5 +137,10 @@ public class Helper {
 		imageView.setFitHeight(20);
 		imageView.setFitWidth(20);
 		return imageView;
+	}
+
+	public static <T> SortedList<T> sortListByPredicate(ObservableList<T> originalData,
+			Predicate<T> predicate) {
+		return new SortedList<>(new FilteredList<>(originalData, predicate));
 	}
 }

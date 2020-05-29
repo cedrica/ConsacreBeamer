@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 
 import org.controlsfx.control.textfield.CustomTextField;
 
+import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.data.Song;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -65,13 +65,14 @@ public class FilteredSongsView implements Initializable {
 				button.setUserData(song);
 				return button;
 			}).collect(Collectors.toList()));
+			tpSongs.getChildren().clear();
 			tpSongs.getChildren().addAll(originalData);
 			this.rootNode.setTitlePaneSongsCount(tpSongs.getChildren().size());
 		});
 	}
 
 	private void filterSongsAndResetTitlePane(Predicate<Button> predicate) {
-		SortedList<Button> sortedList = new SortedList<>(new FilteredList<>(originalData, predicate));
+		SortedList<Button> sortedList = Helper.sortListByPredicate(originalData, predicate);
 		tpSongs.getChildren().clear();
 		tpSongs.getChildren().addAll(sortedList);
 		this.rootNode.setTitlePaneSongsCount(tpSongs.getChildren().size());

@@ -46,17 +46,17 @@ public class AlbumListViewView implements Initializable{
 		});
 		
 		lvBooks.setCellFactory(new Callback<ListView<Book>, ListCell<Book>>() {
-
+			private int i = 0;
+			private ObservableList<Book> selectedBooks = FXCollections.observableList(new ArrayList<>());
 			@Override
 			public ListCell<Book> call(ListView<Book> param) {
 				return new ListCell<Book>() {
-					private ObservableList<Book> selectedBooks = FXCollections.observableList(new ArrayList<>());
-
 					@Override
 					protected void updateItem(Book item, boolean empty) {
 						super.updateItem(item, empty);
 						if(item != null) {
 							CheckBox cbBook = new CheckBox();
+							cbBook.setId("cb_" + i++);
 							cbBook.setText(item.getTitle());
 							setGraphic(cbBook);
 							cbBook.selectedProperty().addListener((obs, oldVal, isSelected) ->{
@@ -64,6 +64,9 @@ public class AlbumListViewView implements Initializable{
 									selectedBooks.add(item);
 								} else {
 									selectedBooks.remove(item);
+								}
+								if(selectedBooks.isEmpty()) {
+									selectedBooks = originalData;
 								}
 								rootNode.setSelectedAlbums(selectedBooks);
 							});

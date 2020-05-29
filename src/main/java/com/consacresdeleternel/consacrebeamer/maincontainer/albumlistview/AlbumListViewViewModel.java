@@ -45,7 +45,7 @@ public class AlbumListViewViewModel extends BorderPane {
 		return this.selectedAlbums;
 	}
 	
-	public final ObservableList<Book> getSelectedBooks() {
+	public final ObservableList<Book> getSelectedAlbums() {
 		return this.selectedAlbumsProperty().get();
 	}
 	

@@ -3,7 +3,9 @@ package com.consacresdeleternel.consacrebeamer;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.consacresdeleternel.consacrebeamer.data.Book;
 import com.consacresdeleternel.consacrebeamer.data.Chapter;
+import com.consacresdeleternel.consacrebeamer.data.Song;
 import com.consacresdeleternel.consacrebeamer.data.Verse;
 
 public class TestHelper {
@@ -30,7 +32,31 @@ public class TestHelper {
 		
 	}
 	
+	public static List<Book> mockSomeBooks(int number) {
+		List<Book> books = new ArrayList<>();
+		for (int i = 1; i <= number; i++) {
+			Book book = new Book();
+			book.setTitle("Book" + i);
+			List<Song> songs = mockNSongs(i*2);
+			book.setSongs(songs);
+			books.add(book);
+		}
+		return books;
+	}
 	
+	public static Song mockSong(String title) {
+		Song song = new Song();
+		song.setSongTitle(title);
+		return song;
+	}
+	
+	public static List<Song> mockNSongs(int n){
+		List<Song> songs = new ArrayList<>();
+		for (int i = 1; i <= n; i++) {
+			songs.add(mockSong("Song" + i));
+		}
+		return songs;
+	}
 	//TODO
 		//This function belongs to an Helper class and muss be tested too
 		// at the moment it construct is wrong
