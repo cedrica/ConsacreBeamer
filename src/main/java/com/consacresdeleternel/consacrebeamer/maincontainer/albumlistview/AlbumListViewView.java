@@ -30,6 +30,7 @@ public class AlbumListViewView implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		rootNode.selectAllAlbumProperty().bind(checkBoxSelectAll.selectedProperty());
 		rootNode.albumsProperty().addListener((observable,oldVal,data) -> {
 			originalData = FXCollections.observableList(data);
 			lvBooks.setItems(originalData);
@@ -59,6 +60,7 @@ public class AlbumListViewView implements Initializable{
 							cbBook.setId("cb_" + i++);
 							cbBook.setText(item.getTitle());
 							setGraphic(cbBook);
+							cbBook.selectedProperty().bind(rootNode.selectAllAlbumProperty());
 							cbBook.selectedProperty().addListener((obs, oldVal, isSelected) ->{
 								if(isSelected) {
 									selectedBooks.add(item);

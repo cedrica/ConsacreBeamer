@@ -10,6 +10,7 @@ import javafx.scene.control.TextField
 import javafx.scene.control.ListView
 import com.consacresdeleternel.consacrebeamer.data.Book
 import javafx.geometry.Insets
+import javafx.scene.layout.HBox
 
 dynamic component AlbumListViewViewModel controlledby AlbumListViewView styledwith [
 	'/com/consacresdeleternel/consacrebeamer/maincontainer/albumlistview/AlbumListViewView.css' ] {
@@ -17,17 +18,16 @@ dynamic component AlbumListViewViewModel controlledby AlbumListViewView styledwi
 		stylesheets : [
 			'/com/consacresdeleternel/consacrebeamer/maincontainer/albumlistview/AlbumListViewView.css'
 		],
-		top : VBox {
+		top : HBox {
 			alignment : "BASELINE_LEFT",
-			spacing : 5,
+			spacing : 2,
+			CheckBox id checkBoxSelectAll {
+			},
 			Label {
-				text : "ALBUM",
+				text : "ALBUMS",
 				styleClass : [
 					"listview-titel"
 				]
-			},
-			CheckBox id checkBoxSelectAll {
-				selected : bind rootNode#selectAllAlbum
 			}
 		},
 		center : VBox {
