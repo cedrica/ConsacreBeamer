@@ -45,6 +45,7 @@ public class AlbumListViewView implements Initializable{
 			
 			lvBooks.setItems(originalData);
 		});
+
 		tfSearch.textProperty().addListener((observable,oldValue,search) -> {
 			Predicate<BookWrapper> predicate = p -> {
 		           if (search == null || search.isEmpty()) {
@@ -58,7 +59,6 @@ public class AlbumListViewView implements Initializable{
 		
 		lvBooks.setCellFactory(new Callback<ListView<BookWrapper>, ListCell<BookWrapper>>() {
 			private int i = 0;
-			private ObservableList<BookWrapper> selectedBooks = FXCollections.observableList(new ArrayList<>());
 			Predicate<BookWrapper> predicate = p -> true;
 			@Override
 			public ListCell<BookWrapper> call(ListView<BookWrapper> param) {
@@ -73,34 +73,32 @@ public class AlbumListViewView implements Initializable{
 							setGraphic(cbBook);
 							rootNode.selectAllAlbumProperty().addListener((obs, oldVal, isSelected) ->{
 								cbBook.setSelected(isSelected);
-								if(isSelected) {
-									checkBoxSelectAll.setSelected(true);
-									selectedBooks = FXCollections.observableList(new ArrayList<>(originalData));	
-								}
-								
 							});
+							
 							cbBook.selectedProperty().addListener((obs, oldVal, selected) ->{
 								item.setSelected(selected);
-								if(selectedBooks == null || selectedBooks.isEmpty()) {
-									selectedBooks = FXCollections.observableList(new ArrayList<>(originalData));
+								createPredicateAndFilter();
+								if(rootNode.getSelectedAlbums().isEmpty()) {
 									checkBoxSelectAll.setSelected(false);
+								} else if (rootNode.getSelectedAlbums().size() == originalData.size()) {
+									checkBoxSelectAll.setSelected(true);
 								}
-								predicate = predicate.and(p -> p.isSelected());
-								SortedList<BookWrapper> sortListByPredicate = Helper.sortListByPredicate(selectedBooks, predicate);
-								List<Book> books = null;
-								if(sortListByPredicate.isEmpty()) {
-									books = selectedBooks.stream().map(it -> it.getBook()).collect(Collectors.toList());
-									rootNode.setSelectedAlbums(FXCollections.observableList(new ArrayList<>(books)));
-								} else {
-									books = sortListByPredicate.stream().map(it -> it.getBook()).collect(Collectors.toList());
-								}
-								rootNode.setSelectedAlbums(FXCollections.observableList(new ArrayList<>(books)));
 							});
 						} else {
 							setText("");
 							setGraphic(null);
 						}
 						
+					}
+
+					private void createPredicateAndFilter() {
+						predicate = predicate.and(bookWrapper -> bookWrapper.isSelected());
+						SortedList<BookWrapper> sortListByPredicate = Helper.sortListByPredicate(originalData, predicate);
+						List<Book> books = new ArrayList<>();
+						if(!sortListByPredicate.isEmpty()) {
+							books = sortListByPredicate.stream().map(it -> it.getBook()).collect(Collectors.toList());
+						}
+						rootNode.setSelectedAlbums(FXCollections.observableList(books));
 					}
 				};
 			}

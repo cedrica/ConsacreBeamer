@@ -30,10 +30,10 @@
 	</top>
 	<center>
 		<VBox> 
-			<TextField fx:id="tfSearch" id="tfSearch" promptText="search items ..." prefWidth="300"> 
+			<TextField fx:id="tfSearch" id="tfSearch" promptText="search album ..." prefWidth="300"> 
 				<maxWidth><Double fx:constant="MAX_VALUE" /></maxWidth>
 			</TextField>
-			<ListView fx:id="lvBooks" VBox.vgrow="ALWAYS"/> 
+			<ListView fx:id="lvBooks" minWidth="200" VBox.vgrow="ALWAYS"/> 
 		</VBox>
 	</center>
 </fx:root>

@@ -32,11 +32,11 @@ public class FilterForSongsCategoryView implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		rootNode.albumsProperty().addListener((obs, oldVal, books) -> {
 			albumListViewViewModel.setBooks(books);	
-			List<Song> songs = new ArrayList<>();
+			/*List<Song> songs = new ArrayList<>();
 			books.forEach(book -> {
 				songs.addAll(book.getSongs());
 			});
-			filteredSongsViewModel.setFilteredSongs(FXCollections.observableList(songs));
+			filteredSongsViewModel.setFilteredSongs(FXCollections.observableList(songs));*/
 		});
 		
 		albumListViewViewModel.selectedAlbumsProperty().addListener((obs, oldVal, books) -> {

@@ -33,12 +33,13 @@ dynamic component AlbumListViewViewModel controlledby AlbumListViewView styledwi
 		center : VBox {
 			TextField id tfSearch {
 				^id : "tfSearch",
-				promptText : "search items ...",
+				promptText : "search album ...",
 				maxWidth : const Double#MAX_VALUE,
 				prefWidth : 300
 			},
 			ListView < Book > id lvBooks {
-				static vgrow : "ALWAYS"
+				static vgrow : "ALWAYS",
+				minWidth: 200
 			}
 		}
 

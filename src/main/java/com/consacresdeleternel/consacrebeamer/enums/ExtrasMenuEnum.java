@@ -5,10 +5,10 @@ import com.consacresdeleternel.consacrebeamer.events.ExtrasMenuEvent;
 import javafx.event.EventType;
 
 public enum ExtrasMenuEnum {
-
-	SEARCH_SONG("csb.extrasMenu.searchSong", "/icons/search-icon.png",ExtrasMenuEvent.SEARCH_SONG), 
+ 
 	CREATE_NEW_BOOK("csb.extrasMenu.createNewBook", "/icons/icons8-book2-40.png",ExtrasMenuEvent.CREATE_NEW_BOOK), 
-	LIBRARY("csb.extrasMenu.library", "",ExtrasMenuEvent.SHOW_LIBRARY), 
+	LIBRARY("csb.extrasMenu.library", "",ExtrasMenuEvent.SHOW_LIBRARY),
+	SONGS_CATALOG("csb.extrasMenu.songscatalog", "/icons/catalog.png",ExtrasMenuEvent.SONGS_CATALOG),
 	BACKGROUND_MANAGER("csb.extrasMenu.backgroundManager", "",null), 
 	SCHEDULE_LIST("csb.extrasMenu.showScheduleList", "",ExtrasMenuEvent.SHOW_SCHEDULE_LIST), 
 	OPTIONS("csb.extrasMenu.options", "", ExtrasMenuEvent.OPTIONS);

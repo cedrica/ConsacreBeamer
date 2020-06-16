@@ -28,7 +28,6 @@ dynamic component FilteredSongsViewModel controlledby FilteredSongsView styledwi
 			alignment : "BASELINE_CENTER",
 			VBox {
 				static hgrow : "ALWAYS",
-				alignment : "BASELINE_CENTER",
 				HBox {
 					alignment : "BASELINE_CENTER",
 					spacing : 10,
@@ -51,7 +50,7 @@ dynamic component FilteredSongsViewModel controlledby FilteredSongsView styledwi
 		},
 		center : VBox {
 			CustomTextField id ctfSearchSongs {
-				promptText : "Search...",
+				promptText : "search song...",
 				right : Button {
 					graphic : Glyph {
 						icon : "CLOSE",

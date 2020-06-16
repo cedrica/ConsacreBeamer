@@ -18,14 +18,17 @@ import com.consacresdeleternel.consacrebeamer.exceptions.DuplicateFoundException
 import com.consacresdeleternel.consacrebeamer.maincontainer.MainContainerView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.BookView;
 import com.consacresdeleternel.consacrebeamer.maincontainer.book.createbook.CreateBookView;
+import com.consacresdeleternel.consacrebeamer.maincontainer.filterforsongscategory.FilterForSongsCategoryViewModel;
 import com.consacresdeleternel.consacrebeamer.maincontainer.schedule.ScheduleListView;
 import com.consacresdeleternel.consacrebeamer.repository.RepositoryProvider;
 import com.consacresdeleternel.consacrebeamer.utils.FileUtil;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Side;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.stage.Modality;
 
 public class ExtrasMenuManager {
 
@@ -42,6 +45,9 @@ public class ExtrasMenuManager {
 
 		mainContainerView.addEventHandler(ExtrasMenuEvent.SHOW_SCHEDULE_LIST,
 				evt -> handleShowScheduleList(mainContainerView, evt));
+
+		mainContainerView.addEventHandler(ExtrasMenuEvent.SONGS_CATALOG,
+				evt -> handleShowSongsCatalog(mainContainerView, evt));
 	}
 
 	private void handleShowScheduleList(MainContainerView mainContainerView, ExtrasMenuEvent evt) {
@@ -82,6 +88,20 @@ public class ExtrasMenuManager {
 		});
 	}
 
+	private void handleShowSongsCatalog(MainContainerView mainContainerView, ExtrasMenuEvent evt) {
+		evt.consume();
+		List<Book> books =  repositoryProvider.getBookRepository().findAll();
+		if (books == null || books.isEmpty()) {
+			Dialogs.info(Localization.asKey("csb.ExtrasMenu.libraryIsEmpty"), mainContainerView.getScene().getWindow());
+			return;
+		}
+		FilterForSongsCategoryViewModel filterForSongsCategoryViewModel = new FilterForSongsCategoryViewModel();
+		ObservableList<Book> albums = FXCollections.observableList(books);
+		filterForSongsCategoryViewModel.setAlbums(albums);
+		Dialog<ButtonType> response = Dialogs.customDialog(filterForSongsCategoryViewModel, Modality.APPLICATION_MODAL, "",  mainContainerView.getScene().getWindow());
+		response.showAndWait();
+	}
+	
 	private void handleCreateBook(MainContainerView mainContainerView, ExtrasMenuEvent evt) {
 		evt.consume();
 		CreateBookView createBookView = new CreateBookView();
