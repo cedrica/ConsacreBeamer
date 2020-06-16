@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.CustomTextField;
 
-import com.consacresdeleternel.consacrebeamer.data.Book;
 import com.consacresdeleternel.consacrebeamer.data.Song;
 import com.consacresdeleternel.consacrebeamer.maincontainer.albumlistview.AlbumListViewViewModel;
 import com.consacresdeleternel.consacrebeamer.maincontainer.filteredsongs.FilteredSongsViewModel;
@@ -16,7 +15,6 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
 
@@ -27,7 +25,6 @@ public class FilterForSongsCategoryView implements Initializable {
 	@FXML TextField tfSearch;
 	@FXML CustomTextField ctfSearchSongs;
 	@FXML TilePane tpSongs;
-	@FXML ListView<Book> lvAlbums;
 	@FXML AlbumListViewViewModel albumListViewViewModel;
 	@FXML FilteredSongsViewModel filteredSongsViewModel;
 

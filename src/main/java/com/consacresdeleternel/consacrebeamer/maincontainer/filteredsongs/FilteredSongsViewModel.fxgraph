@@ -12,6 +12,7 @@ import org.controlsfx.glyphfont.Glyph
 import javafx.scene.layout.TilePane
 import javafx.scene.control.ToggleGroup
 import javafx.geometry.Insets
+import com.consacresdeleternel.consacrebeamer.data.UserData
 
 dynamic component FilteredSongsViewModel controlledby FilteredSongsView styledwith [
 	"/com/consacresdeleternel/consacrebeamer/maincontainer/filteredsongs/FilteredSongsView.css" ] {
@@ -33,11 +34,17 @@ dynamic component FilteredSongsViewModel controlledby FilteredSongsView styledwi
 					spacing : 10,
 					RadioButton id rbWorship {
 						text : "LOUANGE",
-						toggleGroup : idref radioGroup
+						toggleGroup : idref radioGroup,
+						userData : UserData {
+							category: 1
+						}
 					},
 					RadioButton id rbAdoration {
 						text : "ADORATION",
-						toggleGroup : idref radioGroup
+						toggleGroup : idref radioGroup,
+						userData : UserData {
+							category: 2
+						}
 					}
 				}
 			}

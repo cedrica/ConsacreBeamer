@@ -1,6 +1,9 @@
 package com.consacresdeleternel.consacrebeamer.maincontainer.filteredsongs;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -9,6 +12,7 @@ import org.controlsfx.control.textfield.CustomTextField;
 
 import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.data.Song;
+import com.consacresdeleternel.consacrebeamer.data.UserData;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.TilePane;
 
 public class FilteredSongsView implements Initializable {
@@ -32,32 +37,40 @@ public class FilteredSongsView implements Initializable {
 	RadioButton rbWorship;
 	@FXML
 	RadioButton rbAdoration;
-	Predicate<Button> predicateAll = p -> true;
-	Predicate<Button> predicateRb = null;
-	Predicate<Button> predicateSearch = null;
-
+	@FXML
+	private ToggleGroup  radioGroup;
+	Map<String, Predicate<Button>> predicateAll = new HashMap<>();
+	ObservableList<Button> copy_ori = null;
+	Predicate<Button> predicate = p -> true;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		rbWorship.selectedProperty().addListener((obs, oldVal, isSelected) -> {
-			predicateRb = p -> (isSelected)? ((Song) p.getUserData()).getSongCategoryId() == 1:false;
-			predicateAll = predicateAll.and(predicateRb);
-			filterSongsAndResetTitlePane(predicateAll);
-		});
-		rbAdoration.selectedProperty().addListener((obs, oldVal, isSelected) -> {
-			predicateRb = p -> (isSelected)? ((Song) p.getUserData()).getSongCategoryId() == 2:false;
-			predicateAll = predicateAll.and(predicateRb);
-			filterSongsAndResetTitlePane(predicateAll);
+		radioGroup.selectedToggleProperty().addListener((obs, oldVal, selectedToggle) -> {
+			predicate = p -> true;
+			int category = ((UserData)((RadioButton)selectedToggle).getUserData()).getCategory();
+			copy_ori = FXCollections.observableList(new ArrayList<>(originalData));
+			Predicate<Button> predicateRb = p ->  ((Song) p.getUserData()).getSongCategoryId() == category;
+			predicateAll.put("CATEGORY", predicateRb);
+			predicateAll.entrySet().forEach(c -> {
+				predicate = predicate.and(c.getValue());
+			});
+			filterSongsAndResetTitlePane(copy_ori, predicate);
 		});
 
 		ctfSearchSongs.textProperty().addListener((obs, oldVal, search) -> {
-			predicateSearch = p -> {
+			predicate = p -> true;
+			Predicate<Button> predicateSearch = p -> {
 				if (search == null || search.isEmpty()) {
 					return true;
 				}
 				return p.getText().startsWith(search);
 			};
-			predicateAll = predicateAll.and(predicateSearch);
-			filterSongsAndResetTitlePane(predicateAll);
+			copy_ori = FXCollections.observableList(new ArrayList<>(originalData));
+			predicateAll.put("SEARCH", predicateSearch);
+			predicateAll.entrySet().forEach(c -> {
+				predicate = predicate.and(c.getValue());
+			});
+			filterSongsAndResetTitlePane(copy_ori, predicate);
 		});
 		this.rootNode.filteredSongsProperty().addListener((obs, oldVal, filteredSongs) -> {
 			this.originalData = FXCollections.observableList(filteredSongs.stream().map(song -> {
@@ -65,14 +78,15 @@ public class FilteredSongsView implements Initializable {
 				button.setUserData(song);
 				return button;
 			}).collect(Collectors.toList()));
+			copy_ori = FXCollections.observableList(new ArrayList<>(originalData));
 			tpSongs.getChildren().clear();
 			tpSongs.getChildren().addAll(originalData);
 			this.rootNode.setTitlePaneSongsCount(tpSongs.getChildren().size());
 		});
 	}
 
-	private void filterSongsAndResetTitlePane(Predicate<Button> predicate) {
-		SortedList<Button> sortedList = Helper.sortListByPredicate(originalData, predicate);
+	private void filterSongsAndResetTitlePane(ObservableList<Button> liste, Predicate<Button> predicate) {
+		SortedList<Button> sortedList = Helper.sortListByPredicate(liste, predicate);
 		tpSongs.getChildren().clear();
 		tpSongs.getChildren().addAll(sortedList);
 		this.rootNode.setTitlePaneSongsCount(tpSongs.getChildren().size());

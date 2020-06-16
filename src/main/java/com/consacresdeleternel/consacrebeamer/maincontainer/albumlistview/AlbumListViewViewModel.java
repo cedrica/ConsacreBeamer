@@ -22,7 +22,7 @@ public class AlbumListViewViewModel extends BorderPane {
 		return this.selectAllAlbum;
 	}
 	
-	public final boolean isSelectAllBook() {
+	public final boolean isSelectAllAlbum() {
 		return this.selectAllAlbumProperty().get();
 	}
 	

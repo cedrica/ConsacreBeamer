@@ -4,6 +4,7 @@
 -->
 
 <?import java.lang.*?>
+<?import com.consacresdeleternel.consacrebeamer.data.UserData?>
 <?import com.consacresdeleternel.consacrebeamer.maincontainer.filteredsongs.FilteredSongsViewModel?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -31,8 +32,16 @@
 		<HBox minHeight="40" alignment="BASELINE_CENTER"> 
 			<VBox alignment="BASELINE_CENTER" HBox.hgrow="ALWAYS"> 
 				<HBox alignment="BASELINE_CENTER" spacing="10"> 
-					<RadioButton fx:id="rbWorship" text="LOUANGE" toggleGroup="$radioGroup"/> 
-					<RadioButton fx:id="rbAdoration" text="ADORATION" toggleGroup="$radioGroup"/> 
+					<RadioButton fx:id="rbWorship" text="LOUANGE" toggleGroup="$radioGroup"> 
+						<userData>
+							<UserData category="1"/> 
+						</userData>
+					</RadioButton>
+					<RadioButton fx:id="rbAdoration" text="ADORATION" toggleGroup="$radioGroup"> 
+						<userData>
+							<UserData category="2"/> 
+						</userData>
+					</RadioButton>
 				</HBox>
 			</VBox>
 		</HBox>

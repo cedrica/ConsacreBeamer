@@ -37,23 +37,24 @@ public class TestHelper {
 		for (int i = 1; i <= number; i++) {
 			Book book = new Book();
 			book.setTitle("Book" + i);
-			List<Song> songs = mockNSongs(i*2);
+			List<Song> songs = mockNSongs(i*2, book.getTitle());
 			book.setSongs(songs);
 			books.add(book);
 		}
 		return books;
 	}
 	
-	public static Song mockSong(String title) {
+	public static Song mockSong(String title, int songCategoryId) {
 		Song song = new Song();
 		song.setSongTitle(title);
+		song.setSongCategoryId(songCategoryId);
 		return song;
 	}
 	
-	public static List<Song> mockNSongs(int n){
+	public static List<Song> mockNSongs(int n, String bookName){
 		List<Song> songs = new ArrayList<>();
 		for (int i = 1; i <= n; i++) {
-			songs.add(mockSong("Song" + i));
+			songs.add(mockSong(bookName + "-Song" + i, (i%2 + 1)));
 		}
 		return songs;
 	}
