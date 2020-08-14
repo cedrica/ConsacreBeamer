@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="XMLBIBLE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="BIBLEBOOK">
+					<xs:complexType>
+						<xs:attribute name="bname" type="xs:string" />
+						<xs:attribute name="bnumber" type="xs:integer" />
+						<xs:sequence name="CHAPTER" minOccurs='1'>
+							<xs:element>
+								<xs:complexType>
+									<xs:attribute name="cnumber" type="xs:integer" />
+									<xs:sequence>
+										<xs:element name="VERS" minOccurs='1' type="xs:string">
+											<xs:complexType>
+												<xs:attribute name="vnumber" type="xs:integer" />
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>

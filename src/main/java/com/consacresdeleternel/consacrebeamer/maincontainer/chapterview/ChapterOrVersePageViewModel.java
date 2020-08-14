@@ -1,6 +1,6 @@
 package com.consacresdeleternel.consacrebeamer.maincontainer.chapterview;
 
-import com.consacresdeleternel.consacrebeamer.Helper;
+import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.maincontainer.customlistview.CustomListBasicObject;
 
 import javafx.beans.property.BooleanProperty;

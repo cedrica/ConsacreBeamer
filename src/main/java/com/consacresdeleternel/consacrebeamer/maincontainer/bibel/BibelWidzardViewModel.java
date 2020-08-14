@@ -1,6 +1,6 @@
 package com.consacresdeleternel.consacrebeamer.maincontainer.bibel;
 
-import com.consacresdeleternel.consacrebeamer.Helper;
+import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.data.Chapter;
 import com.consacresdeleternel.consacrebeamer.data.Verse;
 import com.consacresdeleternel.consacrebeamer.maincontainer.chapterview.ChapterOrVersePageViewModel;

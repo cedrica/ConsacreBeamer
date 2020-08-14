@@ -1,9 +1,11 @@
 package com.consacresdeleternel.consacrebeamer.common;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Base64;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.ResourceBundle;
@@ -11,11 +13,14 @@ import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.management.RuntimeErrorException;
+
+import org.apache.commons.lang.StringUtils;
 import org.controlsfx.glyphfont.FontAwesome;
 import org.controlsfx.glyphfont.Glyph;
 import org.controlsfx.glyphfont.GlyphFontRegistry;
 
-import com.consacresdeleternel.consacrebeamer.data.Book;
+import com.consacresdeleternel.consacrebeamer.exceptions.BookNotFoundException;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -26,7 +31,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -34,6 +38,15 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Helper {
+
+	public static String findBibelBookNameByNumber(int bookNum, List<String> bibelBookNames) throws BookNotFoundException {
+		if (bibelBookNames != null && !bibelBookNames.isEmpty())
+			return bibelBookNames.get(bookNum);
+		else {
+			throw new BookNotFoundException("No Bible Book for number "+ bookNum);
+		}
+			
+	}
 	public static void load(Object o, ResourceBundle resourceBundle) {
 		try {
 			String name = o.getClass().getName();
@@ -47,12 +60,17 @@ public class Helper {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void resetHtmlFile(byte[] data) {
+
+	public static void load(Object o) {
 		try {
-		    Files.write(Paths.get("src","main","resources", "selected-verse.html"), data);
+			String name = o.getClass().getName();
+			String path = name.replace(".", "/").concat(".fxml");
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			fxmlLoader.setRoot(o);
+			fxmlLoader.setLocation(Helper.class.getResource("/" + path));
+			fxmlLoader.load();
 		} catch (IOException e) {
-		    e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 
@@ -76,6 +94,23 @@ public class Helper {
 		if (size.length > 0)
 			font.setFontSize(size[0]);
 		return font;
+	}
+
+	public static String retrieveTraductionNameFormFileName(File item) {
+		String fileName = item.getName();
+		String[] fnames = fileName.split("_");
+		if (fnames == null || fnames.length <= 0) {
+			throw new RuntimeErrorException(null, "File name muss match a certain standard. But it doesn´t");
+		}
+		return StringUtils.substringBefore(fnames[2], ".xml");
+	}
+	
+	public static void resetHtmlFile(byte[] data) {
+		try {
+		    Files.write(Paths.get("src","main","resources", "selected-verse.html"), data);
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
 	}
 
 	public static String convertStringToBase64(String text) {

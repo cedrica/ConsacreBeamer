@@ -5,8 +5,8 @@ import java.util.List;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
-import com.consacresdeleternel.consacrebeamer.BibelBook;
 import com.consacresdeleternel.consacrebeamer.TestHelper;
+import com.consacresdeleternel.consacrebeamer.data.BibelBook;
 import com.consacresdeleternel.consacrebeamer.maincontainer.bibel.BibelWidzardViewModel;
 
 import javafx.application.Platform;

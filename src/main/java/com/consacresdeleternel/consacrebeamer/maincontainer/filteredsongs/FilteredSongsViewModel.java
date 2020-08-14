@@ -1,6 +1,6 @@
 package com.consacresdeleternel.consacrebeamer.maincontainer.filteredsongs;
 
-import com.consacresdeleternel.consacrebeamer.Helper;
+import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.data.Song;
 
 import javafx.beans.property.ListProperty;

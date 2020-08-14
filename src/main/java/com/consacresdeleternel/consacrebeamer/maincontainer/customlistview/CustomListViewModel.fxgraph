@@ -13,6 +13,7 @@ import javafx.scene.control.Button
 import javafx.scene.control.ToggleButton
 import javafx.scene.control.Separator
 import javafx.scene.control.ToggleGroup
+import javafx.scene.control.ComboBox
 
 dynamic component CustomListViewModel controlledby CustomListView styledwith ["/com/consacresdeleternel/consacrebeamer/maincontainer/customlistview/CustomListView.css"]{
 
@@ -43,21 +44,27 @@ dynamic component CustomListViewModel controlledby CustomListView styledwith ["/
 			},
 			HBox{
 				//vgap: 5,
-				ToggleButton{
-				text : "FR"	,
-				toggleGroup : idref toggleGroup,
-				onAction : controllermethod onFr,
-				selected : true
+				ToggleButton id tgbFR{
+					text : "FR"	,
+					toggleGroup : idref toggleGroup,
+					onAction : controllermethod onFr,
+					selected : true
 				},
-				ToggleButton{
+				ToggleButton id tgbDE{
 					text : "DE"	,
-				toggleGroup : idref toggleGroup,
-				onAction : controllermethod onDe
+					toggleGroup : idref toggleGroup,
+					onAction : controllermethod onDe
 				},
-				ToggleButton{
+				ToggleButton id tgbEN{
 					text : "EN"	,
-				toggleGroup : idref toggleGroup,
-				onAction : controllermethod onEn
+					toggleGroup : idref toggleGroup,
+					onAction : controllermethod onEn
+				}
+			},
+			HBox{
+				ComboBox id cbBibelTraduction {
+					maxWidth : const Double#MAX_VALUE,
+					static hgrow : "ALWAYS"
 				}
 			}
 		},

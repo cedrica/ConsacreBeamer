@@ -1,20 +1,22 @@
 package com.consacresdeleternel.consacrebeamer.tasks;
 
+import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 
-import com.consacresdeleternel.consacrebeamer.BibelBook;
 import com.consacresdeleternel.consacrebeamer.enums.Language;
-import com.consacresdeleternel.consacrebeamer.service.BibelParserTxt;
-import com.consacresdeleternel.consacrebeamer.service.BibelParserTxtImpl;
+import com.consacresdeleternel.consacrebeamer.service.BibelParser;
+import com.consacresdeleternel.consacrebeamer.service.XmlBibelParserImpl;
+import com.consacresdeleternel.consacrebeamer.utils.FileUtil;
 
 import javafx.concurrent.Task;
 
-public class LoadBibelWidzard extends Task<List<BibelBook>> {
-	BibelParserTxt bibelParserTxtImpl = new BibelParserTxtImpl();
+public class LoadBibelWidzard extends Task<List<File>> {
+	BibelParser bibelParser = new XmlBibelParserImpl();
 	
 	@Override
-	protected List<BibelBook> call() throws Exception {
-		return bibelParserTxtImpl.readBibelBooksFromFiles(Language.FR);
+	protected List<File> call() throws Exception {
+		return Arrays.asList(FileUtil.loadXmlBibelFiles(Language.FR));
 	}
 
 

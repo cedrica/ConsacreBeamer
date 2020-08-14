@@ -1,7 +1,9 @@
 package com.consacresdeleternel.consacrebeamer.maincontainer.customlistview;
 
-import com.consacresdeleternel.consacrebeamer.BibelBook;
-import com.consacresdeleternel.consacrebeamer.Helper;
+import java.io.File;
+
+import com.consacresdeleternel.consacrebeamer.common.Helper;
+import com.consacresdeleternel.consacrebeamer.data.BibelBook;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ListProperty;
@@ -17,6 +19,7 @@ import javafx.scene.layout.BorderPane;
 public class CustomListViewModel extends BorderPane{
 	private StringProperty listTitel = new SimpleStringProperty();
 	private ListProperty<BibelBook> bibelBooks = new SimpleListProperty<BibelBook>();
+	private ListProperty<File> traductions = new SimpleListProperty<File>();
 	private BooleanProperty selectAllVisible = new SimpleBooleanProperty();
 	private ObjectProperty<Integer> selectIndex = new SimpleObjectProperty<Integer>();
 	private ObjectProperty<CustomListBasicObject> selectedBibel = new SimpleObjectProperty<CustomListBasicObject>();
@@ -27,6 +30,9 @@ public class CustomListViewModel extends BorderPane{
 	public CustomListViewModel() {
 		Helper.load(this);
 	}
+	
+	
+	
 	
 	public final StringProperty listTitelProperty() {
 		return this.listTitel;
@@ -122,6 +128,30 @@ public class CustomListViewModel extends BorderPane{
 	public final void setSelectedBibel(final CustomListBasicObject selectedBibel) {
 		this.selectedBibelProperty().set(selectedBibel);
 	}
+
+
+
+
+	public final ListProperty<File> traductionsProperty() {
+		return this.traductions;
+	}
+	
+
+
+
+
+	public final ObservableList<File> getTraductions() {
+		return this.traductionsProperty().get();
+	}
+	
+
+
+
+
+	public final void setTraductions(final ObservableList<File> traductions) {
+		this.traductionsProperty().set(traductions);
+	}
+	
 	
 	
 	

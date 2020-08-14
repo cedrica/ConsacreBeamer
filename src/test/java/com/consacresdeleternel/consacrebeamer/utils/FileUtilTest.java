@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.consacresdeleternel.consacrebeamer.enums.Language;
+
 public class FileUtilTest {
 	
 	@Test
@@ -16,6 +18,12 @@ public class FileUtilTest {
 		assertEquals(lines.get(2).trim(), "et alors");
 		assertEquals(lines.get(1).trim(), "un test");
 		assertEquals(lines.get(0).trim(), "je suis");
+	}
+	
+	
+	@Test
+	public void loadXmlBibelFiles(){
+		assertEquals(FileUtil.loadXmlBibelFiles(Language.FR).length, 7);
 	}
 
 }

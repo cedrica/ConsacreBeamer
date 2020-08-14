@@ -1,6 +1,6 @@
 package com.consacresdeleternel.consacrebeamer.maincontainer.filterforsongscategory;
 
-import com.consacresdeleternel.consacrebeamer.Helper;
+import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.data.Book;
 
 import javafx.beans.property.BooleanProperty;

@@ -3,6 +3,7 @@ package com.consacresdeleternel.consacrebeamer;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.consacresdeleternel.consacrebeamer.data.BibelBook;
 import com.consacresdeleternel.consacrebeamer.data.Book;
 import com.consacresdeleternel.consacrebeamer.data.Chapter;
 import com.consacresdeleternel.consacrebeamer.data.Song;

@@ -1,9 +1,8 @@
 package com.consacresdeleternel.consacrebeamer.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,32 +10,29 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
-import com.consacresdeleternel.consacrebeamer.BibelBook;
+import org.apache.commons.lang.StringUtils;
+
+import com.consacresdeleternel.consacrebeamer.common.Helper;
 import com.consacresdeleternel.consacrebeamer.consts.BibelBooksConsts;
+import com.consacresdeleternel.consacrebeamer.data.BibelBook;
 import com.consacresdeleternel.consacrebeamer.data.Chapter;
 import com.consacresdeleternel.consacrebeamer.data.Verse;
 import com.consacresdeleternel.consacrebeamer.enums.Language;
 import com.consacresdeleternel.consacrebeamer.exceptions.BookNotFoundException;
 import com.consacresdeleternel.consacrebeamer.utils.FileUtil;
 
-import static com.consacresdeleternel.consacrebeamer.consts.BibelFilesConst.*;
 import javafx.util.Pair;
 
-public class BibelParserTxtImpl implements BibelParserTxt{
+public class BibelParserTxtImpl implements BibelParser{
 	
 	@Override
-	public List<BibelBook> readBibelBooksFromFiles(Language language) {
+	public List<BibelBook> readBibelBooksFromFile(File bibel) {
 		List<BibelBook> books = new ArrayList();
-		String fileLocation = BIBEL_FR;
-		if(language == Language.DE) {
-			fileLocation = BIBEL_DE;
-		} else if(language == Language.FR) {
-			fileLocation = BIBEL_FR;
-		} else if(language == Language.EN) {
-			fileLocation = BIBEL_EN;
-		}
+		if(bibel == null) return books;
+		String absPath = bibel.getAbsolutePath();
+		String bibelPath = "/bibel"+StringUtils.substringAfter(absPath, "bibel");
 		try {
-			List<String> allLines = FileUtil.readLines(fileLocation);
+			List<String> allLines = FileUtil.readLines(bibel.getName());
 			Map<String, List<Map<String, List<Pair<String, String>>>>> bibelMap = new HashMap();
 			Map<String, List<Pair<String, String>>> chapterMap = null;
 			String oldChapterNum = "";
@@ -62,6 +58,7 @@ public class BibelParserTxtImpl implements BibelParserTxt{
 				verses.add(new Pair(verseNum, verseText));
 				chapterMap.put(chapterNum, verses);
 			}
+			Language language = findLanguage(bibelPath);
 			
 			TreeMap<String, String> sorted = new TreeMap(bibelMap);
 			for (String bookNumber  : sorted.keySet()) {
@@ -69,11 +66,11 @@ public class BibelParserTxtImpl implements BibelParserTxt{
 				try {
 					String name = "";
 					if(Language.FR.equals(language)) {
-						name = findBibelBookNameByNumber(Integer.parseInt(bookNumber) -1, BibelBooksConsts.BIBEL_BOOK_NAMES_FR);
+						name = Helper.findBibelBookNameByNumber(Integer.parseInt(bookNumber) -1, BibelBooksConsts.BIBEL_BOOK_NAMES_FR);
 					} else if(Language.EN.equals(language)) {
-						name = findBibelBookNameByNumber(Integer.parseInt(bookNumber) -1, BibelBooksConsts.BIBEL_BOOK_NAMES_EN);
+						name = Helper.findBibelBookNameByNumber(Integer.parseInt(bookNumber) -1, BibelBooksConsts.BIBEL_BOOK_NAMES_EN);
 					} else if(Language.DE.equals(language)) {
-						name = findBibelBookNameByNumber(Integer.parseInt(bookNumber) -1, BibelBooksConsts.BIBEL_BOOK_NAMES_DE);
+						name = Helper.findBibelBookNameByNumber(Integer.parseInt(bookNumber) -1, BibelBooksConsts.BIBEL_BOOK_NAMES_DE);
 					}
 					bibelBook.setName(name);
 				} catch (BookNotFoundException e) {
@@ -88,6 +85,17 @@ public class BibelParserTxtImpl implements BibelParserTxt{
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	private Language findLanguage(String bibelPath) {
+		if(bibelPath.contains("en")) {
+			return Language.EN;
+		} else if(bibelPath.contains("de")) {
+			return Language.DE;
+		} else if(bibelPath.contains("fr")) {
+			return Language.FR;
+		}
+		return Language.FR;
 	}
 
 	private List<Chapter> constructChapters(List<Map<String, List<Pair<String, String>>>> chapterMaps) {
@@ -122,14 +130,7 @@ public class BibelParserTxtImpl implements BibelParserTxt{
 		return verses;
 	}
 	
-	private String findBibelBookNameByNumber(int bookNum, List<String> bibelBookNames) throws BookNotFoundException {
-		if (bibelBookNames != null && !bibelBookNames.isEmpty())
-			return bibelBookNames.get(bookNum);
-		else {
-			throw new BookNotFoundException("No Bible Book for number "+ bookNum);
-		}
-			
-	}
+
 
 	private String retrieveVerseTextFromLine(String line) {
 		//z.B. Line == 01O||1||1||Au commencement, Dieu crÃ©a les cieux et la terre.

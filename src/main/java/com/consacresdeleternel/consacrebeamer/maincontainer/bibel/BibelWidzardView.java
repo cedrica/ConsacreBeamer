@@ -4,8 +4,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.consacresdeleternel.consacrebeamer.BibelBook;
 import com.consacresdeleternel.consacrebeamer.common.Helper;
+import com.consacresdeleternel.consacrebeamer.data.BibelBook;
 import com.consacresdeleternel.consacrebeamer.data.Chapter;
 import com.consacresdeleternel.consacrebeamer.data.Verse;
 import com.consacresdeleternel.consacrebeamer.maincontainer.chapterview.ChapterOrVersePageViewModel;

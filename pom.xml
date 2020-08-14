@@ -11,7 +11,24 @@
 		<deltaspike.version>1.8.1</deltaspike.version>
 		<weld.version>2.3.3.Final</weld.version>
 	</properties>
+<!-- 	<profiles>
+		<profile>
+			<id>app-dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<mysql.java.connector>5.1.6</mysql.java.connector>
+			</properties>
+		</profile>
 
+		<profile>
+			<id>app-prod</id>
+			<properties>
+				<mysql.java.connector>8.0.21</mysql.java.connector>
+			</properties>
+		</profile>
+	</profiles> -->
 
 	<dependencies>
 		<dependency>
@@ -27,7 +44,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
+			<version>8.0.19</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.velocity</groupId>

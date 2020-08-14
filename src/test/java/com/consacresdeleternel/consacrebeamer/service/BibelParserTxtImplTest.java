@@ -12,7 +12,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.consacresdeleternel.consacrebeamer.BibelBook;
+import com.consacresdeleternel.consacrebeamer.data.BibelBook;
 import com.consacresdeleternel.consacrebeamer.data.Chapter;
 import com.consacresdeleternel.consacrebeamer.data.Verse;
 import com.consacresdeleternel.consacrebeamer.enums.Language;

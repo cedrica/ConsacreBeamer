@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.consacresdeleternel.consacrebeamer.data.BibelBook;
+
 public class TestHelperTest {
 
 	@Test

@@ -1,0 +1,8 @@
+ERROR: 		Error calling Driver#connect
+SOLUTION:	connect to mysql.
+				> mysql -u root -p
+				> enter password
+			enter following
+				> SET GLOBAL time_zone = '+3:00';
+				
+==================================================
