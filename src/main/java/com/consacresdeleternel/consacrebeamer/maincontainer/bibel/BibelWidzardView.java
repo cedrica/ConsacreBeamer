@@ -42,7 +42,6 @@ public class BibelWidzardView implements Initializable{
 				chapterViewModel.setChaptersOrVerses(FXCollections.observableList(((BibelBook) books.get(0)).getChapters()));
 				this.selectedBibelBook = (BibelBook) books.get(0);
 			}
-				
 		});
 		
 		customListViewModel.addEventHandler(BibelEvent.CUSTOM_LIST, evt ->{
@@ -71,7 +70,6 @@ public class BibelWidzardView implements Initializable{
 			Verse selectedVerse = evt.getVerse();
 			textOfVerseViewModel.setSelectedChapter(selectedChapter);
 			textOfVerseViewModel.setSelectedVerse(selectedVerse);
-			
 		});
 	}
 
@@ -80,6 +78,7 @@ public class BibelWidzardView implements Initializable{
 			verseViewModel.setSelectedBibel(newVal);
 		});
 	}
+	
 	private BibelBook selectedBibelBook = null; 
 	private void configureChapters(BibelEvent evt) {
 		Helper.resetHtmlFile("".getBytes());

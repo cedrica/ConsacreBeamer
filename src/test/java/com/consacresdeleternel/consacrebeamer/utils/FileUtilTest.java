@@ -22,8 +22,9 @@ public class FileUtilTest {
 	
 	
 	@Test
-	public void loadXmlBibelFiles(){
+	public void loadXmlBibelFiles() {
 		assertEquals(FileUtil.loadXmlBibelFiles(Language.FR).length, 7);
 	}
+	
 
 }

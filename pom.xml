@@ -199,6 +199,9 @@
 					<needMenu>true</needMenu>
 					<appName>ConsacreBeamer</appName>
 					<verbose>true</verbose>
+					<bundleArguments>
+						<icon>${project.basedir}/src/main/deploy/package/windows/consacre-beamer-icon.ico</icon>
+					</bundleArguments>
 				</configuration>
 			</plugin>
 			<plugin>

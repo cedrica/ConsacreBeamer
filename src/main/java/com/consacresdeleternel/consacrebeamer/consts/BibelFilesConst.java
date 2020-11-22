@@ -13,6 +13,6 @@ public class BibelFilesConst {
 	public static final String TXT_BIBEL_FR = "/bibel/txt/fr";
 	public static final String TXT_BIBEL_DE = "/bibel/txt/de";
 	public static final String TXT_BIBEL_EN = "/bibel/txt/en";
-	public static final String XML_BIBLE_LOCATION = "bibel/xml/";
+	public static final String XML_BIBLE_LOCATION =  "/bibel/xml/";
 
 }

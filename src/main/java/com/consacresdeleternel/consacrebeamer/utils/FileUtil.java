@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -109,9 +108,12 @@ public class FileUtil {
 	
 	
 	public static File[] loadXmlBibelFiles(Language language) {
-		URL resource = FileUtil.class.getClassLoader().getResource(BibelFilesConst.XML_BIBLE_LOCATION + language.name().toLowerCase());
-		File xmlBibleLocation = new File(resource.getFile());
-		return xmlBibleLocation.listFiles();
+	    File file = new File(System.getProperty("user.dir").replace("\\", "/")  + BibelFilesConst.XML_BIBLE_LOCATION + language.name().toLowerCase());
+	    System.out.println(file);
+    	File[] files = file.listFiles();
+	    return files;
 	}
-
+	
+	
+	
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns="http://java.sun.com/xml/ns/persistence"
-	version="1.0">
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
 	
 	<!-- <persistence-unit name="manager"
 		transaction-type="RESOURCE_LOCAL">
@@ -32,12 +31,13 @@
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:mysql://localhost:3306/consacrebeamerdb" />
 			<property name="javax.persistence.jdbc.user" value="root" />
-			<property name="javax.persistence.jdbc.password" value="Leumaleu2001" /> 
+			<property name="javax.persistence.jdbc.password" value="Leumaleu2001" /> <!-- Leumaleu2001  for production-->
 
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQL5Dialect" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
+
 		</properties>
 	</persistence-unit>
 </persistence>
